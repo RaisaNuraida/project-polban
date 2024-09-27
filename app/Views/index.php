@@ -12,6 +12,9 @@
     <link rel="shortcut icon" type="assets/image/x-icon" href="images/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700" rel="stylesheet">
 
+    <!-- Tambahkan jQuery untuk menangani pop-up -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/vendors.min.css">
     <link rel="stylesheet" type="text/css" href="assets/css/switchery.min.css">
@@ -384,8 +387,7 @@
     <div class="app-content content">
         <div class="content-wrapper">
             <div class="content-wrapper-before"></div>
-            <div class="content-header row">
-            </div>
+            <div class="content-header row"></div>
             <div class="content-body">
 
                 <!-- Revenue, Hit Rate & Deals
@@ -414,19 +416,43 @@
                     </div>
                 </div> -->
 
+                <!-- Table Data User START-->
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
                         <div class="card">
-                            <div class="card-header">
-                                <h4 class="card-title">Users</h4>
-                                <a class="heading-elements-toggle">
-                                    <i class="la la-ellipsis-v font-medium-3"></i>
-                                </a>
+                            <div class="container mt-5">
+                                <h2>Data User</h2>
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Username</th>
+                                            <th> Username </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php if (!empty($my_data)) : ?>
+                                            <?php foreach ($my_data as $row) : ?>
+                                                <tr>
+                                                    <td><?= $row['user_id']; ?></td>
+                                                    <td><?= $row['username']; ?></td>
+                                                    <td><?= $row['email']; ?></td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        <?php else : ?>
+                                            <tr>
+                                                <td colspan="4" class="text-center">No data found</td>
+                                            </tr>
+                                        <?php endif; ?>
+                                    </tbody>
+                                </table>
                             </div>
+                <!-- Table Data Users END -->
+                            
+                <!-- Upload & Import - Excel START -->
                             <div class="card-content collapse show">
                                 <div class="card-body p-9 pb-0">
                                     <div>
-                                        <h1>Import Excel File</h1>
                                         <!-- Tampilkan pesan jika ada -->
                                         <?php if (session()->getFlashdata('message')): ?>
                                             <p><?= session()->getFlashdata('message'); ?></p>
@@ -439,61 +465,65 @@
                                         </form>
 
                                         <!-- Modal Pop-up -->
-    <div id="popupModal" style="display:none;">
-        <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); z-index: 9999;">
-            <p id="popupText"></p>
-            <button id="closePopup">OK</button>
-        </div>
-        <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 9998;"></div>
-    </div>
+                                        <div id="popupModal" style="display:none;">
+                                            <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); z-index: 9999;">
+                                                <p id="popupText"></p>
+                                                <button id="closePopup">OK</button>
+                                            </div>
+                                            <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 9998;"></div>
+                                        </div>
 
-    <script>
-        // Jika ada pesan di session flash data, maka tampilkan modal pop-up
-        $(document).ready(function () {
-            var message = $('#popupMessage').text();
-            if (message) {
-                $('#popupText').text(message);
-                $('#popupModal').show();
-            }
-        });
+                                        <script>
+                                            // Jika ada pesan di session flash data, maka tampilkan modal pop-up
+                                            $(document).ready(function() {
+                                                var message = $('#popupMessage').text();
+                                                if (message) {
+                                                    $('#popupText').text(message);
+                                                    $('#popupModal').show();
+                                                }
+                                            });
 
-        // Tutup modal dan redirect ke halaman utama
-        $('#closePopup').click(function () {
-            $('#popupModal').hide();
-            window.location.href = '/'; // Redirect ke halaman utama
-        });
-    </script>
+                                            // Tutup modal dan redirect ke halaman utama
+                                            $('#closePopup').click(function() {
+                                                $('#popupModal').hide();
+                                                window.location.href = '/'; // Redirect ke halaman utama
+                                            });
+                                        </script>
                                     </div>
                                 </div>
                             </div>
+                <!-- Upload & Import - Excel END -->
+
+
                         </div>
                     </div>
                 </div>
+            </div>
         </div>
-    </div>
-    <!-- END: Content-->
 
-    <!-- BEGIN: Vendor JS-->
-    <script src="assets/js/vendors.min.js" type="text/javascript"></script>
-    <script src="assets/js/switchery.min.js" type="text/javascript"></script>
-    <script src="assets/js/switch.min.js" type="text/javascript"></script>
-    <!-- BEGIN Vendor JS-->
+        <!-- END: Content-->
 
-    <!-- BEGIN: Page Vendor JS-->
-    <script src="assets/js/chartist.min.js" type="text/javascript"></script>
-    <script src="assets/js/chartist-plugin-tooltip.min.js" type="text/javascript"></script>
-    <!-- END: Page Vendor JS-->
+        <!-- BEGIN: Vendor JS-->
+        <script src="assets/js/vendors.min.js" type="text/javascript"></script>
+        <script src="assets/js/switchery.min.js" type="text/javascript"></script>
+        <script src="assets/js/switch.min.js" type="text/javascript"></script>
+        <!-- BEGIN Vendor JS-->
 
-    <!-- BEGIN: Theme JS-->
-    <script src="assets/js/app-menu.min.js" type="text/javascript"></script>
-    <script src="assets/js/app.min.js" type="text/javascript"></script>
-    <script src="assets/js/customizer.min.js" type="text/javascript"></script>
-    <script src="assets/js/jquery.sharrre.js" type="text/javascript"></script>
-    <!-- END: Theme JS-->
+        <!-- BEGIN: Page Vendor JS-->
+        <script src="assets/js/chartist.min.js" type="text/javascript"></script>
+        <script src="assets/js/chartist-plugin-tooltip.min.js" type="text/javascript"></script>
+        <!-- END: Page Vendor JS-->
 
-    <!-- BEGIN: Page JS-->
-    <script src="assets/js/dashboard-analytics.min.js" type="text/javascript"></script>
-    <!-- END: Page JS-->
+        <!-- BEGIN: Theme JS-->
+        <script src="assets/js/app-menu.min.js" type="text/javascript"></script>
+        <script src="assets/js/app.min.js" type="text/javascript"></script>
+        <script src="assets/js/customizer.min.js" type="text/javascript"></script>
+        <script src="assets/js/jquery.sharrre.js" type="text/javascript"></script>
+        <!-- END: Theme JS-->
+
+        <!-- BEGIN: Page JS-->
+        <script src="assets/js/dashboard-analytics.min.js" type="text/javascript"></script>
+        <!-- END: Page JS-->
 
 </body>
 <!-- END: Body-->
