@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\dashboard;
 use App\Models\UserModel;
 use CodeIgniter\Controller;
+use CodeIgniter\Model;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard as HtmlDashboard;
@@ -13,7 +14,20 @@ class Home extends BaseController
 {
     public function index(): string
     {
-        return view('index');
+        $model = new UserModel();
+        
+        // Mengambil data dari model
+        $my_data = $model->getAllDataManual();  // Jangan pakai $this->$model, cukup $model
+       // echo '<pre>'; print_r($my_data); exit();
+        // Siapkan data untuk dikirim ke view
+        $data = [
+            'my_data' => $my_data  // Memasukkan data yang diambil ke dalam array
+        ];
+        
+        // Render view dan kirim data
+        return view('index', $data);  // Pastikan 'index' adalah nama view yang benar
+       // echo"ddd"; exit();
+        //return view('index');
     }
 
     // Fungsi untuk mengimpor file Excel ke database
@@ -53,15 +67,22 @@ class Home extends BaseController
             return view('index');
         }
     }
-}
 
-class MyController extends BaseController
-{
-    public function index()
+    public function ShowTableUser()
     {
-        $model = new UserModel(); // Inisialisasi model
-        $data['my_data'] = $model->getAllData(); // Mengambil semua data dan mengirimnya ke view
-
-        return view('index', $data);  // Render view dan kirim data
+        // Inisialisasi model
+        $model = new UserModel();
+        
+        // Mengambil data dari model
+        $my_data = $model->getAllDataManual();  // Jangan pakai $this->$model, cukup $model
+        echo '<pre>'; print_r($my_data); exit();
+        // Siapkan data untuk dikirim ke view
+        $data = [
+            'my_data' => $my_data  // Memasukkan data yang diambil ke dalam array
+        ];
+        
+        // Render view dan kirim data
+        return view('index', $data);  // Pastikan 'index' adalah nama view yang benar
     }
+
 }

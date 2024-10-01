@@ -78,7 +78,7 @@
 
 
     <!-- BEGIN: Main Menu-->
-    <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow " data-scroll-to-active="true" data-img="images/backgrounds/02.jpg">
+    <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow " data-scroll-to-active="true" data-img="assets/images/backgrounds/02.jpg">
         <div class="navbar-header">
             <ul class="nav navbar-nav flex-row">
                 <li class="nav-item mr-auto"><a class="navbar-brand" href="index.php"><img class="brand-logo" alt="Chameleon admin logo" src="assets/images/apple-icon-120.png" />
@@ -416,120 +416,15 @@
                     </div>
                 </div> -->
 
-                <!-- Table Data User START-->
-                <div class="row">
-                    <div class="col-lg-12 col-md-12">
-                        <div class="card">
-                            <div class="container mt-2">
-                                <h2 class="mb-2">Data User</h2>
-                                <table class="table table-bordered text-center">
-                                    <thead>
-                                        <tr>
-                                            <th>NO</th>
-                                            <th>Username</th>
-                                            <th>Password</th>
-                                            <th>Email</th>
-                                            <th>Dibuat Pada</th>
-                                            <th>Terakhir Diupdate</th>
-                                            <th>Unduh</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php if (!empty($my_data)) : ?>
-                                            <?php $no = 1; ?>
-                                            <?php foreach ($my_data as $row) : ?>
-                                                <tr>
-                                                    <td><? $no++; ?></td>
-                                                    <td><?= $row['username']; ?></td>
-                                                    <td><?= $row['password']; ?></td>
-                                                    <td><?= $row['email']; ?></td>
-                                                    <td><?= $row['created_at']; ?></td>
-                                                    <td><?= $row['updated_at']; ?></td>
-                                                    <td>
-                                                        <!-- Tambahkan Aksi seperti Edit atau Hapus -->
-                                                        <a href="<?= base_url('unduh') ?>" class="btn btn-primary btn-sm">Unduh</a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="<?= base_url('edit') ?>" class="btn btn-warning btn-sm mb-1">Edit</a>
-                                                        <a href="<?= base_url('delete') ?>" class="btn btn-danger btn-sm">Hapus</a>
-                                                    </td>
-                                                   
-                                                </tr>
-                                            <?php endforeach; ?>
-                                        <?php else : ?>
-                                            <tr>
-                                                <td colspan="8" class="text-center">No data found</td>
-                                                <td>
-                                                        <!-- Tambahkan Aksi seperti Edit atau Hapus -->
-                                                        <a href="/unduh/" class="btn btn-primary btn-sm">Unduh</a>
-                                                        <a href="/edit/" class="btn btn-warning btn-sm">Edit</a>
-                                                        <a href="/delete/" class="btn btn-danger btn-sm">Delete</a>
-                                                    </td>
-                                            </tr>
-                                        <?php endif; ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                <!-- Table Data Users END -->
-                            
-                <!-- Upload & Import - Excel START -->
-                            <div class="card-content collapse show">
-                                <div class="card-body p-9 pb-0">
-                                    <div class="container mb-1">
-                                        <div>
-                                            <!-- Tampilkan pesan jika ada -->
-                                            <?php if (session()->getFlashdata('message')): ?>
-                                                <p><?= session()->getFlashdata('message'); ?></p>
-                                            <?php endif; ?>
+                
 
-                                            <!-- Form untuk upload file Excel -->
-                                            <form action="/import/import" method="post" enctype="multipart/form-data">
-                                                <input type="file" name="file" required>
-                                                <button type="submit" class="btn btn-primary">Import</button>
-                                            </form>
 
-                                            <!-- Modal Pop-up -->
-                                            <div id="popupModal" style="display:none;">
-                                                <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); z-index: 9999;">
-                                                    <p id="popupText"></p>
-                                                    <button id="closePopup">OK</button>
-                                                </div>
-                                                <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 9998;"></div>
-                                            </div>
-
-                                            <script>
-                                                // Jika ada pesan di session flash data, maka tampilkan modal pop-up
-                                                $(document).ready(function() {
-                                                    var message = $('#popupMessage').text();
-                                                    if (message) {
-                                                        $('#popupText').text(message);
-                                                        $('#popupModal').show();
-                                                    }
-                                                });
-
-                                                // Tutup modal dan redirect ke halaman utama
-                                                $('#closePopup').click(function() {
-                                                    $('#popupModal').hide();
-                                                    window.location.href = '/'; // Redirect ke halaman utama
-                                                });
-                                            </script>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                <!-- Upload & Import - Excel END -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- PAGE EDIT START -->
-         <div class="card te">
-
-         </div>
-        <!-- PAGE EDIT END -->
         <!-- END: Content-->
 
         <!-- BEGIN: Vendor JS-->

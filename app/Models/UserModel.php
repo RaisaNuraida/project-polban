@@ -8,10 +8,14 @@ class UserModel extends Model
 {
     protected $table      = 'users';
     protected $primaryKey = 'user_id';
-    protected $allowedFields = ['user_id','username', 'password', 'email'];
+    protected $allowedFields = ['user_id', 'username', 'password', 'email', 'created_at', 'updated_at'];
 
-    public function getAllData()
+    // Alternatif: Fungsi untuk mengambil data menggunakan query SQL manual
+    public function getAllDataManual()
     {
-        return $this->findAll();  // Mengambil semua data dari tabel
+        $db = \Config\Database::connect();
+        $query = $db->query('SELECT username, password, email, created_at, updated_at FROM users');
+        return $query->getResultArray();  // Mengembalikan data sebagai array
     }
+
 }
