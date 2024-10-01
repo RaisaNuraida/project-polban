@@ -85,4 +85,32 @@ class Home extends BaseController
         return view('index', $data);  // Pastikan 'index' adalah nama view yang benar
     }
 
+    public function updateUser()
+    {
+        $userModel = new UserModel();
+
+        $data = [
+            'username' => $this->request->getPost('username'),
+            'email' => $this->request->getPost('email'),
+            'password' => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
+        ];
+
+        $userModel->update($this->request->getPost('user_id'), $data);
+
+        return redirect()->to('/');  // Setelah update, redirect ke halaman utama
+    }
+
+    public function deleteUser($id)
+    {
+        $userModel = new UserModel();
+
+        if ($userModel->find($id)) {
+            // Hapus user berdasarkan ID
+            $userModel->delete($id);
+            return redirect()->to('/')->with('message', 'User berhasil dihapus.');
+        } else {
+            return redirect()->to('/')->with('message', 'User tidak ditemukan.');
+        }
+    }
+
 }
