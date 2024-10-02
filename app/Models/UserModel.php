@@ -14,7 +14,7 @@ class UserModel extends Model
     public function getAllDataManual()
     {
         $db = \Config\Database::connect();
-        $query = $db->query('SELECT username, password, email, created_at, updated_at FROM users');
+        $query = $db->query('SELECT user_id, username, password, email, created_at, updated_at FROM users');
         return $query->getResultArray();  // Mengembalikan data sebagai array
     }
 

@@ -416,12 +416,12 @@
                     </div>
                 </div> -->
 
-            <!-- CRUD START-->
+                <!-- CRUD START-->
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
                         <div class="card">
 
-                        <!-- Table Data User START-->
+                            <!-- Table Data User START-->
                             <div class="container mt-2">
                                 <h2 class="mb-2">Data User</h2>
                                 <table class="table table-bordered text-center">
@@ -433,7 +433,6 @@
                                             <th>Email</th>
                                             <th>Dibuat Pada</th>
                                             <th>Terakhir Diupdate</th>
-                                            <th>Unduh</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -449,19 +448,15 @@
                                                     <td><?= $row['created_at']; ?></td>
                                                     <td><?= $row['updated_at']; ?></td>
                                                     <td>
-                                                        <a href="<?= base_url('unduh') ?>" class="btn btn-primary btn-sm">Unduh</a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="#" class="btn btn-warning btn-sm mb-1" data-toggle="modal" data-target="#editModal"
-                                                            data-username="<?= $row['username']; ?>"
-                                                            data-email="<?= $row['email']; ?>"
-                                                            data-password="<?= $row['password']; ?>">
-                                                            Edit
-                                                        </a>
-                                                        <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" 
-                                                            data-username="<?= $row['username']; ?>">
-                                                            Hapus
-                                                        </a>
+                                                        <a href="<?= base_url('unduh') ?>" class="btn btn-primary btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Unduh</a>
+                                                        <button data-target='#updateModal' id='update' data-toggle='modal' data-id="<?= $row['user_id']; ?>" data-username="<?= $row['username']; ?>" data-email="<?= $row['email']; ?>" data-password="<?= $row['password']; ?>"   class='btn btn-warning updateModal' style='font-size:10px;padding:2px 5px;color:white;' >Ubah</button>
+                                                        <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['user_id']; ?>"  class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;' >Hapus</button>
+
+                                                      <!-- <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" -->
+                                                        
+                                                            <!-- data-id="<?= $row['user_id']; ?>"> -->
+                                                            <!-- Hapus -->
+                                                        <!-- </a> -->
                                                     </td>
 
                                                 </tr>
@@ -469,20 +464,14 @@
                                         <?php else : ?>
                                             <tr>
                                                 <td colspan="6" class="text-center">No data found</td>
-                                                <td>
-                                                    <!-- Tambahkan Aksi seperti Edit atau Hapus -->
-                                                    <a href="/unduh/" class="btn btn-primary btn-sm">Unduh</a>
-                                                    <a href="/edit/" class="btn btn-warning btn-sm">Edit</a>
-                                                    <a href="/delete/" class="btn btn-danger btn-sm">Delete</a>
-                                                </td>
                                             </tr>
                                         <?php endif; ?>
                                     </tbody>
                                 </table>
                             </div>
-                        <!-- Table Data Users END -->
+                            <!-- Table Data Users END -->
 
-                        <!-- Upload & Import - Excel START -->
+                            <!-- Upload & Import - Excel START -->
                             <div class="card-content collapse show">
                                 <div class="card-body p-9 pb-0">
                                     <div class="container mb-1">
@@ -527,43 +516,43 @@
                                     </div>
                                 </div>
                             </div>
-                        <!-- Upload & Import - Excel END -->
+                            <!-- Upload & Import - Excel END -->
 
                         </div>
                     </div>
                 </div>
-            <!-- CRUD END-->
+                <!-- CRUD END-->
 
             </div>
         </div>
 
-    <!-- UPDATE TABLE START -->
+        <!-- UPDATE TABLE START -->
         <!-- Modal -->
-        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+        <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="editModalLabel">Edit Data User</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
+                            <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <form id="editForm" method="post">
-                        <input type="hidden" id="user_id" name="user_id">
-                        <div class="form-group">
-                            <label for="username">Username</label>
-                            <input type="text" class="form-control" id="username" name="username" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="password">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                            <input type="hidden" id="user_id" name="user_id">
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control" id="username" name="username" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" name="password">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                         </form>
                     </div>
                 </div>
@@ -571,61 +560,105 @@
         </div>
 
         <script>
-            $('#editModal').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget); // Tombol yang memicu modal
-                var username = button.data('username');// Ambil data dari atribut
-                var email = button.data('email');
-                var password = button.data('password');
-                
-                var modal = $(this);
-                modal.find('.modal-body #username').val(username);
-                modal.find('.modal-body #email').val(email);
-                modal.find('.modal-body #password').val(password);
-            });
+            $(document).on('click', '.updateModal', function() {
+        // Ambil data dari atribut data-* pada tombol yang diklik
+        var id = $(this).data('id');
+        var username = $(this).data('username');
+        var email = $(this).data('email');
+        var password = $(this).data('password');
+        
+        // Isi nilai input dalam form modal dengan data yang diperoleh
+        $('#editForm #user_id').val(id);
+        $('#editForm #username').val(username);
+        $('#editForm #email').val(email);
+        $('#editForm #password').val(''); // Kosongkan password, jika tidak ingin mengedit
+
+        // Tampilkan modal
+        $('#editModal').modal('show');
+    });
+
+
 
             // Submit form ketika tombol simpan di klik
-            $('#editForm').submit(function (e) {
-                e.preventDefault();
-                // Lakukan operasi pengiriman data AJAX atau pengolahan form di sini
-                alert("Data berhasil disimpan!");
-            });
-        </script>
-    <!-- UPDATE TABLE END -->
+    $('#editForm').submit(function(e) {
+        e.preventDefault(); // Mencegah form melakukan submit default
 
-    <!-- Modal Konfirmasi Hapus START -->
+        // Ambil data dari form
+        var id = $('#user_id').val();
+        var username = $('#username').val();
+        var email = $('#email').val();
+        var password = $('#password').val();
+
+        $.ajax({
+            url: '<?= base_url("user/updateUser") ?>', // Endpoint untuk update user
+            method: 'POST',
+            data: {
+                user_id: id,
+                username: username,
+                email: email,
+                password: password
+            },
+            success: function(response) {
+                alert("Data berhasil disimpan!");
+                location.reload(); // Refresh halaman setelah berhasil disimpan
+            },
+            error: function(err) {
+                console.log(err);
+                alert("Terjadi kesalahan saat menyimpan data.");
+            }
+        });
+    });
+
+
+        </script>
+        <!-- UPDATE TABLE END -->
+
+        <!-- Modal Konfirmasi Hapus START -->
         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content text-center">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Apakah Anda yakin ingin menghapus data <strong id="username"></strong>?</p>
+                        <form id="deleteForm" method="post" action="<?= base_url('delete') ?>">
+                            <input type="hidden" id="delete_user_id" name="user_id">
+                            <button type="submit" class="btn btn-danger">Hapus</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="modal-body">
-                <p>Apakah Anda yakin ingin menghapus data <strong id="userName"></strong>?</p>
-                <form id="deleteForm" method="post" action="<?= base_url('deleteUser') ?>">
-                <input type="hidden" id="delete_user_id" name="user_id">
-                <button type="submit" class="btn btn-danger">Hapus</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                </form>
-            </div>
-            </div>
-        </div>
         </div>
 
         <script>
-            $('#deleteModal').on('show.bs.modal', function (event) {
-                var button = $(event.relatedTarget); // Tombol yang memicu modal
-                var username = button.data('username'); // Ambil data dari atribut
-                
-                var modal = $(this);
-                modal.find('.modal-body #delete_user_id').val(user_id);
-                modal.find('.modal-body #userName').text(username);
-            });
+            $('.deleteModal').click(function() {
+   //alert('called');
+    // we want to copy the 'id' from the button to the modal
+    var href = $(this).data('target');
+    var id = $(this).data('id');
+    $('#delete_user_id').val(id);
+
+
+});
+            // $('#deleteModal').on('show.bs.modal', function(event) {
+                // var button = $(event.relatedTarget); // Mengambil tombol yang memicu modal
+                // var username = button.data('username'); // Ambil nama pengguna dari atribut
+                // var user_id = button.data('user_id'); // Ambil nama pengguna dari atribut
+                //  alert(user_id);
+                // data-id="1"
+                // var modal = $(this);
+                // modal.find('.modal-body #user_id').text(username); // Tampilkan nama pengguna
+                // $('#delete_user_id').val(user_id); // Set ID pengguna
+                // $('#username').text(username); // Tampilkan nama pengguna
+            // });
         </script>
 
-    <!-- Modal Konfirmasi Hapus END-->
+        <!-- Modal Konfirmasi Hapus END-->
 
         <!-- END: Content-->
 
