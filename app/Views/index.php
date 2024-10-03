@@ -5,7 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, minimal-ui">
     <meta name="author" content="ThemeSelect">
     <title>Dashboard Admin</title>
     <link rel="apple-touch-icon" href="assets/images/apple-icon-120.png">
@@ -424,50 +424,46 @@
                             <!-- Table Data User START-->
                             <div class="container mt-2">
                                 <h2 class="mb-2">Data User</h2>
-                                <table class="table table-bordered text-center">
-                                    <thead>
-                                        <tr>
-                                            <th>NO</th>
-                                            <th>Username</th>
-                                            <th>Password</th>
-                                            <th>Email</th>
-                                            <th>Dibuat Pada</th>
-                                            <th>Terakhir Diupdate</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php if (!empty($my_data)) : ?>
-                                            <?php $no = 1; ?>
-                                            <?php foreach ($my_data as $row) : ?>
-                                                <tr>
-                                                    <td><? $no++; ?></td>
-                                                    <td><?= $row['username']; ?></td>
-                                                    <td><?= $row['password']; ?></td>
-                                                    <td><?= $row['email']; ?></td>
-                                                    <td><?= $row['created_at']; ?></td>
-                                                    <td><?= $row['updated_at']; ?></td>
-                                                    <td>
-                                                        <a href="<?= base_url('unduh') ?>" class="btn btn-primary btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Unduh</a>
-                                                        <button data-target='#updateModal' id='update' data-toggle='modal' data-id="<?= $row['user_id']; ?>" data-username="<?= $row['username']; ?>" data-email="<?= $row['email']; ?>" data-password="<?= $row['password']; ?>"   class='btn btn-warning updateModal' style='font-size:10px;padding:2px 5px;color:white;' >Ubah</button>
-                                                        <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['user_id']; ?>"  class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;' >Hapus</button>
-
-                                                      <!-- <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" -->
-                                                        
-                                                            <!-- data-id="<?= $row['user_id']; ?>"> -->
-                                                            <!-- Hapus -->
-                                                        <!-- </a> -->
-                                                    </td>
-
-                                                </tr>
-                                            <?php endforeach; ?>
-                                        <?php else : ?>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered text-center">
+                                        <thead>
                                             <tr>
-                                                <td colspan="6" class="text-center">No data found</td>
+                                                <th>NO</th>
+                                                <th>Username</th>
+                                                <th>Password</th>
+                                                <th>Email</th>
+                                                <th>Dibuat Pada</th>
+                                                <th>Terakhir Diupdate</th>
+                                                <th>Aksi</th>
                                             </tr>
-                                        <?php endif; ?>
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            <?php if (!empty($my_data)) : ?>
+                                                <?php $no = 1; ?>
+                                                <?php foreach ($my_data as $row) : ?>
+                                                    <tr>
+                                                        <td><? $no++; ?></td>
+                                                        <td><?= $row['username']; ?></td>
+                                                        <td><?= $row['password']; ?></td>
+                                                        <td><?= $row['email']; ?></td>
+                                                        <td><?= $row['created_at']; ?></td>
+                                                        <td><?= $row['updated_at']; ?></td>
+                                                        <td>
+                                                            <a href="<?= base_url('unduh') ?>" class="btn btn-primary btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Unduh</a>
+                                                            <button data-target='#updateModal' id='update' data-toggle='modal' data-id="<?= $row['user_id']; ?>" data-username="<?= $row['username']; ?>" data-email="<?= $row['email']; ?>" data-password="<?= $row['password']; ?>" class='btn btn-warning updateModal' style='font-size:10px;padding:2px 5px;color:white;'>Ubah</button>
+                                                            <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['user_id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
+                                                        </td>
+
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            <?php else : ?>
+                                                <tr>
+                                                    <td colspan="6" class="text-center">No data found</td>
+                                                </tr>
+                                            <?php endif; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                             <!-- Table Data Users END -->
 
@@ -561,55 +557,53 @@
 
         <script>
             $(document).on('click', '.updateModal', function() {
-        // Ambil data dari atribut data-* pada tombol yang diklik
-        var id = $(this).data('id');
-        var username = $(this).data('username');
-        var email = $(this).data('email');
-        var password = $(this).data('password');
-        
-        // Isi nilai input dalam form modal dengan data yang diperoleh
-        $('#editForm #user_id').val(id);
-        $('#editForm #username').val(username);
-        $('#editForm #email').val(email);
-        $('#editForm #password').val(''); // Kosongkan password, jika tidak ingin mengedit
+                // Ambil data dari atribut data-* pada tombol yang diklik
+                var id = $(this).data('id');
+                var username = $(this).data('username');
+                var email = $(this).data('email');
+                var password = $(this).data('password');
 
-        // Tampilkan modal
-        $('#editModal').modal('show');
-    });
+                // Isi nilai input dalam form modal dengan data yang diperoleh
+                $('#editForm #user_id').val(id);
+                $('#editForm #username').val(username);
+                $('#editForm #email').val(email);
+                $('#editForm #password').val(password); // Kosongkan password, jika tidak ingin mengedit
+
+                // Tampilkan modal
+                $('#editModal').modal('show');
+            });
 
 
 
             // Submit form ketika tombol simpan di klik
-    $('#editForm').submit(function(e) {
-        e.preventDefault(); // Mencegah form melakukan submit default
+            $('#editForm').submit(function(e) {
+                e.preventDefault(); // Mencegah form melakukan submit default
 
-        // Ambil data dari form
-        var id = $('#user_id').val();
-        var username = $('#username').val();
-        var email = $('#email').val();
-        var password = $('#password').val();
+                // Ambil data dari form
+                var id = $('#user_id').val();
+                var username = $('#username').val();
+                var email = $('#email').val();
+                var password = $('#password').val();
 
-        $.ajax({
-            url: '<?= base_url("user/updateUser") ?>', // Endpoint untuk update user
-            method: 'POST',
-            data: {
-                user_id: id,
-                username: username,
-                email: email,
-                password: password
-            },
-            success: function(response) {
-                alert("Data berhasil disimpan!");
-                location.reload(); // Refresh halaman setelah berhasil disimpan
-            },
-            error: function(err) {
-                console.log(err);
-                alert("Terjadi kesalahan saat menyimpan data.");
-            }
-        });
-    });
-
-
+                $.ajax({
+                    url: '<?= base_url("updateUser") ?>', // Endpoint untuk update user
+                    method: 'POST',
+                    data: {
+                        user_id: id,
+                        username: username,
+                        email: email,
+                        password: password
+                    },
+                    success: function(response) {
+                        alert("Data berhasil disimpan!");
+                        location.reload(); // Refresh halaman setelah berhasil disimpan
+                    },
+                    error: function(err) {
+                        console.log(err);
+                        alert("Terjadi kesalahan saat menyimpan data.");
+                    }
+                });
+            });
         </script>
         <!-- UPDATE TABLE END -->
 
@@ -637,24 +631,24 @@
 
         <script>
             $('.deleteModal').click(function() {
-   //alert('called');
-    // we want to copy the 'id' from the button to the modal
-    var href = $(this).data('target');
-    var id = $(this).data('id');
-    $('#delete_user_id').val(id);
+                //alert('called');
+                // we want to copy the 'id' from the button to the modal
+                var href = $(this).data('target');
+                var id = $(this).data('id');
+                $('#delete_user_id').val(id);
 
 
-});
+            });
             // $('#deleteModal').on('show.bs.modal', function(event) {
-                // var button = $(event.relatedTarget); // Mengambil tombol yang memicu modal
-                // var username = button.data('username'); // Ambil nama pengguna dari atribut
-                // var user_id = button.data('user_id'); // Ambil nama pengguna dari atribut
-                //  alert(user_id);
-                // data-id="1"
-                // var modal = $(this);
-                // modal.find('.modal-body #user_id').text(username); // Tampilkan nama pengguna
-                // $('#delete_user_id').val(user_id); // Set ID pengguna
-                // $('#username').text(username); // Tampilkan nama pengguna
+            // var button = $(event.relatedTarget); // Mengambil tombol yang memicu modal
+            // var username = button.data('username'); // Ambil nama pengguna dari atribut
+            // var user_id = button.data('user_id'); // Ambil nama pengguna dari atribut
+            //  alert(user_id);
+            // data-id="1"
+            // var modal = $(this);
+            // modal.find('.modal-body #user_id').text(username); // Tampilkan nama pengguna
+            // $('#delete_user_id').val(user_id); // Set ID pengguna
+            // $('#username').text(username); // Tampilkan nama pengguna
             // });
         </script>
 
