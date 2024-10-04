@@ -390,7 +390,82 @@
             <div class="content-header row"></div>
             <div class="content-body">
 
-                <!-- Revenue, Hit Rate & Deals
+                <!-- Import Data Start -->
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <div class="card-header">
+                                
+                                <h2>Import Pengguna</h2>
+                                <hr>
+                                <p>Agar Import Pengguna dapat berjalan dengan lancar dan mudah, pastikan dokumen CSV anda memenuhi kriteria berikut. <br>
+                                    1. Data untuk email harus memiliki @ dan .</p>
+                                <hr>
+                                <p>
+                                    Pastikan dokumen csv anda memiliki hanya(jika hanya) field berikut.
+                                    <br> 1.Username (wajib)
+                                    <br> 2.Password (wajib)
+                                    <br> 3.Email (wajib)
+                                </p>
+                                <a href="datauser.csv" download="datauser.csv">
+                                    <button class="btn btn-primary" style='font-size:12px;padding:4px 7px;color:white;'>Download contoh CSV</button>
+
+                                </a>
+
+
+
+                                <div class="card-content collapse show">
+                                    <div class="card-body p-9 pb-0">
+                                        <div class="container mb-1">
+                                            <div>
+                                                <!-- Tampilkan pesan jika ada -->
+                                                <?php if (session()->getFlashdata('message')): ?>
+                                                    <p><?= session()->getFlashdata('message'); ?></p>
+                                                <?php endif; ?>
+
+                                                <!-- Form untuk upload file Excel -->
+                                                <form action="/import/import" method="post" enctype="multipart/form-data">
+                                                    <input type="file" name="file" required>
+                                                    <button type="submit" class="btn btn-primary">Import</button>
+                                                </form>
+
+                                                <!-- Modal Pop-up -->
+                                                <div id="popupModal" style="display:none;">
+                                                    <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); z-index: 9999;">
+                                                        <p id="popupText"></p>
+                                                        <button id="closePopup">OK</button>
+                                                    </div>
+                                                    <div style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 9998;"></div>
+                                                </div>
+
+                                                <script>
+                                                    // Jika ada pesan di session flash data, maka tampilkan modal pop-up
+                                                    $(document).ready(function() {
+                                                        var message = $('#popupMessage').text();
+                                                        if (message) {
+                                                            $('#popupText').text(message);
+                                                            $('#popupModal').show();
+                                                        }
+                                                    });
+
+                                                    // Tutup modal dan redirect ke halaman utama
+                                                    $('#closePopup').click(function() {
+                                                        $('#popupModal').hide();
+                                                        window.location.href = '/'; // Redirect ke halaman utama
+                                                    });
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Import Data End -->
+
+            <!-- Revenue, Hit Rate & Deals
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
                         <div class="card">
@@ -416,249 +491,30 @@
                     </div>
                 </div> -->
 
-                <!-- CRUD START-->
-                <div class="row">
-                    <div class="col-lg-12 col-md-12">
-                        <div class="card">
 
-                            <!-- Table Data User START-->
-                            <div class="container mt-2">
-                                <div class="d-flex justify-content-between ">
-                                    <h2 class="mb-2">Data User</h2>
-                                    <a class="btn btn-primary" style="font-size:14px;padding:2px 5px;color:white; height:25px;" href="<?= base_url('importdata') ?>">
-                                        Import Data
-                                    </a>
+            <!-- END: Content-->
 
-                                </div>
+            <!-- BEGIN: Vendor JS-->
+            <script src="assets/js/vendors.min.js" type="text/javascript"></script>
+            <script src="assets/js/switchery.min.js" type="text/javascript"></script>
+            <script src="assets/js/switch.min.js" type="text/javascript"></script>
+            <!-- BEGIN Vendor JS-->
 
-                                <div class="table-responsive">
-                                    <table class="table table-bordered text-center">
-                                        <thead>
-                                            <tr>
-                                                <th>NO</th>
-                                                <th>Username</th>
-                                                <th>Password</th>
-                                                <th>Email</th>
-                                                <th>Dibuat Pada</th>
-                                                <th>Terakhir Diupdate</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php if (!empty($my_data)) : ?>
-                                                <?php $no = 1; ?>
-                                                <?php foreach ($my_data as $row) : ?>
-                                                    <tr>
-                                                        <td><?= $no++; ?></td>
-                                                        <td><?= $row['username']; ?></td>
-                                                        <td><?= $row['password']; ?></td>
-                                                        <td><?= $row['email']; ?></td>
-                                                        <td><?= $row['created_at']; ?></td>
-                                                        <td><?= $row['updated_at']; ?></td>
-                                                        <td>
-                                                            <a href="<?= base_url('unduh') ?>" class="btn btn-primary btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Unduh</a>
-                                                            <button data-target='#updateModal' id='update' data-toggle='modal' data-id="<?= $row['user_id']; ?>" data-username="<?= $row['username']; ?>" data-email="<?= $row['email']; ?>" data-password="<?= $row['password']; ?>" class='btn btn-warning updateModal' style='font-size:10px;padding:2px 5px;color:white;'>Ubah</button>
-                                                            <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['user_id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
-                                                        </td>
+            <!-- BEGIN: Page Vendor JS-->
+            <script src="assets/js/chartist.min.js" type="text/javascript"></script>
+            <script src="assets/js/chartist-plugin-tooltip.min.js" type="text/javascript"></script>
+            <!-- END: Page Vendor JS-->
 
-                                                    </tr>
-                                                <?php endforeach; ?>
-                                            <?php else : ?>
-                                                <tr>
-                                                    <td colspan="6" class="text-center">No data found</td>
-                                                </tr>
-                                            <?php endif; ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <!-- Table Data Users END -->
+            <!-- BEGIN: Theme JS-->
+            <script src="assets/js/app-menu.min.js" type="text/javascript"></script>
+            <script src="assets/js/app.min.js" type="text/javascript"></script>
+            <script src="assets/js/customizer.min.js" type="text/javascript"></script>
+            <script src="assets/js/jquery.sharrre.js" type="text/javascript"></script>
+            <!-- END: Theme JS-->
 
-                            <!-- Upload & Import - Excel START -->
-
-                            <!-- Upload & Import - Excel END -->
-
-                        </div>
-                    </div>
-                </div>
-                <!-- CRUD END-->
-
-            </div>
-        </div>
-
-        <!-- EXAMPLE TABLE  -->
-        <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal" aria-hidden="true"> 
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModal">Edit Data User</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="exampleForm" method="post">
-                            <input type="hidden" id="user_id" name="user_id">
-                            <div class="form-group">
-                                <label for="username">Username</label>
-                                <input type="text" class="form-control" id="username" name="username" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" name="password">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>-->
-
-        <!-- UPDATE TABLE START -->
-        <!-- Modal -->
-        <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editModalLabel">Edit Data User</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="editForm" method="post">
-                            <input type="hidden" id="user_id" name="user_id">
-                            <div class="form-group">
-                                <label for="username">Username</label>
-                                <input type="text" class="form-control" id="username" name="username" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" name="password">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <script>
-            $('.updateModal').click(function() {
-                // Ambil data dari atribut data-* pada tombol yang diklik
-
-                var username = $(this).data('username');
-                var email = $(this).data('email');
-                var password = $(this).data('password');
-
-                // Isi nilai input dalam form modal dengan data yang diperoleh
-
-                $('#editForm #username').val(username);
-                $('#editForm #email').val(email);
-                $('#editForm #password').val(password); // Kosongkan password, jika tidak ingin mengedit
-
-                // Tampilkan modal
-                $('#updateModal').modal('show');
-            });
-
-            // Submit form ketika tombol simpan di klik
-            $('#updateModal').submit(function(e) {
-                e.preventDefault(); // Mencegah form melakukan submit default
-
-                // Ambil data dari form
-                var id = $('#user_id').val();
-                var username = $('#username').val();
-                var email = $('#email').val();
-                var password = $('#password').val();
-                $.ajax({
-                    url: '<?= base_url("update") ?>', // Endpoint untuk update user
-                    method: 'POST',
-                    data: {
-                        user_id: id,
-                        username: username,
-                        email: email,
-                        password: password
-                    },
-                    success: function(response) {
-
-                        location.reload(); // Refresh halaman setelah berhasil disimpan
-                    },
-                    error: function(err) {
-                        console.log(err);
-                        if (err.responseJSON) {
-                            alert("Error: " + err.responseJSON.message); // Menampilkan pesan error dari server
-                        } else {
-                            alert("Terjadi kesalahan saat menyimpan data.");
-                        }
-                    }
-                });
-            });
-        </script>
-        <!-- UPDATE TABLE END -->
-
-        <!-- Modal Konfirmasi Hapus START -->
-        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content text-center">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Apakah Anda yakin ingin menghapus data <strong id="username"></strong>?</p>
-                        <form id="deleteForm" method="post" action="<?= base_url('delete') ?>">
-                            <input type="hidden" id="delete_user_id" name="user_id">
-                            <button type="submit" class="btn btn-danger">Hapus</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <script>
-            $('.deleteModal').click(function() {
-                var href = $(this).data('target');
-                var id = $(this).data('id');
-                $('#delete_user_id').val(id);
-            });
-        </script>
-
-        <!-- Modal Konfirmasi Hapus END-->
-
-        <!-- END: Content-->
-
-        <!-- BEGIN: Vendor JS-->
-        <script src="assets/js/vendors.min.js" type="text/javascript"></script>
-        <script src="assets/js/switchery.min.js" type="text/javascript"></script>
-        <script src="assets/js/switch.min.js" type="text/javascript"></script>
-        <!-- BEGIN Vendor JS-->
-
-        <!-- BEGIN: Page Vendor JS-->
-        <script src="assets/js/chartist.min.js" type="text/javascript"></script>
-        <script src="assets/js/chartist-plugin-tooltip.min.js" type="text/javascript"></script>
-        <!-- END: Page Vendor JS-->
-
-        <!-- BEGIN: Theme JS-->
-        <script src="assets/js/app-menu.min.js" type="text/javascript"></script>
-        <script src="assets/js/app.min.js" type="text/javascript"></script>
-        <script src="assets/js/customizer.min.js" type="text/javascript"></script>
-        <script src="assets/js/jquery.sharrre.js" type="text/javascript"></script>
-        <!-- END: Theme JS-->
-
-        <!-- BEGIN: Page JS-->
-        <script src="assets/js/dashboard-analytics.min.js" type="text/javascript"></script>
-        <!-- END: Page JS-->
+            <!-- BEGIN: Page JS-->
+            <script src="assets/js/dashboard-analytics.min.js" type="text/javascript"></script>
+            <!-- END: Page JS-->
 
 </body>
 <!-- END: Body-->
