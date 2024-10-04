@@ -420,7 +420,18 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
                         <div class="card">
+                            <br>
+                        <center>
+                            <div class="tabs p-0">
+                                <button class="tab-link active" onclick="openTab(event, 'waktu-tunggu')">Waktu Tunggu</button>
+                                <button class="tab-link" onclick="openTab(event, 'keselarasan-vertical')">Keselarasan Vertical</button>
+                                <button class="tab-link" onclick="openTab(event, 'keselarasan-horisontal')">Keselarasan Horizontal</button>
+                                <button class="tab-link" onclick="openTab(event, 'tingkat-tempat-bekerja')">Tingkat Tempat Bekerja</button>
+                                <button class="tab-link" onclick="openTab(event, 'pendapatan')">Pendapatan</button>
 
+                            </div>
+
+                        </center>
                             <!-- Table Data User START-->
                             <div class="container mt-2">
                                 <div class="d-flex justify-content-between ">
