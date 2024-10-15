@@ -34,9 +34,10 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
+       
     ];
 
-    /**
+    /*
      * List of special required filters.
      *
      * The filters listed here are special. They are applied before and after
@@ -69,8 +70,8 @@ class Filters extends BaseFilters
      */
     public array $globals = [
         'before' => [
-            // 'honeypot',
-            // 'csrf',
+             'honeypot',
+             //'login'
             // 'invalidchars',
         ],
         'after' => [
@@ -103,5 +104,7 @@ class Filters extends BaseFilters
      *
      * @var array<string, array<string, list<string>>>
      */
-    public array $filters = [];
+    public array $filters = [
+        'login' => ['before' => ['index']],
+    ];
 }

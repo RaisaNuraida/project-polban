@@ -65,7 +65,7 @@
                             <div class="dropdown-menu dropdown-menu-right">
                                 <div class="arrow_box_right"> <a class="dropdown-item" href="#"><span class="avatar avatar-online"><img src="assets/images/avatar-s-19.png" alt="avatar"><span class="user-name text-bold-700 ml-1">Lando</span></span></a>
                                     <div class="dropdown-divider"></div><a class="dropdown-item" href="user-profile.html"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My Inbox</a><a class="dropdown-item" href="project-summary.html"><i class="ft-check-square"></i> Task</a><a class="dropdown-item" href="chat-application.html"><i class="ft-message-square"></i> Chats</a>
-                                    <div class="dropdown-divider"></div><a class="dropdown-item" href="login.html"><i class="ft-power"></i> Logout</a>
+                                    <div class="dropdown-divider"></div><a class="dropdown-item" action="<?= base_url('tracer') ?>"><i class="ft-power"></i> Logout</a>
                                 </div>
                             </div>
                         </li>
@@ -94,25 +94,12 @@
                         </i>
                         <span class="menu-title">Dashboard</span></a>
                 </li>
-                <li class=" nav-item"><a href="#"><i class="ft-edit"></i><span class="menu-title">Kuesioner</span></a>
-                    <ul class="menu-content">
-                        <li><a class="menu-item" href="email-application.html">Lorem</a>
-                        </li>
-                        <li><a class="menu-item" href="chat-application.html">Lorem</a>
-                        </li>
+                <li class="menu-item">
+                    <a href="<?= base_url('kuesioner') ?>">
+                        <i class="ft-edit"></i>
+                        <span class="menu-title">Kuesioner</span>
+                    </a>
                 </li>
-                <li><a class="menu-item" href="#">Lorem Ipsum</a>
-                    <ul class="menu-content">
-                        <li><a class="menu-item" href="timeline-center.html">Lorem</a>
-                        </li>
-                        <li><a class="menu-item" href="timeline-horizontal.html">Lorem</a>
-                        </li>
-                    </ul>
-                </li>
-                <li><a class="menu-item" href="user-profile.html">Lorem</a>
-                </li>
-            </ul>
-            </li>
 
             <li class=" nav-item"><a href="#"><i class="ft-aperture"></i><span class="menu-title" data-i18n="">User Interface</span></a>
                 <ul class="menu-content">
@@ -389,24 +376,51 @@
             <div class="content-wrapper-before"></div>
             <div class="content-header row"></div>
             <div class="content-body">
-
-                <!-- Import Data Start -->
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
-                        <div class="card">
+
+
+                        <!-- Import Data Start -->
+                        <div class="card tab-content" id="admin" style="display:block">
                             <div class="card-header">
-                                
+                                <?php if (session()->getFlashdata('error')): ?>
+                                    <div class="alert alert-danger">
+                                        <?= session()->getFlashdata('error') ?>
+                                    </div>
+                                <?php endif; ?>
                                 <h2>Import Pengguna</h2>
+
                                 <hr>
                                 <p>Agar Import Pengguna dapat berjalan dengan lancar dan mudah, pastikan dokumen CSV anda memenuhi kriteria berikut. <br>
-                                    1. Data untuk email harus memiliki @ dan .</p>
+                                    1. Data untuk email harus memiliki @ dan . <br>
+                                    2. field wajib diisi semua <br>
+                                    3. Group max hanya memilih satu <br>
+                                    
+                                    
+                                </p>
                                 <hr>
                                 <p>
-                                    Pastikan dokumen csv anda memiliki hanya(jika hanya) field berikut.
-                                    <br> 1.Username (wajib)
-                                    <br> 2.Password (wajib)
-                                    <br> 3.Email (wajib)
+                                    Pastikan dokumen csv anda memiliki field berikut.
+                                    <br> 1. Nama Lengkap
+                                    <br> 2. Username
+                                    <br> 3. Password
+                                    <br> 4. Email
+                                    <br> 5. Group (administrator, alumni, perusahaan, atasan)
+                                    <br> 6. Alamat
+                                    <br> 7. Kota/Kabupaten
+                                    <br> 8. Provinsi
+                                    <br> 9. Jenis Kelamin (pria/wanita)
+                                    <br> 10. No Tlp
+                                    <br> 11. NIM
+                                    <br> 12. Fakultas
+                                    <br> 13. Program Studi
+                                    <br> 14. Tahun masuk
+                                    <br> 15. Tahun Lulus
+                                    <br> 16. NIK
+                                    <br> 17. NPWP
+
                                 </p>
+                                <hr>
                                 <a href="datauser.csv" download="datauser.csv">
                                     <button class="btn btn-primary" style='font-size:12px;padding:4px 7px;color:white;'>Download contoh CSV</button>
 
@@ -424,7 +438,7 @@
                                                 <?php endif; ?>
 
                                                 <!-- Form untuk upload file Excel -->
-                                                <form action="/import/import" method="post" enctype="multipart/form-data">
+                                                <form action="/import" method="post" enctype="multipart/form-data">
                                                     <input type="file" name="file" required>
                                                     <button type="submit" class="btn btn-primary">Import</button>
                                                 </form>
@@ -460,12 +474,38 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Import Data End -->
+
+
+
+
+                        <script>
+                            function openTab(evt, tabId) {
+                                // Sembunyikan semua tab content
+                                var tabcontent = document.getElementsByClassName("tab-content");
+                                for (var i = 0; i < tabcontent.length; i++) {
+                                    tabcontent[i].style.display = "none"; // Sembunyikan semua tab
+                                }
+
+                                // Tampilkan tab yang dipilih
+                                document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
+
+                                // Menandai tombol tab yang aktif
+                                var tablinks = document.getElementsByClassName("nav-link");
+                                for (var i = 0; i < tablinks.length; i++) {
+                                    tablinks[i].className = tablinks[i].className.replace(" active", ""); // Hilangkan kelas active dari semua tab
+                                }
+
+                                // Tambahkan kelas active pada tombol yang ditekan
+                                evt.currentTarget.className += " active";
+                            }
+                        </script>
+
                     </div>
                 </div>
-            </div>
-            <!-- Import Data End -->
 
-            <!-- Revenue, Hit Rate & Deals
+
+                <!-- Revenue, Hit Rate & Deals
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
                         <div class="card">
@@ -492,29 +532,29 @@
                 </div> -->
 
 
-            <!-- END: Content-->
+                <!-- END: Content-->
 
-            <!-- BEGIN: Vendor JS-->
-            <script src="assets/js/vendors.min.js" type="text/javascript"></script>
-            <script src="assets/js/switchery.min.js" type="text/javascript"></script>
-            <script src="assets/js/switch.min.js" type="text/javascript"></script>
-            <!-- BEGIN Vendor JS-->
+                <!-- BEGIN: Vendor JS-->
+                <script src="assets/js/vendors.min.js" type="text/javascript"></script>
+                <script src="assets/js/switchery.min.js" type="text/javascript"></script>
+                <script src="assets/js/switch.min.js" type="text/javascript"></script>
+                <!-- BEGIN Vendor JS-->
 
-            <!-- BEGIN: Page Vendor JS-->
-            <script src="assets/js/chartist.min.js" type="text/javascript"></script>
-            <script src="assets/js/chartist-plugin-tooltip.min.js" type="text/javascript"></script>
-            <!-- END: Page Vendor JS-->
+                <!-- BEGIN: Page Vendor JS-->
+                <script src="assets/js/chartist.min.js" type="text/javascript"></script>
+                <script src="assets/js/chartist-plugin-tooltip.min.js" type="text/javascript"></script>
+                <!-- END: Page Vendor JS-->
 
-            <!-- BEGIN: Theme JS-->
-            <script src="assets/js/app-menu.min.js" type="text/javascript"></script>
-            <script src="assets/js/app.min.js" type="text/javascript"></script>
-            <script src="assets/js/customizer.min.js" type="text/javascript"></script>
-            <script src="assets/js/jquery.sharrre.js" type="text/javascript"></script>
-            <!-- END: Theme JS-->
+                <!-- BEGIN: Theme JS-->
+                <script src="assets/js/app-menu.min.js" type="text/javascript"></script>
+                <script src="assets/js/app.min.js" type="text/javascript"></script>
+                <script src="assets/js/customizer.min.js" type="text/javascript"></script>
+                <script src="assets/js/jquery.sharrre.js" type="text/javascript"></script>
+                <!-- END: Theme JS-->
 
-            <!-- BEGIN: Page JS-->
-            <script src="assets/js/dashboard-analytics.min.js" type="text/javascript"></script>
-            <!-- END: Page JS-->
+                <!-- BEGIN: Page JS-->
+                <script src="assets/js/dashboard-analytics.min.js" type="text/javascript"></script>
+                <!-- END: Page JS-->
 
 </body>
 <!-- END: Body-->

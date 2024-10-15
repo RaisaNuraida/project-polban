@@ -18,11 +18,21 @@ class Home extends BaseController
         $model = new UserModel();
 
         // Mengambil data dari model
-        $my_data = $model->getAllDataManual();  // Jangan pakai $this->$model, cukup $model
+        $my_data = $model->getAllDataManual();
+        $administrator = $model->getAdministrator();
+        $atasan = $model->getAtasan();
+        $alumni = $model->getAlumni();
+        $perusahaan = $model->getPerusahaan();
+        // Jangan pakai $this->$model, cukup $model
         //echo '<pre>'; print_r($my_data); exit();
         // Siapkan data untuk dikirim ke view
         $data = [
-            'my_data' => $my_data  // Memasukkan data yang diambil ke dalam array
+            'my_data' => $my_data,
+            'administrator' => $administrator,
+            'atasan' => $atasan,
+            'alumni' => $alumni,
+            'perusahaan' => $perusahaan,
+            // Memasukkan data yang diambil ke dalam array
         ];
 
 
@@ -32,95 +42,182 @@ class Home extends BaseController
         //return view('index');
     }
 
+   
+    public function dataisian(): string
+    {
+        $model = new UserModel();
+
+        // Mengambil data dari model
+        $my_data = $model->getAllDataManual();
+        $alumni = $model->getAlumni();
+    
+        // Siapkan data untuk dikirim ke view
+        $data = [
+            'my_data' => $my_data,
+            'alumni' => $alumni,
+
+            // Memasukkan data yang diambil ke dalam array
+        ];
+        // Render view dan kirim data
+        return view('dataisian', $data);  // Pastikan 'index' adalah nama view yang benar
+      
+    }
     // Fungsi untuk mengimpor file Excel ke database
     public function import()
 {
     $file = $this->request->getFile('file');
-
+    
     // Cek apakah file diupload
     if ($file->isValid() && !$file->hasMoved()) {
         if ($file->getClientExtension() != 'csv') {
             return redirect()->back()->with('error', 'File yang diupload harus berformat CSV.');
         }
-
+        
         $filePath = $file->getTempName();
-
+        
         try {
             // Membaca file CSV
-            $reader = new Csv();
+            $reader = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
             $spreadsheet = $reader->load($filePath);
             $sheetData = $spreadsheet->getActiveSheet()->toArray();
         } catch (\PhpOffice\PhpSpreadsheet\Reader\Exception $e) {
             return redirect()->back()->with('error', 'Gagal membaca file CSV: ' . $e->getMessage());
         }
-
+        
         // Debugging output
-        if (empty($sheetData) || count($sheetData) < 0) { // Check if there's no data to insert
+        if (empty($sheetData) || count($sheetData) <= 0) {
             return redirect()->back()->with('error', 'Tidak ada data untuk diimpor.');
         }
 
-        $userModel = new UserModel();
-
-        // Loop melalui baris dalam file CSV
+        // Pengecekan untuk semua baris, memastikan tidak ada baris yang kosong
         foreach ($sheetData as $key => $row) {
-            // Lewati baris pertama jika itu adalah header
             if ($key == 0) {
-                continue;
+                continue; // Lewati header CSV
+            }
+            
+            // Cek apakah semua kolom di baris ini kosong
+            if (empty(array_filter($row))) {
+                return redirect()->back()->with('error', 'Impor gagal. Ditemukan baris kosong pada baris ke-' . ($key + 1));
+            }
+        }
+
+        $userModel = new UserModel();
+        $duplicateUsernames = [];
+        
+        // Jika tidak ada baris kosong, lanjutkan proses cek username duplikat
+        foreach ($sheetData as $key => $row) {
+            if ($key == 0) {
+                continue; // Lewati header CSV
+            }
+            
+            // Pastikan setiap baris memiliki data yang cukup (minimal 17 kolom)
+            if (count($row) < 17) {
+                continue; // Lewati baris yang tidak lengkap
+            }
+            
+            $displayname = $row[0];
+            $username = $row[1];
+            $password = $row[2];
+            $email = $row[3];
+            $group = $row[4];
+            $street = $row[5];
+            $city = $row[6];
+            $statecode = $row[7];    
+            $jeniskelamin = $row[8];
+            $notlp = $row[9];
+            $nim = $row[10];
+            $faculty = $row[11];
+            $program = $row[12];
+            $year = $row[13];
+            $graduateyear = $row[14];
+            $nik = $row[15];
+            $npwp = $row[16];
+            
+            // Cek apakah username atau email kosong
+            if (empty($displayname) || 
+                empty($username) || 
+                empty($password)|| 
+                empty($email)||
+                empty($group)||
+                empty($street)||
+                empty($city)||
+                empty($statecode)||
+                empty($jeniskelamin)||
+                empty($notlp)||
+                empty($nim)||
+                empty($faculty)||
+                empty($program)||
+                empty($year)||
+                empty($graduateyear)||
+                empty($nik)||
+                empty($npwp)) {
+                return redirect()->back()->with('error', 'Impor gagal. Tidak boleh ada baris kosong');
+            }
+            
+            // Cek apakah username sudah ada di database
+            if ($userModel->where('username', $username)->first()) {
+                $duplicateUsernames[] = $username;
+            }
+        }
+        
+        // Jika ditemukan username duplikat, hentikan proses impor
+        if (!empty($duplicateUsernames)) {
+            return redirect()->back()->with('error', 'Impor dibatalkan. Username yang sudah ada: ' . implode(', ', $duplicateUsernames));
+        }
+
+        // Jika tidak ada duplikat, lanjutkan impor data
+        foreach ($sheetData as $key => $row) {
+            if ($key == 0) {
+                continue; // Lewati header CSV
             }
 
-            // Check if row data is valid
-            if (count($row) < 3) {
-                continue; // Skip rows with insufficient data
+            if (count($row) < 17) {
+                continue; // Lewati baris yang tidak lengkap
             }
-
-            // Ambil data dari setiap baris dan masukkan ke database
+            
             $data = [
-                'username' => $row[0],  // Kolom pertama untuk username
-                'password' => $row[1], 
-                'email'    => $row[2],  // Kolom ketiga untuk email
+                'display_name' =>  $row[0],
+                'username' => $row[1],  
+                'password' => $row[2],
+                'email'    => $row[3],  
+                'group'    => $row[4],
+                'street'    => $row[5],
+                'city'    => $row[6],
+                'state_code'    => $row[7],
+                'jenis_kelamin'    => $row[8],
+                'no_telp'    => $row[9],
+                'academic_nim'    => $row[10],
+                'academic_faculty'    => $row[11],
+                'academic_program'    => $row[12],
+                'academic_year'    => $row[13],
+                'academic_graduate_year'    => $row[14],
+                'nik'       => $row[15],
+                'npwp'      =>  $row[16],
             ];
 
             // Simpan data ke dalam database
             $userModel->insert($data);
         }
 
-        return redirect()->to('/')->with('success', 'Data berhasil diimpor.'); 
+        return redirect()->to('/')->with('success', 'Data berhasil diimpor.');
     } else {
         return redirect()->back()->with('error', 'Gagal mengunggah file.');
     }
 }
 
-
-public function update()
-{
-    $userModel = new UserModel();
-    $id = $this->request->getPost('user_id'); // Ambil user_id dari POST
-    $db = \Config\Database::connect(); // Koneksi ke database
-    $builder = $db->table('users'); // Menentukan tabel
     
-    // Ambil data dari request dan hash password
-   $data = [
-        'username' => $this->request->getPost('username'),
-        'email'    => $this->request->getPost('email'),
-        'password' => $this->request->getPost('password')// Hash password
-    ];
-
-    // Melakukan pembaruan dengan kondisi user_id
-    $builder->update('user_id', $data); // Kondisi untuk memilih baris yang ingin diperbarui
-    
-}
 
     public function deleteUser()
     {
         $userModel = new UserModel();
-        $id = $this->request->getPost('user_id'); // Ambil user_id dari POST
-         $db = \Config\Database::connect(); // Koneksi ke database
+        $id = $this->request->getPost('id'); // Ambil id dari POST
+        $db = \Config\Database::connect(); // Koneksi ke database
         $builder = $db->table('users'); // Menentukan tabel
 
         // Menghapus data berdasarkan ID
-        $builder->delete(['user_id' => $id]); // Hapus data dengan ID tertentu
+        $builder->delete(['id' => $id]); // Hapus data dengan ID tertentu
 
-       // echo $id;
+        // echo $id;
         //exit();
         //echo $userModel->find($id); exit();
         if ($db->affectedRows() > 0) {
@@ -128,5 +225,20 @@ public function update()
         } else {
             return redirect()->to('/')->with('message', 'User tidak ditemukan.');
         }
+    }
+    public function tracer()
+    {
+        return view('tracer');
+    }
+
+    public function kuesioner()
+    {
+        return view('kuesioner');
+    }
+
+    public function logout()
+    {
+        session()->destroy(); // Hapus session
+        return redirect()->to('/halamanlogin'); // Redirect ke halaman login
     }
 }
