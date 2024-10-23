@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\dashboard;
 use App\Models\UserModel;
+use App\Models\Kuesionerkuesioner;
 use CodeIgniter\Controller;
 use CodeIgniter\Model;
 use PhpOffice\PhpSpreadsheet\Reader\Csv;
@@ -42,26 +43,8 @@ class Home extends BaseController
         //return view('index');
     }
 
-   
-    public function dataisian(): string
-    {
-        $model = new UserModel();
 
-        // Mengambil data dari model
-        $my_data = $model->getAllDataManual();
-        $alumni = $model->getAlumni();
     
-        // Siapkan data untuk dikirim ke view
-        $data = [
-            'my_data' => $my_data,
-            'alumni' => $alumni,
-
-            // Memasukkan data yang diambil ke dalam array
-        ];
-        // Render view dan kirim data
-        return view('dataisian', $data);  // Pastikan 'index' adalah nama view yang benar
-      
-    }
     // Fungsi untuk mengimpor file Excel ke database
     public function import()
 {
@@ -233,12 +216,50 @@ class Home extends BaseController
 
     public function kuesioner()
     {
-        return view('kuesioner');
+        return view('kuesionerkuesioner');
     }
 
     public function logout()
     {
         session()->destroy(); // Hapus session
         return redirect()->to('/halamanlogin'); // Redirect ke halaman login
+    }
+
+    public function filteruser(){
+        $userModel = new UserModel();
+        $filters = [
+            'display_name' => $this->request->getVar('display_name'),
+            'username' => $this->request->getVar('username'),
+            'email' => $this->request->getVar('email'),
+            'group' => $this->request->getVar('group'),
+            
+        ];
+
+        $hasFilter = false;
+        foreach ($filters as $value) {
+            if (!empty($value)) {
+                $hasFilter = true;
+                break;
+            }
+        }
+
+        // Jika ada input untuk filter, ambil data berdasarkan filter
+        if ($hasFilter) {
+            $data['my_data'] = $userModel->getFilteredData($filters);
+        } else {
+            // Jika tidak ada filter, jangan ambil data (atau bisa diatur sesuai kebutuhan)
+            $data['my_data'] = [];
+        }
+        
+        // Ambil data mahasiswa berdasarkan filter
+        $data['my_data'] = $userModel ->getFilteredData($filters);
+        $data['display_name'] = $filters['display_name'];
+        $data['username'] = $filters['username'];
+        $data['email'] = $filters['email'];
+        $data['group'] = $filters['group'];
+        
+        return view('index', $data);
+
+        
     }
 }

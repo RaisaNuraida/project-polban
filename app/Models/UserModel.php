@@ -46,4 +46,30 @@ class UserModel extends Model
         $query = $db->query('SELECT  id, display_name, username, password, email, created_at, updated_at FROM users WHERE `group` = "perusahaan"');
         return $query->getResultArray();
     }
+
+  public function getFilteredData($filters)
+{
+    // Debug untuk mengecek isi $filters
+    var_dump($filters);
+    
+    $builder = $this->db->table($this->table);
+    
+    if (!empty($filters['display_name'])) {
+        $builder->like('display_name', $filters['display_name']);
+    }
+    if (!empty($filters['username'])) {
+        $builder->like('username', $filters['username']);
+    }
+    if (!empty($filters['email'])) {
+        $builder->like('email', $filters['email']);
+    }
+    if (!empty($filters['group'])) {
+        $builder->like('group', $filters['group']);
+    }
+    
+    echo $builder->getCompiledSelect(); // Debug query yang dihasilkan
+    return $builder->get()->getResultArray();
+}
+
+
 }

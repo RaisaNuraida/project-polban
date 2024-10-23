@@ -88,284 +88,35 @@
         <div class="navigation-background"></div>
         <div class="main-menu-content">
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-                <li class="menu-item">
+                <li class=" nav-item">
                     <a href="index.php">
-                        <i class="ft-home"></i>
-                        <span class="menu-title">Dashboard</span>
-                    </a>
+                        <i class="ft-home">
+                        </i>
+                        <span class="menu-title">Dashboard</span></a>
                 </li>
+
                 <li class="menu-item">
-                    <a href="<?= base_url('/kuesioner') ?>">
-                        <i class="ft-edit"></i>
+                    <a href="<?= base_url('/kuesionerkuesioner') ?>">
+                        <i class="ft-grid"></i>
                         <span class="menu-title">Kuesioner</span>
                     </a>
                 </li>
 
-
-                <li class=" nav-item"><a href="#"><i class="ft-aperture"></i><span class="menu-title" data-i18n="">User Interface</span></a>
-                    <ul class="menu-content">
-                        <li><a class="menu-item" href="#">Content</a>
-                            <ul class="menu-content">
-                                <li><a class="menu-item" href="content-grid.html">Grid</a>
-                                </li>
-                                <li><a class="menu-item" href="content-typography.html">Typography</a>
-                                </li>
-                                <li><a class="menu-item" href="content-text-utilities.html">Text utilities</a>
-                                </li>
-                                <li><a class="menu-item" href="content-syntax-highlighter.html">Syntax highlighter</a>
-                                </li>
-                                <li><a class="menu-item" href="content-helper-classes.html">Helper classes</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a class="menu-item" href="#">Color Palette</a>
-                            <ul class="menu-content">
-                                <li><a class="menu-item" href="color-palette-primary.html">Primary palette</a>
-                                </li>
-                                <li><a class="menu-item" href="color-palette-danger.html">Danger palette</a>
-                                </li>
-                                <li><a class="menu-item" href="color-palette-success.html">Success palette</a>
-                                </li>
-                                <li><a class="menu-item" href="color-palette-warning.html">Warning palette</a>
-                                </li>
-                                <li><a class="menu-item" href="color-palette-info.html">Info palette</a>
-                                </li>
-                                <li class="navigation-divider"></li>
-                                <li><a class="menu-item" href="color-palette-red.html">Red palette</a>
-                                </li>
-                                <li><a class="menu-item" href="color-palette-pink.html">Pink palette</a>
-                                </li>
-                                <li><a class="menu-item" href="color-palette-purple.html">Purple palette</a>
-                                </li>
-                                <li><a class="menu-item" href="color-palette-blue.html">Blue palette</a>
-                                </li>
-                                <li><a class="menu-item" href="color-palette-cyan.html">Cyan palette</a>
-                                </li>
-                                <li><a class="menu-item" href="color-palette-teal.html">Teal palette</a>
-                                </li>
-                                <li><a class="menu-item" href="color-palette-yellow.html">Yellow palette</a>
-                                </li>
-                                <li><a class="menu-item" href="color-palette-amber.html">Amber palette</a>
-                                </li>
-                                <li><a class="menu-item" href="color-palette-blue-grey.html">Blue Grey palette</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a class="menu-item" href="card-bootstrap.html">Bootstrap Cards</a>
-                        </li>
-                        <li><a class="menu-item" href="card-advanced.html">Advanced Cards</a>
-                        </li>
-                        <li><a class="menu-item" href="#">Icons</a>
-                            <ul class="menu-content">
-                                <li><a class="menu-item" href="icons-feather.html">Feather</a>
-                                </li>
-                                <li><a class="menu-item" href="icons-line-awesome.html">Line Awesome</a>
-                                </li>
-                                <li><a class="menu-item" href="icons-simple-line-icons.html">Simple Line Icons</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a class="menu-item" href="animation.html">Animation</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class=" nav-item"><a href="#"><i class="ft-box"></i><span class="menu-title" data-i18n="">Components</span></a>
-                    <ul class="menu-content">
-                        <li><a class="menu-item" href="#">Bootstrap</a>
-                            <ul class="menu-content">
-                                <li><a class="menu-item" href="component-alerts.html">Alerts</a>
-                                </li>
-                                <li><a class="menu-item" href="component-buttons.html">Buttons</a>
-                                </li>
-                                <li><a class="menu-item" href="component-carousel.html">Carousel</a>
-                                </li>
-                                <li><a class="menu-item" href="component-collapse.html">Collapse</a>
-                                </li>
-                                <li><a class="menu-item" href="component-dropdowns.html">Dropdowns</a>
-                                </li>
-                                <li><a class="menu-item" href="component-list-group.html">List Group</a>
-                                </li>
-                                <li><a class="menu-item" href="component-modals.html">Modals</a>
-                                </li>
-                                <li><a class="menu-item" href="component-pagination.html">Pagination</a>
-                                </li>
-                                <li><a class="menu-item" href="component-navs-component.html">Navs</a>
-                                </li>
-                                <li><a class="menu-item" href="component-tabs-component.html">Tabs</a>
-                                </li>
-                                <li><a class="menu-item" href="component-pills-component.html">Pills</a>
-                                </li>
-                                <li><a class="menu-item" href="component-tooltips.html">Tooltips</a>
-                                </li>
-                                <li><a class="menu-item" href="component-popovers.html">Popovers</a>
-                                </li>
-                                <li><a class="menu-item" href="component-badges.html">Badges</a>
-                                </li>
-                                <li><a class="menu-item" href="component-pill-badges.html">Pill Badges</a>
-                                </li>
-                                <li><a class="menu-item" href="component-progress.html">Progress</a>
-                                </li>
-                                <li><a class="menu-item" href="component-media-objects.html">Media Objects</a>
-                                </li>
-                                <li><a class="menu-item" href="component-spinner.html">Spinner</a>
-                                </li>
-                                <li><a class="menu-item" href="component-toast.html">Toast</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a class="menu-item" href="#">Extra</a>
-                            <ul class="menu-content">
-                                <li><a class="menu-item" href="ex-component-sweet-alerts.html">Sweet Alerts</a>
-                                </li>
-                                <li><a class="menu-item" href="ex-component-toastr.html">Toastr</a>
-                                </li>
-                                <li><a class="menu-item" href="ex-component-ratings.html">Ratings</a>
-                                </li>
-                                <li><a class="menu-item" href="ex-component-tour.html">Tour</a>
-                                </li>
-                                <li><a class="menu-item" href="#">Editors</a>
-                                    <ul class="menu-content">
-                                        <li><a class="menu-item" href="editor-ckeditor.html">CKEditor</a>
-                                        </li>
-                                        <li><a class="menu-item" href="editor-tinymce.html">TinyMCE</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li><a class="menu-item" href="pickers-date-&amp;-time-picker.html">Date &amp; Time Picker</a>
-                                </li>
-                                <li><a class="menu-item" href="block-ui.html">Block UI</a>
-                                </li>
-                                <li><a class="menu-item" href="file-uploader-dropzone.html">File Uploader</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class=" nav-item"><a href="#"><i class="ft-edit"></i><span class="menu-title" data-i18n="">Forms</span></a>
-                    <ul class="menu-content">
-                        <li><a class="menu-item" href="#">Form Elements</a>
-                            <ul class="menu-content">
-                                <li><a class="menu-item" href="form-inputs.html">Form Inputs</a>
-                                </li>
-                                <li><a class="menu-item" href="form-switch.html">Switch</a>
-                                </li>
-                                <li><a class="menu-item" href="form-select2.html">Select2</a>
-                                </li>
-                                <li><a class="menu-item" href="form-checkboxes-radios.html">Checkboxes &amp; Radios</a>
-                                </li>
-                                <li><a class="menu-item" href="form-tags-input.html">Tags Input</a>
-                                </li>
-                                <li><a class="menu-item" href="form-validation.html">Validation</a>
-                                </li>
-                                <li><a class="menu-item" href="form-extended-inputs.html">Extended Inputs</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a class="menu-item" href="#">Form Layouts</a>
-                            <ul class="menu-content">
-                                <li><a class="menu-item" href="form-layout-basic.html">Basic Forms</a>
-                                </li>
-                                <li><a class="menu-item" href="form-layout-horizontal.html">Horizontal Forms</a>
-                                </li>
-                                <li><a class="menu-item" href="form-layout-hidden-labels.html">Hidden Labels</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a class="menu-item" href="form-wizard.html">Form Wizard</a>
-                        </li>
-                        <li><a class="menu-item" href="form-repeater.html">Form Repeater</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class=" nav-item"><a href="#"><i class="ft-grid"></i><span class="menu-title" data-i18n="">Tables</span></a>
-                    <ul class="menu-content">
-                        <li><a class="menu-item" href="table-bootstrap.html">Bootstrap Tables</a>
-                        </li>
-                        <li><a class="menu-item" href="#">DataTables</a>
-                            <ul class="menu-content">
-                                <li><a class="menu-item" href="dt-basic-initialization.html">Basic Initialisation</a>
-                                </li>
-                                <li><a class="menu-item" href="dt-styling.html">Styling</a>
-                                </li>
-                                <li><a class="menu-item" href="dt-data-sources.html">Data Sources</a>
-                                </li>
-                                <li><a class="menu-item" href="dt-advanced-initialization.html">Advanced initialisation</a>
-                                </li>
-                                <li><a class="menu-item" href="dt-api.html">API</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class=" nav-item"><a href="#"><i class="ft-bar-chart-2"></i><span class="menu-title" data-i18n="">Charts</span></a>
-                    <ul class="menu-content">
-                        <li><a class="menu-item" href="chartist-charts.html">Chartist</a>
-                        </li>
-                        <li><a class="menu-item" href="chartjs-charts.html">Chartjs</a>
-                        </li>
-                        <li><a class="menu-item" href="#">Maps</a>
-                            <ul class="menu-content">
-                                <li><a class="menu-item" href="google-maps.html">Google Maps</a>
-                                </li>
-                                <li><a class="menu-item" href="jvector-maps.html">jVector Map</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class=" nav-item"><a href="#"><i class="ft-sidebar"></i><span class="menu-title" data-i18n="">Pages</span></a>
-                    <ul class="menu-content">
-                        <li><a class="menu-item" href="gallery-grid.html">Gallery</a>
-                        </li>
-                        <li><a class="menu-item" href="search.html">Search</a>
-                        </li>
-                        <li><a class="menu-item" href="#">Authentication</a>
-                            <ul class="menu-content">
-                                <li><a class="menu-item" href="login.html">Login</a>
-                                </li>
-                                <li><a class="menu-item" href="register.html">Register</a>
-                                </li>
-                                <li><a class="menu-item" href="unlock-user.html">Unlock User</a>
-                                </li>
-                                <li><a class="menu-item" href="recover-password.html">Recover password</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a class="menu-item" href="#">Error</a>
-                            <ul class="menu-content">
-                                <li><a class="menu-item" href="error-400.html">Error 400</a>
-                                </li>
-                                <li><a class="menu-item" href="error-401.html">Error 401</a>
-                                </li>
-                                <li><a class="menu-item" href="error-403.html">Error 403</a>
-                                </li>
-                                <li><a class="menu-item" href="error-404.html">Error 404</a>
-                                </li>
-                                <li><a class="menu-item" href="error-500.html">Error 500</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a class="menu-item" href="coming-soon.html">Coming Soon</a>
-                        </li>
-                        <li><a class="menu-item" href="under-maintenance.html">Maintenance</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class=" nav-item"><a href="changelog.html"><i class="ft-file"></i><span class="menu-title" data-i18n="">Changelog</span><span class="badge badge badge-pill badge-warning float-right">1.2</span></a>
-                </li>
-                <li class=" nav-item"><a href="#"><i class="ft-server"></i><span class="menu-title" data-i18n="">Menu levels</span></a>
-                    <ul class="menu-content">
-                        <li><a class="menu-item" href="#">Second level</a>
-                        </li>
-                        <li><a class="menu-item" href="#">Second level child</a>
-                            <ul class="menu-content">
-                                <li><a class="menu-item" href="#">Third level</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+                <li class="menu-item">
+                    <a href="<?= base_url('welcome') ?>">
+                        <i class="ft-edit"></i>
+                        <span class="menu-title">Welcome</span>
+                    </a>
                 </li>
 
+                <li class=" nav-item"><a href="#"><i class="ft-sidebar"></i><span class="menu-title" data-i18n="">Organisasi</span></a>
+                    <ul class="menu-content">
+                        <li><a class="menu-item" href="gallery-grid.html">Satuan Organisasi</a>
+                        </li>
+                        <li><a class="menu-item" href="search.html">Tipe</a>
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
@@ -407,7 +158,7 @@
 
 
                         <!-- Table Kuesioner START-->
-                        <div class="card tab-content" id="kuesioner" style="display:block;">
+                        <div class="card tab-content">
                             <div class="card-header mt-2">
                                 <div class="d-flex justify-content-between">
                                     <h2>Kuesioner</h2>
@@ -415,7 +166,7 @@
                                         <a class="btn btn-primary kuesioner" style="font-size:14px;padding:2px 5px;color:white; height:25px;" href="<?= base_url('tracer') ?>">
                                             Halaman Awal
                                         </a>
-                                        <a class="btn btn-primary kuesioner" style="font-size:14px;padding:2px 5px;color:white; height:25px;" href="<?= base_url('SuntingKuesioner') ?>">
+                                        <a class="btn btn-primary kuesioner" style="font-size:14px;padding:2px 5px;color:white; height:25px;" href="<?= base_url('/tambahkuesioner') ?>">
                                             Tambah Halaman
                                         </a>
                                     </div>
@@ -434,30 +185,71 @@
                                                 <td>Aturan</td>
                                                 <td>Aksi</td>
                                             </tr>
-                                            <tr>
-                                                <td>1</th>
-                                                <td>Kuesioner Contoh</td>
-                                                <td>0<a class="nav-link" href="<?= base_url('dataisian') ?>" style='font-size:10px;padding:2px 5px;'>
-                                                        Lihat</a></td>
-                                                <td>-</td>
-                                                <td>Show if : academic_program is 'Sains dan Teknologi Farmasi Internasional'</td>
-                                                <td>
-                                                    <a class="btn btn-primary btn-sm" class="nav-link active" onclick="openTab(event, 'SuntingKuesioner')" style='font-size:10px;padding:2px 5px;color:white;'>Edit</a>
-                                                    <a class="btn btn-primary btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Active</a>
-                                                    <a class="btn btn-primary btn-sm" style='font-size:10px;padding:2px 5px;color:white;' onclick="openTab(event, 'TinjauKuesioner')">Tinjau</a>
-                                                    <a class="btn btn-success btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Clone</a>
-                                                    <a class="btn btn-info btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Unduh</a>
-                                                    <a class="btn btn-warning btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Edit Style</a>
-                                                    <a class="btn btn-danger btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Hapus</a>
-                                                </td>
-                                            </tr>
                                         </thead>
+                                        <tbody>
+                                        <?php if(!empty($user)) : ?>
+                                                <?php $no = 1; ?>
+                                                <?php foreach($user as $row) : ?>
+                                                    <tr>
+                                                    <td><?= $no++; ?></td>
+                                                    <td><?= $row['title']; ?></td>
+                                                    <td><?= $row['entries']; ?></td>
+                                                    <td><?= $row['active_status']; ?></td>
+                                                    <td><?= $row['conditional_logic']; ?></td>
+                                
+                                                        <td>
+                                                            <a class="btn btn-primary btn-sm" class="nav-link active" onclick="openTab(event, 'SuntingKuesioner')" style='font-size:10px;padding:2px 5px;color:white;'>Edit</a>
+                                                            <a class="btn btn-primary btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Active</a>
+                                                            <a class="btn btn-primary btn-sm" style='font-size:10px;padding:2px 5px;color:white;' onclick="openTab(event, 'TinjauKuesioner')">Tinjau</a>
+                                                            <a class="btn btn-success btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Clone</a>
+                                                            <a class="btn btn-info btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Unduh</a>
+                                                            <a class="btn btn-warning btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Edit Style</a>
+                                                            <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
+                                                        </td>
+                                                    </tr>
+                                                    <?php endforeach; ?>
+                                            <?php else : ?>
+                                                <tr>
+                                                    <td colspan="6" class="text-center">No data found</td>
+                                                </tr>
+                                            <?php endif; ?>
+                                               
+                                        </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
                         <!-- Table Kuesioner END -->
+                        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content text-center">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Apakah Anda yakin ingin menghapus data <strong id="username"></strong>?</p>
+                        <form id="deleteForm" method="post" action="<?= base_url('deletekuesioner') ?>">
+                            <input type="hidden" id="delete_id" name="id">
+                            <button type="submit" class="btn btn-danger">Hapus</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <script>
+            $('.deleteModal').click(function() {
+                var href = $(this).data('target');
+                var id = $(this).data('id');
+                $('#delete_id').val(id);
+            });
+        </script>
+
+        <!-- Modal Konfirmasi Hapus END-->
                         <!-- Sunting Kuesioner START-->
                         <div class="card tab-content" id="SuntingKuesioner" style="display:none;">
                             <div class="card-header mt-2">
@@ -539,7 +331,7 @@
                                                 <td class="">
                                                     <a class="btn btn-secondary btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Up</a>
                                                     <a class="btn btn-secondary btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Down</a>
-                                                    <a class="btn btn-info btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Edit</a>
+                                                    <a class="btn btn-info btn-sm" style='font-size:10px;padding:2px 5px;color:white;' onclick="openTab(event, 'SuntingEditKuesioner')">Edit</a>
                                                     <a class="btn btn-danger btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Hapus</a>
                                                 </td>
                                             </tr>
@@ -548,14 +340,14 @@
                                 </div>
                             </div>
                         </div>
-                       
+                        <!-- Sunting Kuesioner END-->
 
 
                         <!-- Tinjau Kuesioner START -->
                         <div class="card tab-content" id="TinjauKuesioner" style="display:none;">
                             <div class="card-header mt-2">
                                 <div class="d-flex justify-content-between">
-                                    <h2>Sunting Kuesioner</h2>
+                                    <h2>Detil Kuesioner</h2>
                                 </div>
                                 <hr>
 
@@ -831,8 +623,69 @@
                         </div>
                     </div>
                 </div>
-
                 <!-- Tinjau Kuesioner END -->
+
+                <!-- Sunting Kuesioner Page START-->
+                <div class="card tab-content" id="SuntingEditKuesioner" style="display:none;">
+                    <div class="card-header mt-2">
+                        <div class="d-flex justify-content-between">
+                            <h2>Sunting Kuesioner Page</h2>
+                        </div>
+                        <hr>
+
+                        <div class="m-2">
+                            <form>
+                                <div class="form-group">
+                                    <label for="exampleInputTitle">Title</label>
+                                    <input type="email" class="form-control" id="exampleInputTitle" placeholder="Halaman 1">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputDeskripsi">Deskripsi</label>
+                                    <input type="password" class="form-control" id="exampleInputDeskripsi" placeholder="Halaman ini berisi pertanyaan tentang data diri dan pekerjaan Anda. Mohon untuk mengisi semua data yang diminta. Terima kasih.">
+                                </div>
+                                <div class="form-check d-flex">
+                                    <label class="form-check-label" for="exampleCheck1">Conditional Logic</label>
+                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                </div>
+
+                                <br>
+                                <div>
+                                    <a class="btn btn-info" style="font-size:14px;padding:8px 10px;color:white;" href="<?= base_url('/kuesioner') ?>">Simpan</a>
+                                    <a class="btn btn-danger" style="font-size:14px;padding:8px 10px;color:white;" href="<?= base_url('/kuesioner') ?>">Batal</a>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center ">
+                                <thead>
+                                    <tr>
+                                        <td>ID Section</td>
+                                        <td>Nama Section</td>
+                                        <td>Deskripsi</td>
+                                        <td>Conditional Logic</td>
+                                        <td>Num of Section</td>
+                                        <td>Aksi</td>
+                                    </tr>
+                                    <tr>
+                                        <td>29</td>
+                                        <td>Data Pribadi</td>
+                                        <td>Bagian ini berisi pertanyaan tentang data pribadi responden.</td>
+                                        <td>none</td>
+                                        <td>11</td>
+                                        <td class="">
+                                            <a class="btn btn-secondary btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Up</a>
+                                            <a class="btn btn-secondary btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Down</a>
+                                            <a class="btn btn-info btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Edit</a>
+                                            <a class="btn btn-danger btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Hapus</a>
+                                        </td>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- Sunting Kuesioner END-->
 
                 <script>
                     function openTab(evt, tabId) {
@@ -886,7 +739,3 @@
 <!-- END: Body-->
 
 </html>
-
-<style>
-
-</style>
