@@ -147,42 +147,40 @@
 
                                 <div>
                                     <nav class="nav mb-1">
-                                        <a class="nav-link active" onclick="openTab(event, 'user')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Semua Data</a>
-                                        <a class="nav-link" onclick="openTab(event, 'administrator')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Administrator</a>
-                                        <a class="nav-link" onclick="openTab(event, 'atasan')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Atasan</a>
-                                        <a class="nav-link" onclick="openTab(event, 'alumni')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Alumni</a>
-                                        <a class="nav-link" onclick="openTab(event, 'perusahaan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Perusahaan</a>
+                                        <a class="active nav-link  btn-outline-primary" onclick="openTab(event, 'user')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Semua Data</a>
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'administrator')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Administrator</a>
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'atasan')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Atasan</a>
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'alumni')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Alumni</a>
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'perusahaan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Perusahaan</a>
                                     </nav>
                                 </div>
 
+                                <hr>
                                 <!-- Filter start -->
                                 <div>
+                                    <form method="get" action="<?= base_url('/search') ?>">
+                                        <label for="username">Username:</label>
+                                        <input type="text" name="username" id="username" placeholder="Cari berdasarkan username" style="margin-right: 10px;">
 
+                                        <label for="email">Email:</label>
+                                        <input type="text" name="username" id="username" placeholder="Cari berdasarkan username" style="margin-right: 10px;">
+
+                                        <label for="group">Group:</label>
+                                        <input type="text" name="group" id="group" placeholder="Cari berdasarkan group" style="margin-right: 10px;">
+                                        <br>
+                                        <br>
+                                        <a href="" type="submit" class="btn btn-primary mt-1" style="font-size:12px; padding:5px 6px; height:25px;">Filter</a>
+                                        <a href="" type="submit" class="btn btn-secondary mt-1" style="font-size:12px; padding:5px 6px; height:25px;">Clear</a>
+                                        <a href="" type="submit" class="btn btn-success mt-1" style="font-size:12px; padding:5px 6px; height:25px;">Unduh CSV</a>
+                                        <a href="" type="submit" class="btn btn-success mt-1" style="font-size:12px; padding:5px 6px; height:25px;">Unduh</a>
+
+                                    </form>
                                 </div>
                                 <!-- Filter End -->
 
                                 <div class="table-responsive">
                                     <table class="table table-bordered text-center">
                                         <thead>
-                                            <form method="get" action="<?= base_url('/') ?>">
-                                                <label for="display_name" style="margin-right: 10px;">Nama Lengkap:</label>
-                                                <input type="text" name="display_name" id="display_name" style="margin-right: 10px;" >
-                                        
-                                                <label for="username" style="margin-right: 10px;">Username:</label>
-                                                <input type="text" name="username" id="username" style="margin-right: 10px;">
-                                               
-                                                <label for="email" style="margin-right: 10px;">Email:</label>
-                                                <input type="text" name="email" id="email" style="margin-right: 10px;"> 
-                                               
-                                                <label for="group" style="margin-right: 10px;">Group:</label>
-                                                <input type="text" name="group" id="group" style="margin-right: 10px;">
-                                               <br>
-                                               <br>
-                                                
-                                               
-                                                <button type="submit">Filter</button>
-
-                                            </form>
                                             <br>
                                             <br>
                                             <tr>
@@ -239,11 +237,11 @@
 
                                 <div>
                                     <nav class="nav mb-1">
-                                        <a class="nav-link active" onclick="openTab(event, 'user')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Semua Data</a>
-                                        <a class="nav-link active" onclick="openTab(event, 'administrator')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Administrator</a>
-                                        <a class="nav-link" onclick="openTab(event, 'atasan')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Atasan</a>
-                                        <a class="nav-link" onclick="openTab(event, 'alumni')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Alumni</a>
-                                        <a class="nav-link" onclick="openTab(event, 'perusahaan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Perusahaan</a>
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'user')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Semua Data</a>
+                                        <a class="active nav-link btn-outline-primary" onclick="openTab(event, 'administrator')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Administrator</a>
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'atasan')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Atasan</a>
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'alumni')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Alumni</a>
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'perusahaan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Perusahaan</a>
                                     </nav>
                                 </div>
 
@@ -281,7 +279,7 @@
                                                 <?php endforeach; ?>
                                             <?php else : ?>
                                                 <tr>
-                                                    <td colspan="6" class="text-center">No data found</td>
+                                                    <td colspan="8" class="text-center">No data found</td>
                                                 </tr>
                                             <?php endif; ?>
                                         </tbody>
@@ -302,11 +300,11 @@
 
                                 <div>
                                     <nav class="nav mb-1">
-                                        <a class="nav-link" onclick="openTab(event, 'user')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Semua Data</a>
-                                        <a class="nav-link" onclick="openTab(event, 'administrator')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Administrator</a>
-                                        <a class="nav-link active" onclick="openTab(event, 'atasan')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Atasan</a>
-                                        <a class="nav-link" onclick="openTab(event, 'alumni')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Alumni</a>
-                                        <a class="nav-link" onclick="openTab(event, 'perusahaan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Perusahaan</a>
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'user')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Semua Data</a>
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'administrator')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Administrator</a>
+                                        <a class="active nav-link btn-outline-primary" onclick="openTab(event, 'atasan')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Atasan</a>
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'alumni')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Alumni</a>
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'perusahaan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Perusahaan</a>
                                     </nav>
                                 </div>
 
@@ -346,7 +344,7 @@
                                                 <?php endforeach; ?>
                                             <?php else : ?>
                                                 <tr>
-                                                    <td colspan="6" class="text-center">No data found</td>
+                                                    <td colspan="8" class="text-center">No data found</td>
                                                 </tr>
                                             <?php endif; ?>
                                         </tbody>
@@ -366,11 +364,11 @@
 
                                 <div>
                                     <nav class="nav mb-1">
-                                        <a class="nav-link" onclick="openTab(event, 'user')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Semua Data</a>
-                                        <a class="nav-link" onclick="openTab(event, 'administrator')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Administrator</a>
-                                        <a class="nav-link" onclick="openTab(event, 'atasan')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Atasan</a>
-                                        <a class="nav-link active" onclick="openTab(event, 'alumni')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Alumni</a>
-                                        <a class="nav-link" onclick="openTab(event, 'perusahaan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Perusahaan</a>
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'user')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Semua Data</a>
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'administrator')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Administrator</a>
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'atasan')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Atasan</a>
+                                        <a class="active nav-link btn-outline-primary" onclick="openTab(event, 'alumni')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Alumni</a>
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'perusahaan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Perusahaan</a>
                                     </nav>
                                 </div>
 
@@ -409,7 +407,7 @@
                                                 <?php endforeach; ?>
                                             <?php else : ?>
                                                 <tr>
-                                                    <td colspan="6" class="text-center">No data found</td>
+                                                    <td colspan="8" class="text-center">No data found</td>
                                                 </tr>
                                             <?php endif; ?>
                                         </tbody>
@@ -429,11 +427,11 @@
 
                                 <div>
                                     <nav class="nav mb-1">
-                                        <a class="nav-link" onclick="openTab(event, 'user')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Semua Data</a>
-                                        <a class="nav-link" onclick="openTab(event, 'administrator')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Administrator</a>
-                                        <a class="nav-link" onclick="openTab(event, 'atasan')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Atasan</a>
-                                        <a class="nav-link" onclick="openTab(event, 'alumni')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Alumni</a>
-                                        <a class="nav-link active" onclick="openTab(event, 'perusahaan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Perusahaan</a>
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'user')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Semua Data</a>
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'administrator')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Administrator</a>
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'atasan')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Atasan</a>
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'alumni')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Alumni</a>
+                                        <a class="active nav-link btn-outline-primary " onclick="openTab(event, 'perusahaan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Perusahaan</a>
                                     </nav>
                                 </div>
 
@@ -471,7 +469,7 @@
                                                 <?php endforeach; ?>
                                             <?php else : ?>
                                                 <tr>
-                                                    <td colspan="6" class="text-center">No data found</td>
+                                                    <td colspan="8" class="text-center">No data found</td>
                                                 </tr>
                                             <?php endif; ?>
                                         </tbody>
@@ -512,38 +510,6 @@
 
             </div>
         </div>
-
-        <!-- EXAMPLE TABLE  -->
-        <!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModal" aria-hidden="true"> 
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModal">Edit Data User</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <form id="exampleForm" method="post">
-                            <input type="hidden" id="id" name="id">
-                            <div class="form-group">
-                                <label for="username">Username</label>
-                                <input type="text" class="form-control" id="username" name="username" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" name="password">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>-->
 
         <!-- UPDATE TABLE START -->
         <!-- Modal -->

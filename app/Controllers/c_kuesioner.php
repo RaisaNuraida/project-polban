@@ -51,4 +51,8 @@ class c_kuesioner extends BaseController
         }
     }
 
+    public function backIndex()
+    {
+        return view ('index');
+    }
 }

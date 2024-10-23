@@ -92,7 +92,7 @@
                     <a href="index.php">
                         <i class="ft-home">
                         </i>
-                        <span class="menu-title">Dashboard</span></a>
+                        <span class="menu-title">Pengguna</span></a>
                 </li>
 
                 <li class="menu-item">
@@ -193,7 +193,7 @@
                                                     <tr>
                                                     <td><?= $no++; ?></td>
                                                     <td><?= $row['title']; ?></td>
-                                                    <td><?= $row['entries']; ?></td>
+                                                    <td><?= $row['entries']; ?><br><a href="<?= base_url('dataisian') ?>">Lihat</a></td>
                                                     <td><?= $row['active_status']; ?></td>
                                                     <td><?= $row['conditional_logic']; ?></td>
                                 

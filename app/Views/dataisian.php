@@ -92,7 +92,7 @@
                     <a href="index.php">
                         <i class="ft-home">
                         </i>
-                        <span class="menu-title">Dashboard</span></a>
+                        <span class="menu-title">Pengguna</span></a>
                 </li>
 
                 <li class="menu-item">

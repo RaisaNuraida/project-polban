@@ -9,7 +9,7 @@ $routes->get('/', 'Home::index');
 $routes->get('/kuesioner', 'Home::kuesioner');
 $routes->get('/unduh', 'Home::index');
 $routes->get('/import', 'Home::index');
-$routes->get('/dataisian', 'Home::dataisian');
+$routes->get('/search', 'Home::search');
 $routes->get('/kuesionerkuesioner', 'c_kuesioner::index');
 $routes->get('/', 'Home::dataAdministrator');
 $routes->get('/', 'Home::dataAtasan');
@@ -20,7 +20,6 @@ $routes->get('/login', 'login::login');
 $routes->get('/kuesionerkuesioner', 'Home::kuesioner');
 $routes->get('/dataisian', 'cKuesioner::dataisian');
 $routes->get('/filteruser', 'Home::filteruser');
-
 
 
 $routes->post('/import', 'Home::import');

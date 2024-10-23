@@ -225,41 +225,34 @@ class Home extends BaseController
         return redirect()->to('/halamanlogin'); // Redirect ke halaman login
     }
 
-    public function filteruser(){
+    public function search()
+    {
         $userModel = new UserModel();
-        $filters = [
-            'display_name' => $this->request->getVar('display_name'),
-            'username' => $this->request->getVar('username'),
-            'email' => $this->request->getVar('email'),
-            'group' => $this->request->getVar('group'),
-            
-        ];
 
-        $hasFilter = false;
-        foreach ($filters as $value) {
-            if (!empty($value)) {
-                $hasFilter = true;
-                break;
-            }
+        // Ambil input pencarian dari form
+        $username = $this->request->getGet('username');
+        $email = $this->request->getGet('email');
+        $group = $this->request->getGet('group');
+
+        // Filter pencarian
+        $query = $userModel->select('*');
+
+        if ($username) {
+            $query->like('username', $username);
         }
 
-        // Jika ada input untuk filter, ambil data berdasarkan filter
-        if ($hasFilter) {
-            $data['my_data'] = $userModel->getFilteredData($filters);
-        } else {
-            // Jika tidak ada filter, jangan ambil data (atau bisa diatur sesuai kebutuhan)
-            $data['my_data'] = [];
+        if ($email) {
+            $query->like('email', $email);
         }
-        
-        // Ambil data mahasiswa berdasarkan filter
-        $data['my_data'] = $userModel ->getFilteredData($filters);
-        $data['display_name'] = $filters['display_name'];
-        $data['username'] = $filters['username'];
-        $data['email'] = $filters['email'];
-        $data['group'] = $filters['group'];
-        
+
+        if ($group) {
+            $query->like('group', $group);
+        }
+
+        // Eksekusi query
+        $data['my_data'] = $query->findAll();
+
+        // Kirimkan hasil ke view
         return view('index', $data);
-
-        
     }
 }

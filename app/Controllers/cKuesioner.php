@@ -52,9 +52,9 @@ class cKuesioner extends Controller
         }
     }
 
-    
-
     public function dataisian(){
         return view ('dataisian');
     }
+
+    
 }
