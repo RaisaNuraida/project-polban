@@ -14,6 +14,8 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard as HtmlDashboard;
 
 class Home extends BaseController
 {
+
+    
     public function index(): string
     {
         $model = new UserModel();
@@ -44,151 +46,153 @@ class Home extends BaseController
     }
 
 
-    
+
     // Fungsi untuk mengimpor file Excel ke database
     public function import()
-{
-    $file = $this->request->getFile('file');
-    
-    // Cek apakah file diupload
-    if ($file->isValid() && !$file->hasMoved()) {
-        if ($file->getClientExtension() != 'csv') {
-            return redirect()->back()->with('error', 'File yang diupload harus berformat CSV.');
-        }
-        
-        $filePath = $file->getTempName();
-        
-        try {
-            // Membaca file CSV
-            $reader = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
-            $spreadsheet = $reader->load($filePath);
-            $sheetData = $spreadsheet->getActiveSheet()->toArray();
-        } catch (\PhpOffice\PhpSpreadsheet\Reader\Exception $e) {
-            return redirect()->back()->with('error', 'Gagal membaca file CSV: ' . $e->getMessage());
-        }
-        
-        // Debugging output
-        if (empty($sheetData) || count($sheetData) <= 0) {
-            return redirect()->back()->with('error', 'Tidak ada data untuk diimpor.');
-        }
+    {
+        $file = $this->request->getFile('file');
 
-        // Pengecekan untuk semua baris, memastikan tidak ada baris yang kosong
-        foreach ($sheetData as $key => $row) {
-            if ($key == 0) {
-                continue; // Lewati header CSV
-            }
-            
-            // Cek apakah semua kolom di baris ini kosong
-            if (empty(array_filter($row))) {
-                return redirect()->back()->with('error', 'Impor gagal. Ditemukan baris kosong pada baris ke-' . ($key + 1));
-            }
-        }
-
-        $userModel = new UserModel();
-        $duplicateUsernames = [];
-        
-        // Jika tidak ada baris kosong, lanjutkan proses cek username duplikat
-        foreach ($sheetData as $key => $row) {
-            if ($key == 0) {
-                continue; // Lewati header CSV
-            }
-            
-            // Pastikan setiap baris memiliki data yang cukup (minimal 17 kolom)
-            if (count($row) < 17) {
-                continue; // Lewati baris yang tidak lengkap
-            }
-            
-            $displayname = $row[0];
-            $username = $row[1];
-            $password = $row[2];
-            $email = $row[3];
-            $group = $row[4];
-            $street = $row[5];
-            $city = $row[6];
-            $statecode = $row[7];    
-            $jeniskelamin = $row[8];
-            $notlp = $row[9];
-            $nim = $row[10];
-            $faculty = $row[11];
-            $program = $row[12];
-            $year = $row[13];
-            $graduateyear = $row[14];
-            $nik = $row[15];
-            $npwp = $row[16];
-            
-            // Cek apakah username atau email kosong
-            if (empty($displayname) || 
-                empty($username) || 
-                empty($password)|| 
-                empty($email)||
-                empty($group)||
-                empty($street)||
-                empty($city)||
-                empty($statecode)||
-                empty($jeniskelamin)||
-                empty($notlp)||
-                empty($nim)||
-                empty($faculty)||
-                empty($program)||
-                empty($year)||
-                empty($graduateyear)||
-                empty($nik)||
-                empty($npwp)) {
-                return redirect()->back()->with('error', 'Impor gagal. Tidak boleh ada baris kosong');
-            }
-            
-            // Cek apakah username sudah ada di database
-            if ($userModel->where('username', $username)->first()) {
-                $duplicateUsernames[] = $username;
-            }
-        }
-        
-        // Jika ditemukan username duplikat, hentikan proses impor
-        if (!empty($duplicateUsernames)) {
-            return redirect()->back()->with('error', 'Impor dibatalkan. Username yang sudah ada: ' . implode(', ', $duplicateUsernames));
-        }
-
-        // Jika tidak ada duplikat, lanjutkan impor data
-        foreach ($sheetData as $key => $row) {
-            if ($key == 0) {
-                continue; // Lewati header CSV
+        // Cek apakah file diupload
+        if ($file->isValid() && !$file->hasMoved()) {
+            if ($file->getClientExtension() != 'csv') {
+                return redirect()->back()->with('error', 'File yang diupload harus berformat CSV.');
             }
 
-            if (count($row) < 17) {
-                continue; // Lewati baris yang tidak lengkap
+            $filePath = $file->getTempName();
+
+            try {
+                // Membaca file CSV
+                $reader = new \PhpOffice\PhpSpreadsheet\Reader\Csv();
+                $spreadsheet = $reader->load($filePath);
+                $sheetData = $spreadsheet->getActiveSheet()->toArray();
+            } catch (\PhpOffice\PhpSpreadsheet\Reader\Exception $e) {
+                return redirect()->back()->with('error', 'Gagal membaca file CSV: ' . $e->getMessage());
             }
-            
-            $data = [
-                'display_name' =>  $row[0],
-                'username' => $row[1],  
-                'password' => $row[2],
-                'email'    => $row[3],  
-                'group'    => $row[4],
-                'street'    => $row[5],
-                'city'    => $row[6],
-                'state_code'    => $row[7],
-                'jenis_kelamin'    => $row[8],
-                'no_telp'    => $row[9],
-                'academic_nim'    => $row[10],
-                'academic_faculty'    => $row[11],
-                'academic_program'    => $row[12],
-                'academic_year'    => $row[13],
-                'academic_graduate_year'    => $row[14],
-                'nik'       => $row[15],
-                'npwp'      =>  $row[16],
-            ];
 
-            // Simpan data ke dalam database
-            $userModel->insert($data);
+            // Debugging output
+            if (empty($sheetData) || count($sheetData) <= 0) {
+                return redirect()->back()->with('error', 'Tidak ada data untuk diimpor.');
+            }
+
+            // Pengecekan untuk semua baris, memastikan tidak ada baris yang kosong
+            foreach ($sheetData as $key => $row) {
+                if ($key == 0) {
+                    continue; // Lewati header CSV
+                }
+
+                // Cek apakah semua kolom di baris ini kosong
+                if (empty(array_filter($row))) {
+                    return redirect()->back()->with('error', 'Impor gagal. Ditemukan baris kosong pada baris ke-' . ($key + 1));
+                }
+            }
+
+            $userModel = new UserModel();
+            $duplicateUsernames = [];
+
+            // Jika tidak ada baris kosong, lanjutkan proses cek username duplikat
+            foreach ($sheetData as $key => $row) {
+                if ($key == 0) {
+                    continue; // Lewati header CSV
+                }
+
+                // Pastikan setiap baris memiliki data yang cukup (minimal 17 kolom)
+                if (count($row) < 17) {
+                    continue; // Lewati baris yang tidak lengkap
+                }
+
+                $displayname = $row[0];
+                $username = $row[1];
+                $password = $row[2];
+                $email = $row[3];
+                $group = $row[4];
+                $street = $row[5];
+                $city = $row[6];
+                $statecode = $row[7];
+                $jeniskelamin = $row[8];
+                $notlp = $row[9];
+                $nim = $row[10];
+                $faculty = $row[11];
+                $program = $row[12];
+                $year = $row[13];
+                $graduateyear = $row[14];
+                $nik = $row[15];
+                $npwp = $row[16];
+
+                // Cek apakah username atau email kosong
+                if (
+                    empty($displayname) ||
+                    empty($username) ||
+                    empty($password) ||
+                    empty($email) ||
+                    empty($group) ||
+                    empty($street) ||
+                    empty($city) ||
+                    empty($statecode) ||
+                    empty($jeniskelamin) ||
+                    empty($notlp) ||
+                    empty($nim) ||
+                    empty($faculty) ||
+                    empty($program) ||
+                    empty($year) ||
+                    empty($graduateyear) ||
+                    empty($nik) ||
+                    empty($npwp)
+                ) {
+                    return redirect()->back()->with('error', 'Impor gagal. Tidak boleh ada baris kosong');
+                }
+
+                // Cek apakah username sudah ada di database
+                if ($userModel->where('username', $username)->first()) {
+                    $duplicateUsernames[] = $username;
+                }
+            }
+
+            // Jika ditemukan username duplikat, hentikan proses impor
+            if (!empty($duplicateUsernames)) {
+                return redirect()->back()->with('error', 'Impor dibatalkan. Username yang sudah ada: ' . implode(', ', $duplicateUsernames));
+            }
+
+            // Jika tidak ada duplikat, lanjutkan impor data
+            foreach ($sheetData as $key => $row) {
+                if ($key == 0) {
+                    continue; // Lewati header CSV
+                }
+
+                if (count($row) < 17) {
+                    continue; // Lewati baris yang tidak lengkap
+                }
+
+                $data = [
+                    'display_name' =>  $row[0],
+                    'username' => $row[1],
+                    'password' => $row[2],
+                    'email'    => $row[3],
+                    'group'    => $row[4],
+                    'street'    => $row[5],
+                    'city'    => $row[6],
+                    'state_code'    => $row[7],
+                    'jenis_kelamin'    => $row[8],
+                    'no_telp'    => $row[9],
+                    'academic_nim'    => $row[10],
+                    'academic_faculty'    => $row[11],
+                    'academic_program'    => $row[12],
+                    'academic_year'    => $row[13],
+                    'academic_graduate_year'    => $row[14],
+                    'nik'       => $row[15],
+                    'npwp'      =>  $row[16],
+                ];
+
+                // Simpan data ke dalam database
+                $userModel->insert($data);
+            }
+
+            return redirect()->to('/')->with('success', 'Data berhasil diimpor.');
+        } else {
+            return redirect()->back()->with('error', 'Gagal mengunggah file.');
         }
-
-        return redirect()->to('/')->with('success', 'Data berhasil diimpor.');
-    } else {
-        return redirect()->back()->with('error', 'Gagal mengunggah file.');
     }
-}
 
-    
+
 
     public function deleteUser()
     {
@@ -225,34 +229,55 @@ class Home extends BaseController
         return redirect()->to('/halamanlogin'); // Redirect ke halaman login
     }
 
-    public function search()
+    public function cariuser()
     {
-        $userModel = new UserModel();
+        $users = new UserModel();
+        $cari = $this->request->getGet('cari'); // Mengambil input pencarian
 
-        // Ambil input pencarian dari form
-        $username = $this->request->getGet('username');
-        $email = $this->request->getGet('email');
-        $group = $this->request->getGet('group');
-
-        // Filter pencarian
-        $query = $userModel->select('*');
-
-        if ($username) {
-            $query->like('username', $username);
+        // Melakukan pencarian berdasarkan display_name
+        if ($cari) {
+            $data['my_data'] = $users
+            ->like('display_name', $cari)
+            ->orlike('username', $cari)
+            ->orlike('email', $cari) 
+            ->orlike('group', $cari)->findAll(); // Menggunakan like untuk pencarian
+        } else {
+            $data['my_data'] = []; // Jika tidak ada input, set hasil kosong
         }
 
-        if ($email) {
-            $query->like('email', $email);
+        return view('index', $data); 
+    }
+
+    public function carianswer()
+    {
+        $users = new UserModel();
+        $cari = $this->request->getGet('cari'); // Mengambil input pencarian
+
+        // Melakukan pencarian berdasarkan display_name
+        if ($cari) {
+            $data['alumni'] = $users
+            ->like('display_name', $cari)
+           ->findAll(); // Menggunakan like untuk pencarian
+        } else {
+            $data['alumni'] = []; // Jika tidak ada input, set hasil kosong
         }
 
-        if ($group) {
-            $query->like('group', $group);
-        }
+        return view('/dataisian', $data); 
+    }
 
-        // Eksekusi query
-        $data['my_data'] = $query->findAll();
+    public function kuesioner_answer(): string
+    {
+        $model = new UserModel();
 
-        // Kirimkan hasil ke view
-        return view('index', $data);
+        // Mengambil data dari model
+        $alumni = $model->getAlumni();
+
+        $data = ['alumni' => $alumni];
+
+
+        // Render view dan kirim data
+        return view('/dataisian', $data);  // Pastikan 'index' adalah nama view yang benar
+        // echo"ddd"; exit();
+        //return view('index');
     }
 }

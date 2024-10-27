@@ -134,108 +134,186 @@
                 <!-- CRUD START-->
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
-                        <div class="card-header">
 
-                            <div class="table-responsive">
-                                <table class="table table-bordered text-center">
-                                    <thead>
-                                        <tr>
-                                            <th>NO</th>
-                                            <th>NIM</th>
-                                            <th>Nama Lengkap</th>
-                                            <th>Jurusan</th>
-                                            <th>Program Studi</th>
-                                            <th>Angkatan</th>
-                                            <th>Dibuat Pada</th>
-                                            <th>Terakhir Diupdate</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                        <!-- Table Kuesioner START-->
+                        <div class="card tab-content">
+                            <div class="card-header ml-2 mr-2">
+                                <div class="d-flex justify-content-between">
+                                    <h2>Kuesioner Answer</h2>
+                                </div>
+                                <hr>
 
-                                    <?php if (!empty($alumni)) : ?>
+                                <!-- Filter START -->
+                                <div>
+                                    <form method="get" action="<?= base_url(relativePath: '/carianswer') ?>">
+                                        <div class="d-flex align-items-center">
+                                            <input type="text" name="cari" id="cari" class="form-control" placeholder="Cari Nama" style="margin-right: 10px; width:22%;">
+                                            <input type="text" name="cari" id="cari" class="form-control" placeholder="Cari NIM" style="margin-right: 10px; width:22%;">
+
+                                            <select name="cari" id="cari" class="form-control" style="margin-right: 10px; width:22%;">
+                                                <option value="">Jurusan</option>
+                                                <option value="academic_faculty">Teknik Sipil</option>
+                                                <option value="academic_faculty">Teknik Mesin</option>
+                                                <option value="academic_faculty">Teknik Refrigasi dan Tata Udara</option>
+                                                <option value="academic_faculty">Teknik Konversi Energi</option>
+                                                <option value="academic_faculty">Teknik Elektro</option>
+                                                <option value="academic_faculty">Teknik Kimia</option>
+                                                <option value="academic_faculty">Teknik Komputer dan Informatika</option>
+                                                <option value="academic_faculty">Akuntansi</option>
+                                                <option value="academic_faculty">Administrasi Niaga</option>
+                                                <option value="academic_faculty">Bahasa Inggris</option>
+                                            </select>
+                                            <select name="cari" id="cari" class="form-control" style="margin-right: 10px; width:22%;">
+                                                <option value="">Program Studi</option>
+                                                <option value="">Teknik Sipil</option>
+                                                <option value="academic_program">D-3 Teknik Konstruksi Sipil</option>
+                                                <option value="academic_program">D-3 Teknik Konstruksi Gedung</option>
+                                                <option value="academic_program">D-4 Teknik Perancangan Jalan dan Jembatan</option>
+                                                <option value="academic_program">D-4 Teknik Perawatan dan Perbaikan Gedung</option>
+                                                <option value="academic_program">S-2 Rekayasa Infrastruktur</option>
+                                                <option value="">Teknik Mesin</option>
+                                                <option value="academic_program">D-3 Teknik Mesin</option>
+                                                <option value="academic_program">D-3 Teknik Aeronautika</option>
+                                                <option value="academic_program">D-4 Teknik Perancangan dan Konstruksi Mesin</option>
+                                                <option value="academic_program">D-4 Proses Manufaktur</option>
+                                                <option value="">Teknik Refrigasi dan Tata Udara</option>
+                                                <option value="academic_program">D-3 Teknik Pendingin dan Tata Udara</option>
+                                                <option value="academic_program">D-4 Teknik Pendingin dan Tata Udara</option>
+                                                <option value="">Teknik Konversi Energi</option>
+                                                <option value="academic_program">D-3 Teknik Konversi Energi</option>
+                                                <option value="academic_program">D-4 Teknologi Pembangkit Tenaga Listrik</option>
+                                                <option value="academic_program">D-4 Teknik Konversi Energi</option>
+                                                <option value="">Teknik Elektro</option>
+                                                <option value="academic_program">D-3 Teknik Elektronika</option>
+                                                <option value="academic_program">D-3 Teknik Listrik</option>
+                                                <option value="academic_program">D-3 Teknik Telekomunikasi</option>
+                                                <option value="academic_program">D-4 Teknik Elektronika</option>
+                                                <option value="academic_program">D-4 Teknik Telekomunikasi</option>
+                                                <option value="academic_program">D-4 Teknik Otomasi Industri</option>
+
+                                            </select>
+                                            <select name="cari" id="cari" class="form-control" style="margin-right: 10px; width:22%;">
+                                            <option value="">Angkatan</option>
+                                            <option value="">2015</option>
+                                            <option value="">2016</option>
+                                            <option value="">2017</option>
+                                            <option value="">2018</option>
+                                            <option value="">2019</option>
+                                            <option value="">2020</option>
+                                            <option value="">2021</option>
+                                            <option value="">2022</option>
+                                            <option value="">2023</option>
+                                            <option value="">2024</option>
+                                            <option value="">2025</option>
+                                            <option value="">2026</option>
+
+                                            </select>
+
+                                            <button href="<?= base_url('/carianswer') ?>" type="submit" class="btn btn-primary" style="font-size:12px; padding:5px 6px; height: 36px; width: 65px; color: white;">Filter</button>
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                                <!-- Filter END -->
+
+                                <hr>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered text-center">
+                                        <thead>
+                                            <tr>
+                                                <th>NO</th>
+                                                <th>NIM</th>
+                                                <th>Nama Lengkap</th>
+                                                <th>Jurusan</th>
+                                                <th>Program Studi</th>
+                                                <th>Angkatan</th>
+                                                <th>Dibuat Pada</th>
+                                                <th>Terakhir Diupdate</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            <?php if (!empty($alumni)) : ?>
                                                 <?php $no = 1; ?>
                                                 <?php foreach ($alumni as $row) : ?>
                                                     <tr>
-                                              
-                                                    <td><?= $no++; ?></td>
-                                                    <td><?= $row['academic_nim']; ?></td>
-                                                    <td><?= $row['display_name']; ?></td>
-                                                    <td><?= $row['academic_faculty']; ?></td>
-                                                    <td><?= $row['academic_program']; ?></td>
-                                                    <td><?= $row['academic_year']; ?></td>
-                                                    <td><?= $row['created_at']; ?></td>
-                                                    <td><?= $row['updated_at']; ?></td>
-                                                    <td>
 
-
-                                                    </td>
+                                                        <td><?= $no++; ?></td>
+                                                        <td><?= $row['academic_nim']; ?></td>
+                                                        <td><?= $row['display_name']; ?></td>
+                                                        <td><?= $row['academic_faculty']; ?></td>
+                                                        <td><?= $row['academic_program']; ?></td>
+                                                        <td><?= $row['academic_year']; ?></td>
+                                                        <td><?= $row['created_at']; ?></td>
+                                                        <td><?= $row['updated_at']; ?></td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            <?php else : ?>
+                                                <tr>
+                                                    <td colspan="9" class="text-center">No data found</td>
                                                 </tr>
-                                            <?php endforeach; ?>
-                                        <?php else : ?>
-                                            <tr>
-                                                <td colspan="9" class="text-center">No data found</td>
-                                            </tr>
-                                        <?php endif; ?>
-                                    </tbody>
-                                </table>
+                                            <?php endif; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
+
+
+
+
+                    <script>
+                        function openTab(evt, tabId) {
+                            // Sembunyikan semua tab content
+                            var tabcontent = document.getElementsByClassName("tab-content");
+                            for (var i = 0; i < tabcontent.length; i++) {
+                                tabcontent[i].style.display = "none"; // Sembunyikan semua tab
+                            }
+
+                            // Tampilkan tab yang dipilih
+                            document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
+
+                            // Menandai tombol tab yang aktif
+                            var tablinks = document.getElementsByClassName("nav-link");
+                            for (var i = 0; i < tablinks.length; i++) {
+                                tablinks[i].className = tablinks[i].className.replace(" active", ""); // Hilangkan kelas active dari semua tab
+                            }
+
+                            // Tambahkan kelas active pada tombol yang ditekan
+                            evt.currentTarget.className += " active";
+                        }
+                    </script>
                 </div>
-
-
-
-
-                <script>
-                    function openTab(evt, tabId) {
-                        // Sembunyikan semua tab content
-                        var tabcontent = document.getElementsByClassName("tab-content");
-                        for (var i = 0; i < tabcontent.length; i++) {
-                            tabcontent[i].style.display = "none"; // Sembunyikan semua tab
-                        }
-
-                        // Tampilkan tab yang dipilih
-                        document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
-
-                        // Menandai tombol tab yang aktif
-                        var tablinks = document.getElementsByClassName("nav-link");
-                        for (var i = 0; i < tablinks.length; i++) {
-                            tablinks[i].className = tablinks[i].className.replace(" active", ""); // Hilangkan kelas active dari semua tab
-                        }
-
-                        // Tambahkan kelas active pada tombol yang ditekan
-                        evt.currentTarget.className += " active";
-                    }
-                </script>
             </div>
-        </div>
 
-        <!-- Edit Kuesioner END -->
+            <!-- Edit Kuesioner END -->
 
-        <!-- END: Content-->
+            <!-- END: Content-->
 
-        <!-- BEGIN: Vendor JS-->
-        <script src="assets/js/vendors.min.js" type="text/javascript"></script>
-        <script src="assets/js/switchery.min.js" type="text/javascript"></script>
-        <script src="assets/js/switch.min.js" type="text/javascript"></script>
-        <!-- BEGIN Vendor JS-->
+            <!-- BEGIN: Vendor JS-->
+            <script src="assets/js/vendors.min.js" type="text/javascript"></script>
+            <script src="assets/js/switchery.min.js" type="text/javascript"></script>
+            <script src="assets/js/switch.min.js" type="text/javascript"></script>
+            <!-- BEGIN Vendor JS-->
 
-        <!-- BEGIN: Page Vendor JS-->
-        <script src="assets/js/chartist.min.js" type="text/javascript"></script>
-        <script src="assets/js/chartist-plugin-tooltip.min.js" type="text/javascript"></script>
-        <!-- END: Page Vendor JS-->
+            <!-- BEGIN: Page Vendor JS-->
+            <script src="assets/js/chartist.min.js" type="text/javascript"></script>
+            <script src="assets/js/chartist-plugin-tooltip.min.js" type="text/javascript"></script>
+            <!-- END: Page Vendor JS-->
 
-        <!-- BEGIN: Theme JS-->
-        <script src="assets/js/app-menu.min.js" type="text/javascript"></script>
-        <script src="assets/js/app.min.js" type="text/javascript"></script>
-        <script src="assets/js/customizer.min.js" type="text/javascript"></script>
-        <script src="assets/js/jquery.sharrre.js" type="text/javascript"></script>
-        <!-- END: Theme JS-->
+            <!-- BEGIN: Theme JS-->
+            <script src="assets/js/app-menu.min.js" type="text/javascript"></script>
+            <script src="assets/js/app.min.js" type="text/javascript"></script>
+            <script src="assets/js/customizer.min.js" type="text/javascript"></script>
+            <script src="assets/js/jquery.sharrre.js" type="text/javascript"></script>
+            <!-- END: Theme JS-->
 
-        <!-- BEGIN: Page JS-->
-        <script src="assets/js/dashboard-analytics.min.js" type="text/javascript"></script>
-        <!-- END: Page JS-->
+            <!-- BEGIN: Page JS-->
+            <script src="assets/js/dashboard-analytics.min.js" type="text/javascript"></script>
+            <!-- END: Page JS-->
 
 </body>
 <!-- END: Body-->

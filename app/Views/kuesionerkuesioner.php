@@ -122,27 +122,7 @@
     </div>
     <!-- END: Main Menu-->
 
-    <script>
-        function openTab(evt, tabId) {
-            // Sembunyikan semua tab content
-            var tabcontent = document.getElementsByClassName("tab-content");
-            for (var i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none"; // Sembunyikan semua tab
-            }
 
-            // Tampilkan tab yang dipilih
-            document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
-
-            // Menandai tombol tab yang aktif
-            var tablinks = document.getElementsByClassName("kuesioner");
-            for (var i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", ""); // Hilangkan kelas active dari semua tab
-            }
-
-            // Tambahkan kelas active pada tombol yang ditekan
-            evt.currentTarget.className += " active";
-        }
-    </script>
 
     <!-- BEGIN: Content-->
     <div class="app-content content">
@@ -156,10 +136,9 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
 
-
                         <!-- Table Kuesioner START-->
                         <div class="card tab-content">
-                            <div class="card-header mt-2">
+                            <div class="card-header ml-2 mr-2">
                                 <div class="d-flex justify-content-between">
                                     <h2>Kuesioner</h2>
                                     <div class="align-items-end">
@@ -174,6 +153,22 @@
                                 </div>
                                 <hr>
 
+                                <!-- Filter START -->
+                                <div>
+                                    <form method="get" action="<?= base_url(relativePath: '/carikuesioner') ?>">
+                                        <div class="d-flex align-items-center">
+                                            <input type="text" name="cari" id="cari" class="form-control" placeholder="Cari..." style="margin-right: 10px; width:22%;">
+                                            <button href="<?= base_url('/carikuesioner') ?>" type="submit" class="btn btn-primary" style="font-size:12px; padding:5px 6px; height: 36px; width: 65px; color: white;">Filter</button>
+                                        </div>
+
+                                    </form>
+
+                                </div>
+                                <!-- Filter END -->
+
+                                <hr>
+
+
                                 <div class="table-responsive">
                                     <table class="table table-bordered text-center">
                                         <thead>
@@ -187,16 +182,16 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                        <?php if(!empty($user)) : ?>
+                                            <?php if (!empty($user)) : ?>
                                                 <?php $no = 1; ?>
-                                                <?php foreach($user as $row) : ?>
+                                                <?php foreach ($user as $row) : ?>
                                                     <tr>
-                                                    <td><?= $no++; ?></td>
-                                                    <td><?= $row['title']; ?></td>
-                                                    <td><?= $row['entries']; ?><br><a href="<?= base_url('dataisian') ?>">Lihat</a></td>
-                                                    <td><?= $row['active_status']; ?></td>
-                                                    <td><?= $row['conditional_logic']; ?></td>
-                                
+                                                        <td><?= $no++; ?></td>
+                                                        <td><?= $row['title']; ?></td>
+                                                        <td><?= $row['entries']; ?><br><a href="<?= base_url('dataisian') ?>">Lihat</a></td>
+                                                        <td><?= $row['active_status']; ?></td>
+                                                        <td><?= $row['conditional_logic']; ?></td>
+
                                                         <td>
                                                             <a class="btn btn-primary btn-sm" class="nav-link active" onclick="openTab(event, 'SuntingKuesioner')" style='font-size:10px;padding:2px 5px;color:white;'>Edit</a>
                                                             <a class="btn btn-primary btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Active</a>
@@ -207,52 +202,54 @@
                                                             <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
                                                         </td>
                                                     </tr>
-                                                    <?php endforeach; ?>
+                                                <?php endforeach; ?>
                                             <?php else : ?>
                                                 <tr>
                                                     <td colspan="6" class="text-center">No data found</td>
                                                 </tr>
                                             <?php endif; ?>
-                                               
+
                                         </tbody>
                                     </table>
                                 </div>
                             </div>
                         </div>
                         <!-- Table Kuesioner END -->
+
                         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content text-center">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Apakah Anda yakin ingin menghapus data <strong id="username"></strong>?</p>
-                        <form id="deleteForm" method="post" action="<?= base_url('deletekuesioner') ?>">
-                            <input type="hidden" id="delete_id" name="id">
-                            <button type="submit" class="btn btn-danger">Hapus</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content text-center">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Apakah Anda yakin ingin menghapus data <strong id="username"></strong>?</p>
+                                        <form id="deleteForm" method="post" action="<?= base_url('deletekuesioner') ?>">
+                                            <input type="hidden" id="delete_id" name="id">
+                                            <button type="submit" class="btn btn-danger">Hapus</button>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-        <script>
-            $('.deleteModal').click(function() {
-                var href = $(this).data('target');
-                var id = $(this).data('id');
-                $('#delete_id').val(id);
-            });
-        </script>
+                        <script>
+                            $('.deleteModal').click(function() {
+                                var href = $(this).data('target');
+                                var id = $(this).data('id');
+                                $('#delete_id').val(id);
+                            });
+                        </script>
 
-        <!-- Modal Konfirmasi Hapus END-->
+                        <!-- Modal Konfirmasi Hapus END-->
+
                         <!-- Sunting Kuesioner START-->
                         <div class="card tab-content" id="SuntingKuesioner" style="display:none;">
-                            <div class="card-header mt-2">
+                            <div class="card-header">
                                 <div class="d-flex justify-content-between">
                                     <h2>Sunting Kuesioner</h2>
                                 </div>
@@ -345,7 +342,7 @@
 
                         <!-- Tinjau Kuesioner START -->
                         <div class="card tab-content" id="TinjauKuesioner" style="display:none;">
-                            <div class="card-header mt-2">
+                            <div class="card-header">
                                 <div class="d-flex justify-content-between">
                                     <h2>Detil Kuesioner</h2>
                                 </div>
@@ -627,7 +624,7 @@
 
                 <!-- Sunting Kuesioner Page START-->
                 <div class="card tab-content" id="SuntingEditKuesioner" style="display:none;">
-                    <div class="card-header mt-2">
+                    <div class="card-header">
                         <div class="d-flex justify-content-between">
                             <h2>Sunting Kuesioner Page</h2>
                         </div>
@@ -676,7 +673,7 @@
                                         <td class="">
                                             <a class="btn btn-secondary btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Up</a>
                                             <a class="btn btn-secondary btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Down</a>
-                                            <a class="btn btn-info btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Edit</a>
+                                            <a class="btn btn-info btn-sm" style='font-size:10px;padding:2px 5px;color:white;' onclick="openTab(event, 'SuntingKuesionerSection')">Edit</a>
                                             <a class="btn btn-danger btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Hapus</a>
                                         </td>
                                     </tr>
@@ -687,29 +684,106 @@
                 </div>
                 <!-- Sunting Kuesioner END-->
 
-                <script>
-                    function openTab(evt, tabId) {
-                        // Sembunyikan semua tab content
-                        var tabcontent = document.getElementsByClassName("tab-content");
-                        for (var i = 0; i < tabcontent.length; i++) {
-                            tabcontent[i].style.display = "none"; // Sembunyikan semua tab
-                        }
+                <!-- Sunting Kuesioner Section START -->
+                <div class="card tab-content" id="SuntingKuesionerSection" style="display: none;">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between">
+                            <h2>Sunting Kuesioner Section</h2>
+                        </div>
+                        <hr>
 
-                        // Tampilkan tab yang dipilih
-                        document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
+                        <div class="m-2">
+                            <form>
+                                <form>
+                                    <div class="form-group">
+                                        <label for="exampleInputTitle">Title</label>
+                                        <input type="email" class="form-control" id="exampleInputTitle" placeholder="Data Pribadi">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputDeskripsi">Deskripsi</label>
+                                        <input type="password" class="form-control" id="exampleInputDeskripsi" placeholder="Bagian ini berisi pertanyaan tentang data pribadi responden.">
+                                    </div>
+                                    <div class="form-check d-flex">
+                                        <label class="form-check-label" for="exampleCheck1">Show Section Title</label>
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    </div>
+                                    <div class="form-check d-flex mt-1">
+                                        <label class="form-check-label" for="exampleCheck1">Show Section Description</label>
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    </div>
+                                    <div class="form-check d-flex mt-1">
+                                        <label class="form-check-label" for="exampleCheck1">Conditional Logic</label>
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                    </div>
 
-                        // Menandai tombol tab yang aktif
-                        var tablinks = document.getElementsByClassName("nav-link");
-                        for (var i = 0; i < tablinks.length; i++) {
-                            tablinks[i].className = tablinks[i].className.replace(" active", ""); // Hilangkan kelas active dari semua tab
-                        }
+                                    <br>
+                                    <div>
+                                        <a class="btn btn-info" style="font-size:14px;padding:8px 10px;color:white;" href="<?= base_url('/kuesioner') ?>">Simpan</a>
+                                        <a class="btn btn-danger" style="font-size:14px;padding:8px 10px;color:white;" href="<?= base_url('/kuesioner') ?>">Batal</a>
+                                    </div>
+                                </form>
 
-                        // Tambahkan kelas active pada tombol yang ditekan
-                        evt.currentTarget.className += " active";
-                    }
-                </script>
+                                <!-- ISI DISINI -->
+                                <div>
+
+                                </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <!-- Sunting Kuesioner Section END -->
             </div>
         </div>
+
+        <!-- JS -->
+        <!-- OPEN TAB -->
+        <script>
+            function openTab(evt, tabId) {
+                // Sembunyikan semua tab content
+                var tabcontent = document.getElementsByClassName("tab-content");
+                for (var i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none"; // Sembunyikan semua tab
+                }
+
+                // Tampilkan tab yang dipilih
+                document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
+
+                // Menandai tombol tab yang aktif
+                var tablinks = document.getElementsByClassName("nav-link");
+                for (var i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", ""); // Hilangkan kelas active dari semua tab
+                }
+
+                // Tambahkan kelas active pada tombol yang ditekan
+                evt.currentTarget.className += " active";
+            }
+        </script>
+
+        <script>
+            function openTab(evt, tabId) {
+                // Sembunyikan semua tab content
+                var tabcontent = document.getElementsByClassName("tab-content");
+                for (var i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none"; // Sembunyikan semua tab
+                }
+
+                // Tampilkan tab yang dipilih
+                document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
+
+                // Menandai tombol tab yang aktif
+                var tablinks = document.getElementsByClassName("kuesioner");
+                for (var i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", ""); // Hilangkan kelas active dari semua tab
+                }
+
+                // Tambahkan kelas active pada tombol yang ditekan
+                evt.currentTarget.className += " active";
+            }
+        </script>
+        <!-- OPEN TAB END -->
+        <!-- JS -->
 
         <!-- END: Content-->
 

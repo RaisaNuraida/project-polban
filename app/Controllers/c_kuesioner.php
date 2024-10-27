@@ -50,7 +50,23 @@ class c_kuesioner extends BaseController
             return redirect()->to('/kuesionerkuesioner')->with('message', 'User tidak ditemukan.');
         }
     }
+    public function carikuesioner()
+    {
+        $users = new m_kuesioner();
+        $cari = $this->request->getGet('cari'); // Mengambil input pencarian
 
+        // Melakukan pencarian berdasarkan display_name
+        if ($cari) {
+            $data['user'] = $users
+            ->like('title', $cari)
+            ->orlike('conditional_logic', $cari)
+            ->findAll(); // Menggunakan like untuk pencarian
+        } else {
+            $data['user'] = []; // Jika tidak ada input, set hasil kosong
+        }
+
+        return view('kuesionerkuesioner', $data); 
+    }
     public function backIndex()
     {
         return view ('index');

@@ -46,27 +46,19 @@ class UserModel extends Model
         return $query->getResultArray();
     }
 
-    public function getFilteredData($filters)
-    {
-        // Debug untuk mengecek isi $filters
-        var_dump($filters);
+    public function pencarianuser($kunci) {
+        return $this->table('users')
+        ->like('display_name', $kunci)
+        ->orlike('username', $kunci)
+        ->orlike('email', $kunci)
+        ->orlike('group', $kunci);
+        
+    }
 
-        $builder = $this->db->table($this->table);
-
-        if (!empty($filters['display_name'])) {
-            $builder->like('display_name', $filters['display_name']);
-        }
-        if (!empty($filters['username'])) {
-            $builder->like('username', $filters['username']);
-        }
-        if (!empty($filters['email'])) {
-            $builder->like('email', $filters['email']);
-        }
-        if (!empty($filters['group'])) {
-            $builder->like('group', $filters['group']);
-        }
-
-        echo $builder->getCompiledSelect(); // Debug query yang dihasilkan
-        return $builder->get()->getResultArray();
+    public function pencariananswer($kunci) {
+        return $this->table('users')
+        ->like('display_name', $kunci)
+        ;
+        
     }
 }

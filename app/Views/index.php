@@ -127,7 +127,6 @@
         <div class="content-wrapper">
             <div class="content-wrapper-before"></div>
             <div class="content-header row"></div>
-            <div></div>
             <div class="content-body">
 
                 <!-- CRUD START-->
@@ -158,31 +157,23 @@
                                 <hr>
                                 <!-- Filter start -->
                                 <div>
-                                    <form method="get" action="<?= base_url('/search') ?>">
-                                        <label for="username">Username:</label>
-                                        <input type="text" name="username" id="username" placeholder="Cari berdasarkan username" style="margin-right: 10px;">
-
-                                        <label for="email">Email:</label>
-                                        <input type="text" name="username" id="username" placeholder="Cari berdasarkan username" style="margin-right: 10px;">
-
-                                        <label for="group">Group:</label>
-                                        <input type="text" name="group" id="group" placeholder="Cari berdasarkan group" style="margin-right: 10px;">
-                                        <br>
-                                        <br>
-                                        <a href="" type="submit" class="btn btn-primary mt-1" style="font-size:12px; padding:5px 6px; height:25px;">Filter</a>
-                                        <a href="" type="submit" class="btn btn-secondary mt-1" style="font-size:12px; padding:5px 6px; height:25px;">Clear</a>
-                                        <a href="" type="submit" class="btn btn-success mt-1" style="font-size:12px; padding:5px 6px; height:25px;">Unduh CSV</a>
-                                        <a href="" type="submit" class="btn btn-success mt-1" style="font-size:12px; padding:5px 6px; height:25px;">Unduh</a>
+                                    <form method="get" action="<?= base_url(relativePath: '/cariuser') ?>">
+                                        <input type="text" class="form-control" name="cari" id="cari" placeholder="Cari..." style="margin-right: 10px;  width:22%;">
+                                        <div>
+                                            <button href="<?= base_url('/cariuser') ?>" type="submit" class="btn btn-primary mt-1" style="font-size:12px; padding:5px 6px; height:25px; color: white;">Filter</button>
+                                            <a href="<?= base_url(relativePath: '/index') ?>" type="submit" class="btn btn-secondary mt-1" style="font-size:12px; padding:5px 6px; height:25px;  color: white;">Clear</a>
+                                            <a href="" type="submit" class="btn btn-success mt-1" style="font-size:12px; padding:5px 6px; height:25px;  color: white;">Unduh CSV</a>
+                                            <a href="" type="submit" class="btn btn-success mt-1" style="font-size:12px; padding:5px 6px; height:25px; ">Unduh</a>
+                                        </div>
 
                                     </form>
                                 </div>
                                 <!-- Filter End -->
 
+                                <hr>
                                 <div class="table-responsive">
                                     <table class="table table-bordered text-center">
                                         <thead>
-                                            <br>
-                                            <br>
                                             <tr>
                                                 <th>NO</th>
                                                 <th>Nama Lengkap</th>
@@ -217,7 +208,7 @@
                                                 <?php endforeach; ?>
                                             <?php else : ?>
                                                 <tr>
-                                                    <td colspan="7" class="text-center">No data found</td>
+                                                    <td colspan="9" class="text-center">No data found</td>
                                                 </tr>
                                             <?php endif; ?>
                                         </tbody>
@@ -225,6 +216,69 @@
                                 </div>
                             </div>
                             <!-- Table Data Users END -->
+
+
+                            <div class="container mt-2 tab-content" id="cari" style="display:none;">
+                                <div class="d-flex justify-content-between">
+                                    <h2>Data Administrator</h2>
+                                    <a class="btn btn-primary" style="font-size:14px;padding:2px 5px;color:white; height:25px;" href="<?= base_url('importdata') ?>">
+                                        Import Data
+                                    </a>
+                                </div>
+
+                                <div>
+                                    <nav class="nav mb-1">
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'user')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Semua Data</a>
+                                        <a class="active nav-link btn-outline-primary" onclick="openTab(event, 'administrator')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Administrator</a>
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'atasan')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Atasan</a>
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'alumni')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Alumni</a>
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'perusahaan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Perusahaan</a>
+                                    </nav>
+                                </div>
+
+                                <div class="table-responsive">
+                                    <table class="table table-bordered text-center">
+                                        <thead>
+                                            <tr>
+                                                <th>NO</th>
+                                                <th>Nama Lengkap</th>
+                                                <th>Username</th>
+                                                <th>Password</th>
+                                                <th>Email</th>
+                                                <th>Dibuat Pada</th>
+                                                <th>Terakhir Diupdate</th>
+                                                <th>Aksi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php if (!empty($administrator)) : ?>
+                                                <?php $no = 1; ?>
+                                                <?php foreach ($administrator as $row) : ?>
+                                                    <tr>
+                                                        <td><?= $no++; ?></td>
+                                                        <td><?= $row['display_name']; ?></td>
+                                                        <td><?= $row['username']; ?></td>
+                                                        <td><?= $row['password']; ?></td>
+                                                        <td><?= $row['email']; ?></td>
+                                                        <td><?= $row['created_at']; ?></td>
+                                                        <td><?= $row['updated_at']; ?></td>
+                                                        <td>
+                                                            <button data-target='#updateModal' id='update' data-toggle='modal' data-id="<?= $row['id']; ?>" data-username="<?= $row['username']; ?>" data-email="<?= $row['email']; ?>" data-password="<?= $row['password']; ?>" class='btn btn-warning updateModal' style='font-size:10px;padding:2px 5px;color:white;'>Ubah</button>
+                                                            <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            <?php else : ?>
+                                                <tr>
+                                                    <td colspan="8" class="text-center">No data found</td>
+                                                </tr>
+                                            <?php endif; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
 
                             <!-- Table Data administrator START-->
                             <div class="container mt-2 tab-content" id="administrator" style="display:none;">

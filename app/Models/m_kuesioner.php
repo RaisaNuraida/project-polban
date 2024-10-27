@@ -17,4 +17,11 @@ class m_kuesioner extends Model
         return $query->getResultArray();  // Mengembalikan data sebagai array
 
     }
+
+    public function pencarianuser($kunci) {
+        return $this->table('kuesioner_kuesioner')
+        ->like('title', $kunci)
+        ->orlike('conditional_logic', $kunci);
+        
+    }
 }

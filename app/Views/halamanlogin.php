@@ -98,27 +98,25 @@
               <div class="card-header container p-1 m-0">
                 <h3><strong>Login</strong></h3>
                 <hr>
+                
                 <form action="<?= base_url('/login'); ?>" method="post">
-                <?= csrf_field(); ?>
-                  <?php if (session()->getFlashdata('error')){
-                    ?><div class="alert alert-danger"><?php echo session()->getFlashdata('error')?>
+                  <?= csrf_field(); ?>
+                  <?php if (session()->getFlashdata('error')) {
+                  ?><div class="alert alert-danger"><?php echo session()->getFlashdata('error') ?>
                     </div><?php
-                  }?>
-              
+                        } ?>
+
                   <div class="d-flex flex-row justify-content-center align-items-center text-center">
                     <div class="flex-row m-4">
                       <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" name="username" class="form-control" value="<?php echo session()->getFlashdata('username')?>" id="username" required>
+                        <input type="text" name="username" placeholder="Username" class="form-control" value="<?php echo session()->getFlashdata('username') ?>" id="username" required>
                       </div>
                       <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password"class="form-control"  name="password" id="password" required>
+                        <input type="password" class="form-control" placeholder="Password" name="password" id="password" required>
                       </div>
                       <div class="mb-3">
-                        <input type="submit" name="login" id="login" class="btn btn-bg-gradient-x-blue-cyan" value="login"/>
+                        <input type="submit" name="login" id="login" class="btn btn-glow btn-round btn-bg-gradient-x-red-pink" value="Masuk" style="width: 55%;" />
                       </div>
-
                 </form>
               </div>
 
