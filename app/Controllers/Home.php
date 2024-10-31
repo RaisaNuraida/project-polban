@@ -15,7 +15,6 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard as HtmlDashboard;
 class Home extends BaseController
 {
 
-    
     public function index(): string
     {
         $model = new UserModel();
@@ -42,7 +41,6 @@ class Home extends BaseController
         // Render view dan kirim data
         return view('index', $data);  // Pastikan 'index' adalah nama view yang benar
         // echo"ddd"; exit();
-        //return view('index');
     }
 
 
@@ -232,7 +230,7 @@ class Home extends BaseController
     public function cariuser()
     {
         $users = new UserModel();
-        $cari = $this->request->getGet('cari'); // Mengambil input pencarian
+        $cari = $this->request->getGet('cariuser'); // Mengambil input pencarian
 
         // Melakukan pencarian berdasarkan display_name
         if ($cari) {
@@ -248,23 +246,7 @@ class Home extends BaseController
         return view('index', $data); 
     }
 
-    public function carianswer()
-    {
-        $users = new UserModel();
-        $cari = $this->request->getGet('cari'); // Mengambil input pencarian
-
-        // Melakukan pencarian berdasarkan display_name
-        if ($cari) {
-            $data['alumni'] = $users
-            ->like('display_name', $cari)
-           ->findAll(); // Menggunakan like untuk pencarian
-        } else {
-            $data['alumni'] = []; // Jika tidak ada input, set hasil kosong
-        }
-
-        return view('/dataisian', $data); 
-    }
-
+   
     public function kuesioner_answer(): string
     {
         $model = new UserModel();
@@ -273,7 +255,6 @@ class Home extends BaseController
         $alumni = $model->getAlumni();
 
         $data = ['alumni' => $alumni];
-
 
         // Render view dan kirim data
         return view('/dataisian', $data);  // Pastikan 'index' adalah nama view yang benar

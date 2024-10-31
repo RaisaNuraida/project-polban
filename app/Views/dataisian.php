@@ -145,76 +145,146 @@
 
                                 <!-- Filter START -->
                                 <div>
-                                    <form method="get" action="<?= base_url(relativePath: '/carianswer') ?>">
-                                        <div class="d-flex align-items-center">
-                                            <input type="text" name="cari" id="cari" class="form-control" placeholder="Cari Nama" style="margin-right: 10px; width:22%;">
-                                            <input type="text" name="cari" id="cari" class="form-control" placeholder="Cari NIM" style="margin-right: 10px; width:22%;">
-
-                                            <select name="cari" id="cari" class="form-control" style="margin-right: 10px; width:22%;">
+                                    <form method="get" action="/carianswer" id="searchForm" onsubmit="removeEmptyInputs()">
+                                        <div class="d-flex align-items-center justify-content">
+                                            <input type="text" name="carianswer" id="name" class="form-control" placeholder="Cari Nama atau NIM" style="margin-right: 10px; width:22%;">
+                                            <!--  Fakultas Dropdown -->
+                                            <select name="carianswer" id="academic_faculty" class="form-control" style="margin-right: 10px; width:22%;">
                                                 <option value="">Jurusan</option>
-                                                <option value="academic_faculty">Teknik Sipil</option>
-                                                <option value="academic_faculty">Teknik Mesin</option>
-                                                <option value="academic_faculty">Teknik Refrigasi dan Tata Udara</option>
-                                                <option value="academic_faculty">Teknik Konversi Energi</option>
-                                                <option value="academic_faculty">Teknik Elektro</option>
-                                                <option value="academic_faculty">Teknik Kimia</option>
-                                                <option value="academic_faculty">Teknik Komputer dan Informatika</option>
-                                                <option value="academic_faculty">Akuntansi</option>
-                                                <option value="academic_faculty">Administrasi Niaga</option>
-                                                <option value="academic_faculty">Bahasa Inggris</option>
+                                                <option value="Teknik Sipil">Teknik Sipil</option>
+                                                <option value="Teknik Mesin">Teknik Mesin</option>
+                                                <option value="Teknik Refrigasi dan Tata Udara">Teknik Refrigasi dan Tata Udara</option>
+                                                <option value="Teknik Konversi Energi">Teknik Konversi Energi</option>
+                                                <option value="Teknik Elektro">Teknik Elektro</option>
+                                                <option value="Teknik Kimia">Teknik Kimia</option>
+                                                <option value="Teknik Komputer dan Informatika">Teknik Komputer dan Informatika</option>
+                                                <option value="Akuntansi">Akuntansi</option>
+                                                <option value="Administrasi Niaga">Administrasi Niaga</option>
+                                                <option value="Bahasa Inggris">Bahasa Inggris</option>
                                             </select>
-                                            <select name="cari" id="cari" class="form-control" style="margin-right: 10px; width:22%;">
+
+                                            <!-- Program Studi Dropdown -->
+                                            <select name="carianswer" id="academic_program" class="form-control" style="margin-right: 10px; width:22%;">
                                                 <option value="">Program Studi</option>
-                                                <option value="">Teknik Sipil</option>
-                                                <option value="academic_program">D-3 Teknik Konstruksi Sipil</option>
-                                                <option value="academic_program">D-3 Teknik Konstruksi Gedung</option>
-                                                <option value="academic_program">D-4 Teknik Perancangan Jalan dan Jembatan</option>
-                                                <option value="academic_program">D-4 Teknik Perawatan dan Perbaikan Gedung</option>
-                                                <option value="academic_program">S-2 Rekayasa Infrastruktur</option>
-                                                <option value="">Teknik Mesin</option>
-                                                <option value="academic_program">D-3 Teknik Mesin</option>
-                                                <option value="academic_program">D-3 Teknik Aeronautika</option>
-                                                <option value="academic_program">D-4 Teknik Perancangan dan Konstruksi Mesin</option>
-                                                <option value="academic_program">D-4 Proses Manufaktur</option>
-                                                <option value="">Teknik Refrigasi dan Tata Udara</option>
-                                                <option value="academic_program">D-3 Teknik Pendingin dan Tata Udara</option>
-                                                <option value="academic_program">D-4 Teknik Pendingin dan Tata Udara</option>
-                                                <option value="">Teknik Konversi Energi</option>
-                                                <option value="academic_program">D-3 Teknik Konversi Energi</option>
-                                                <option value="academic_program">D-4 Teknologi Pembangkit Tenaga Listrik</option>
-                                                <option value="academic_program">D-4 Teknik Konversi Energi</option>
-                                                <option value="">Teknik Elektro</option>
-                                                <option value="academic_program">D-3 Teknik Elektronika</option>
-                                                <option value="academic_program">D-3 Teknik Listrik</option>
-                                                <option value="academic_program">D-3 Teknik Telekomunikasi</option>
-                                                <option value="academic_program">D-4 Teknik Elektronika</option>
-                                                <option value="academic_program">D-4 Teknik Telekomunikasi</option>
-                                                <option value="academic_program">D-4 Teknik Otomasi Industri</option>
+                                                <!-- Teknik Sipil -->
+                                                <option data-faculty="Teknik Sipil" value="D-3 Teknik Konstruksi Sipil">D-3 Teknik Konstruksi Sipil</option>
+                                                <option data-faculty="Teknik Sipil" value="D-3 Teknik Konstruksi Gedung">D-3 Teknik Konstruksi Gedung</option>
+                                                <option data-faculty="Teknik Sipil" value="D-4 Teknik Perancangan Jalan dan Jembatan">D-4 Teknik Perancangan Jalan dan Jembatan</option>
+                                                <option data-faculty="Teknik Sipil" value="D-4 Teknik Perawatan dan Perbaikan Gedung">D-4 Teknik Perawatan dan Perbaikan Gedung</option>
+                                                <option data-faculty="Teknik Sipil" value="S-2 Rekayasa Infrastruktur">S-2 Rekayasa Infrastruktur</option>
 
+                                                <!-- Teknik Mesin -->
+                                                <option data-faculty="Teknik Mesin" value="D-3 Teknik Mesin">D-3 Teknik Mesin</option>
+                                                <option data-faculty="Teknik Mesin" value="D-3 Teknik Aeronautika">D-3 Teknik Aeronautika</option>
+                                                <option data-faculty="Teknik Mesin" value="D-4 Teknik Perancangan dan Konstruksi Mesin">D-4 Teknik Perancangan dan Konstruksi Mesin</option>
+                                                <option data-faculty="Teknik Mesin" value="D-4 Proses Manufaktur">D-4 Proses Manufaktur</option>
+
+                                                <!-- Teknik Refrigasi dan Tata Udara -->
+                                                <option data-faculty="Teknik Refrigasi dan Tata Udara" value="D-3 Teknik Pendingin dan Tata Udara">D-3 Teknik Pendingin dan Tata Udara</option>
+                                                <option data-faculty="Teknik Refrigasi dan Tata Udara" value="D-4 Teknik Pendingin dan Tata Udara">D-4 Teknik Pendingin dan Tata Udara</option>
+
+                                                <!-- Teknik Konversi Energi -->
+                                                <option data-faculty="Teknik Konversi Energi" value="D-3 Teknik Konversi Energi">D-3 Teknik Konversi Energi</option>
+                                                <option data-faculty="Teknik Konversi Energi" value="D-4 Teknik Pembangkit Tenaga Listrik">D-4 Teknik Pembangkit Tenaga Listrik</option>
+                                                <option data-faculty="Teknik Konversi Energi" value="D-4 Teknik Konservasi Energi">D-4 Teknik Konservasi Energi</option>
+
+                                                <!-- Teknik Elektro -->
+                                                <option data-faculty="Teknik Elektro" value="D-3 Teknik Elektronika">D-3 Teknik Elektronika</option>
+                                                <option data-faculty="Teknik Elektro" value="D-3 Teknik Listrik">D-3 Teknik Listrik</option>
+                                                <option data-faculty="Teknik Elektro" value="D-3 Teknik Telekomunikasi">D-3 Teknik Telekomunikasi</option>
+                                                <option data-faculty="Teknik Elektro" value="D-4 Teknik Elektronika">D-4 Teknik Elektronika</option>
+                                                <option data-faculty="Teknik Elektro" value="D-4 Teknik Telekomunikasi">D-4 Teknik Telekomunikasi</option>
+                                                <option data-faculty="Teknik Elektro" value="D-4 Teknik Otomasi Industri">D-4 Teknik Otomasi Industri</option>
+
+                                                <!-- Teknik Kimia -->
+                                                <option data-faculty="Teknik Kimia" value="D-3 Teknik Kimia">D-3 Teknik Kimia</option>
+                                                <option data-faculty="Teknik Kimia" value="D-3 Analis Kimia">D-3 Analis Kimia</option>
+                                                <option data-faculty="Teknik Kimia" value="D-4 Teknik Kimia Produksi Bersih">D-4 Teknik Kimia Produksi Bersih</option>
+
+                                                <!-- Teknik Komputer dan Informatika -->
+                                                <option data-faculty="Teknik Komputer dan Informatika" value="D-3 Teknik Informatika">D-3 Teknik Informatika</option>
+                                                <option data-faculty="Teknik Komputer dan Informatika" value="D-4 Teknik Informatika">D-4 Teknik Informatika</option>
+
+                                                <!-- Akuntansi -->
+                                                <option data-faculty="Akuntansi" value="D-3 Akuntansi">D-3 Akuntansi</option>
+                                                <option data-faculty="Akuntansi" value="D-3 Keuangan dan Perbankan">D-3 Keuangan dan Perbankan</option>
+                                                <option data-faculty="Akuntansi" value="D-4 Akutansi Manajemen Pemerintahan">D-4 Akutansi Manajemen Pemerintahan</option>
+                                                <option data-faculty="Akuntansi" value="D-4 Akutansi">D-4 Akutansi</option>
+                                                <option data-faculty="Akuntansi" value="D-4 Keuangan Syariah">D-4 Keuangan Syariah</option>
+                                                <option data-faculty="Akuntansi" value="S-2 Keuangan dan Perbankan Syariah">D-4 Keuangan dan Perbankan Syariah</option>
+
+                                                <!-- Administrasi Niaga -->
+                                                <option data-faculty="Administrasi Niaga" value="D-3 Administrasi Bisnis">D-3 Administrasi Bisnis</option>
+                                                <option data-faculty="Administrasi Niaga" value="D-3 Manajemen Pemasaran">D-3 Manajemen Pemasaran</option>
+                                                <option data-faculty="Administrasi Niaga" value="D-3 Usaha Perjalanan Wisata">D-3 Usaha Perjalanan Wisata</option>
+                                                <option data-faculty="Administrasi Niaga" value="D-4 Manajemen Aset">D-4 Manajemen Aset</option>
+                                                <option data-faculty="Administrasi Niaga" value="D-4 Manajemen Bisnis">D-4 Manajemen Bisnis</option>
+                                                <option data-faculty="Administrasi Niaga" value="D-4 Manajemen Pemasaran">D-4 Manajemen Pemasaran</option>
+                                                <option data-faculty="Administrasi Niaga" value="D-4 Destinasi Pariwisata">D-4 Destinasi Pariwisata</option>
+
+                                                <!-- Bahasa Inggris -->
+                                                <option data-faculty="Bahasa Inggris" value="D-3 Bahasa Inggris">D-3 Bahasa Inggris</option>
                                             </select>
-                                            <select name="cari" id="cari" class="form-control" style="margin-right: 10px; width:22%;">
-                                            <option value="">Angkatan</option>
-                                            <option value="">2015</option>
-                                            <option value="">2016</option>
-                                            <option value="">2017</option>
-                                            <option value="">2018</option>
-                                            <option value="">2019</option>
-                                            <option value="">2020</option>
-                                            <option value="">2021</option>
-                                            <option value="">2022</option>
-                                            <option value="">2023</option>
-                                            <option value="">2024</option>
-                                            <option value="">2025</option>
-                                            <option value="">2026</option>
 
+                                            <!-- Angkatan Dropdown -->
+                                            <select name="carianswer" id="angkatan" class="form-control" style="margin-right: 10px; width:22%;">
+                                                <option value="">Angkatan</option>
+                                                <option value="2015">2015</option>
+                                                <option value="2016">2016</option>
+                                                <option value="2017">2017</option>
+                                                <option value="2018">2018</option>
+                                                <option value="2019">2019</option>
+                                                <option value="2020">2020</option>
+                                                <option value="2021">2021</option>
+                                                <option value="2022">2022</option>
+                                                <option value="2023">2023</option>
+                                                <option value="2024">2024</option>
+                                                <option value="2025">2025</option>
+                                                <option value="2026">2026</option>
+                                                <!-- Tambahkan tahun sesuai kebutuhan -->
                                             </select>
 
-                                            <button href="<?= base_url('/carianswer') ?>" type="submit" class="btn btn-primary" style="font-size:12px; padding:5px 6px; height: 36px; width: 65px; color: white;">Filter</button>
+                                            <select name="carianswer" id="status" class="form-control" style="margin-right: 10px; width:22%;">
+                                                <option value="">Status</option>
+                                                <option value="">Selesai</option>
+                                                <option value="">On Going</option>
+                                                <option value="">Belum Mengisi</option>
+                                            </select>
                                         </div>
 
+                                        <div class="mt-1">
+                                            <button type="submit" class="btn btn-primary" style="font-size:12px; padding:5px 6px; height:25px; color: white;">Filter</button>
+                                            <a href="<?= base_url('/dataisian') ?>" type="submit" class="btn btn-secondary" style="font-size:12px; padding:5px 6px; height:25px; color: white;">Clear</a>
+                                            <a href="" type="submit" class="btn btn-success" style="font-size:12px; padding:5px 6px; height:25px;  color: white;">Unduh CSV</a>
+                                            <a href="" type="submit" class="btn btn-success" style="font-size:12px; padding:5px 6px; height:25px;">Unduh</a>
+                                        </div>
                                     </form>
-
                                 </div>
+
+                                <script>
+                                    // SCRIPT SEARCH AUTO DELETE
+                                    function removeEmptyInputs() {
+                                        const form = document.getElementById('searchForm');
+                                        const inputs = form.querySelectorAll('input, select');
+
+                                        inputs.forEach(input => {
+                                            if (!input.value) {
+                                                input.removeAttribute('name');
+                                            }
+                                        });
+                                    }
+
+                                    // SCRIPT UNTUK FORMULIR OPTION 
+                                    document.getElementById('academic_faculty').addEventListener('change', function() {
+                                        const selectedFaculty = this.value;
+                                        const programDropdown = document.getElementById('academic_program');
+
+                                        // Show or hide options based on selected faculty
+                                        for (let option of programDropdown.options) {
+                                            option.style.display = option.getAttribute('data-faculty') === selectedFaculty || option.value === '' ? 'block' : 'none';
+                                        }
+                                    });
+                                </script>
                                 <!-- Filter END -->
 
                                 <hr>
@@ -252,7 +322,7 @@
                                                 <?php endforeach; ?>
                                             <?php else : ?>
                                                 <tr>
-                                                    <td colspan="9" class="text-center">No data found</td>
+                                                    <td colspan="10" class="text-center">No data found</td>
                                                 </tr>
                                             <?php endif; ?>
                                         </tbody>

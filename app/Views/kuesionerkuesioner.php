@@ -160,14 +160,11 @@
                                             <input type="text" name="cari" id="cari" class="form-control" placeholder="Cari..." style="margin-right: 10px; width:22%;">
                                             <button href="<?= base_url('/carikuesioner') ?>" type="submit" class="btn btn-primary" style="font-size:12px; padding:5px 6px; height: 36px; width: 65px; color: white;">Filter</button>
                                         </div>
-
                                     </form>
-
                                 </div>
                                 <!-- Filter END -->
 
                                 <hr>
-
 
                                 <div class="table-responsive">
                                     <table class="table table-bordered text-center">
@@ -188,7 +185,10 @@
                                                     <tr>
                                                         <td><?= $no++; ?></td>
                                                         <td><?= $row['title']; ?></td>
-                                                        <td><?= $row['entries']; ?><br><a href="<?= base_url('dataisian') ?>">Lihat</a></td>
+                                                        <td>
+                                                            <?= $row['entries']; ?> <br>
+                                                            <a href="<?= base_url('dataisian') ?>">Lihat</a>
+                                                        </td>
                                                         <td><?= $row['active_status']; ?></td>
                                                         <td><?= $row['conditional_logic']; ?></td>
 
@@ -299,8 +299,8 @@
 
                                         <br>
                                         <div>
-                                            <a class="btn btn-info" style="font-size:14px;padding:8px 10px;color:white;" href="<?= base_url('/kuesioner') ?>">Simpan</a>
-                                            <a class="btn btn-danger" style="font-size:14px;padding:8px 10px;color:white;" href="<?= base_url('/kuesioner') ?>">Batal</a>
+                                            <a class="btn btn-info" style="font-size:14px;padding:8px 10px;color:white;" href="<?= base_url('/kuesionerkuesioner') ?>">Simpan</a>
+                                            <a class="btn btn-danger" style="font-size:14px;padding:8px 10px;color:white;" href="<?= base_url('/kuesionerkuesioner') ?>">Batal</a>
                                         </div>
                                     </form>
                                 </div>
@@ -729,9 +729,6 @@
                                 </div>
                         </div>
                     </div>
-
-
-
                 </div>
                 <!-- Sunting Kuesioner Section END -->
             </div>

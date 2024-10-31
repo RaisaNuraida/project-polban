@@ -18,10 +18,21 @@ class m_kuesioner extends Model
 
     }
 
-    public function pencarianuser($kunci) {
+    public function pencarianuser($kunci)
+    {
         return $this->table('kuesioner_kuesioner')
-        ->like('title', $kunci)
-        ->orlike('conditional_logic', $kunci);
-        
+            ->like('title', $kunci)
+            ->orlike('conditional_logic', $kunci);
     }
+
+    public function countEntriesByGraduateYear($userId, $year = '2024') {
+        $count = $this->db->table('kuesioner_kuesioner')
+            ->join('users', 'kuesioner_kuesioner.user_id = users.id')
+            ->where('users.id', $userId)
+            ->where('users.academic_graduate_year', $year)
+            ->countAllResults();
+            $values['entries'] = 0;
+            
+        return $count;
+    }    
 }

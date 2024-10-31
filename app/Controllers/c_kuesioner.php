@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Kuesionerkuesioner;
 use App\Models\m_kuesioner;
+use App\Models\UserModel;
 use CodeIgniter\Controller;
 use CodeIgniter\Debug\Toolbar\Collectors\Views;
 use CodeIgniter\Model;
@@ -13,21 +14,21 @@ use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard as HtmlDashboard;
 
 class c_kuesioner extends BaseController
-{ 
+{
     public function index(): string
     {
         $model = new m_kuesioner();
 
         $user = $model->getKuesionerWithUsers();
-    
+
         // Debugging untuk melihat data yang diambil
         // echo '<pre>';
-         //print_r($my_data);
-         //echo '</pre>';
-         //exit;
-    
+        //print_r($my_data);
+        //echo '</pre>';
+        //exit;
+
         $data = ['user' => $user];
-    
+
         // Kirim data ke view
         return view('kuesionerkuesioner', $data);
     }
@@ -58,17 +59,34 @@ class c_kuesioner extends BaseController
         // Melakukan pencarian berdasarkan display_name
         if ($cari) {
             $data['user'] = $users
-            ->like('title', $cari)
-            ->orlike('conditional_logic', $cari)
-            ->findAll(); // Menggunakan like untuk pencarian
+                ->like('title', $cari)
+                ->orlike('conditional_logic', $cari)
+                ->findAll(); // Menggunakan like untuk pencarian
         } else {
             $data['user'] = []; // Jika tidak ada input, set hasil kosong
         }
 
-        return view('kuesionerkuesioner', $data); 
+        return view('kuesionerkuesioner', $data);
     }
     public function backIndex()
     {
-        return view ('index');
+        return view('index');
+    }
+
+    public function showData()
+    {
+        $userModel = new m_kuesioner();
+        $user = $userModel->getUsersWithEntries('2024'); // Ambil semua pengguna
+
+        // Loop melalui pengguna untuk mendapatkan jumlah entri per tahun kelulusan 2024
+        foreach ($user as &$user) {
+            $user['entries'] = $userModel->countEntriesByGraduateYear($user['id'], '2024');
+            $user['count'] = $userModel->countEntriesByGraduateYear($user['id'], '2024'); // Menyimpan jumlah entri
+        }
+
+        echo"ddd"; exit();
+        
+        // Kirim data pengguna ke view
+        return view('kuesioner_kuesioner', ['user' => $user]);
     }
 }

@@ -45,20 +45,4 @@ class UserModel extends Model
         $query = $db->query('SELECT  id, display_name, username, password, email, created_at, updated_at FROM users WHERE `group` = "perusahaan"');
         return $query->getResultArray();
     }
-
-    public function pencarianuser($kunci) {
-        return $this->table('users')
-        ->like('display_name', $kunci)
-        ->orlike('username', $kunci)
-        ->orlike('email', $kunci)
-        ->orlike('group', $kunci);
-        
-    }
-
-    public function pencariananswer($kunci) {
-        return $this->table('users')
-        ->like('display_name', $kunci)
-        ;
-        
-    }
 }

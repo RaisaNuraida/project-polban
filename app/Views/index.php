@@ -157,17 +157,31 @@
                                 <hr>
                                 <!-- Filter start -->
                                 <div>
-                                    <form method="get" action="<?= base_url(relativePath: '/cariuser') ?>">
-                                        <input type="text" class="form-control" name="cari" id="cari" placeholder="Cari..." style="margin-right: 10px;  width:22%;">
+                                    <form method="get" action="<?= base_url(relativePath: '/cariuser') ?>" onsubmit="removeEmptyInputs()">
+                                        <input type="text" class="form-control" name="cariuser" id="cariuser" placeholder="Cari..." style="margin-right: 10px;  width:22%;">
                                         <div>
                                             <button href="<?= base_url('/cariuser') ?>" type="submit" class="btn btn-primary mt-1" style="font-size:12px; padding:5px 6px; height:25px; color: white;">Filter</button>
-                                            <a href="<?= base_url(relativePath: '/index') ?>" type="submit" class="btn btn-secondary mt-1" style="font-size:12px; padding:5px 6px; height:25px;  color: white;">Clear</a>
+                                            <a href="<?= base_url('/') ?>" type="submit" class="btn btn-secondary mt-1" style="font-size:12px; padding:5px 6px; height:25px;  color: white;">Clear</a>
                                             <a href="" type="submit" class="btn btn-success mt-1" style="font-size:12px; padding:5px 6px; height:25px;  color: white;">Unduh CSV</a>
                                             <a href="" type="submit" class="btn btn-success mt-1" style="font-size:12px; padding:5px 6px; height:25px; ">Unduh</a>
                                         </div>
 
                                     </form>
                                 </div>
+
+                                <script>
+                                    // SCRIPT SEARCH AUTO DELETE
+                                    function removeEmptyInputs() {
+                                        const form = document.getElementById('searchForm');
+                                        const inputs = form.querySelectorAll('input, select');
+
+                                        inputs.forEach(input => {
+                                            if (!input.value) {
+                                                input.removeAttribute('name');
+                                            }
+                                        });
+                                    }
+                                </script>
                                 <!-- Filter End -->
 
                                 <hr>
