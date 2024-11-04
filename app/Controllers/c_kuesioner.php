@@ -83,10 +83,22 @@ class c_kuesioner extends BaseController
             $user['entries'] = $userModel->countEntriesByGraduateYear($user['id'], '2024');
             $user['count'] = $userModel->countEntriesByGraduateYear($user['id'], '2024'); // Menyimpan jumlah entri
         }
-
-        echo"ddd"; exit();
         
         // Kirim data pengguna ke view
         return view('kuesioner_kuesioner', ['user' => $user]);
+ 
+    }
+
+    public function show($id): string
+    {
+        // Memanggil model
+        $itemModel = new m_kuesioner();
+
+        // Mendapatkan data item berdasarkan ID
+        $item = $itemModel->find($id);
+        $deskripsi = $item['deskripsi'];
+
+        // Mengirim data ke view
+        return view('dataisian', $deskripsi);
     }
 }

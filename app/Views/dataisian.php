@@ -140,8 +140,10 @@
                             <div class="card-header ml-2 mr-2">
                                 <div class="d-flex justify-content-between">
                                     <h2>Kuesioner Answer</h2>
+                                
+
                                 </div>
-                                <hr>
+                               <hr>
 
                                 <!-- Filter START -->
                                 <div>
@@ -255,8 +257,17 @@
                                         <div class="mt-1">
                                             <button type="submit" class="btn btn-primary" style="font-size:12px; padding:5px 6px; height:25px; color: white;">Filter</button>
                                             <a href="<?= base_url('/dataisian') ?>" type="submit" class="btn btn-secondary" style="font-size:12px; padding:5px 6px; height:25px; color: white;">Clear</a>
-                                            <a href="" type="submit" class="btn btn-success" style="font-size:12px; padding:5px 6px; height:25px;  color: white;">Unduh CSV</a>
-                                            <a href="" type="submit" class="btn btn-success" style="font-size:12px; padding:5px 6px; height:25px;">Unduh</a>
+
+                                            <?php
+                                            $request = \config\Services::request();
+                                            $cari = $request->getGet('carianswer');
+                                            if ($cari != '') {
+                                                $param = "?carianswer=" . $cari;
+                                            } else {
+                                                $param = "";
+                                            }
+                                            ?>
+                                            <a href="<?= site_url('/downloadCSV') ?>?carianswer=<?= isset($_GET['carianswer']) ? $_GET['carianswer'] : '' ?>" class="btn btn-success" style="font-size:12px; padding:5px 6px; height:25px; color: white;">Download CSV</a>
                                         </div>
                                     </form>
                                 </div>
@@ -318,6 +329,9 @@
                                                         <td><?= $row['academic_year']; ?></td>
                                                         <td><?= $row['created_at']; ?></td>
                                                         <td><?= $row['updated_at']; ?></td>
+                                                        <td>
+                                                            <a href="<?= base_url('downloadCSV?carianswer=' . $row['academic_nim']) ?>" class="btn btn-info btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Unduh</a>
+                                                        </td>
                                                     </tr>
                                                 <?php endforeach; ?>
                                             <?php else : ?>

@@ -13,7 +13,7 @@ class m_kuesioner extends Model
     public function getKuesionerWithUsers()
     {
         $db = \Config\Database::connect();
-        $query = $db->query('SELECT id, title, entries, active_status, conditional_logic FROM kuesioner_kuesioner');
+        $query = $db->query('SELECT id, title, deskripsi, entries, active_status, conditional_logic FROM kuesioner_kuesioner');
         return $query->getResultArray();  // Mengembalikan data sebagai array
 
     }
