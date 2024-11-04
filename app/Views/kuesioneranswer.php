@@ -103,7 +103,7 @@
                 </li>
 
                 <li class="menu-item">
-                    <a href="<?= base_url('welcome') ?>">
+                    <a href="<?= base_url('/welcomepage') ?>">
                         <i class="ft-edit"></i>
                         <span class="menu-title">Welcome</span>
                     </a>
@@ -149,7 +149,6 @@
         <div class="content-wrapper">
             <div class="content-wrapper-before"></div>
             <div class="content-header row"></div>
-            <div></div>
             <div class="content-body">
 
                 <!-- CRUD START-->

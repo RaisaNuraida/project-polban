@@ -25,10 +25,12 @@ $routes->get('/kuesionerkuesioner', 'cKuesioner::countTables');
 $routes->get('/dataisian', 'Home::kuesioner_answer');
 $routes->get('/deskripsi', 'c_kuesioner::show');
 $routes->get('/downloadCSV', 'cKuesioner::downloadCSV');
+$routes->get('/welcomepage', 'Home::welcome');
 
 $routes->post('/import', 'Home::import');
 $routes->post('/downloadCSV', 'cKuesioner::downloadCSV');
 $routes->post('/delete', 'Home::deleteUser');
+$routes->post('/deletekuesioner', 'c_kuesioner::deleteUser');
 $routes->post('/deletekuesioner', 'c_kuesioner::deleteUser');
 
 $routes->post('/halamanlogin', 'login::halamanlogin');

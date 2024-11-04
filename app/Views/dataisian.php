@@ -103,7 +103,7 @@
                 </li>
 
                 <li class="menu-item">
-                    <a href="<?= base_url('welcome') ?>">
+                    <a href="<?= base_url('/welcomepage') ?>">
                         <i class="ft-edit"></i>
                         <span class="menu-title">Welcome</span>
                     </a>

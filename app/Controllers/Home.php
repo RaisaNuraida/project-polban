@@ -221,6 +221,12 @@ class Home extends BaseController
         return view('kuesionerkuesioner');
     }
 
+    public function welcome(): string
+    {
+        return view('welcomepage');
+    }
+
+
     public function logout()
     {
         session()->destroy(); // Hapus session

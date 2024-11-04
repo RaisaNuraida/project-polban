@@ -103,7 +103,7 @@
                 </li>
 
                 <li class="menu-item">
-                    <a href="<?= base_url('welcome') ?>">
+                    <a href="<?= base_url('/welcomepage') ?>">
                         <i class="ft-edit"></i>
                         <span class="menu-title">Welcome</span>
                     </a>
@@ -135,8 +135,7 @@
                         <div class="card">
 
                             <!-- Table Data User START-->
-                            <div class="container mt-2 tab-content" id="user" style="display:block">
-
+                            <div class="container ml-2 mr-2 mt-2 tab-content" id="user" style="display:block">
                                 <div class="d-flex justify-content-between ">
                                     <h2 class="">Data Pengguna</h2>
                                     <a class="btn btn-primary" style="font-size:14px;padding:2px 5px;color:white; height:25px;" href="<?= base_url('importdata') ?>">
