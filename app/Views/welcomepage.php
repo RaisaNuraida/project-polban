@@ -133,63 +133,59 @@
 
 
                         <!-- Import Data Start -->
-                        <div class="card tab-content" id="admin" style="display:block">
+                        <div class="card">
                             <div class="card-header">
-                                <h2>
-                                    Sunting Welcome
-                                    <hr>
-                                </h2>
-
-
-                                <div class="card-content collapse show">
-                                    <div class="card-body p-9 pb-0">
+                                <h2>Sunting Welcome</h2>
+                                <hr>
+                                <div class="card-content">
+                                    <div class="card-body">
                                         <div class="container mb-1">
-                                            <form action="<?= site_url('welcomepage/save') ?>" method="post">
+                                            <form>
                                                 <label for="content">Welcome Message:</label>
-                                                <textarea name="content" id="content"></textarea>
+                                                <div class="form-group">
+                                                    <textarea name="content" id="content"></textarea>
+                                                </div>
+                                                <br>
                                                 <button type="submit" class="btn btn-primary">Submit</button>
                                             </form>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Import CKEditor Script -->
+                            <script src="//cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
+                            <script>
+                                CKEDITOR.replace('content');
+                            </script>
+
+
                         </div>
-                        <!-- Import Data End -->
-
-                        <!-- CKEditor Script -->
-                        <script src="<?= base_url('ckeditor/ckeditor.js') ?>"></script>
-                        <script>
-                            ClassicEditor
-                                .create(document.querySelector('#content'))
-                                .catch(error => {
-                                    console.error(error);
-                                });
-                        </script>
                     </div>
-                </div>
-                <!-- END: Content-->
+                    <!-- END: Content-->
 
-                <!-- BEGIN: Vendor JS-->
-                <script src="assets/js/vendors.min.js" type="text/javascript"></script>
-                <script src="assets/js/switchery.min.js" type="text/javascript"></script>
-                <script src="assets/js/switch.min.js" type="text/javascript"></script>
-                <!-- BEGIN Vendor JS-->
+                    <!-- BEGIN: Vendor JS-->
+                    <script src="assets/js/vendors.min.js" type="text/javascript"></script>
+                    <script src="assets/js/switchery.min.js" type="text/javascript"></script>
+                    <script src="assets/js/switch.min.js" type="text/javascript"></script>
+                    <!-- BEGIN Vendor JS-->
 
-                <!-- BEGIN: Page Vendor JS-->
-                <script src="assets/js/chartist.min.js" type="text/javascript"></script>
-                <script src="assets/js/chartist-plugin-tooltip.min.js" type="text/javascript"></script>
-                <!-- END: Page Vendor JS-->
+                    <!-- BEGIN: Page Vendor JS-->
+                    <script src="assets/js/chartist.min.js" type="text/javascript"></script>
+                    <script src="assets/js/chartist-plugin-tooltip.min.js" type="text/javascript"></script>
+                    <!-- END: Page Vendor JS-->
 
-                <!-- BEGIN: Theme JS-->
-                <script src="assets/js/app-menu.min.js" type="text/javascript"></script>
-                <script src="assets/js/app.min.js" type="text/javascript"></script>
-                <script src="assets/js/customizer.min.js" type="text/javascript"></script>
-                <script src="assets/js/jquery.sharrre.js" type="text/javascript"></script>
-                <!-- END: Theme JS-->
+                    <!-- BEGIN: Theme JS-->
+                    <script src="assets/js/app-menu.min.js" type="text/javascript"></script>
+                    <script src="assets/js/app.min.js" type="text/javascript"></script>
+                    <script src="assets/js/customizer.min.js" type="text/javascript"></script>
+                    <script src="assets/js/jquery.sharrre.js" type="text/javascript"></script>
+                    <!-- END: Theme JS-->
 
-                <!-- BEGIN: Page JS-->
-                <script src="assets/js/dashboard-analytics.min.js" type="text/javascript"></script>
-                <!-- END: Page JS-->
+                    <!-- BEGIN: Page JS-->
+                    <script src="assets/js/dashboard-analytics.min.js" type="text/javascript"></script>
+                    <!-- END: Page JS-->
+
 
 </body>
 <!-- END: Body-->
