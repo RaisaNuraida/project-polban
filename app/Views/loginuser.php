@@ -99,7 +99,7 @@
                 <h3><strong>Login Users</strong></h3>
                 <hr>
                 
-                <form action="<?= base_url('/login'); ?>" method="post">
+                <form action="<?= base_url('/loginuser'); ?>" method="post">
                   <?= csrf_field(); ?>
                   <?php if (session()->getFlashdata('error')) {
                   ?><div class="alert alert-danger"><?php echo session()->getFlashdata('error') ?>

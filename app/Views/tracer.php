@@ -82,13 +82,13 @@
         <div class="navbar-collapse show" id="navbar-mobile">
           <div class="d-flex justify-content-center flex-row">
             <ul>
-            <li>Tentang</li>
-            <li>Kontak</li>
-            <li>Respon TS</li>
-            <li>Laporan TS</li>
-          </ul>
+              <li>Tentang</li>
+              <li>Kontak</li>
+              <li>Respon TS</li>
+              <li>Laporan TS</li>
+            </ul>
           </div>
-          
+
         </div>
       </div>
     </div>
@@ -122,66 +122,14 @@
                     </a>
                   </iframe>
                 </div>
-
+ 
                 <div class="m-5 text-justify">
-                  <p>
-                    Studi Penelusuran Alumni (<a
-                      href="https://penelusuranalumni.polban.ac.id/tentang"><em>Tracer Study</em></a>) dilakukan untuk mengetahui masa transisi dari dunia
-                    kampus menuju dunia kerja dan untuk mendapatkan masukan
-                    bagi perbaikan sistem pendidikan POLBAN. Hasil dari survey
-                    ini akan menjadi data yang sangat berharga bagi POLBAN
-                    yang akan diperlukan bagi berbagai kebutuhan pengembangan
-                    dan kemajuan kampus POLBAN. Oleh karena itu, kami mohon
-                    kesediaan para alumni POLBAN yang kami banggakan untuk
-                    bekerjasama dalam mengisi kuesioner
-                    <a href="https://penelusuranalumni.polban.ac.id/tentang"><em>Tracer Study</em></a> ini.
-                  </p>
-                  <p>
-                    <em>
-                      <strong>
-                        Kuesioner Tracer Study yang digunakan di POLBAN
-                        terdiri dari 5 halaman utama dengan 1 halaman tambahan
-                        berupa kuesioner yang berasal dari program studi
-                        masing-masing (khusus program studi tertentu).
-                      </strong>
-                    </em>
-                  </p>
-                  <p>
-                    <span>
-                      Data tiap halaman akan tersimpan jika telah menekan
-                      tombol
-                      <strong> "LANJUTKAN" </strong>
-                    </span>
-                  </p>
-                  <p>
-                    Untuk menghindari ditolaknya masuk ke database pengisian
-                    pertanyaan email (email atasan dan email perusahaan bagi
-                    yang bekerja): harus dengan penulisan email yang benar
-                    yaitu
-                    <u>
-                      <strong>
-                        mengandung '@' dan tidak boleh mengandung spasi.
-                      </strong>
-                    </u>
-                  </p>
-                  <p>
-                    Khusus untuk angkatan yang lulus di tahun 2023 harap untuk
-                    memeriksa email Anda (seperti tertulis di buku wisuda)
-                    yang berasal dari tracer studi POLBAN -->
-                    <u>
-                      <strong> tracer.study@polban.ac.id </strong>
-                    </u>
-                    untuk mengetahui account Anda, jika email ganti/lupa atau
-                    tidak menuliskan email di buku wisuda atau bermasalah
-                    dengan account silahkan meminta account (username dan
-                    password) ke tracer.study@polban.ac.id. Dan segera untuk
-                    melakukan pengubahan password.
-                  </p>
-                  <p>
-                    Untuk menghindari tidak dapat melanjutkan pengisian, mohon
-                    untuk melengkapi data di menu
-                    <strong> Profil -> Edit Profil </strong>
-                  </p>
+                  <?php if (isset($message['message'])): ?>
+                    <p><?= esc($message['message']); ?></p>
+                  <?php else: ?>
+                    <p>Tidak ada pesan yang tersedia.</p>
+                  <?php endif; ?>
+
                   <div class="d-flex justify-content-center m-4">
                     <a
                       type="button"
@@ -189,7 +137,7 @@
                       href="<?= base_url('halamanlogin') ?>">
                       Masuk Situs >>
                     </a>
-                    
+
                   </div>
                 </div>
               </div>

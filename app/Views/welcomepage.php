@@ -140,10 +140,10 @@
                                 <div class="card-content">
                                     <div class="card-body">
                                         <div class="container mb-1">
-                                            <form>
+                                            <form action="<?= base_url('/welcomepage')?>" method="post">
                                                 <label for="content">Welcome Message:</label>
                                                 <div class="form-group">
-                                                    <textarea name="content" id="content"></textarea>
+                                                    <textarea name="content" id="content" <?= isset($message) ? esc($message['message']) : '' ?>></textarea>
                                                 </div>
                                                 <br>
                                                 <button type="submit" class="btn btn-primary">Submit</button>

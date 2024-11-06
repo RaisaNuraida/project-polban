@@ -28,6 +28,8 @@ $routes->get('/dataTabel', 'dataisian::dataisian');
 $routes->get('/deskripsi', 'c_kuesioner::show');
 $routes->get('/downloadCSV', 'cKuesioner::downloadCSV');
 $routes->get('/welcomepage', 'Home::welcome');
+$routes->get('/welcomepage', 'welcomepage::edit');
+$routes->get('/tracer', 'welcome::showMessage');
 
 $routes->post('/import', 'Home::import');
 $routes->post('/downloadCSV', 'cKuesioner::downloadCSV');
@@ -36,6 +38,9 @@ $routes->post('/deletekuesioner', 'c_kuesioner::deleteUser');
 $routes->post('/deletekuesioner', 'c_kuesioner::deleteUser');
 
 $routes->post('/halamanlogin', 'login::halamanlogin');
+$routes->post('/loginuser', 'login::loginuser');
+$routes->post('/welcomepage', 'welcomepage::submitMessage');
+
 $routes->post('/login', 'login::login');
 $routes->post('/update', 'Home::update');
 $routes->post('/kuesionerkuesioner', 'c_kuesioner::index');
