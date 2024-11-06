@@ -147,6 +147,8 @@
                                                 </div>
                                                 <br>
                                                 <button type="submit" class="btn btn-primary">Submit</button>
+                                                <button href="<?= base_url('/welcomepage') ?>" class="btn btn-danger">Batal</button>
+                                                <a href="" class="btn btn-secondary">Detail</a>
                                             </form>
                                         </div>
                                     </div>
@@ -158,7 +160,6 @@
                             <script>
                                 CKEDITOR.replace('content');
                             </script>
-
 
                         </div>
                     </div>

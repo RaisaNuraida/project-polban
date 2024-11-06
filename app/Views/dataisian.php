@@ -256,7 +256,7 @@
 
                                         <div class="mt-1">
                                             <button type="submit" class="btn btn-primary" style="font-size:12px; padding:5px 6px; height:25px; color: white;">Filter</button>
-                                            <a href="<?= base_url('/dataisian') ?>" type="submit" class="btn btn-secondary" style="font-size:12px; padding:5px 6px; height:25px; color: white;">Clear</a>
+                                            <a href="<?= base_url('/kuesionerkuesioner') ?>" type="submit" class="btn btn-secondary" style="font-size:12px; padding:5px 6px; height:25px; color: white;">Clear</a>
 
                                             <?php
                                             $request = \config\Services::request();

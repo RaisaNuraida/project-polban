@@ -17,6 +17,10 @@ class login extends BaseController
     public function halamanlogin(){
         return view('halamanlogin');
     }
+
+    public function halamanloginuser(){
+        return view('loginuser');
+    }
     public function login()
 {
     $UserModel = new UserModel();

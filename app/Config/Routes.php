@@ -19,10 +19,12 @@ $routes->get('importdata', 'Import::index');
 $routes->get('/tracer', 'Home::tracer');
 $routes->get('/halamanlogin', 'login::halamanlogin');
 $routes->get('/login', 'login::login');
+$routes->get('/loginuser', 'login::halamanloginuser');
+
 $routes->get('/kuesionerkuesioner', 'Home::kuesioner');
 $routes->get('/filteruser', 'Home::filteruser');
 $routes->get('/kuesionerkuesioner', 'cKuesioner::countTables');
-$routes->get('/dataisian', 'Home::kuesioner_answer');
+$routes->get('/dataTabel', 'dataisian::dataisian');
 $routes->get('/deskripsi', 'c_kuesioner::show');
 $routes->get('/downloadCSV', 'cKuesioner::downloadCSV');
 $routes->get('/welcomepage', 'Home::welcome');
