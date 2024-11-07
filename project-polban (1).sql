@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Oct 31, 2024 at 01:42 AM
+-- Generation Time: Nov 07, 2024 at 01:55 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -169,11 +169,29 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `group`, `created_at`, `updated_at`, `display_name`, `academic_nim`, `academic_faculty`, `academic_program`, `academic_year`, `street`, `city`, `state_code`, `zip_code`, `academic_graduate_year`, `jenis_kelamin`, `no_telp`, `nik`, `npwp`) VALUES
-(33, 'megarahma', 'megarl0707', 'mega@gmail.com', 'administrator', '2024-10-10 09:29:55', '2024-10-10 09:29:55', 'Mega Rahma', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (34, 'tanaka23', 'tanakaayaa', 'tanaka@gmail.com', 'alumni', '2024-10-14 08:45:47', '2024-10-14 08:45:47', 'Tanaka Aya', 2147483647, 'Teknik Sipil', 'D-3 Teknik Konstruksi Sipil', '2019', 'gg bidara', 'subang', 'jawa barat', NULL, '2024', 'wanita', '82214042764', '82192', '10291092'),
 (53, 'nikadek', 'cahyati', 'adek@gmail.com', 'alumni', '2024-10-28 13:06:27', '2024-10-07 08:44:04', 'adek nikadek', 62565635, 'bahasa inggris', 'D-3 bahasa inggris', '2019', 'gg bidara', 'subang', 'jawa barat', NULL, '2024', 'wanita', '', '', ''),
 (54, 'raisa', 'nuraida', 'rai@gmail.com', 'alumni', '2024-10-28 13:06:27', '2024-10-07 08:44:04', 'raisa', 7647536, 'teknik elektro', 'D-3 Teknik elektronika', '2019', 'gg bidara', 'subang', 'jawa barat', NULL, '2028', 'wanita', '', '', ''),
-(55, 'tanaka23', 'tanakaayaaaaaaa\r\n', 'tanaka@gmail.com', 'alumni', '2024-10-14 08:45:47', '2024-10-14 08:45:47', 'Tanaka Aya', 2147483647, 'Teknik Sipil', 'D-3 Teknik Konstruksi Sipil', '2019', 'gg bidara', 'subang', 'jawa barat', NULL, '2028', 'wanita', '82214042764', '82192', '10291092');
+(55, 'tanaka23', 'tanakaayaaaaaaa\r\n', 'tanaka@gmail.com', 'alumni', '2024-10-14 08:45:47', '2024-10-14 08:45:47', 'Tanaka ', 219273092, 'Teknik Sipil', 'D-3 Teknik Konstruksi Sipil', '2019', 'gg bidara', 'subang', 'jawa barat', NULL, '2028', 'wanita', '82214042764', '82192', '10291092'),
+(56, 'megajelek', 'megamega', 'mega@gmail.com', 'administrator', '2024-11-06 10:02:28', '2024-11-06 10:02:28', 'megarahma', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `welcome_message`
+--
+
+CREATE TABLE `welcome_message` (
+  `id` int NOT NULL,
+  `message` varchar(15000) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `welcome_message`
+--
+
+INSERT INTO `welcome_message` (`id`, `message`) VALUES
+(1, '<p>hskjhdskjadksahdoiys</p>\r\n');
 
 --
 -- Indexes for dumped tables
@@ -217,6 +235,12 @@ ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `welcome_message`
+--
+ALTER TABLE `welcome_message`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -248,7 +272,13 @@ ALTER TABLE `kuesioner_page`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+
+--
+-- AUTO_INCREMENT for table `welcome_message`
+--
+ALTER TABLE `welcome_message`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
