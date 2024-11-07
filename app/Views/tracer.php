@@ -122,14 +122,15 @@
                     </a>
                   </iframe>
                 </div>
- 
+
                 <div class="m-5 text-justify">
-                  <?php if (isset($message['message'])): ?>
-                    <p><?= esc($message['message']); ?></p>
+                  <?php if (!empty($message) && is_array($message)): ?>
+                    <?php foreach ($message as $message) : ?> 
+                    <span><?= esc($message['message']); ?></span>
+                    <?php endforeach?>
                   <?php else: ?>
                     <p>Tidak ada pesan yang tersedia.</p>
                   <?php endif; ?>
-
                   <div class="d-flex justify-content-center m-4">
                     <a
                       type="button"

@@ -38,16 +38,18 @@ class welcomepage extends BaseController
         }
     }
     
-    public function showMessage()
+   
+
+
+public function data(): string
 {
-    $welcomeModel = new welcome();
+    $model = new welcome();
 
-    // Ambil data terakhir dari tabel (atau bisa juga ambil semua data sesuai kebutuhan)
-    $message = $welcomeModel->findAll;
-    // Kirim data ke view
-    return view('Tracer', ['message' => $message]);
+    $data['message'] = $model->getmessage();
+
+    // Render view dan kirim data
+    return view('tracer', $data);
 }
-
 }
 
 

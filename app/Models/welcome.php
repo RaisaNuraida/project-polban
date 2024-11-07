@@ -10,4 +10,12 @@ class welcome extends Model
     protected $primaryKey = 'id';
     protected $allowedFields = ['id', 'message'];
 
+
+    public function getmessage()
+    {
+        // Contoh pengambilan pesan terakhir
+        $db = \Config\Database::connect();
+        $query = $db->query('SELECT id, message FROM welcome_message');
+        return $query->getResultArray();
+    }
 }

@@ -32,6 +32,24 @@ class c_kuesioner extends BaseController
         // Kirim data ke view
         return view('kuesionerkuesioner', $data);
     }
+
+    public function indexuser(): string
+    {
+        $model = new m_kuesioner();
+
+        $user = $model->getUsers();
+
+        // Debugging untuk melihat data yang diambil
+        // echo '<pre>';
+        //print_r($my_data);
+        //echo '</pre>';
+        //exit;
+
+        $data = ['user' => $user];
+
+        // Kirim data ke view
+        return view('indexuser', $data);
+    }
     public function deleteUser()
     {
         $userModel = new m_kuesioner();

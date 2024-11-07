@@ -20,6 +20,8 @@ $routes->get('/tracer', 'Home::tracer');
 $routes->get('/halamanlogin', 'login::halamanlogin');
 $routes->get('/login', 'login::login');
 $routes->get('/loginuser', 'login::halamanloginuser');
+$routes->get('/indexuser', 'login::indexuser');
+$routes->get('/tabeluser', 'c_kuesioner::indexuser');
 
 $routes->get('/kuesionerkuesioner', 'Home::kuesioner');
 $routes->get('/filteruser', 'Home::filteruser');
@@ -28,8 +30,7 @@ $routes->get('/dataTabel', 'dataisian::dataisian');
 $routes->get('/deskripsi', 'c_kuesioner::show');
 $routes->get('/downloadCSV', 'cKuesioner::downloadCSV');
 $routes->get('/welcomepage', 'Home::welcome');
-$routes->get('/welcomepage', 'welcomepage::edit');
-$routes->get('/tracer', 'welcome::showMessage');
+$routes->get('/data', 'welcomepage::data');
 
 $routes->post('/import', 'Home::import');
 $routes->post('/downloadCSV', 'cKuesioner::downloadCSV');
