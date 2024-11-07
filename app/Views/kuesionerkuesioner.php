@@ -999,15 +999,41 @@
 
                                     <br>
                                     <div>
-                                        <a class="btn btn-info" style="font-size:14px;padding:8px 10px;color:white;" href="<?= base_url('/kuesioner') ?>">Simpan</a>
-                                        <a class="btn btn-danger" style="font-size:14px;padding:8px 10px;color:white;" href="<?= base_url('/kuesioner') ?>">Batal</a>
+                                        <a class="btn btn-info" style="font-size:14px;padding:8px 10px;color:white;" href="<?= base_url('kuesionerkuesioner') ?>">Simpan</a>
+                                        <a class="btn btn-danger" style="font-size:14px;padding:8px 10px;color:white;" href="<?= base_url('kuesionerkuesioner') ?>">Batal</a>
                                     </div>
                                 </form>
 
                                 <!-- ISI DISINI -->
-                                <div>
+                                <div id="floating_question_selector">
+                                    <div id="floating_label">
+                                        Pilih Jenis Pertanyaan...
+                                    </div>
+                                    <div id="questions_button">
+                                        <button class="quest_butt btn btn-primary" onclick="add_single_line();">Single Line Text</button>
+                                        <button class="quest_butt btn btn-primary" onclick="add_dropdown();">Dropdown List</button>
+                                        <button class="quest_butt btn btn-primary" onclick="add_date();">Date</button>
+                                        <button class="quest_butt btn btn-primary" onclick="add_checkbox();">Checkbox</button>
+                                        <button class="quest_butt btn btn-primary" onclick="add_number();">Number</button>
+                                        <button class="quest_butt btn btn-primary" onclick="add_radio();">Radio Buttons</button>
+                                        <button class="quest_butt btn btn-primary" onclick="add_phone();">Phone</button>
+                                        <button class="quest_butt btn btn-primary" onclick="add_scale();">Scale</button>
+                                        <button class="quest_butt btn btn-primary" onclick="add_readonly();">User Field</button>
+                                        <button class="quest_butt btn btn-primary" onclick="add_grid();">Grid</button>
+                                        <!-- Tambahkan tombol lainnya di sini -->
+                                    </div>
 
                                 </div>
+
+                                <form id="questionForm" method="post" action="<?= base_url('kuesionerkuesioner') ?>">
+                                    <div id="questions_panel" class="container mt-5">
+                                        <h2>Daftar Pertanyaan</h2>
+                                        <ul id="sortable">
+                                            <!-- Pertanyaan akan ditambahkan di sini -->
+                                        </ul>
+                                        </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -1016,6 +1042,495 @@
         </div>
 
         <!-- JS -->
+                                    <script type="text/javascript">
+                                        var fields_sum = 0;
+                                        var fields_id = [];
+
+                                        function setposition(anu) {
+                                            if (anu.is(".done_quest_gr")) {
+                                                var start_scale = anu.parents("li:first").find(".start_grid_scale").find(":selected").val();
+                                                var end_scale = anu.parents("li:first").find(".end_grid_scale").find(":selected").val();
+                                                var n = sum_quest_gr;
+
+                                                var label = anu.parents("li:first").find(".grid_label_third");
+                                                var label2 = anu.parents("li:first").find(".grid_label_second");
+                                                var radio1 = anu.parents("li:first").find("#grid_radio_1_" + start_scale + "");
+                                                var radio = anu.parents("li:first").find("#grid_radio_1_" + end_scale + "");
+
+
+                                                var pos1 = radio1.offset().left;
+                                                var pos3 = radio.offset().left;
+                                                var pos2 = pos1 + (pos3 - pos1) / 2;
+                                                //alert(radio.offset().left);
+                                                label.offset({
+                                                    left: radio.offset().left
+                                                });
+                                                label2.offset({
+                                                    left: pos2
+                                                });
+                                                //alert(label.position().left);
+                                            }
+                                        }
+
+                                        function setposition_scale(anu) {
+                                            if (anu.is(".done_quest_sc")) {
+                                                var start_scale = anu.parents("li:first").find(".start_scale").find(":selected").val();
+                                                var end_scale = anu.parents("li:first").find(".end_scale").find(":selected").val();
+
+                                                var label = anu.parents("li:first").find(".scale_label_third");
+                                                var label2 = anu.parents("li:first").find(".scale_label_second");
+                                                var radio1 = anu.parents("li:first").find("#scale_radio_" + start_scale + "");
+                                                var radio = anu.parents("li:first").find("#scale_radio_" + end_scale + "");
+
+
+                                                var pos1 = radio1.offset().left;
+                                                var pos3 = radio.offset().left;
+                                                var pos2 = pos1 + (pos3 - pos1) / 2;
+                                                //alert(radio.offset().left);
+                                                label.offset({
+                                                    left: radio.offset().left
+                                                });
+                                                label2.offset({
+                                                    left: pos2
+                                                });
+                                                //alert(label.position().left);
+                                            }
+                                        }
+
+                                        function save_sortable_list() {
+                                            var data = "";
+                                            var sequence = {};
+                                            sequence['urutan'] = [];
+                                            sequence['type'] = [];
+                                            sequence['jumlah'] = [];
+
+                                            jq("#sortable li").each(function() {
+                                                sequence['urutan'].push(jq(this).attr("id"));
+                                                sequence['type'].push(jq(this).attr("class").split(" ")[0]);
+                                            });
+                                            sequence['jumlah'].push(sequence['urutan'].length);
+                                            data = JSON.stringify(sequence);
+
+                                            jq("#order_field").val(data);
+                                        }
+
+                                        function save_to_json() {
+                                            var options_object = {};
+                                            jq("#sortable li").each(function() {
+                                                var id = "id" + jq(this).attr("id");
+                                                options_object[id] = {};
+                                                options_object[id]["title"] = [];
+                                                options_object[id]["info"] = [];
+                                                options_object[id]["val"] = [];
+                                                options_object[id]["lab"] = [];
+                                                options_object[id].str_sc = [];
+                                                options_object[id].end_sc = [];
+                                                options_object[id].str_lb = [];
+                                                options_object[id].mid_lb = [];
+                                                options_object[id].end_lb = [];
+                                                options_object[id].row_qst = [];
+                                                options_object[id].str_yr = [];
+                                                options_object[id].end_yr = [];
+                                                options_object[id].date_opt = [];
+                                                options_object[id].user_field = [];
+                                                options_object[id].required = [];
+                                                options_object[id].has_other_option = [];
+
+                                                jq(this).find(".question_title").each(function() {
+                                                    options_object[id].title.push(jq(this).val());
+                                                });
+                                                jq(this).find(".question_info").each(function() {
+                                                    options_object[id].info.push(jq(this).val());
+                                                });
+                                                jq(this).find(".val_opt").each(function() {
+                                                    options_object[id].val.push(jq(this).val());
+                                                });
+                                                jq(this).find(".label_opt").each(function() {
+                                                    options_object[id].lab.push(jq(this).val());
+                                                });
+                                                jq(this).find(".start_scale").each(function() {
+                                                    options_object[id].str_sc.push(jq(this).val());
+                                                });
+                                                jq(this).find(".end_scale").each(function() {
+                                                    options_object[id].end_sc.push(jq(this).val());
+                                                });
+                                                jq(this).find(".start_grid_scale").each(function() {
+                                                    options_object[id].str_sc.push(jq(this).val());
+                                                });
+                                                jq(this).find(".end_grid_scale").each(function() {
+                                                    options_object[id].end_sc.push(jq(this).val());
+                                                });
+                                                jq(this).find(".start_label").each(function() {
+                                                    options_object[id].str_lb.push(jq(this).val());
+                                                });
+                                                jq(this).find(".middle_label").each(function() {
+                                                    options_object[id].mid_lb.push(jq(this).val());
+                                                });
+                                                jq(this).find(".end_label").each(function() {
+                                                    options_object[id].end_lb.push(jq(this).val());
+                                                });
+                                                jq(this).find(".label_question").each(function() {
+                                                    options_object[id].row_qst.push(jq(this).val());
+                                                })
+                                                jq(this).find(".start_year").each(function() {
+                                                    options_object[id].str_yr.push(jq(this).val());
+                                                });
+                                                jq(this).find(".end_year").each(function() {
+                                                    options_object[id].end_yr.push(jq(this).val());
+                                                });
+                                                jq(this).find(".date_option").find(":selected").each(function() {
+                                                    options_object[id].date_opt.push(jq(this).val());
+                                                });
+                                                jq(this).find(".user_field").each(function() {
+                                                    options_object[id].user_field.push(jq(this).val());
+                                                });
+                                                jq(this).find(".required_field").each(function() {
+                                                    if (jq(this).is(":checked")) {
+                                                        options_object[id].required.push("true");
+                                                    } else {
+                                                        options_object[id].required.push("false");
+                                                    }
+                                                });
+                                                jq(this).find(".has_other_option").each(function() {
+                                                    if (jq(this).is(":checked")) {
+                                                        options_object[id].has_other_option.push("true");
+                                                    } else {
+                                                        options_object[id].has_other_option.push("false");
+                                                    }
+                                                });
+                                            });
+                                            var data = JSON.stringify(options_object);
+                                            jq("#options").val(data);
+
+                                        }
+
+                                        function save_section_attr() {
+                                            var section_attr = {};
+                                            section_attr["title"] = [];
+                                            section_attr["description"] = [];
+                                            if (jq("#show_section_title").is(":checked")) {
+                                                section_attr["title"].push("true");
+                                            } else {
+                                                section_attr["title"].push("false");
+                                            }
+                                            if (jq("#show_section_description").is(":checked")) {
+                                                section_attr["description"].push("true");
+                                            } else {
+                                                section_attr["description"].push("false");
+                                            }
+                                            var data = JSON.stringify(section_attr);
+                                            jq("#section_attr").val(data);
+                                        }
+
+                                        function save_CL_section() {
+                                            var CL_section = {};
+                                            CL_section["options"] = [];
+                                            CL_section["isnot"] = [];
+                                            CL_section["value"] = [];
+                                            CL_section["show"] = [];
+                                            CL_section["any"] = [];
+
+                                            var data = "";
+                                            if (jq("#CL_page").is(":checked")) {
+                                                jq(".show_option").each(function() {
+                                                    CL_section["show"].push(jq(this).find(":selected").val());
+                                                });
+                                                jq(".any_all").each(function() {
+                                                    CL_section["any"].push(jq(this).find(":selected").val());
+                                                });
+                                                jq(".section_is_not").each(function() {
+                                                    CL_section["isnot"].push(jq(this).find(":selected").val());
+                                                });
+                                                jq(".section_conditional").each(function() {
+                                                    CL_section["options"].push(jq(this).find(":selected").val());
+                                                });
+                                                jq(".opt_vals").each(function() {
+                                                    CL_section["value"].push(jq(this).find(":selected").val());
+                                                });
+                                                data = JSON.stringify(CL_section);
+                                                jq("#hidden_cl_section").val(data);
+                                            }
+                                            //alert(data);
+                                        }
+
+                                        function save_CL_field() {
+                                            var CL_field = {};
+                                            jq("#sortable li").each(function() {
+                                                var id_h = "id" + jq(this).attr("id");
+                                                var check = jq(this).find(".field_CL");
+                                                CL_field[id_h] = {};
+                                                if (check.is(":checked")) {
+                                                    CL_field[id_h]["options"] = [];
+                                                    CL_field[id_h]["values"] = [];
+                                                    CL_field[id_h]["isnot"] = [];
+                                                    CL_field[id_h]["show"] = [];
+                                                    CL_field[id_h]["any"] = [];
+
+                                                    jq(this).find(".field_is_not").each(function() {
+                                                        CL_field[id_h]["isnot"].push(jq(this).find(":selected").val());
+                                                    });
+                                                    jq(this).find(".CL_shows").each(function() {
+                                                        CL_field[id_h]["show"].push(jq(this).find(":selected").val());
+                                                    });
+                                                    jq(this).find(".CL_anys").each(function() {
+                                                        CL_field[id_h]["any"].push(jq(this).find(":selected").val());
+                                                    });
+                                                    jq(this).find(".CL_field_question").each(function() {
+                                                        CL_field[id_h]["options"].push(jq(this).find(":selected").val());
+                                                    });
+                                                    jq(this).find(".CL_field_options").each(function() {
+                                                        CL_field[id_h]["values"].push(jq(this).find(":selected").val());
+                                                    });
+                                                }
+                                                //alert(CL_field);
+                                            })
+                                            var data = JSON.stringify(CL_field);
+                                            jq("#hidden_cl_field").val(data);
+                                            //alert(data);
+
+
+                                        }
+
+                                        jq(document).ready(function() {
+                                            set_fields_sum();
+                                            /*jq(".option_radio").find('remove_opt_rb').click(function(){
+                                                checkCL_field(jq(this));
+                                            });*/
+                                            jq(".field_CL").click(function() {
+                                                checkCL_field(jq(this));
+                                            });
+                                            jq(".field_CL").each(function() {
+                                                checkCL_field(jq(this));
+                                            });
+                                            jq(".date_input_field").hover(function() {
+                                                var start = jq(this).parents("li:first").find(".hidden_start_year").val();
+                                                var end = jq(this).parents("li:first").find(".hidden_end_year").val();
+                                                var option = jq(this).parents("li:first").find(".hidden_date_option").val();
+
+                                                add_datepicker(jq(this), option, start, end);
+                                            });
+                                            jq("#simpan").click(function() {
+                                                save_section_attr();
+                                                save_to_json();
+                                                save_sortable_list();
+                                                save_CL_section();
+                                                save_CL_field();
+                                            });
+                                            jq(".CLpanel").hide();
+                                            jq(".email_input_field").keypress(function() {
+                                                var em_text = jq(this).val();
+                                                var keycode = (event.keyCode ? event.keyCode : event.which);
+                                                if (keycode == '13') {
+                                                    var email_reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+                                                    if (em_text == '') {
+                                                        alert("harap isi alamat email Anda");
+                                                    } else {
+                                                        if (email_reg.test(em_text)) {
+                                                            alert("alamat email valid");
+                                                        } else {
+                                                            alert("alamat email tidak valid!");
+                                                        }
+                                                    }
+                                                }
+                                            });
+                                            jq(".number_input_field").keypress(function() {
+                                                var no_text = jq(this).val();
+                                                var keycode = (event.keyCode ? event.keyCode : event.which);
+                                                if (keycode == '13') {
+                                                    var email_reg = /[0-9]+/;
+                                                    if (no_text == '') {
+                                                        alert("field kosong");
+                                                    } else {
+                                                        if (email_reg.test(no_text)) {
+                                                            //alert("masukan valid");
+                                                        } else {
+                                                            alert("masukan tidak valid! hanya boleh angka!");
+                                                        }
+                                                    }
+                                                }
+                                            });
+                                            jq(".phone_input_field").keypress(function() {
+                                                var no_text = jq(this).val();
+                                                var keycode = (event.keyCode ? event.keyCode : event.which);
+                                                if (keycode == '13') {
+                                                    //alert(em_text);
+                                                    var email_reg = /[0-9]{10,12}/;
+                                                    var number_check = /^\d+$/;
+                                                    if (no_text == '') {
+                                                        alert("field kosong");
+                                                    } else {
+                                                        if (email_reg.test(no_text) && number_check.test(no_text)) {
+                                                            if (no_text.length > 9 && no_text.length < 13) {
+                                                                //alert("masukan valid");
+                                                            } else {
+                                                                alert("masukan tidak valid, nomor kurang atau berlebih");
+                                                            }
+                                                        } else {
+                                                            alert("masukan tidak valid!");
+                                                        }
+                                                    }
+                                                }
+                                            });
+                                            jq(".address_zc_input_field").keypress(function() {
+                                                var zc_text = jq(this).val();
+                                                var keycode = (event.keyCode ? event.keyCode : event.which);
+                                                if (keycode == '13') {
+                                                    //alert(em_text);
+                                                    var email_reg = /^\d{5}$/;
+                                                    if (zc_text == '') {
+                                                        alert("field kosong");
+                                                    } else {
+                                                        if (email_reg.test(zc_text)) {
+                                                            //alert('masukan valid');
+
+                                                        } else {
+                                                            alert("masukan tidak valid!");
+                                                        }
+                                                    }
+                                                }
+                                            });
+                                            jq('.add_opt_dd').click(function() {
+                                                add_opt_dd(jq(this));
+                                            });
+                                            jq(".add_opt_cb, .remove_opt_dd").click(function(event) {
+                                                if (jq(this).is('.add_opt_cb')) {
+                                                    add_opt_cb(jq(this));
+                                                } else {
+                                                    event.preventDefault();
+                                                    var opt_sum_cb = jq(this).parents("li:first").find("#sum_opt_cb").val();
+                                                    --opt_sum_cb;
+                                                    jq(this).parents("li:first").find("#sum_opt_cb").val(opt_sum_cb);
+                                                    jq(this).parent().remove();
+                                                }
+                                            });
+                                            jq('.add_opt_rb, .remove_opt_rb').click(function() {
+                                                if (jq(this).is('.add_opt_rb')) {
+                                                    add_opt_rb(jq(this));
+                                                } else {
+                                                    event.preventDefault();
+                                                    var opt_sum_rb = jq(this).parents("li:first").find("#sum_opt_rb").val();
+                                                    --opt_sum_rb;
+                                                    jq(this).parents("li:first").find("#sum_opt_rb").val(opt_sum_rb);
+                                                    jq(this).parent().remove();
+                                                }
+                                            });
+                                            jq(".add_grid_question, .remove_grid_question").click(function(event) {
+                                                event.preventDefault();
+                                                add_grid_question(jq(this));
+                                            });
+                                            jq('.done_quest_dd, .edit_quest_dd, .delete_quest_dd').click(function(event) {
+                                                event.preventDefault();
+                                                upper_buttons_dd(jq(this));
+                                            });
+                                            jq('.done_quest_cb, .edit_quest_cb, .delete_quest_cb').click(function(event) {
+                                                event.preventDefault();
+                                                upper_buttons_cb(jq(this));
+                                            });
+                                            jq('.done_quest_rb, .edit_quest_rb, .delete_quest_rb').click(function(event) {
+                                                event.preventDefault();
+                                                upper_buttons_rb(jq(this));
+                                            });
+                                            jq('.done_quest_sc, .edit_quest_sc, .delete_quest_sc').click(function(event) {
+                                                event.preventDefault();
+                                                upper_buttons_sc(jq(this));
+                                            });
+                                            jq('.done_quest_gr, .edit_quest_gr, .delete_quest_gr').click(function(event) {
+                                                event.preventDefault();
+                                                upper_buttons_gr(jq(this));
+                                            });
+                                            jq('.done_quest_em, .edit_quest_em, .delete_quest_em').click(function(event) {
+                                                event.preventDefault();
+                                                upper_buttons_em(jq(this));
+                                            });
+                                            jq('.done_quest_dt, .edit_quest_dt, .delete_quest_dt').click(function(event) {
+                                                event.preventDefault();
+                                                upper_buttons_dt(jq(this));
+                                            });
+                                            jq('.done_quest_hd, .edit_quest_hd, .delete_quest_hd').click(function(event) {
+                                                event.preventDefault();
+                                                upper_buttons_hd(jq(this));
+                                            });
+                                            jq('.done_quest_no, .edit_quest_no, .delete_quest_no').click(function(event) {
+                                                event.preventDefault();
+                                                upper_buttons_no(jq(this));
+                                            });
+                                            jq('.done_quest_ph, .edit_quest_ph, .delete_quest_ph').click(function(event) {
+                                                event.preventDefault();
+                                                upper_buttons_ph(jq(this));
+                                            });
+                                            jq('.done_quest_ad, .edit_quest_ad, .delete_quest_ad').click(function(event) {
+                                                event.preventDefault();
+                                                upper_buttons_ad(jq(this));
+                                            });
+                                            jq('.done_quest_ro, .edit_quest_ro, .delete_quest_ro').click(function(event) {
+                                                event.preventDefault();
+                                                upper_buttons_ro(jq(this));
+                                            });
+                                            jq(".delete_quest").click(function(event) {
+                                                event.preventDefault();
+                                                deletequestion(jq(this));
+                                            });
+                                            jq("#simpan").click(function() {
+                                                window.location = "<? //php echo site_url(SITE_AREA . 'jq') 
+                                                                    ?>";
+                                            });
+                                            jq(".up,.down").click(function() {
+                                                addpage(jq(this));
+                                            });
+                                            jq(".delete").click(function() {
+                                                deletepage(jq(this));
+                                            });
+                                            jq(".addCL").click(function(event) {
+                                                event.preventDefault();
+                                                addCL();
+                                            });
+                                            jq(".removeCL").click(function(event) {
+                                                event.preventDefault();
+                                                jq(this).parent().remove();
+                                            });
+                                            jq(".addCL_field").click(function() {
+                                                addCL_field(jq(this));
+                                            });
+                                            jq(".removeCL_field").click(function(event) {
+                                                event.preventDefault();
+                                                jq(this).parent().remove();
+                                            });
+                                            jq("#CL_page").each(function() {
+                                                if (jq(this).is(':checked')) {
+                                                    //alert("clpanel checked");
+                                                    jq(".CLpanel").show();
+                                                } else {
+                                                    jq(".CLpanel").hide();
+                                                }
+                                            });
+                                            jq("#CL_page").click(function() {
+                                                if (jq(this).is(':checked')) {
+                                                    //alert("clpanel checked");
+                                                    jq(".CLpanel").show();
+                                                } else {
+                                                    jq(".CLpanel").hide();
+                                                }
+                                            });
+                                            jq(".done_quest, .edit_quest, .delete_quest").click(function(event) {
+                                                event.preventDefault();
+                                                done_edit_delete_quest(jq(this));
+                                            });
+                                            //            jq(".done_quest_dd, edit_quest_dd, .delete_quest_dd").click(function(){
+                                            //                upper_buttons_dd(jq(this)); 
+                                            //            });
+                                            jq(".tambah").click(function() {
+                                                var trbaru = jq('<tr><td>04</td><td>Data Tambahan</td><td>none</td><td>none</td><td>6</td><td><a href="#" class="up">Up</a> <a href="#" class="down">Down</a> <a href="#" class="edit">Edit</a> <a href="#" class="delete">Delete</a></td></tr>');
+                                                jq("#daftar_section").append(trbaru);
+                                                trbaru.find(".up,.down").click(function() {
+                                                    addpage(jq(this));
+                                                });
+                                                trbaru.find(".delete").click(function() {
+                                                    deletepage(jq(this));
+                                                });
+                                            });
+                                        });
+                                    </script>
+
         <!-- OPEN TAB -->
         <script>
             function openTab(evt, tabId) {
@@ -1061,10 +1576,7 @@
             }
         </script>
         <!-- OPEN TAB END -->
-
-
         <!-- JS -->
-
         <!-- END: Content-->
 
 
@@ -1261,6 +1773,766 @@
 
                             <script>
                                 $(document).ready(function() {
+                                    function add_grid() {
+                                            var id = ++fields_sum;
+                                            fields_id.push(id);
+
+                                            var grid_field = $('<li id="' + id + '" class="grid question_fields">' +
+                                                '<div class="field_header">' +
+                                                '<div class="field_buttons_edit">' +
+                                                '<a href="#" class="edit_quest">edit</a>' +
+                                                '<a href="#" class="done_quest" style="display: none;">done</a>' +
+                                                '<a href="#" class="delete_quest">delete</a>' +
+                                                '</div>' +
+                                                '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                                                'Grid Field: ' + id +
+                                                '</div>' +
+                                                '</div>' +
+                                                '<div class="field_container">' +
+                                                '<div class="grid_edit_state" style="display: none;">' +
+                                                '<div class="grid_field">' +
+                                                'Row Title <input type="text" name="grid_row_title" class="row_title"/><br />' +
+                                                'Column Titles (separate by comma) <input type="text" class="column_titles"/><br />' +
+                                                '</div>' +
+                                                '<button class="add_row">Add Row</button>' +
+                                                '<div class="grid_rows"></div>' +
+                                                '</div>' +
+                                                '<div class="grid_view_state">' +
+                                                '<div class="grid_text">Grid Content</div>' +
+                                                '<div class="grid_answer"></div>' // This will hold the grid data
+                                                +
+                                                '</div>' +
+                                                '</div>' +
+                                                '</li>');
+
+                                            $("#sortable").append(grid_field);
+
+                                            // Event handler for edit button
+                                            grid_field.find('.edit_quest').click(function(e) {
+                                                e.preventDefault();
+                                                grid_field.find('.grid_view_state').hide();
+                                                grid_field.find('.grid_edit_state').show();
+                                                grid_field.find('.edit_quest').hide();
+                                                grid_field.find('.done_quest').show();
+                                            });
+
+                                            // Event handler for done button
+                                            grid_field.find('.done_quest').click(function(e) {
+                                                e.preventDefault();
+                                                updateGridView(grid_field);
+                                                grid_field.find('.grid_edit_state').hide();
+                                                grid_field.find('.grid_view_state').show();
+                                                grid_field.find('.done_quest').hide();
+                                                grid_field.find('.edit_quest').show();
+                                            });
+
+                                            // Event handler for delete button
+                                            grid_field.find('.delete_quest').click(function(e) {
+                                                e.preventDefault();
+                                                if (confirm("Apakah Anda yakin ingin menghapus grid ini?")) {
+                                                    var index = fields_id.indexOf(id);
+                                                    fields_id.splice(index, 1);
+                                                    grid_field.remove();
+                                                }
+                                            });
+
+                                            // Event handler for add row button
+                                            grid_field.find('.add_row').click(function(e) {
+                                                e.preventDefault();
+                                                addRowToGrid(grid_field);
+                                            });
+                                        }
+
+                                        function addRowToGrid(grid_field) {
+                                            var rowHtml = $('<div class="grid_row">' +
+                                                'Row Data: <input type="text" class="row_data"/><br />' +
+                                                '</div>');
+                                            grid_field.find('.grid_rows').append(rowHtml);
+                                        }
+
+                                        function updateGridView(grid_field) {
+                                            var rowTitle = grid_field.find('input[name="grid_row_title"]').val();
+                                            var columnTitles = grid_field.find('input.column_titles').val().split(',').map(function(opt) {
+                                                return opt.trim();
+                                            });
+
+                                            var gridContentHtml = '<strong>' + rowTitle + '</strong><br />';
+                                            gridContentHtml += '<table border="1"><tr>';
+                                            columnTitles.forEach(function(title) {
+                                                gridContentHtml += '<th>' + title + '</th>';
+                                            });
+                                            gridContentHtml += '</tr>';
+
+                                            grid_field.find('.grid_rows .grid_row').each(function() {
+                                                var rowData = $(this).find('.row_data').val();
+                                                gridContentHtml += '<tr>';
+                                                columnTitles.forEach(function() {
+                                                    gridContentHtml += '<td>' + rowData + '</td>';
+                                                });
+                                                gridContentHtml += '</tr>';
+                                            });
+
+                                            gridContentHtml += '</table>';
+                                            grid_field.find('.grid_answer').html(gridContentHtml);
+                                        }
+
+
+                                        function add_readonly() {
+                                            var id = ++fields_sum;
+                                            fields_id.push(id);
+
+                                            var readonly_field = $('<li id="' + id + '" class="readonly question_fields">' +
+                                                '<div class="field_header">' +
+                                                '<div class="field_buttons_edit">' +
+                                                '<a href="#" class="edit_quest">edit</a>' +
+                                                '<a href="#" class="done_quest" style="display: none;">done</a>' +
+                                                '<a href="#" class="delete_quest">delete</a>' +
+                                                '</div>' +
+                                                '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                                                'Readonly Field: ' + id +
+                                                '</div>' +
+                                                '</div>' +
+                                                '<div class="field_container">' +
+                                                '<div class="readonly_edit_state" style="display: none;">' +
+                                                '<div class="readonly_field">' +
+                                                'Field Title <input type="text" name="readonly_field_title" class="field_title"/><br />' +
+                                                '</div>' +
+                                                '</div>' +
+                                                '<div class="readonly_view_state">' +
+                                                '<div class="readonly_text">Field Text?</div>' +
+                                                '<div class="readonly_answer"></div>' // This will hold the readonly input
+                                                +
+                                                '</div>' +
+                                                '</div>' +
+                                                '</li>');
+
+                                            $("#sortable").append(readonly_field);
+
+                                            // Event handler for edit button
+                                            readonly_field.find('.edit_quest').click(function(e) {
+                                                e.preventDefault();
+                                                readonly_field.find('.readonly_view_state').hide();
+                                                readonly_field.find('.readonly_edit_state').show();
+                                                readonly_field.find('.edit_quest').hide();
+                                                readonly_field.find('.done_quest').show();
+                                            });
+
+                                            // Event handler for done button
+                                            readonly_field.find('.done_quest').click(function(e) {
+                                                e.preventDefault();
+                                                updateReadonlyView(readonly_field);
+                                                readonly_field.find('.readonly_edit_state').hide();
+                                                readonly_field.find('.readonly_view_state').show();
+                                                readonly_field.find('.done_quest').hide();
+                                                readonly_field.find('.edit_quest').show();
+                                            });
+
+                                            // Event handler for delete button
+                                            readonly_field.find('.delete_quest').click(function(e) {
+                                                e.preventDefault();
+                                                if (confirm("Apakah Anda yakin ingin menghapus field ini?")) {
+                                                    var index = fields_id.indexOf(id);
+                                                    fields_id.splice(index, 1);
+                                                    readonly_field.remove();
+                                                }
+                                            });
+                                        }
+
+                                        function updateReadonlyView(readonly_field) {
+                                            var fieldTitle = readonly_field.find('input[name="readonly_field_title"]').val();
+
+                                            readonly_field.find('.readonly_text').text(fieldTitle);
+                                            readonly_field.find('.readonly_answer').text("Value: " + fieldTitle);
+                                        }
+
+                                        function add_scale() {
+                                            var id = ++fields_sum;
+                                            fields_id.push(id);
+
+                                            var scale_field = $('<li id="' + id + '" class="scale question_fields">' +
+                                                '<div class="field_header">' +
+                                                '<div class="field_buttons_edit">' +
+                                                '<a href="#" class="edit_quest">edit</a>' +
+                                                '<a href="#" class="done_quest" style="display: none;">done</a>' +
+                                                '<a href="#" class="delete_quest">delete</a>' +
+                                                '</div>' +
+                                                '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                                                'Scale Field: ' + id +
+                                                '</div>' +
+                                                '</div>' +
+                                                '<div class="field_container">' +
+                                                '<div class="scale_edit_state" style="display: none;">' +
+                                                '<div class="scale_field">' +
+                                                'Question Title <input type="text" name="scale_quest_title" class="question_title"/><br />' +
+                                                'Scale Range (min,max) <input type="text" class="scale_range"/><br />' +
+                                                '</div>' +
+                                                '</div>' +
+                                                '<div class="scale_view_state">' +
+                                                '<div class="scale_text">Question Text?</div>' +
+                                                '<div class="scale_answer"></div>' // This will hold the scale input
+                                                +
+                                                '</div>' +
+                                                '</div>' +
+                                                '</li>');
+
+                                            $("#sortable").append(scale_field);
+
+                                            // Event handler for edit button
+                                            scale_field.find('.edit_quest').click(function(e) {
+                                                e.preventDefault();
+                                                scale_field.find('.scale_view_state').hide();
+                                                scale_field.find('.scale_edit_state').show();
+                                                scale_field.find('.edit_quest').hide();
+                                                scale_field.find('.done_quest').show();
+                                            });
+
+                                            // Event handler for done button
+                                            scale_field.find('.done_quest').click(function(e) {
+                                                e.preventDefault();
+                                                updateScaleView(scale_field);
+                                                scale_field.find('.scale_edit_state').hide();
+                                                scale_field.find('.scale_view_state').show();
+                                                scale_field.find('.done_quest').hide();
+                                                scale_field.find('.edit_quest').show();
+                                            });
+
+                                            // Event handler for delete button
+                                            scale_field.find('.delete_quest').click(function(e) {
+                                                e.preventDefault();
+                                                if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
+                                                    var index = fields_id.indexOf(id);
+                                                    fields_id.splice(index, 1);
+                                                    scale_field.remove();
+                                                }
+                                            });
+                                        }
+
+                                        function updateScaleView(scale_field) {
+                                            var questionTitle = scale_field.find('input[name="scale_quest_title"]').val();
+                                            var scaleRange = scale_field.find('input.scale_range').val();
+
+                                            scale_field.find('.scale_text').text(questionTitle);
+                                            scale_field.find('.scale_answer').text("Scale Range: " + scaleRange);
+                                        }
+
+                                        function add_phone() {
+                                            var id = ++fields_sum;
+                                            fields_id.push(id);
+
+                                            var phone_field = $('<li id="' + id + '" class="phone question_fields">' +
+                                                '<div class="field_header">' +
+                                                '<div class="field_buttons_edit">' +
+                                                '<a href="#" class="edit_quest">edit</a>' +
+                                                '<a href="#" class="done_quest" style="display: none;">done</a>' +
+                                                '<a href="#" class="delete_quest">delete</a>' +
+                                                '</div>' +
+                                                '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                                                'Phone Field: ' + id +
+                                                '</div>' +
+                                                '</div>' +
+                                                '<div class="field_container">' +
+                                                '<div class="phone_edit_state" style="display: none;">' +
+                                                '<div class="phone_field">' +
+                                                'Question Title <input type="text" name="phone_quest_title" class="question_title"/><br />' +
+                                                'Phone Number <input type="text" class="phone_number"/><br />' +
+                                                '</div>' +
+                                                '</div>' +
+                                                '<div class="phone_view_state">' +
+                                                '<div class="phone_text">Question Text?</div>' +
+                                                '<div class="phone_answer"></div>' // This will hold the phone number input
+                                                +
+                                                '</div>' +
+                                                '</div>' +
+                                                '</li>');
+
+                                            $("#sortable").append(phone_field);
+
+                                            // Event handler for edit button
+                                            phone_field.find('.edit_quest').click(function(e) {
+                                                e.preventDefault();
+                                                phone_field.find('.phone_view_state').hide();
+                                                phone_field.find('.phone_edit_state').show();
+                                                phone_field.find('.edit_quest').hide();
+                                                phone_field.find('.done_quest').show();
+                                            });
+
+                                            // Event handler for done button
+                                            phone_field.find('.done_quest').click(function(e) {
+                                                e.preventDefault();
+                                                updatePhoneView(phone_field);
+                                                phone_field.find('.phone_edit_state').hide();
+                                                phone_field.find('.phone_view_state').show();
+                                                phone_field.find('.done_quest').hide();
+                                                phone_field.find('.edit_quest').show();
+                                            });
+
+                                            // Event handler for delete button
+                                            phone_field.find('.delete_quest').click(function(e) {
+                                                e.preventDefault();
+                                                if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
+                                                    var index = fields_id.indexOf(id);
+                                                    fields_id.splice(index, 1);
+                                                    phone_field.remove();
+                                                }
+                                            });
+                                        }
+
+                                        function updatePhoneView(phone_field) {
+                                            var questionTitle = phone_field.find('input[name="phone_quest_title"]').val();
+                                            var phoneNumber = phone_field.find('input.phone_number').val();
+
+                                            phone_field.find('.phone_text').text(questionTitle);
+                                            phone_field.find('.phone_answer').text(phoneNumber);
+                                        }
+
+                                        function add_radio() {
+                                            var id = ++fields_sum;
+                                            fields_id.push(id);
+
+                                            var radio_field = $('<li id="' + id + '" class="radio question_fields">' +
+                                                '<div class="field_header">' +
+                                                '<div class="field_buttons_edit">' +
+                                                '<a href="#" class="edit_quest">edit</a>' +
+                                                '<a href="#" class="done_quest" style="display: none;">done</a>' +
+                                                '<a href="#" class="delete_quest">delete</a>' +
+                                                '</div>' +
+                                                '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                                                'Radio Field: ' + id +
+                                                '</div>' +
+                                                '</div>' +
+                                                '<div class="field_container">' +
+                                                '<div class="radio_edit_state" style="display: none;">' +
+                                                '<div class="radio_field">' +
+                                                'Question Title <input type="text" name="radio_quest_title" class="question_title"/><br />' +
+                                                'Options (separate by comma) <input type="text" class="question_options"/><br />' +
+                                                '</div>' +
+                                                '</div>' +
+                                                '<div class="radio_view_state">' +
+                                                '<div class="radio_text">Question Text?</div>' +
+                                                '<div class="radio_answer"></div>' // This will hold the radio buttons
+                                                +
+                                                '</div>' +
+                                                '</div>' +
+                                                '</li>');
+
+                                            $("#sortable").append(radio_field);
+
+                                            // Event handler for edit button
+                                            radio_field.find('.edit_quest').click(function(e) {
+                                                e.preventDefault();
+                                                radio_field.find('.radio_view_state').hide();
+                                                radio_field.find('.radio_edit_state').show();
+                                                radio_field.find('.edit_quest').hide();
+                                                radio_field.find('.done_quest').show();
+                                            });
+
+                                            // Event handler for done button
+                                            radio_field.find('.done_quest').click(function(e) {
+                                                e.preventDefault();
+                                                updateRadioView(radio_field);
+                                                radio_field.find('.radio_edit_state').hide();
+                                                radio_field.find('.radio_view_state').show();
+                                                radio_field.find('.done_quest').hide();
+                                                radio_field.find('.edit_quest').show();
+                                            });
+
+                                            // Event handler for delete button
+                                            radio_field.find('.delete_quest').click(function(e) {
+                                                e.preventDefault();
+                                                if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
+                                                    var index = fields_id.indexOf(id);
+                                                    fields_id.splice(index, 1);
+                                                    radio_field.remove();
+                                                }
+                                            });
+                                        }
+
+                                        function updateRadioView(radio_field) {
+                                            var questionTitle = radio_field.find('input[name="radio_quest_title"]').val();
+                                            var options = radio_field.find('input.question_options').val().split(',').map(function(opt) {
+                                                return opt.trim();
+                                            });
+
+                                            radio_field.find('.radio_text').text(questionTitle);
+                                            var answerHtml = '';
+                                            options.forEach(function(option) {
+                                                answerHtml += '<label><input type="radio" name="radio_answer_' + radio_field.attr('id') + '" value="' + option + '"> ' + option + '</label><br />';
+                                            });
+                                            radio_field.find('.radio_answer').html(answerHtml);
+                                        }
+
+                                        function add_number() {
+                                            var id = ++fields_sum;
+                                            fields_id.push(id);
+
+                                            var number_field = $('<li id="' + id + '" class="number question_fields">' +
+                                                '<div class="field_header">' +
+                                                '<div class="field_buttons_edit">' +
+                                                '<a href="#" class="edit_quest">edit</a>' +
+                                                '<a href="#" class="done_quest" style="display: none;">done</a>' +
+                                                '<a href="#" class="delete_quest">delete</a>' +
+                                                '</div>' +
+                                                '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                                                'Number Field: ' + id +
+                                                '</div>' +
+                                                '</div>' +
+                                                '<div class="field_container">' +
+                                                '<div class="number_edit_state" style="display: none;">' +
+                                                '<div class="number_field">' +
+                                                'Question Title <input type="text" name="number_quest_title" class="question_title"/><br />' +
+                                                'Info <input type="text" class="question_info"/><br />' +
+                                                '</div>' +
+                                                '</div>' +
+                                                '<div class="number_view_state">' +
+                                                '<div class="number_text">Question Text?</div>' +
+                                                '<div class="number_answer"><input type="number" name="number_answer" /></div>' +
+                                                '</div>' +
+                                                '</div>' +
+                                                '</li>');
+
+                                            $("#sortable").append(number_field);
+
+                                            number_field.find('.edit_quest').click(function(e) {
+                                                e.preventDefault();
+                                                number_field.find('.number_view_state').hide();
+                                                number_field.find('.number_edit_state').show();
+                                                number_field.find('.edit_quest').hide();
+                                                number_field.find('.done_quest').show();
+                                            });
+
+                                            number_field.find('.done_quest').click(function(e) {
+                                                e.preventDefault();
+                                                updateNumberView(number_field);
+                                                number_field.find('.number_edit_state').hide();
+                                                number_field.find('.number_view_state').show();
+                                                number_field.find('.done_quest').hide();
+                                                number_field.find('.edit_quest').show();
+                                            });
+
+                                            number_field.find('.delete_quest').click(function(e) {
+                                                e.preventDefault();
+                                                if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
+                                                    var index = fields_id.indexOf(id);
+                                                    fields_id.splice(index, 1);
+                                                    number_field.remove();
+                                                }
+                                            });
+                                        }
+
+                                        function updateNumberView(number_field) {
+                                            var questionTitle = number_field.find('input[name="number_quest_title"]').val();
+                                            number_field.find('.number_text').text(questionTitle);
+                                        }
+
+                                        function add_dropdown() {
+                                            var id = ++fields_sum;
+                                            fields_id.push(id);
+
+                                            var dropdown_field = $('<li id="' + id + '" class="dropdown question_fields">' +
+                                                '<div class="field_header">' +
+                                                '<div class="field_buttons_edit">' +
+                                                '<a href="#" class="edit_quest">edit</a>' +
+                                                '<a href="#" class="done_quest" style="display: none;">done</a>' +
+                                                '<a href="#" class="delete_quest">delete</a>' +
+                                                '</div>' +
+                                                '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                                                'Dropdown: ' + id +
+                                                '</div>' +
+                                                '</div>' +
+                                                '<div class="field_container">' +
+                                                '<div class="dropdown_edit_state" style="display: none;">' +
+                                                '<div class="dropdown_field">' +
+                                                'Question Title <input type="text" name="dropdown_quest_title" class="question_title"/><br />' +
+                                                'Info <input type="text" class="question_info"/><br />' +
+                                                '<input type="hidden" id="sum_opt_dd" value="0" />' +
+                                                '<div class="dropdown_list"></div>' +
+                                                '<a href="#" class="add_opt_dd">Add Option</a>' +
+                                                '</div>' +
+                                                '</div>' +
+                                                '<div class="dropdown_view_state">' +
+                                                '<div class="dropdown_text">Question Text?</div>' +
+                                                '<div class="dropdown_answer">' +
+                                                '<select name="dropdown_answer"></select>' +
+                                                '</div>' +
+                                                '</div>' +
+                                                '</div>' +
+                                                '</li>');
+
+                                            $("#sortable").append(dropdown_field);
+
+                                            dropdown_field.find('.edit_quest').click(function(e) {
+                                                e.preventDefault();
+                                                dropdown_field.find('.dropdown_view_state').hide();
+                                                dropdown_field.find('.dropdown_edit_state').show();
+                                                dropdown_field.find('.edit_quest').hide();
+                                                dropdown_field.find('.done_quest').show();
+                                            });
+
+                                            dropdown_field.find('.done_quest').click(function(e) {
+                                                e.preventDefault();
+                                                updateDropdownView(dropdown_field);
+                                                dropdown_field.find('.dropdown_edit_state').hide();
+                                                dropdown_field.find('.dropdown_view_state').show();
+                                                dropdown_field.find('.done_quest').hide();
+                                                dropdown_field.find('.edit_quest').show();
+                                            });
+
+                                            dropdown_field.find('.add_opt_dd').click(function(e) {
+                                                e.preventDefault();
+                                                add_opt_dd($(this));
+                                            });
+
+                                            // Konfirmasi sebelum menghapus
+                                            dropdown_field.find('.delete_quest').click(function(e) {
+                                                e.preventDefault();
+                                                if (window.confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
+                                                    dropdown_field.remove();
+                                                }
+                                            });
+                                        }
+
+                                        function add_opt_dd(anu) {
+                                            var opt_sum = parseInt(anu.parents("li:first").find("#sum_opt_dd").val());
+                                            ++opt_sum;
+                                            anu.parents("li:first").find("#sum_opt_dd").val(opt_sum);
+
+                                            var row = $('<div class="option_dropdown" id="opt_dd_' + opt_sum + '">' +
+                                                'Option ' + opt_sum + ' <input type="text" name="label_option_' + opt_sum + '" class="label_opt" style="width: 25%; margin-left: 30px;" /> ' +
+                                                'Value: <input type="text" name="value_opt_' + opt_sum + '" class="val_opt" style="width: 25%;" /> ' +
+                                                '<a href="#" class="add_opt_dd">Add</a> ' +
+                                                '<a href="#" class="remove_opt_dd">Remove</a>' +
+                                                '</div>');
+
+                                            var list = anu.parents("li:first").find(".dropdown_list");
+                                            list.append(row);
+
+                                            row.find('.add_opt_dd, .remove_opt_dd').click(function(event) {
+                                                event.preventDefault();
+                                                if ($(this).is('.add_opt_dd')) {
+                                                    add_opt_dd($(this));
+                                                } else {
+                                                    var opt_sum = parseInt(anu.parents("li:first").find("#sum_opt_dd").val());
+                                                    --opt_sum;
+                                                    anu.parents("li:first").find("#sum_opt_dd").val(opt_sum);
+                                                    $(this).parent().remove();
+                                                }
+                                            });
+                                        }
+
+                                        function updateDropdownView(dropdown_field) {
+                                            var questionTitle = dropdown_field.find('input[name="dropdown_quest_title"]').val();
+                                            dropdown_field.find('.dropdown_text').text(questionTitle);
+
+                                            var dropdownSelect = dropdown_field.find('select[name="dropdown_answer"]');
+                                            dropdownSelect.empty();
+                                            dropdown_field.find('.option_dropdown').each(function() {
+                                                var label = $(this).find('.label_opt').val();
+                                                var value = $(this).find('.val_opt').val();
+                                                dropdownSelect.append('<option value="' + value + '">' + label + '</option>');
+                                            });
+                                        }
+
+                                        function add_date() {
+                                            var id = ++fields_sum;
+                                            fields_id.push(id);
+
+                                            var date_field = $('<li id="' + id + '" class="date question_fields">' +
+                                                '<div class="field_header">' +
+                                                '<div class="field_buttons_edit">' +
+                                                '<a href="#" class="edit_quest">edit</a>' +
+                                                '<a href="#" class="done_quest" style="display: none;">done</a>' +
+                                                '<a href="#" class="delete_quest">delete</a>' +
+                                                '</div>' +
+                                                '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                                                'Date Field: ' + id +
+                                                '</div>' +
+                                                '</div>' +
+                                                '<div class="field_container">' +
+                                                '<div class="date_edit_state" style="display: none;">' +
+                                                '<div class="date_field">' +
+                                                'Select Date: <input type="date" name="date_answer" class="question_date"/><br />' +
+                                                '</div>' +
+                                                '</div>' +
+                                                '<div class="date_view_state">' +
+                                                '<div class="date_text">Question Text?</div>' +
+                                                '<div class="date_answer"><input type="date" name="date_answer" /></div>' +
+                                                '</div>' +
+                                                '</div>' +
+                                                '</li>');
+
+                                            $("#sortable").append(date_field);
+
+                                            date_field.find('.edit_quest').click(function(e) {
+                                                e.preventDefault();
+                                                date_field.find('.date_view_state').hide();
+                                                date_field.find('.date_edit_state').show();
+                                                date_field.find('.edit_quest').hide();
+                                                date_field.find('.done_quest').show();
+                                            });
+
+                                            date_field.find('.done_quest').click(function(e) {
+                                                e.preventDefault();
+                                                updateDateView(date_field);
+                                                date_field.find('.date_edit_state').hide();
+                                                date_field.find('.date_view_state').show();
+                                                date_field.find('.done_quest').hide();
+                                                date_field.find('.edit_quest').show();
+                                            });
+
+                                            date_field.find('.delete_quest').click(function(e) {
+                                                e.preventDefault();
+                                                if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
+                                                    var index = fields_id.indexOf(id);
+                                                    fields_id.splice(index, 1);
+                                                    date_field.remove();
+                                                }
+                                            });
+                                        }
+
+                                        function updateDateView(date_field) {
+                                            var selectedDate = date_field.find('input[name="date_answer"]').val();
+                                            date_field.find('.date_text').text(selectedDate); // Menampilkan tanggal yang dipilih
+                                        }
+
+                                        function add_checkbox() {
+                                            var id = ++fields_sum;
+                                            fields_id.push(id);
+                                            console.log("add_checkbox() called");
+                                            var checkbox_field = $('<li id="' + id + '" class="checkbox question_fields">' +
+                                                '<div class="field_header">' +
+                                                '<div class="field_buttons_edit">' +
+                                                '<a href="#" class="edit_quest">edit</a>' +
+                                                '<a href="#" class="done_quest" style="display: none;">done</a>' +
+                                                '<a href="#" class="delete_quest">delete</a>' +
+                                                '</div>' +
+                                                '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                                                'Checkbox: ' + id +
+                                                '</div>' +
+                                                '</div>' +
+                                                '<div class="field_container">' +
+                                                '<div class="checkbox_edit_state" style="display: none;">' +
+                                                '<div class="checkbox_field">' +
+                                                'Question Title <input type="text" name="checkbox_quest_title" class="question_title"/><br />' +
+                                                'Info <input type="text" class="question_info"/><br />' +
+                                                '<div class="checkbox_options_list"></div>' +
+                                                '<a href="#" class="add_checkbox_option">Add Option</a>' +
+                                                '</div>' +
+                                                '</div>' +
+                                                '<div class="checkbox_view_state">' +
+                                                '<div class="checkbox_text">Question Text?</div>' +
+                                                '<div class="checkbox_answers"></div>' +
+                                                '</div>' +
+                                                '</div>' +
+                                                '</li>');
+
+                                            $("#sortable").append(checkbox_field);
+
+                                            checkbox_field.find('.edit_quest').click(function(e) {
+                                                e.preventDefault();
+                                                checkbox_field.find('.checkbox_view_state').hide();
+                                                checkbox_field.find('.checkbox_edit_state').show();
+                                                checkbox_field.find('.edit_quest').hide();
+                                                checkbox_field.find('.done_quest').show();
+                                            });
+
+                                            checkbox_field.find('.done_quest').click(function(e) {
+                                                e.preventDefault();
+                                                updateCheckboxView(checkbox_field);
+                                                checkbox_field.find('.checkbox_edit_state').hide();
+                                                checkbox_field.find('.checkbox_view_state').show();
+                                                checkbox_field.find('.done_quest').hide();
+                                                checkbox_field.find('.edit_quest').show();
+                                            });
+
+                                            checkbox_field.find('.add_checkbox_option').click(function(e) {
+                                                e.preventDefault();
+                                                addCheckboxOption($(this));
+                                            });
+
+                                            checkbox_field.find('.delete_quest').click(function(e) {
+                                                e.preventDefault();
+                                                if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
+                                                    var index = fields_id.indexOf(id);
+                                                    fields_id.splice(index, 1);
+                                                    checkbox_field.remove();
+                                                }
+                                            });
+                                        }
+
+                                        function addCheckboxOption(button) {
+                                            var optionId = button.parents("li:first").find(".checkbox_options_list .checkbox_option").length + 1;
+                                            var option = $('<div class="checkbox_option" id="checkbox_option_' + optionId + '">' +
+                                                'Option ' + optionId + ' <input type="text" name="label_checkbox_option_' + optionId + '" class="label_checkbox_option" style="width: 25%; margin-left: 10px;" />' +
+                                                '<a href="#" class="remove_checkbox_option">Remove</a>' +
+                                                '</div>');
+
+                                            button.siblings(".checkbox_options_list").append(option);
+
+                                            option.find('.remove_checkbox_option').click(function(e) {
+                                                e.preventDefault();
+                                                $(this).parent().remove();
+                                            });
+                                        }
+
+                                        function updateCheckboxView(checkbox_field) {
+                                            var questionTitle = checkbox_field.find('input[name="checkbox_quest_title"]').val();
+                                            checkbox_field.find('.checkbox_text').text(questionTitle);
+
+                                            var checkboxContainer = checkbox_field.find('.checkbox_answers');
+                                            checkboxContainer.empty();
+                                            checkbox_field.find('.checkbox_option').each(function() {
+                                                var label = $(this).find('.label_checkbox_option').val();
+                                                checkboxContainer.append('<label><input type="checkbox" name="checkbox_answer" /> ' + label + '</label><br>');
+                                            });
+                                        }
+
+                                        var fields_sum = 0; // Inisialisasi jumlah field
+                                        var fields_id = []; // Array untuk menyimpan ID field
+
+                                        function add_single_line() {
+    var id = ++fields_sum;
+    fields_id.push(id);
+    console.log('Adding question with ID:', id); // Debugging
+
+    var single_field = $('<li id="' + id + '" class="single question_fields">'
+        + '<div class="field_header">'
+        + '<div class="field_buttons_edit">'
+        + '<a href="#" class="edit_quest">edit</a>'
+        + '<a href="#" class="done_quest">done</a>'
+        + '<a href="#" class="delete_quest">delete</a>'
+        + '</div>'
+        + '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">'
+        + 'Single Line Text: ' + id
+        + '</div>'
+        + '</div>'
+        + '<div class="field_container">'
+        + '<div class="single_edit_state">'
+        + '<div class="single_line">'
+        + 'Question Title <input type="text" name="questions[' + id + '][title]" class="question_title"/><br />'
+        + 'Info <input type="text" name="questions[' + id + '][info]" class="question_info"/>' 
+        + '</div>'
+        + '</div>'
+        + '<div class="single_view_state">'
+        + '<div class="single_line_text">Question Text?</div>'
+        + '<div class="single_line_answer"><input type="text" name="questions[' + id + '][answer]" /></div>'
+        + '</div>'
+        + '</div>'
+        + '</li>');
+
+    console.log('Appending new question field'); // Debugging
+    $("#sortable").append(single_field);
+
+    single_field.find('.done_quest, .edit_quest, .delete_quest').click(function() {
+        done_edit_delete_quest($(this));
+    });
+}
+                                        // Inisialisasi sortable
+                                        $(function() {
+                                            $("#sortable").sortable({
+                                                handle: ".field_header"
+                                            });
+                                        })
+                                        
                                             function loadTableData() {
                                                 $.ajax({
                                                         url: "<?= site_url('/dataTabel') ?>", // Ganti dengan URL endpoint yang sesuai
@@ -1290,7 +2562,7 @@
                                                             <td>${row.updated_on}</td>
                                                             
                                                         </tr>
-                                                    `);
+                                                        `);
                                                                     no++; // Increment nomor urut untuk baris berikutnya
                                                                 });
                                                             }
@@ -1314,9 +2586,6 @@
                 </div>
             </div>
         </div>
-
-
-
 
         <script>
             function openTab(evt, tabId) {
