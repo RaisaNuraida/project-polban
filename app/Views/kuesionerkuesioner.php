@@ -117,6 +117,13 @@
                         </li>
                     </ul>
                 </li>
+
+                <li class="menu-item">
+                    <a href="<?= base_url('/pengaturan') ?>">
+                        <i class="ft-file"></i>
+                        <span class="menu-title">pengaturan</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

@@ -34,7 +34,11 @@ $routes->get('/deskripsi', 'c_kuesioner::show');
 $routes->get('/downloadCSV', 'cKuesioner::downloadCSV');
 $routes->get('/welcomepage', 'Home::welcome');
 $routes->get('/data', 'welcomepage::data');
+$routes->get('/pengaturan', 'Home::setting');
 
+
+$routes->get('/pengaturan', 'pengaturan::index');
+$routes->post('/pengaturan/simpan', 'pengaturan::simpan');
 
 
 //routes post
