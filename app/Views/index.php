@@ -117,6 +117,13 @@
                         </li>
                     </ul>
                 </li>
+
+                <li class="menu-item">
+                    <a href="<?= base_url('/setting') ?>">
+                        <i class="ft-file"></i>
+                        <span class="menu-title">Welcome</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

@@ -194,7 +194,7 @@
 
                                                         </td>
                                                         <td><?= $row['active_status']; ?></td>
-                                                        <td><?= $row['conditional_logic']; ?></td>
+                                                        <td>Show if : <?= $row['conditional_logic']; ?></td>
 
                                                         <td>
 
@@ -1196,7 +1196,7 @@
 
                                 <div class="mt-1">
                                     <button type="submit" class="btn btn-primary" style="font-size:12px; padding:5px 6px; height:25px; color: white;">Filter</button>
-                                    <a class="btn btn-info btn-sm" style='font-size:10px;padding:2px 5px;color:white;' onclick="openTab(event, 'dataTabel')">Clear</a>
+                                    <a class="btn btn-secondary" style="font-size:12px; padding:5px 6px; height:25px; color: white;" onclick="openTab(event, 'dataTabel')">Clear</a>
 
                                     <?php
                                     $request = \config\Services::request();
@@ -1261,53 +1261,53 @@
 
                             <script>
                                 $(document).ready(function() {
-                                            function loadTableData() {
-                                                $.ajax({
-                                                        url: "<?= site_url('/dataTabel') ?>", // Ganti dengan URL endpoint yang sesuai
-                                                        method: "GET",
-                                                        dataType: "json",
-                                                        success: function(data) {
-                                                            console.log("Data yang diterima:", data); 
-                                                            $('#dataTable tbody').empty(); // Mengosongkan tbody sebelum memuat data baru
+                                    function loadTableData() {
+                                        $.ajax({
+                                            url: "<?= site_url('/kuesionerkuesioner') ?>", // Ganti dengan URL endpoint yang sesuai
+                                            method: "GET",
+                                            dataType: "json",
+                                            success: function(data) {
+                                                console.log("Data yang diterima:", data);
+                                                $('#dataTabel tbody').empty(); // Mengosongkan tbody sebelum memuat data baru
 
-                                                            // Cek apakah data kosong
-                                                            if (data.length === 0) {
-                                                                alert("Tidak ada data yang tersedia.");
-                                                            } else {
-                                                                let no = 1; // Inisialisasi nomor urut
+                                                // Cek apakah data kosong
+                                                if (data.length === 0) {
+                                                    alert("Tidak ada data yang tersedia.");
+                                                } else {
+                                                    let no = 1; // Inisialisasi nomor urut
 
-                                                                // Looping data untuk menampilkan di tabel
-                                                                $.each(data, function(index, row) {
-                                                                    $('#dataTable tbody').append(`
-                                                        <tr>
-                                                            <td>${no}</td>  <!-- Kolom nomor urut -->
-                                                            <td>${row.academic_nim}</td>
-                                                            <td>${row.display_name}</td>
-                                                            <td>${row.academic_faculty}</td>
-                                                            <td>${row.academic_program}</td>
-                                                            <td>${row.academic_year}</td>
-                                                            <td>${row.created_on}</td>
-                                                            <td>${row.updated_on}</td>
-                                                            
-                                                        </tr>
-                                                    `);
-                                                                    no++; // Increment nomor urut untuk baris berikutnya
-                                                                });
-                                                            }
-                                                            },
-                                                            error: function(xhr, status, error) {
-                                                                console.error("Error loading data:", error);
-                                                            }
-                                                        });
+                                                    // Looping data untuk menampilkan di tabel
+                                                    $.each(data, function(index, row) {
+                                                        $('#dataTabel tbody').append(`
+                                <tr>
+                                    <td>${no}</td>  <!-- Kolom nomor urut -->
+                                    <td>${row.academic_nim}</td>
+                                    <td>${row.display_name}</td>
+                                    <td>${row.academic_faculty}</td>
+                                    <td>${row.academic_program}</td>
+                                    <td>${row.academic_year}</td>
+                                    <td>${row.created_on}</td>
+                                    <td>${row.updated_on}</td>
+                                </tr>
+                            `);
+                                                        no++; // Increment nomor urut untuk baris berikutnya
+                                                    });
                                                 }
+                                            },
+                                            error: function(xhr, status, error) {
+                                                console.error("Error loading data:", error);
+                                            }
+                                        });
+                                    }
 
-                                                // Fungsi untuk memuat data saat halaman pertama kali dimuat
-                                                loadTableData();
+                                    // Fungsi untuk memuat data saat halaman pertama kali dimuat
+                                    loadTableData();
 
-                                                // Refresh data setiap 10 detik (opsional)
-                                                setInterval(loadTableData, 10000);
-                                            });
+                                    // Refresh data setiap 10 detik (opsional)
+                                    setInterval(loadTableData, 10000);
+                                });
                             </script>
+
 
                         </div>
                     </div>

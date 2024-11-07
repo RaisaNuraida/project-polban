@@ -98,7 +98,7 @@
               <div class="card-header container p-1 m-0">
                 <h3><strong>Login</strong></h3>
                 <hr>
-                
+
                 <form action="<?= base_url('/login'); ?>" method="post">
                   <?= csrf_field(); ?>
                   <?php if (session()->getFlashdata('error')) {
@@ -113,7 +113,6 @@
                       </div>
                       <div class="form-group">
                         <input type="password" class="form-control" placeholder="Password" name="password" id="password" required>
-                    
                       </div>
                       <div class="mb-3">
                         <input type="submit" name="login" id="login" class="btn btn-glow btn-round btn-bg-gradient-x-red-pink" value="Masuk" style="width: 55%;" />
