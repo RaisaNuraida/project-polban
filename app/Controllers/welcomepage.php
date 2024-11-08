@@ -43,12 +43,13 @@ class welcomepage extends BaseController
 
 public function data(): string
 {
-    $model = new welcome();
+    $db = \Config\Database::connect();
+        $query = $db->query("SELECT * FROM welcome_message");
+        $message = $query->getResultArray();
+        $data = ['message' => $message];
 
-    $data['message'] = $model->getmessage();
-
-    // Render view dan kirim data
-    return view('tracer', $data);
+        // Render view dan kirim data
+        return view('welcomepage', $data); 
 }
 }
 

@@ -39,12 +39,6 @@ class c_kuesioner extends BaseController
 
         $user = $model->getUsers();
 
-        // Debugging untuk melihat data yang diambil
-        // echo '<pre>';
-        //print_r($my_data);
-        //echo '</pre>';
-        //exit;
-
         $data = ['user' => $user];
 
         // Kirim data ke view

@@ -221,6 +221,11 @@ class Home extends BaseController
         return view('kuesionerkuesioner');
     }
 
+    public function organisasi()
+    {
+        return view('organisasi');
+    }
+
     public function welcome(): string
     {
         return view('welcomepage');

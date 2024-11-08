@@ -33,7 +33,9 @@ $routes->get('/dataTabel', 'dataisian::dataisian');
 $routes->get('/deskripsi', 'c_kuesioner::show');
 $routes->get('/downloadCSV', 'cKuesioner::downloadCSV');
 $routes->get('/welcomepage', 'Home::welcome');
-$routes->get('/data', 'welcomepage::data');
+$routes->get('/tracer', 'welcomepage::data');
+$routes->get('/organisasiindex', 'Home::organisasi');
+$routes->get('/organisasi', 'c_organisasi::tabelorganisasi');
 
 
 
@@ -49,3 +51,4 @@ $routes->post('/welcomepage', 'welcomepage::submitMessage');
 $routes->post('/login', 'login::login');
 $routes->post('/update', 'Home::update');
 $routes->post('/kuesionerkuesioner', 'c_kuesioner::index');
+$routes->post('/organisasi', 'c_organisasi::submitMessage');

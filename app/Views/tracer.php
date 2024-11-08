@@ -124,12 +124,10 @@
                 </div>
 
                 <div class="m-5 text-justify">
-                  <?php if (!empty($message) && is_array($message)): ?>
-                    <?php foreach ($message as $message) : ?> 
-                    <span><?= esc($message['message']); ?></span>
-                    <?php endforeach?>
-                  <?php else: ?>
-                    <p>Tidak ada pesan yang tersedia.</p>
+                  <?php if (!empty($message)) : ?>
+                    <?php foreach ($message as $row) : ?>
+                     <?= esc($row['message']) ?>
+                    <?php endforeach; ?>
                   <?php endif; ?>
                   <div class="d-flex justify-content-center m-4">
                     <a
