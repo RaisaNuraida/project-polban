@@ -2,50 +2,31 @@
 
 namespace App\Controllers;
 
+use CodeIgniter\Controller;
 use App\Models\PengaturanModel;
 
 class Pengaturan extends BaseController
 {
-    // Menampilkan form pengaturan
-    public function index()
+    public function submitPengaturan ()
     {
-        $model = new PengaturanModel();
-        
-        // Mengambil data pengaturan dari database
-        $data['settings'] = $model->getPengaturan();
+        $nama = $this->request->getPost('nama');
+        $slogan = $this->request->getPost('slogan');
 
-        return view('pengaturan', $data);
-    }
+        $pengaturanModel = new PengaturanModel();
+        $pengaturanModel->truncate();
 
-    // Menangani form yang disubmit
-    public function simpan()
-    {
-        $model = new PengaturanModel();
+        session()->set('nama', $nama);
+        session()->set('slogan', $slogan);        
 
-        // Validasi input
-        if ($this->request->getMethod() === 'post') {
-            $rules = [
-                'nama' => 'required|min_length[3]|max_length[255]',
-                'slogan' => 'required|min_length[3]|max_length[255]',
-            ];
+        $data = [
+            'nama' => $nama,
+            'slogan' => $slogan,
+        ];
 
-            if (!$this->validate($rules)) {
-                // Jika validasi gagal, tampilkan error
-                return redirect()->to('/pengaturan')->withInput();
-            }
-
-            // Ambil data dari form
-            $data = [
-                'nama' => $this->request->getPost('nama'),
-                'slogan' => $this->request->getPost('slogan'),
-            ];
-
-            // Simpan pengaturan ke database
-            $model->updatePengaturan($data);
-
-            // Berikan pesan sukses
-            session()->setFlashdata('success', 'Pengaturan berhasil disimpan.');
-            return redirect()->to('/pengaturan');
+        if ($pengaturanModel->insert($data)) {
+            return redirect()->to('/pengaturan')->with('success', 'Pesan berhasil disimpan.');
+        } else {
+            return redirect()->back()->with('error', 'Gagal menyimpan pesan.');
         }
     }
 }

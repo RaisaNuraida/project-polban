@@ -37,9 +37,7 @@ $routes->get('/data', 'welcomepage::data');
 $routes->get('/pengaturan', 'Home::setting');
 
 
-$routes->get('/pengaturan', 'pengaturan::index');
-$routes->post('/pengaturan/simpan', 'pengaturan::simpan');
-
+$routes->post('/pengaturan', 'pengaturan::submitPengaturan');
 
 //routes post
 $routes->post('/import', 'Home::import');

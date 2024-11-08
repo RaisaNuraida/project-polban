@@ -145,50 +145,48 @@
                                 <h2>Pengaturan Situs</h2>
                                 <hr>
                                 <div class="card-content">
-                                    <div class="card-body">
-                                        <div class="container mb-1 border border-primary">
-                                            <form action="<?= base_url('/pengaturan/simpan') ?>" method="post" class="m-1">
+                                    <div class="card-body"> <?php if (session()->getFlashdata('success')): ?>
+                                            <div class="alert alert-success">
+                                                <?= session()->getFlashdata('success'); ?>
+                                            </div>
+                                        <?php endif; ?>
 
+                                        <?php if (session()->getFlashdata('error')): ?>
+                                            <div class="alert alert-danger">
+                                                <?= session()->getFlashdata('error'); ?>
+                                            </div>
+                                        <?php endif; ?>
+                                        <div class="container mb-1 border border-primary">
+
+                                            <!-- Form untuk pengaturan -->
+                                            <form action="<?= base_url('/pengaturan') ?>" method="post" class="m-1">
                                                 <div class="d-flex">
                                                     <label for="nama-situs" class="m-1" style="width: 10%;">Nama Situs</label>
                                                     <div class="form-group">
-                                                        <input type="text" style="width: 45%;" name="nama" id="nama" class="form-control" value="<?= old('nama', isset($settings['nama']) ? $settings['nama'] : '') ?>" required>
+                                                        <input type="text" style="width: 45%;" name="nama" id="nama" class="form-control" value="<?= session()->get('nama') ?? '$nama' ?>">
                                                         <p>Nama situs untuk judul halaman dan penggunaan lain di dalam situs.</p>
+
                                                     </div>
                                                 </div>
 
                                                 <div class="d-flex">
                                                     <label for="slogan" class="m-1" style="width: 10%;">Slogan Situs</label>
                                                     <div class="form-group">
-                                                        <input type="text" style="width: 45%;" name="slogan" id="slogan" class="form-control" value="<?= old('slogan', isset($settings['slogan']) ? $settings['slogan'] : '') ?>" required>
+                                                        <input type="text" style="width: 45%;" name="slogan" id="slogan" class="form-control" value="<?= session()->get('slogan') ?? '$slogan' ?>">
                                                         <p>Slogan situs untuk judul halaman dan penggunaan lain di dalam situs.</p>
 
                                                     </div>
                                                 </div>
 
-                                                <div class="d-flex justify-content-start    ">
+                                                <div class="d-flex justify-content-start">
                                                     <button type="submit" class="btn btn-primary mr-2">Simpan</button>
                                                     <a href="<?= base_url('/pengaturan') ?>" class="btn btn-danger">Batal</a>
                                                 </div>
                                             </form>
-
-                                            <!-- Menampilkan pesan sukses atau error -->
-                                            <?php if (session()->getFlashdata('success')): ?>
-                                                <div class="alert alert-success mt-3"><?= session()->getFlashdata('success') ?></div>
-                                            <?php endif; ?>
-                                            <?php if (session()->getFlashdata('error')): ?>
-                                                <div class="alert alert-danger mt-3"><?= session()->getFlashdata('error') ?></div>
-                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- Import CKEditor Script -->
-                            <script src="//cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
-                            <script>
-                                CKEDITOR.replace('content');
-                            </script>
 
                         </div>
                     </div>
