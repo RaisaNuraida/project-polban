@@ -232,6 +232,13 @@ class Home extends BaseController
     }
 
 
+    
+    public function setting(): string
+    {
+        return view('pengaturan');
+    }
+
+
     public function logout()
     {
         session()->destroy(); // Hapus session

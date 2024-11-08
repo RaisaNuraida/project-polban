@@ -36,8 +36,11 @@ $routes->get('/welcomepage', 'Home::welcome');
 $routes->get('/tracer', 'welcomepage::data');
 $routes->get('/organisasiindex', 'Home::organisasi');
 $routes->get('/organisasi', 'c_organisasi::tabelorganisasi');
+$routes->get('/data', 'welcomepage::data');
+$routes->get('/pengaturan', 'Home::setting');
 
 
+$routes->post('/pengaturan', 'pengaturan::submitPengaturan');
 
 //routes post
 $routes->post('/import', 'Home::import');
