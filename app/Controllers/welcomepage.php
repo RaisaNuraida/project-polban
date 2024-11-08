@@ -9,21 +9,11 @@ use CodeIgniter\Model;
 
 class welcomepage extends BaseController
 {
-    public function save()
-    {
-        // Ambil data dari textarea
-        $content = $this->request->getPost('content');
-
-        // Lakukan sesuatu dengan data, misalnya simpan ke database
-        // Contoh: $this->yourModel->save(['content' => $content]);
-
-        return redirect()->to('/success'); // Sesuaikan rute redirect
-    }
     public function submitMessage()
     {
         $message = $this->request->getPost('content');
 
-      
+
         // Simpan ke database
         $welcomeModel = new welcome();
         $welcomeModel->truncate();
@@ -37,19 +27,14 @@ class welcomepage extends BaseController
             return redirect()->back()->with('error', 'Gagal menyimpan pesan.');
         }
     }
-    
-   
 
+    public function data(): string
+    {
+        $model = new welcome();
 
-public function data(): string
-{
-    $model = new welcome();
+        $data['message'] = $model->getmessage();
 
-    $data['message'] = $model->getmessage();
-
-    // Render view dan kirim data
-    return view('tracer', $data);
+        // Render view dan kirim data
+        return view('tracer', $data);
+    }
 }
-}
-
-
