@@ -21,6 +21,7 @@ class login extends BaseController
     public function indexuser(){
         return view('indexuser');
     }
+
     public function login()
 {
     $UserModel = new UserModel();
@@ -58,7 +59,7 @@ class login extends BaseController
                             ];
                             session()->set($datasesi);
                             if ($data['group'] === 'administrator') {
-                                return redirect()->to('/index'); // Ganti dengan URL halaman admin
+                                return redirect()->to('/'); // Ganti dengan URL halaman admin
                             } else {
                                 return redirect()->to('/indexuser'); // Ganti dengan URL halaman user
                             
