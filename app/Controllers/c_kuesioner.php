@@ -119,4 +119,5 @@ class c_kuesioner extends BaseController
         // Mengirim data ke view
         return view('dataisian', $deskripsi);
     }
+    
 }

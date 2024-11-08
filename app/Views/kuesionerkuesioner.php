@@ -41,9 +41,149 @@
 
     <!-- BEGIN: Custom CSS-->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <!-- END: Custom CSS-->
+    <style>
+    .ui-datepicker-month, .ui-datepicker-year{
+        min-width: 0em;
+    }
 
+
+    .field_buttons_edit{
+        font-family: inherit;
+        font-size: 10pt;
+        float: right;
+        position: relative;
+        margin: 5px;
+    }
+    .field_buttons_view{
+        font-family: inherit;
+        font-size: 10pt;
+        float: right;
+        position: relative;
+        margin-top: 0px;
+    }
+    .field_header{
+        /*border: solid 1px red;*/
+        margin: 0px;
+        background-color: #DFEFFF;
+        height: 30px;
+        cursor: move;
+    }
+    .field_container{
+        /*border: solid 1px red;*/
+        margin: 0px;
+        background-color: white;
+        padding-left: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .done_quest, .delete_quest, .edit_quest, .done_quest_dd, .edit_quest_dd, .delete_quest_dd, 
+    .done_quest_cb, .edit_quest_cb, .delete_quest_cb,
+    .done_quest_rb, .edit_quest_rb, .delete_quest_rb, 
+    .done_quest_sc, .edit_quest_sc, .delete_quest_sc, 
+    .done_quest_gr, .edit_quest_gr, .delete_quest_gr, 
+    .done_quest_em, .edit_quest_em, .delete_quest_em, 
+    .done_quest_no, .edit_quest_no, .delete_quest_no, 
+    .done_quest_ph, .edit_quest_ph, .delete_quest_ph, 
+    .done_quest_dt, .edit_quest_dt, .delete_quest_dt, 
+    .done_quest_ad, .edit_quest_ad, .delete_quest_ad, 
+    .done_quest_ro, .edit_quest_ro, .delete_quest_ro, 
+    .done_quest_hd, .edit_quest_hd, .delete_quest_hd{
+        border-bottom-left-radius: 7px;
+        border-bottom-right-radius: 7px;
+        border-color: #533232;
+        border: 1px solid;
+        background-color: white;
+        margin-left: 5px;
+        padding: 2px;
+    }
+
+    #floating_question_selector{
+        width:260px;
+        height:220px;
+        /*border:1px solid scrollbar;*/
+        /*float: right;*/
+        position: fixed;
+        margin-left: 10px;
+        /*bottom: 20px;*/
+        top: 150px;
+        right: 60px;
+        z-index: 1;
+        /*background-color: powderblue;*/
+        border-radius: 10px;
+    }
+    #floating_label{
+        background-color: powderblue;
+        font-weight: bold;
+        padding: 10px;
+    }
+    #questions_button {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            /* Dua kolom, ukuran kolom fleksibel */
+            gap: 5px;
+            /* Ruang antara tombol */
+        }
+
+        #questions_button .quest_butt {
+            padding: 5px 10px;
+            /* Ukuran tombol kecil */
+            font-size: 0.75em;
+            /* Ukuran font lebih kecil */
+            border-radius: 4px;
+            /* Sudut tombol yang membulat */
+            background-color: #007bff;
+            /* Warna latar belakang tombol */
+            color: white;
+            /* Warna teks tombol */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            /* Bayangan melayang */
+            transition: transform 0.2s, box-shadow 0.2s;
+            /* Transisi halus */
+            max-width: 120px;
+            /* Lebar maksimum tombol */
+            width: 100%;
+            /* Mengisi lebar penuh hingga max-width */
+            margin: 0;
+        }
+
+        #questions_panel h2 {
+            font-size: 1.2em;
+            /* Adjust this value to make the heading smaller */
+        }
+
+        #sortable {
+            list-style-type: none;
+            /* Remove bullet points from list */
+            padding: 0;
+        }
+
+        #sortable li {
+            font-size: 0.8em;
+            /* Adjust this value for list items */
+            margin-bottom: 10px;
+            /* Spacing between questions */
+        }
+
+    .single_edit_state, .dropdown_edit_state, .checkbox_edit_state, 
+    .radio_edit_state, .scale_edit_state, .grid_edit_state, .email_edit_state, 
+    .number_edit_state, .phone_edit_state, .date_edit_state, .address_edit_state,
+    .readonly_edit_state, .hidden_view_state{
+        display: none;
+    }
+    .done_quest, .done_quest_dd, .done_quest_cb, .done_quest_rb, .done_quest_sc, 
+    .done_quest_gr, .done_quest_em, .done_quest_no, .done_quest_ph, .done_quest_dt, 
+    .done_quest_ad, .done_quest_ro, .edit_quest_hd{
+        display: none;
+    }
+    .CL_panel_field{
+        display: none;
+    }
+    
+</style>
 </head>
+
 <!-- END: Head-->
 
 <!-- BEGIN: Body-->
@@ -1033,747 +1173,72 @@
                                         </ul>
                                         </div>
                             </div>
-
+                            
                         </div>
                     </div>
                 </div>
                 <!-- Sunting Kuesioner Section END -->
             </div>
         </div>
-
-        <!-- JS -->
+                                        <!-- JS -->
                                     <script type="text/javascript">
-                                        var fields_sum = 0;
-                                        var fields_id = [];
+                                        function deletequestion(anu){
+                                        var q = anu.parents("li:first");
+                                        q.remove();
+    
+}
+                                    function quest_done(anu){
+                                        var view = anu.parents("li:first").find(".single_view_state");
+                                        var edit = anu.parents("li:first").find(".single_edit_state");
+                                        var qtext = anu.parents("li:first").find(".quest_text_field").val();
+                                        anu.parents("li:first").find(".single_line_text").html(qtext);
+                                        view.show();
+                                        edit.hide();
+                                    }
 
-                                        function setposition(anu) {
-                                            if (anu.is(".done_quest_gr")) {
-                                                var start_scale = anu.parents("li:first").find(".start_grid_scale").find(":selected").val();
-                                                var end_scale = anu.parents("li:first").find(".end_grid_scale").find(":selected").val();
-                                                var n = sum_quest_gr;
-
-                                                var label = anu.parents("li:first").find(".grid_label_third");
-                                                var label2 = anu.parents("li:first").find(".grid_label_second");
-                                                var radio1 = anu.parents("li:first").find("#grid_radio_1_" + start_scale + "");
-                                                var radio = anu.parents("li:first").find("#grid_radio_1_" + end_scale + "");
-
-
-                                                var pos1 = radio1.offset().left;
-                                                var pos3 = radio.offset().left;
-                                                var pos2 = pos1 + (pos3 - pos1) / 2;
-                                                //alert(radio.offset().left);
-                                                label.offset({
-                                                    left: radio.offset().left
-                                                });
-                                                label2.offset({
-                                                    left: pos2
-                                                });
-                                                //alert(label.position().left);
-                                            }
-                                        }
-
-                                        function setposition_scale(anu) {
-                                            if (anu.is(".done_quest_sc")) {
-                                                var start_scale = anu.parents("li:first").find(".start_scale").find(":selected").val();
-                                                var end_scale = anu.parents("li:first").find(".end_scale").find(":selected").val();
-
-                                                var label = anu.parents("li:first").find(".scale_label_third");
-                                                var label2 = anu.parents("li:first").find(".scale_label_second");
-                                                var radio1 = anu.parents("li:first").find("#scale_radio_" + start_scale + "");
-                                                var radio = anu.parents("li:first").find("#scale_radio_" + end_scale + "");
-
-
-                                                var pos1 = radio1.offset().left;
-                                                var pos3 = radio.offset().left;
-                                                var pos2 = pos1 + (pos3 - pos1) / 2;
-                                                //alert(radio.offset().left);
-                                                label.offset({
-                                                    left: radio.offset().left
-                                                });
-                                                label2.offset({
-                                                    left: pos2
-                                                });
-                                                //alert(label.position().left);
-                                            }
-                                        }
-
-                                        function save_sortable_list() {
-                                            var data = "";
-                                            var sequence = {};
-                                            sequence['urutan'] = [];
-                                            sequence['type'] = [];
-                                            sequence['jumlah'] = [];
-
-                                            jq("#sortable li").each(function() {
-                                                sequence['urutan'].push(jq(this).attr("id"));
-                                                sequence['type'].push(jq(this).attr("class").split(" ")[0]);
-                                            });
-                                            sequence['jumlah'].push(sequence['urutan'].length);
-                                            data = JSON.stringify(sequence);
-
-                                            jq("#order_field").val(data);
-                                        }
-
-                                        function save_to_json() {
-                                            var options_object = {};
-                                            jq("#sortable li").each(function() {
-                                                var id = "id" + jq(this).attr("id");
-                                                options_object[id] = {};
-                                                options_object[id]["title"] = [];
-                                                options_object[id]["info"] = [];
-                                                options_object[id]["val"] = [];
-                                                options_object[id]["lab"] = [];
-                                                options_object[id].str_sc = [];
-                                                options_object[id].end_sc = [];
-                                                options_object[id].str_lb = [];
-                                                options_object[id].mid_lb = [];
-                                                options_object[id].end_lb = [];
-                                                options_object[id].row_qst = [];
-                                                options_object[id].str_yr = [];
-                                                options_object[id].end_yr = [];
-                                                options_object[id].date_opt = [];
-                                                options_object[id].user_field = [];
-                                                options_object[id].required = [];
-                                                options_object[id].has_other_option = [];
-
-                                                jq(this).find(".question_title").each(function() {
-                                                    options_object[id].title.push(jq(this).val());
-                                                });
-                                                jq(this).find(".question_info").each(function() {
-                                                    options_object[id].info.push(jq(this).val());
-                                                });
-                                                jq(this).find(".val_opt").each(function() {
-                                                    options_object[id].val.push(jq(this).val());
-                                                });
-                                                jq(this).find(".label_opt").each(function() {
-                                                    options_object[id].lab.push(jq(this).val());
-                                                });
-                                                jq(this).find(".start_scale").each(function() {
-                                                    options_object[id].str_sc.push(jq(this).val());
-                                                });
-                                                jq(this).find(".end_scale").each(function() {
-                                                    options_object[id].end_sc.push(jq(this).val());
-                                                });
-                                                jq(this).find(".start_grid_scale").each(function() {
-                                                    options_object[id].str_sc.push(jq(this).val());
-                                                });
-                                                jq(this).find(".end_grid_scale").each(function() {
-                                                    options_object[id].end_sc.push(jq(this).val());
-                                                });
-                                                jq(this).find(".start_label").each(function() {
-                                                    options_object[id].str_lb.push(jq(this).val());
-                                                });
-                                                jq(this).find(".middle_label").each(function() {
-                                                    options_object[id].mid_lb.push(jq(this).val());
-                                                });
-                                                jq(this).find(".end_label").each(function() {
-                                                    options_object[id].end_lb.push(jq(this).val());
-                                                });
-                                                jq(this).find(".label_question").each(function() {
-                                                    options_object[id].row_qst.push(jq(this).val());
-                                                })
-                                                jq(this).find(".start_year").each(function() {
-                                                    options_object[id].str_yr.push(jq(this).val());
-                                                });
-                                                jq(this).find(".end_year").each(function() {
-                                                    options_object[id].end_yr.push(jq(this).val());
-                                                });
-                                                jq(this).find(".date_option").find(":selected").each(function() {
-                                                    options_object[id].date_opt.push(jq(this).val());
-                                                });
-                                                jq(this).find(".user_field").each(function() {
-                                                    options_object[id].user_field.push(jq(this).val());
-                                                });
-                                                jq(this).find(".required_field").each(function() {
-                                                    if (jq(this).is(":checked")) {
-                                                        options_object[id].required.push("true");
-                                                    } else {
-                                                        options_object[id].required.push("false");
-                                                    }
-                                                });
-                                                jq(this).find(".has_other_option").each(function() {
-                                                    if (jq(this).is(":checked")) {
-                                                        options_object[id].has_other_option.push("true");
-                                                    } else {
-                                                        options_object[id].has_other_option.push("false");
-                                                    }
-                                                });
-                                            });
-                                            var data = JSON.stringify(options_object);
-                                            jq("#options").val(data);
-
-                                        }
-
-                                        function save_section_attr() {
-                                            var section_attr = {};
-                                            section_attr["title"] = [];
-                                            section_attr["description"] = [];
-                                            if (jq("#show_section_title").is(":checked")) {
-                                                section_attr["title"].push("true");
-                                            } else {
-                                                section_attr["title"].push("false");
-                                            }
-                                            if (jq("#show_section_description").is(":checked")) {
-                                                section_attr["description"].push("true");
-                                            } else {
-                                                section_attr["description"].push("false");
-                                            }
-                                            var data = JSON.stringify(section_attr);
-                                            jq("#section_attr").val(data);
-                                        }
-
-                                        function save_CL_section() {
-                                            var CL_section = {};
-                                            CL_section["options"] = [];
-                                            CL_section["isnot"] = [];
-                                            CL_section["value"] = [];
-                                            CL_section["show"] = [];
-                                            CL_section["any"] = [];
-
-                                            var data = "";
-                                            if (jq("#CL_page").is(":checked")) {
-                                                jq(".show_option").each(function() {
-                                                    CL_section["show"].push(jq(this).find(":selected").val());
-                                                });
-                                                jq(".any_all").each(function() {
-                                                    CL_section["any"].push(jq(this).find(":selected").val());
-                                                });
-                                                jq(".section_is_not").each(function() {
-                                                    CL_section["isnot"].push(jq(this).find(":selected").val());
-                                                });
-                                                jq(".section_conditional").each(function() {
-                                                    CL_section["options"].push(jq(this).find(":selected").val());
-                                                });
-                                                jq(".opt_vals").each(function() {
-                                                    CL_section["value"].push(jq(this).find(":selected").val());
-                                                });
-                                                data = JSON.stringify(CL_section);
-                                                jq("#hidden_cl_section").val(data);
-                                            }
-                                            //alert(data);
-                                        }
-
-                                        function save_CL_field() {
-                                            var CL_field = {};
-                                            jq("#sortable li").each(function() {
-                                                var id_h = "id" + jq(this).attr("id");
-                                                var check = jq(this).find(".field_CL");
-                                                CL_field[id_h] = {};
-                                                if (check.is(":checked")) {
-                                                    CL_field[id_h]["options"] = [];
-                                                    CL_field[id_h]["values"] = [];
-                                                    CL_field[id_h]["isnot"] = [];
-                                                    CL_field[id_h]["show"] = [];
-                                                    CL_field[id_h]["any"] = [];
-
-                                                    jq(this).find(".field_is_not").each(function() {
-                                                        CL_field[id_h]["isnot"].push(jq(this).find(":selected").val());
-                                                    });
-                                                    jq(this).find(".CL_shows").each(function() {
-                                                        CL_field[id_h]["show"].push(jq(this).find(":selected").val());
-                                                    });
-                                                    jq(this).find(".CL_anys").each(function() {
-                                                        CL_field[id_h]["any"].push(jq(this).find(":selected").val());
-                                                    });
-                                                    jq(this).find(".CL_field_question").each(function() {
-                                                        CL_field[id_h]["options"].push(jq(this).find(":selected").val());
-                                                    });
-                                                    jq(this).find(".CL_field_options").each(function() {
-                                                        CL_field[id_h]["values"].push(jq(this).find(":selected").val());
-                                                    });
-                                                }
-                                                //alert(CL_field);
+                                    function done_edit_delete_quest(anu){
+                                        // event.preventDefault();
+                                        var id = anu.parents("li:first").attr("id");
+                                        var view = anu.parents("li:first").find(".single_view_state");
+                                        var done_button = anu.parents("li:first").find(".done_quest");
+                                        var edit = anu.parents("li:first").find(".single_edit_state");
+                                        var edit_button = anu.parents("li:first").find(".edit_quest");
+                                        var qtext = anu.parents("li:first").find(".question_title").val();
+                                        if(anu.is('.done_quest')){
+                                            anu.parents("li:first").find(".single_line_text").html(qtext);
+                                            view.show();
+                                            edit_button.show();
+                                            edit.hide();
+                                            done_button.hide();
+                                            anu.parents("li:first").find(".field_container").css({
+                                                "background-color":"white"
                                             })
-                                            var data = JSON.stringify(CL_field);
-                                            jq("#hidden_cl_field").val(data);
-                                            //alert(data);
-
-
+                                            anu.parents("li:first").find(".field_header").css({
+                                                "background-color":"#DFEFFF"
+                                            })
                                         }
-
-                                        jq(document).ready(function() {
-                                            set_fields_sum();
-                                            /*jq(".option_radio").find('remove_opt_rb').click(function(){
-                                                checkCL_field(jq(this));
-                                            });*/
-                                            jq(".field_CL").click(function() {
-                                                checkCL_field(jq(this));
-                                            });
-                                            jq(".field_CL").each(function() {
-                                                checkCL_field(jq(this));
-                                            });
-                                            jq(".date_input_field").hover(function() {
-                                                var start = jq(this).parents("li:first").find(".hidden_start_year").val();
-                                                var end = jq(this).parents("li:first").find(".hidden_end_year").val();
-                                                var option = jq(this).parents("li:first").find(".hidden_date_option").val();
-
-                                                add_datepicker(jq(this), option, start, end);
-                                            });
-                                            jq("#simpan").click(function() {
-                                                save_section_attr();
-                                                save_to_json();
-                                                save_sortable_list();
-                                                save_CL_section();
-                                                save_CL_field();
-                                            });
-                                            jq(".CLpanel").hide();
-                                            jq(".email_input_field").keypress(function() {
-                                                var em_text = jq(this).val();
-                                                var keycode = (event.keyCode ? event.keyCode : event.which);
-                                                if (keycode == '13') {
-                                                    var email_reg = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
-                                                    if (em_text == '') {
-                                                        alert("harap isi alamat email Anda");
-                                                    } else {
-                                                        if (email_reg.test(em_text)) {
-                                                            alert("alamat email valid");
-                                                        } else {
-                                                            alert("alamat email tidak valid!");
-                                                        }
-                                                    }
-                                                }
-                                            });
-                                            jq(".number_input_field").keypress(function() {
-                                                var no_text = jq(this).val();
-                                                var keycode = (event.keyCode ? event.keyCode : event.which);
-                                                if (keycode == '13') {
-                                                    var email_reg = /[0-9]+/;
-                                                    if (no_text == '') {
-                                                        alert("field kosong");
-                                                    } else {
-                                                        if (email_reg.test(no_text)) {
-                                                            //alert("masukan valid");
-                                                        } else {
-                                                            alert("masukan tidak valid! hanya boleh angka!");
-                                                        }
-                                                    }
-                                                }
-                                            });
-                                            jq(".phone_input_field").keypress(function() {
-                                                var no_text = jq(this).val();
-                                                var keycode = (event.keyCode ? event.keyCode : event.which);
-                                                if (keycode == '13') {
-                                                    //alert(em_text);
-                                                    var email_reg = /[0-9]{10,12}/;
-                                                    var number_check = /^\d+$/;
-                                                    if (no_text == '') {
-                                                        alert("field kosong");
-                                                    } else {
-                                                        if (email_reg.test(no_text) && number_check.test(no_text)) {
-                                                            if (no_text.length > 9 && no_text.length < 13) {
-                                                                //alert("masukan valid");
-                                                            } else {
-                                                                alert("masukan tidak valid, nomor kurang atau berlebih");
-                                                            }
-                                                        } else {
-                                                            alert("masukan tidak valid!");
-                                                        }
-                                                    }
-                                                }
-                                            });
-                                            jq(".address_zc_input_field").keypress(function() {
-                                                var zc_text = jq(this).val();
-                                                var keycode = (event.keyCode ? event.keyCode : event.which);
-                                                if (keycode == '13') {
-                                                    //alert(em_text);
-                                                    var email_reg = /^\d{5}$/;
-                                                    if (zc_text == '') {
-                                                        alert("field kosong");
-                                                    } else {
-                                                        if (email_reg.test(zc_text)) {
-                                                            //alert('masukan valid');
-
-                                                        } else {
-                                                            alert("masukan tidak valid!");
-                                                        }
-                                                    }
-                                                }
-                                            });
-                                            jq('.add_opt_dd').click(function() {
-                                                add_opt_dd(jq(this));
-                                            });
-                                            jq(".add_opt_cb, .remove_opt_dd").click(function(event) {
-                                                if (jq(this).is('.add_opt_cb')) {
-                                                    add_opt_cb(jq(this));
-                                                } else {
-                                                    event.preventDefault();
-                                                    var opt_sum_cb = jq(this).parents("li:first").find("#sum_opt_cb").val();
-                                                    --opt_sum_cb;
-                                                    jq(this).parents("li:first").find("#sum_opt_cb").val(opt_sum_cb);
-                                                    jq(this).parent().remove();
-                                                }
-                                            });
-                                            jq('.add_opt_rb, .remove_opt_rb').click(function() {
-                                                if (jq(this).is('.add_opt_rb')) {
-                                                    add_opt_rb(jq(this));
-                                                } else {
-                                                    event.preventDefault();
-                                                    var opt_sum_rb = jq(this).parents("li:first").find("#sum_opt_rb").val();
-                                                    --opt_sum_rb;
-                                                    jq(this).parents("li:first").find("#sum_opt_rb").val(opt_sum_rb);
-                                                    jq(this).parent().remove();
-                                                }
-                                            });
-                                            jq(".add_grid_question, .remove_grid_question").click(function(event) {
-                                                event.preventDefault();
-                                                add_grid_question(jq(this));
-                                            });
-                                            jq('.done_quest_dd, .edit_quest_dd, .delete_quest_dd').click(function(event) {
-                                                event.preventDefault();
-                                                upper_buttons_dd(jq(this));
-                                            });
-                                            jq('.done_quest_cb, .edit_quest_cb, .delete_quest_cb').click(function(event) {
-                                                event.preventDefault();
-                                                upper_buttons_cb(jq(this));
-                                            });
-                                            jq('.done_quest_rb, .edit_quest_rb, .delete_quest_rb').click(function(event) {
-                                                event.preventDefault();
-                                                upper_buttons_rb(jq(this));
-                                            });
-                                            jq('.done_quest_sc, .edit_quest_sc, .delete_quest_sc').click(function(event) {
-                                                event.preventDefault();
-                                                upper_buttons_sc(jq(this));
-                                            });
-                                            jq('.done_quest_gr, .edit_quest_gr, .delete_quest_gr').click(function(event) {
-                                                event.preventDefault();
-                                                upper_buttons_gr(jq(this));
-                                            });
-                                            jq('.done_quest_em, .edit_quest_em, .delete_quest_em').click(function(event) {
-                                                event.preventDefault();
-                                                upper_buttons_em(jq(this));
-                                            });
-                                            jq('.done_quest_dt, .edit_quest_dt, .delete_quest_dt').click(function(event) {
-                                                event.preventDefault();
-                                                upper_buttons_dt(jq(this));
-                                            });
-                                            jq('.done_quest_hd, .edit_quest_hd, .delete_quest_hd').click(function(event) {
-                                                event.preventDefault();
-                                                upper_buttons_hd(jq(this));
-                                            });
-                                            jq('.done_quest_no, .edit_quest_no, .delete_quest_no').click(function(event) {
-                                                event.preventDefault();
-                                                upper_buttons_no(jq(this));
-                                            });
-                                            jq('.done_quest_ph, .edit_quest_ph, .delete_quest_ph').click(function(event) {
-                                                event.preventDefault();
-                                                upper_buttons_ph(jq(this));
-                                            });
-                                            jq('.done_quest_ad, .edit_quest_ad, .delete_quest_ad').click(function(event) {
-                                                event.preventDefault();
-                                                upper_buttons_ad(jq(this));
-                                            });
-                                            jq('.done_quest_ro, .edit_quest_ro, .delete_quest_ro').click(function(event) {
-                                                event.preventDefault();
-                                                upper_buttons_ro(jq(this));
-                                            });
-                                            jq(".delete_quest").click(function(event) {
-                                                event.preventDefault();
-                                                deletequestion(jq(this));
-                                            });
-                                            jq("#simpan").click(function() {
-                                                window.location = "<? //php echo site_url(SITE_AREA . 'jq') 
-                                                                    ?>";
-                                            });
-                                            jq(".up,.down").click(function() {
-                                                addpage(jq(this));
-                                            });
-                                            jq(".delete").click(function() {
-                                                deletepage(jq(this));
-                                            });
-                                            jq(".addCL").click(function(event) {
-                                                event.preventDefault();
-                                                addCL();
-                                            });
-                                            jq(".removeCL").click(function(event) {
-                                                event.preventDefault();
-                                                jq(this).parent().remove();
-                                            });
-                                            jq(".addCL_field").click(function() {
-                                                addCL_field(jq(this));
-                                            });
-                                            jq(".removeCL_field").click(function(event) {
-                                                event.preventDefault();
-                                                jq(this).parent().remove();
-                                            });
-                                            jq("#CL_page").each(function() {
-                                                if (jq(this).is(':checked')) {
-                                                    //alert("clpanel checked");
-                                                    jq(".CLpanel").show();
-                                                } else {
-                                                    jq(".CLpanel").hide();
-                                                }
-                                            });
-                                            jq("#CL_page").click(function() {
-                                                if (jq(this).is(':checked')) {
-                                                    //alert("clpanel checked");
-                                                    jq(".CLpanel").show();
-                                                } else {
-                                                    jq(".CLpanel").hide();
-                                                }
-                                            });
-                                            jq(".done_quest, .edit_quest, .delete_quest").click(function(event) {
-                                                event.preventDefault();
-                                                done_edit_delete_quest(jq(this));
-                                            });
-                                            //            jq(".done_quest_dd, edit_quest_dd, .delete_quest_dd").click(function(){
-                                            //                upper_buttons_dd(jq(this)); 
-                                            //            });
-                                            jq(".tambah").click(function() {
-                                                var trbaru = jq('<tr><td>04</td><td>Data Tambahan</td><td>none</td><td>none</td><td>6</td><td><a href="#" class="up">Up</a> <a href="#" class="down">Down</a> <a href="#" class="edit">Edit</a> <a href="#" class="delete">Delete</a></td></tr>');
-                                                jq("#daftar_section").append(trbaru);
-                                                trbaru.find(".up,.down").click(function() {
-                                                    addpage(jq(this));
-                                                });
-                                                trbaru.find(".delete").click(function() {
-                                                    deletepage(jq(this));
-                                                });
-                                            });
-                                        });
-                                    </script>
-
-        <!-- OPEN TAB -->
-        <script>
-            function openTab(evt, tabId) {
-                // Sembunyikan semua tab content
-                var tabcontent = document.getElementsByClassName("tab-content");
-                for (var i = 0; i < tabcontent.length; i++) {
-                    tabcontent[i].style.display = "none"; // Sembunyikan semua tab
-                }
-
-                // Tampilkan tab yang dipilih
-                document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
-
-                // Menandai tombol tab yang aktif
-                var tablinks = document.getElementsByClassName("nav-link");
-                for (var i = 0; i < tablinks.length; i++) {
-                    tablinks[i].className = tablinks[i].className.replace(" active", ""); // Hilangkan kelas active dari semua tab
-                }
-
-                // Tambahkan kelas active pada tombol yang ditekan
-                evt.currentTarget.className += " active";
-            }
-        </script>
-
-        <script>
-            function openTab(evt, tabId) {
-                // Sembunyikan semua tab content
-                var tabcontent = document.getElementsByClassName("tab-content");
-                for (var i = 0; i < tabcontent.length; i++) {
-                    tabcontent[i].style.display = "none"; // Sembunyikan semua tab
-                }
-
-                // Tampilkan tab yang dipilih
-                document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
-
-                // Menandai tombol tab yang aktif
-                var tablinks = document.getElementsByClassName("kuesioner");
-                for (var i = 0; i < tablinks.length; i++) {
-                    tablinks[i].className = tablinks[i].className.replace(" active", ""); // Hilangkan kelas active dari semua tab
-                }
-
-                // Tambahkan kelas active pada tombol yang ditekan
-                evt.currentTarget.className += " active";
-            }
-        </script>
-        <!-- OPEN TAB END -->
-        <!-- JS -->
-        <!-- END: Content-->
-
-
-
-        <!-- BEGIN: Content-->
-
-        <!-- CRUD START-->
-        <div class="row ml-2 mr-2">
-            <div class="col-lg-12 col-md-12 ">
-
-                <!-- Table Kuesioner START-->
-                <div class="card tab-content" id="dataTabel" style="display:none;">
-                    <div class="card-header ml-2 mr-2">
-                        <div class="d-flex justify-content-between">
-                            <h2>Kuesioner Answer</h2>
-
-
-                        </div>
-                        <hr>
-
-                        <!-- Filter START -->
-                        <div>
-                            <form method="get" action="/carianswer" id="searchForm" onsubmit="removeEmptyInputs()">
-                                <div class="d-flex align-items-center justify-content">
-                                    <input type="text" name="carianswer" id="name" class="form-control" placeholder="Cari Nama atau NIM" style="margin-right: 10px; width:22%;">
-                                    <!--  Fakultas Dropdown -->
-                                    <select name="carianswer" id="academic_faculty" class="form-control" style="margin-right: 10px; width:22%;">
-                                        <option value="">Jurusan</option>
-                                        <option value="Teknik Sipil">Teknik Sipil</option>
-                                        <option value="Teknik Mesin">Teknik Mesin</option>
-                                        <option value="Teknik Refrigasi dan Tata Udara">Teknik Refrigasi dan Tata Udara</option>
-                                        <option value="Teknik Konversi Energi">Teknik Konversi Energi</option>
-                                        <option value="Teknik Elektro">Teknik Elektro</option>
-                                        <option value="Teknik Kimia">Teknik Kimia</option>
-                                        <option value="Teknik Komputer dan Informatika">Teknik Komputer dan Informatika</option>
-                                        <option value="Akuntansi">Akuntansi</option>
-                                        <option value="Administrasi Niaga">Administrasi Niaga</option>
-                                        <option value="Bahasa Inggris">Bahasa Inggris</option>
-                                    </select>
-
-                                    <!-- Program Studi Dropdown -->
-                                    <select name="carianswer" id="academic_program" class="form-control" style="margin-right: 10px; width:22%;">
-                                        <option value="">Program Studi</option>
-                                        <!-- Teknik Sipil -->
-                                        <option data-faculty="Teknik Sipil" value="D-3 Teknik Konstruksi Sipil">D-3 Teknik Konstruksi Sipil</option>
-                                        <option data-faculty="Teknik Sipil" value="D-3 Teknik Konstruksi Gedung">D-3 Teknik Konstruksi Gedung</option>
-                                        <option data-faculty="Teknik Sipil" value="D-4 Teknik Perancangan Jalan dan Jembatan">D-4 Teknik Perancangan Jalan dan Jembatan</option>
-                                        <option data-faculty="Teknik Sipil" value="D-4 Teknik Perawatan dan Perbaikan Gedung">D-4 Teknik Perawatan dan Perbaikan Gedung</option>
-                                        <option data-faculty="Teknik Sipil" value="S-2 Rekayasa Infrastruktur">S-2 Rekayasa Infrastruktur</option>
-
-                                        <!-- Teknik Mesin -->
-                                        <option data-faculty="Teknik Mesin" value="D-3 Teknik Mesin">D-3 Teknik Mesin</option>
-                                        <option data-faculty="Teknik Mesin" value="D-3 Teknik Aeronautika">D-3 Teknik Aeronautika</option>
-                                        <option data-faculty="Teknik Mesin" value="D-4 Teknik Perancangan dan Konstruksi Mesin">D-4 Teknik Perancangan dan Konstruksi Mesin</option>
-                                        <option data-faculty="Teknik Mesin" value="D-4 Proses Manufaktur">D-4 Proses Manufaktur</option>
-
-                                        <!-- Teknik Refrigasi dan Tata Udara -->
-                                        <option data-faculty="Teknik Refrigasi dan Tata Udara" value="D-3 Teknik Pendingin dan Tata Udara">D-3 Teknik Pendingin dan Tata Udara</option>
-                                        <option data-faculty="Teknik Refrigasi dan Tata Udara" value="D-4 Teknik Pendingin dan Tata Udara">D-4 Teknik Pendingin dan Tata Udara</option>
-
-                                        <!-- Teknik Konversi Energi -->
-                                        <option data-faculty="Teknik Konversi Energi" value="D-3 Teknik Konversi Energi">D-3 Teknik Konversi Energi</option>
-                                        <option data-faculty="Teknik Konversi Energi" value="D-4 Teknik Pembangkit Tenaga Listrik">D-4 Teknik Pembangkit Tenaga Listrik</option>
-                                        <option data-faculty="Teknik Konversi Energi" value="D-4 Teknik Konservasi Energi">D-4 Teknik Konservasi Energi</option>
-
-                                        <!-- Teknik Elektro -->
-                                        <option data-faculty="Teknik Elektro" value="D-3 Teknik Elektronika">D-3 Teknik Elektronika</option>
-                                        <option data-faculty="Teknik Elektro" value="D-3 Teknik Listrik">D-3 Teknik Listrik</option>
-                                        <option data-faculty="Teknik Elektro" value="D-3 Teknik Telekomunikasi">D-3 Teknik Telekomunikasi</option>
-                                        <option data-faculty="Teknik Elektro" value="D-4 Teknik Elektronika">D-4 Teknik Elektronika</option>
-                                        <option data-faculty="Teknik Elektro" value="D-4 Teknik Telekomunikasi">D-4 Teknik Telekomunikasi</option>
-                                        <option data-faculty="Teknik Elektro" value="D-4 Teknik Otomasi Industri">D-4 Teknik Otomasi Industri</option>
-
-                                        <!-- Teknik Kimia -->
-                                        <option data-faculty="Teknik Kimia" value="D-3 Teknik Kimia">D-3 Teknik Kimia</option>
-                                        <option data-faculty="Teknik Kimia" value="D-3 Analis Kimia">D-3 Analis Kimia</option>
-                                        <option data-faculty="Teknik Kimia" value="D-4 Teknik Kimia Produksi Bersih">D-4 Teknik Kimia Produksi Bersih</option>
-
-                                        <!-- Teknik Komputer dan Informatika -->
-                                        <option data-faculty="Teknik Komputer dan Informatika" value="D-3 Teknik Informatika">D-3 Teknik Informatika</option>
-                                        <option data-faculty="Teknik Komputer dan Informatika" value="D-4 Teknik Informatika">D-4 Teknik Informatika</option>
-
-                                        <!-- Akuntansi -->
-                                        <option data-faculty="Akuntansi" value="D-3 Akuntansi">D-3 Akuntansi</option>
-                                        <option data-faculty="Akuntansi" value="D-3 Keuangan dan Perbankan">D-3 Keuangan dan Perbankan</option>
-                                        <option data-faculty="Akuntansi" value="D-4 Akutansi Manajemen Pemerintahan">D-4 Akutansi Manajemen Pemerintahan</option>
-                                        <option data-faculty="Akuntansi" value="D-4 Akutansi">D-4 Akutansi</option>
-                                        <option data-faculty="Akuntansi" value="D-4 Keuangan Syariah">D-4 Keuangan Syariah</option>
-                                        <option data-faculty="Akuntansi" value="S-2 Keuangan dan Perbankan Syariah">D-4 Keuangan dan Perbankan Syariah</option>
-
-                                        <!-- Administrasi Niaga -->
-                                        <option data-faculty="Administrasi Niaga" value="D-3 Administrasi Bisnis">D-3 Administrasi Bisnis</option>
-                                        <option data-faculty="Administrasi Niaga" value="D-3 Manajemen Pemasaran">D-3 Manajemen Pemasaran</option>
-                                        <option data-faculty="Administrasi Niaga" value="D-3 Usaha Perjalanan Wisata">D-3 Usaha Perjalanan Wisata</option>
-                                        <option data-faculty="Administrasi Niaga" value="D-4 Manajemen Aset">D-4 Manajemen Aset</option>
-                                        <option data-faculty="Administrasi Niaga" value="D-4 Manajemen Bisnis">D-4 Manajemen Bisnis</option>
-                                        <option data-faculty="Administrasi Niaga" value="D-4 Manajemen Pemasaran">D-4 Manajemen Pemasaran</option>
-                                        <option data-faculty="Administrasi Niaga" value="D-4 Destinasi Pariwisata">D-4 Destinasi Pariwisata</option>
-
-                                        <!-- Bahasa Inggris -->
-                                        <option data-faculty="Bahasa Inggris" value="D-3 Bahasa Inggris">D-3 Bahasa Inggris</option>
-                                    </select>
-
-                                    <!-- Angkatan Dropdown -->
-                                    <select name="carianswer" id="angkatan" class="form-control" style="margin-right: 10px; width:22%;">
-                                        <option value="">Angkatan</option>
-                                        <option value="2015">2015</option>
-                                        <option value="2016">2016</option>
-                                        <option value="2017">2017</option>
-                                        <option value="2018">2018</option>
-                                        <option value="2019">2019</option>
-                                        <option value="2020">2020</option>
-                                        <option value="2021">2021</option>
-                                        <option value="2022">2022</option>
-                                        <option value="2023">2023</option>
-                                        <option value="2024">2024</option>
-                                        <option value="2025">2025</option>
-                                        <option value="2026">2026</option>
-                                        <!-- Tambahkan tahun sesuai kebutuhan -->
-                                    </select>
-
-                                    <select name="carianswer" id="status" class="form-control" style="margin-right: 10px; width:22%;">
-                                        <option value="">Status</option>
-                                        <option value="">Selesai</option>
-                                        <option value="">On Going</option>
-                                        <option value="">Belum Mengisi</option>
-                                    </select>
-                                </div>
-
-                                <div class="mt-1">
-                                    <button type="submit" class="btn btn-primary" style="font-size:12px; padding:5px 6px; height:25px; color: white;">Filter</button>
-                                    <a class="btn btn-info btn-sm" style='font-size:10px;padding:2px 5px;color:white;' onclick="openTab(event, 'dataTabel')">Clear</a>
-
-                                    <?php
-                                    $request = \config\Services::request();
-                                    $cari = $request->getGet('carianswer');
-                                    if ($cari != '') {
-                                        $param = "?carianswer=" . $cari;
-                                    } else {
-                                        $param = "";
+                                        else if(anu.is('.edit_quest')){
+                                            view.hide();
+                                            edit.show();
+                                            done_button.show();
+                                            edit_button.hide();
+                                            anu.parents("li:first").find(".field_container").css({
+                                                "background-color":"#DFEFFF"
+                                            })
+                                            anu.parents("li:first").find(".field_header").css({
+                                                "background-color":"powderblue"
+                                            })
+                                        }
+                                        else{
+                                            if (confirm('Apakah anda yakin untuk menghapus pertanyaan ini ?')) {
+                                                var index = fields_id.indexOf(id);
+                                                fields_id.splice(index,1);
+                                                deletequestion(anu);
+                                            }
+                                        }
+                                    
                                     }
-                                    ?>
-                                    <a href="<?= site_url('/downloadCSV') ?>?carianswer=<?= isset($_GET['carianswer']) ? $_GET['carianswer'] : '' ?>" class="btn btn-success" style="font-size:12px; padding:5px 6px; height:25px; color: white;">Download CSV</a>
-                                </div>
-                            </form>
-                        </div>
-
-                        <script>
-                            // SCRIPT SEARCH AUTO DELETE
-                            function removeEmptyInputs() {
-                                const form = document.getElementById('searchForm');
-                                const inputs = form.querySelectorAll('input, select');
-
-                                inputs.forEach(input => {
-                                    if (!input.value) {
-                                        input.removeAttribute('name');
-                                    }
-                                });
-                            }
-
-                            // SCRIPT UNTUK FORMULIR OPTION 
-                            document.getElementById('academic_faculty').addEventListener('change', function() {
-                                const selectedFaculty = this.value;
-                                const programDropdown = document.getElementById('academic_program');
-
-                                // Show or hide options based on selected faculty
-                                for (let option of programDropdown.options) {
-                                    option.style.display = option.getAttribute('data-faculty') === selectedFaculty || option.value === '' ? 'block' : 'none';
-                                }
-                            });
-                        </script>
-                        <!-- Filter END -->
-
-                        <hr>
-                        <div class="table-responsive">
-                            <table class="table table-bordered text-center" id="dataTabel">
-                                <thead>
-                                    <tr>
-                                        <th>No</th> <!-- Kolom nomor urut -->
-                                        <th>NIM</th>
-                                        <th>Nama Lengkap</th>
-                                        <th>Jurusan</th>
-                                        <th>Program Studi</th>
-                                        <th>Angkatan</th>
-                                        <th>Dibuat Pada</th>
-                                        <th>Terakhir Diupdate</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <!-- Data akan dimuat di sini melalui AJAX -->
-                                </tbody>
-                            </table>
-
-                            <script>
-                                $(document).ready(function() {
-                                    function add_grid() {
+                                           function add_grid() {
                                             var id = ++fields_sum;
                                             fields_id.push(id);
 
@@ -2490,43 +1955,287 @@
                                         var fields_id = []; // Array untuk menyimpan ID field
 
                                         function add_single_line() {
-    var id = ++fields_sum;
-    fields_id.push(id);
-    console.log('Adding question with ID:', id); // Debugging
+                                            var id = ++fields_sum;
+                                            fields_id.push(id);
+                                            console.log('Adding question with ID:', id); // Debugging
 
-    var single_field = $('<li id="' + id + '" class="single question_fields">'
-        + '<div class="field_header">'
-        + '<div class="field_buttons_edit">'
-        + '<a href="#" class="edit_quest">edit</a>'
-        + '<a href="#" class="done_quest">done</a>'
-        + '<a href="#" class="delete_quest">delete</a>'
-        + '</div>'
-        + '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">'
-        + 'Single Line Text: ' + id
-        + '</div>'
-        + '</div>'
-        + '<div class="field_container">'
-        + '<div class="single_edit_state">'
-        + '<div class="single_line">'
-        + 'Question Title <input type="text" name="questions[' + id + '][title]" class="question_title"/><br />'
-        + 'Info <input type="text" name="questions[' + id + '][info]" class="question_info"/>' 
-        + '</div>'
-        + '</div>'
-        + '<div class="single_view_state">'
-        + '<div class="single_line_text">Question Text?</div>'
-        + '<div class="single_line_answer"><input type="text" name="questions[' + id + '][answer]" /></div>'
-        + '</div>'
-        + '</div>'
-        + '</li>');
+                                            var single_field = $('<li id="' + id + '" class="single question_fields">'
+                                                + '<div class="field_header">'
+                                                + '<div class="field_buttons_edit">'
+                                                + '<a href="#" class="edit_quest">edit</a>'
+                                                + '<a href="#" class="done_quest">done</a>'
+                                                + '<a href="#" class="delete_quest">delete</a>'
+                                                + '</div>'
+                                                + '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">'
+                                                + 'Single Line Text: ' + id
+                                                + '</div>'
+                                                + '</div>'
+                                                + '<div class="field_container">'
+                                                + '<div class="single_edit_state">'
+                                                + '<div class="single_line">'
+                                                + 'Question Title <input type="text" name="questions[' + id + '][title]" class="question_title"/><br />'
+                                                + 'Info <input type="text" name="questions[' + id + '][info]" class="question_info"/>' 
+                                                + '</div>'
+                                                + '</div>'
+                                                + '<div class="single_view_state">'
+                                                + '<div class="single_line_text">Question Text?</div>'
+                                                + '<div class="single_line_answer"><input type="text" name="questions[' + id + '][answer]" /></div>'
+                                                + '</div>'
+                                                + '</div>'
+                                                + '</li>');
 
-    console.log('Appending new question field'); // Debugging
-    $("#sortable").append(single_field);
+                                            console.log('Appending new question field'); // Debugging
+                                            $("#sortable").append(single_field);
 
-    single_field.find('.done_quest, .edit_quest, .delete_quest').click(function() {
-        done_edit_delete_quest($(this));
-    });
-}
-                                        // Inisialisasi sortable
+                                            single_field.find('.done_quest, .edit_quest, .delete_quest').click(function() {
+                                                done_edit_delete_quest($(this));
+                                            });
+                                        }
+                                        
+                                    </script>
+
+        <!-- OPEN TAB -->
+        <script>
+            function openTab(evt, tabId) {
+                // Sembunyikan semua tab content
+                var tabcontent = document.getElementsByClassName("tab-content");
+                for (var i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none"; // Sembunyikan semua tab
+                }
+
+                // Tampilkan tab yang dipilih
+                document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
+
+                // Menandai tombol tab yang aktif
+                var tablinks = document.getElementsByClassName("nav-link");
+                for (var i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", ""); // Hilangkan kelas active dari semua tab
+                }
+
+                // Tambahkan kelas active pada tombol yang ditekan
+                evt.currentTarget.className += " active";
+            }
+        </script>
+
+        <script>
+            function openTab(evt, tabId) {
+                // Sembunyikan semua tab content
+                var tabcontent = document.getElementsByClassName("tab-content");
+                for (var i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none"; // Sembunyikan semua tab
+                }
+
+                // Tampilkan tab yang dipilih
+                document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
+
+                // Menandai tombol tab yang aktif
+                var tablinks = document.getElementsByClassName("kuesioner");
+                for (var i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", ""); // Hilangkan kelas active dari semua tab
+                }
+
+                // Tambahkan kelas active pada tombol yang ditekan
+                evt.currentTarget.className += " active";
+            }
+        </script>
+        <!-- OPEN TAB END -->
+        <!-- JS -->
+        <!-- END: Content-->
+
+        <!-- BEGIN: Content-->
+
+        <!-- CRUD START-->
+        <div class="row ml-2 mr-2">
+            <div class="col-lg-12 col-md-12 ">
+
+                <!-- Table Kuesioner START-->
+                <div class="card tab-content" id="dataTabel" style="display:none;">
+                    <div class="card-header ml-2 mr-2">
+                        <div class="d-flex justify-content-between">
+                            <h2>Kuesioner Answer</h2>
+
+
+                        </div>
+                        <hr>
+
+                        <!-- Filter START -->
+                        <div>
+                            <form method="get" action="/carianswer" id="searchForm" onsubmit="removeEmptyInputs()">
+                                <div class="d-flex align-items-center justify-content">
+                                    <input type="text" name="carianswer" id="name" class="form-control" placeholder="Cari Nama atau NIM" style="margin-right: 10px; width:22%;">
+                                    <!--  Fakultas Dropdown -->
+                                    <select name="carianswer" id="academic_faculty" class="form-control" style="margin-right: 10px; width:22%;">
+                                        <option value="">Jurusan</option>
+                                        <option value="Teknik Sipil">Teknik Sipil</option>
+                                        <option value="Teknik Mesin">Teknik Mesin</option>
+                                        <option value="Teknik Refrigasi dan Tata Udara">Teknik Refrigasi dan Tata Udara</option>
+                                        <option value="Teknik Konversi Energi">Teknik Konversi Energi</option>
+                                        <option value="Teknik Elektro">Teknik Elektro</option>
+                                        <option value="Teknik Kimia">Teknik Kimia</option>
+                                        <option value="Teknik Komputer dan Informatika">Teknik Komputer dan Informatika</option>
+                                        <option value="Akuntansi">Akuntansi</option>
+                                        <option value="Administrasi Niaga">Administrasi Niaga</option>
+                                        <option value="Bahasa Inggris">Bahasa Inggris</option>
+                                    </select>
+
+                                    <!-- Program Studi Dropdown -->
+                                    <select name="carianswer" id="academic_program" class="form-control" style="margin-right: 10px; width:22%;">
+                                        <option value="">Program Studi</option>
+                                        <!-- Teknik Sipil -->
+                                        <option data-faculty="Teknik Sipil" value="D-3 Teknik Konstruksi Sipil">D-3 Teknik Konstruksi Sipil</option>
+                                        <option data-faculty="Teknik Sipil" value="D-3 Teknik Konstruksi Gedung">D-3 Teknik Konstruksi Gedung</option>
+                                        <option data-faculty="Teknik Sipil" value="D-4 Teknik Perancangan Jalan dan Jembatan">D-4 Teknik Perancangan Jalan dan Jembatan</option>
+                                        <option data-faculty="Teknik Sipil" value="D-4 Teknik Perawatan dan Perbaikan Gedung">D-4 Teknik Perawatan dan Perbaikan Gedung</option>
+                                        <option data-faculty="Teknik Sipil" value="S-2 Rekayasa Infrastruktur">S-2 Rekayasa Infrastruktur</option>
+
+                                        <!-- Teknik Mesin -->
+                                        <option data-faculty="Teknik Mesin" value="D-3 Teknik Mesin">D-3 Teknik Mesin</option>
+                                        <option data-faculty="Teknik Mesin" value="D-3 Teknik Aeronautika">D-3 Teknik Aeronautika</option>
+                                        <option data-faculty="Teknik Mesin" value="D-4 Teknik Perancangan dan Konstruksi Mesin">D-4 Teknik Perancangan dan Konstruksi Mesin</option>
+                                        <option data-faculty="Teknik Mesin" value="D-4 Proses Manufaktur">D-4 Proses Manufaktur</option>
+
+                                        <!-- Teknik Refrigasi dan Tata Udara -->
+                                        <option data-faculty="Teknik Refrigasi dan Tata Udara" value="D-3 Teknik Pendingin dan Tata Udara">D-3 Teknik Pendingin dan Tata Udara</option>
+                                        <option data-faculty="Teknik Refrigasi dan Tata Udara" value="D-4 Teknik Pendingin dan Tata Udara">D-4 Teknik Pendingin dan Tata Udara</option>
+
+                                        <!-- Teknik Konversi Energi -->
+                                        <option data-faculty="Teknik Konversi Energi" value="D-3 Teknik Konversi Energi">D-3 Teknik Konversi Energi</option>
+                                        <option data-faculty="Teknik Konversi Energi" value="D-4 Teknik Pembangkit Tenaga Listrik">D-4 Teknik Pembangkit Tenaga Listrik</option>
+                                        <option data-faculty="Teknik Konversi Energi" value="D-4 Teknik Konservasi Energi">D-4 Teknik Konservasi Energi</option>
+
+                                        <!-- Teknik Elektro -->
+                                        <option data-faculty="Teknik Elektro" value="D-3 Teknik Elektronika">D-3 Teknik Elektronika</option>
+                                        <option data-faculty="Teknik Elektro" value="D-3 Teknik Listrik">D-3 Teknik Listrik</option>
+                                        <option data-faculty="Teknik Elektro" value="D-3 Teknik Telekomunikasi">D-3 Teknik Telekomunikasi</option>
+                                        <option data-faculty="Teknik Elektro" value="D-4 Teknik Elektronika">D-4 Teknik Elektronika</option>
+                                        <option data-faculty="Teknik Elektro" value="D-4 Teknik Telekomunikasi">D-4 Teknik Telekomunikasi</option>
+                                        <option data-faculty="Teknik Elektro" value="D-4 Teknik Otomasi Industri">D-4 Teknik Otomasi Industri</option>
+
+                                        <!-- Teknik Kimia -->
+                                        <option data-faculty="Teknik Kimia" value="D-3 Teknik Kimia">D-3 Teknik Kimia</option>
+                                        <option data-faculty="Teknik Kimia" value="D-3 Analis Kimia">D-3 Analis Kimia</option>
+                                        <option data-faculty="Teknik Kimia" value="D-4 Teknik Kimia Produksi Bersih">D-4 Teknik Kimia Produksi Bersih</option>
+
+                                        <!-- Teknik Komputer dan Informatika -->
+                                        <option data-faculty="Teknik Komputer dan Informatika" value="D-3 Teknik Informatika">D-3 Teknik Informatika</option>
+                                        <option data-faculty="Teknik Komputer dan Informatika" value="D-4 Teknik Informatika">D-4 Teknik Informatika</option>
+
+                                        <!-- Akuntansi -->
+                                        <option data-faculty="Akuntansi" value="D-3 Akuntansi">D-3 Akuntansi</option>
+                                        <option data-faculty="Akuntansi" value="D-3 Keuangan dan Perbankan">D-3 Keuangan dan Perbankan</option>
+                                        <option data-faculty="Akuntansi" value="D-4 Akutansi Manajemen Pemerintahan">D-4 Akutansi Manajemen Pemerintahan</option>
+                                        <option data-faculty="Akuntansi" value="D-4 Akutansi">D-4 Akutansi</option>
+                                        <option data-faculty="Akuntansi" value="D-4 Keuangan Syariah">D-4 Keuangan Syariah</option>
+                                        <option data-faculty="Akuntansi" value="S-2 Keuangan dan Perbankan Syariah">D-4 Keuangan dan Perbankan Syariah</option>
+
+                                        <!-- Administrasi Niaga -->
+                                        <option data-faculty="Administrasi Niaga" value="D-3 Administrasi Bisnis">D-3 Administrasi Bisnis</option>
+                                        <option data-faculty="Administrasi Niaga" value="D-3 Manajemen Pemasaran">D-3 Manajemen Pemasaran</option>
+                                        <option data-faculty="Administrasi Niaga" value="D-3 Usaha Perjalanan Wisata">D-3 Usaha Perjalanan Wisata</option>
+                                        <option data-faculty="Administrasi Niaga" value="D-4 Manajemen Aset">D-4 Manajemen Aset</option>
+                                        <option data-faculty="Administrasi Niaga" value="D-4 Manajemen Bisnis">D-4 Manajemen Bisnis</option>
+                                        <option data-faculty="Administrasi Niaga" value="D-4 Manajemen Pemasaran">D-4 Manajemen Pemasaran</option>
+                                        <option data-faculty="Administrasi Niaga" value="D-4 Destinasi Pariwisata">D-4 Destinasi Pariwisata</option>
+
+                                        <!-- Bahasa Inggris -->
+                                        <option data-faculty="Bahasa Inggris" value="D-3 Bahasa Inggris">D-3 Bahasa Inggris</option>
+                                    </select>
+
+                                    <!-- Angkatan Dropdown -->
+                                    <select name="carianswer" id="angkatan" class="form-control" style="margin-right: 10px; width:22%;">
+                                        <option value="">Angkatan</option>
+                                        <option value="2015">2015</option>
+                                        <option value="2016">2016</option>
+                                        <option value="2017">2017</option>
+                                        <option value="2018">2018</option>
+                                        <option value="2019">2019</option>
+                                        <option value="2020">2020</option>
+                                        <option value="2021">2021</option>
+                                        <option value="2022">2022</option>
+                                        <option value="2023">2023</option>
+                                        <option value="2024">2024</option>
+                                        <option value="2025">2025</option>
+                                        <option value="2026">2026</option>
+                                        <!-- Tambahkan tahun sesuai kebutuhan -->
+                                    </select>
+
+                                    <select name="carianswer" id="status" class="form-control" style="margin-right: 10px; width:22%;">
+                                        <option value="">Status</option>
+                                        <option value="">Selesai</option>
+                                        <option value="">On Going</option>
+                                        <option value="">Belum Mengisi</option>
+                                    </select>
+                                </div>
+
+                                <div class="mt-1">
+                                    <button type="submit" class="btn btn-primary" style="font-size:12px; padding:5px 6px; height:25px; color: white;">Filter</button>
+                                    <a class="btn btn-info btn-sm" style='font-size:10px;padding:2px 5px;color:white;' onclick="openTab(event, 'dataTabel')">Clear</a>
+
+                                    <?php
+                                    $request = \config\Services::request();
+                                    $cari = $request->getGet('carianswer');
+                                    if ($cari != '') {
+                                        $param = "?carianswer=" . $cari;
+                                    } else {
+                                        $param = "";
+                                    }
+                                    ?>
+                                    <a href="<?= site_url('/downloadCSV') ?>?carianswer=<?= isset($_GET['carianswer']) ? $_GET['carianswer'] : '' ?>" class="btn btn-success" style="font-size:12px; padding:5px 6px; height:25px; color: white;">Download CSV</a>
+                                </div>
+                            </form>
+                        </div>
+
+                        <script>
+                            // SCRIPT SEARCH AUTO DELETE
+                            function removeEmptyInputs() {
+                                const form = document.getElementById('searchForm');
+                                const inputs = form.querySelectorAll('input, select');
+
+                                inputs.forEach(input => {
+                                    if (!input.value) {
+                                        input.removeAttribute('name');
+                                    }
+                                });
+                            }
+
+                            // SCRIPT UNTUK FORMULIR OPTION 
+                            document.getElementById('academic_faculty').addEventListener('change', function() {
+                                const selectedFaculty = this.value;
+                                const programDropdown = document.getElementById('academic_program');
+
+                                // Show or hide options based on selected faculty
+                                for (let option of programDropdown.options) {
+                                    option.style.display = option.getAttribute('data-faculty') === selectedFaculty || option.value === '' ? 'block' : 'none';
+                                }
+                            });
+                        </script>
+                        <!-- Filter END -->
+
+                        <hr>
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center" id="dataTabel">
+                                <thead>
+                                    <tr>
+                                        <th>No</th> <!-- Kolom nomor urut -->
+                                        <th>NIM</th>
+                                        <th>Nama Lengkap</th>
+                                        <th>Jurusan</th>
+                                        <th>Program Studi</th>
+                                        <th>Angkatan</th>
+                                        <th>Dibuat Pada</th>
+                                        <th>Terakhir Diupdate</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Data akan dimuat di sini melalui AJAX -->
+                                </tbody>
+                            </table>
+                            
+                            <script>
+                                
+                                $(document).ready(function() {
+                                   // Inisialisasi sortable
                                         $(function() {
                                             $("#sortable").sortable({
                                                 handle: ".field_header"
