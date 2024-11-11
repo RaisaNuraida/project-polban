@@ -87,41 +87,14 @@
             <div class="content-header row"></div>
             <div class="content-body">
                 <div class="row justify-content-center">
-                    <div class="col-lg-8 col-md-10">
+                    <div class="col-lg-6 col-md-10">
                         <h1 class="text-center">Tracer Study</h1>
                         <div class="card">
                             <div class="card-header container p-1 m-0">
-                                <h3><strong>Halaman Users</strong></h3>
+                                <h3><strong>Edit Profile</strong></h3>
                                 <hr>
                                 <div class="table-responsive">
-                                    <table class="table table-bordered text-center">
-                                        <thead>
-                                            <tr>
-                                                <td>NO</td>
-                                                <td>Judul</td>
-                                                <td>Aksi</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php if (!empty($user)) : ?>
-                                                <?php $no = 1; ?>
-                                                <?php foreach ($user as $row) : ?>
-                                                    <tr>
-                                                        <td><?= $no++; ?></td>
-                                                        <td><?= $row['title']; ?></td>
-                                                        <td>
-                                                            <a class="btn btn-danger btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Lihat</a>
-                                                        </td>
-                                                    </tr>
-                                                <?php endforeach; ?>
-                                            <?php else : ?>
-                                                <tr>
-                                                    <td colspan="3" class="text-center">No data found</td>
-                                                </tr>
-                                            <?php endif; ?>
-
-                                        </tbody>
-                                    </table>
+                                    
                                 </div>
 
                             </div>

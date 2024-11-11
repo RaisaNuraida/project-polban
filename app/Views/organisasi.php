@@ -117,6 +117,13 @@
                         </li>
                     </ul>
                 </li>
+
+                <li class="menu-item">
+                    <a href="<?= base_url('/pengaturan') ?>">
+                        <i class="ft-file"></i>
+                        <span class="menu-title">Pengaturan Situs</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -127,34 +134,118 @@
             <div class="content-wrapper-before"></div>
             <div class="content-header row"></div>
             <div></div>
-            <div class="content-body">
+            <s="content-body">
 
                 <!-- CRUD START-->
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
+                        <div class="card">
+                            <!-- Table Kuesioner START-->
+                            <div class="card tab-content" id="user">
+                                <div class="card-header ml-2 mr-2">
+                                    <div class="d-flex justify-content-between">
+                                        <h2>Data Organisasi</h2>
+                                        <a class="btn btn-primary kuesioner" style="font-size:14px;padding:2px 5px;color:white; height:25px;" onclick="openTab(event, 'tambahorganisasi')">
+                                            Tambah Organisasi
+                                        </a>
 
-                        <!-- Table Kuesioner START-->
-                        <div class="card tab-content">
-                            <div class="card-header ml-2 mr-2">
+                                    </div>
+                                    <div>
+                                        <nav class="nav mb-1">
+                                            <a class="active nav-link  btn-outline-primary" onclick="openTab(event, 'user')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Semua</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'jurusan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Jurusan</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'prodi')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Prodi</a>
+                                        </nav>
+                                    </div>
+                                    <hr>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered text-center">
+                                            <tbody>
+
+                                                <?php if (!empty($organisasi)) : ?>
+                                                    <?php foreach ($organisasi as $row) : ?>
+                                                        <tr>
+                                                            <td><?= esc($row['academic_group']) ?></td>
+                                                            <td><?= esc($row['academic_program']) ?></td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                <?php else : ?>
+                                                    <tr>
+                                                        <td colspan="2" class="text-center">No data found</td>
+                                                    </tr>
+                                                <?php endif; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sunting Kuesioner START-->
+
+                            <div class="card tab-content" id="tambahorganisasi" style="display:none;">
+                                <div class="card-header ml-2 mr-2">
+                                    <div class="d-flex justify-content-between">
+                                        <h2>tambah organisasi</h2>
+                                    </div>
+                                    <hr>
+
+                                    <div class="m-2">
+                                        <form action="<?= base_url('/organisasi') ?>" method="post">
+                                            <?php if (session()->getFlashdata('success')): ?>
+                                                <div class="alert alert-success">
+                                                    <?= session()->getFlashdata('success'); ?>
+                                                </div>
+                                            <?php endif; ?>
+
+                                            <?php if (session()->getFlashdata('error')): ?>
+                                                <div class="alert alert-danger">
+                                                    <?= session()->getFlashdata('error'); ?>
+                                                </div>
+                                            <?php endif; ?>
+                                            <div class="form-group">
+                                                <label for="exampleInputTitle">Jurusan</label>
+                                                <input type="text" class="form-control" id="fakultas" name="fakultas" style="margin-right: 10px;  width:42%;" placeholder="Masukkan nama jurusan">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputDeskripsi">Prodi</label>
+                                                <input type="text" class="form-control" id="program" name="program" style="margin-right: 10px;  width:42%;" placeholder="Masukkan nama prodi">
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            <button href="<?= base_url('/organisasi') ?>" class="btn btn-danger">Batal</button>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="container mt-2 tab-content" id="jurusan" style="display:none;">
                                 <div class="d-flex justify-content-between">
-                                    <h2>Data Organisasi</h2>
+                                    <h2>Data Fakultas</h2>
                                     <a class="btn btn-primary kuesioner" style="font-size:14px;padding:2px 5px;color:white; height:25px;" onclick="openTab(event, 'tambahorganisasi')">
                                         Tambah Organisasi
                                     </a>
 
                                 </div>
-                                <hr>
+                                <div>
+                                    <nav class="nav mb-1">
+                                        <a class=" nav-link  btn-outline-primary" onclick="openTab(event, 'user')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Semua</a>
+                                        <a class="nav-link  btn-outline-primary" onclick="openTab(event, 'jurusan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Jurusan</a>
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'prodi')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Prodi</a>
+                                    </nav>
+                                </div>
                                 <hr>
                                 <div class="table-responsive">
-                                    <table class="table table-bordered text-center">
+                                    <table class="table table-bordered">
                                         <tbody>
 
                                             <?php if (!empty($organisasi)) : ?>
                                                 <?php foreach ($organisasi as $row) : ?>
-                                                    <tr>
-                                                        <td><?= esc($row['academic_faculty']) ?></td>
-                                                        <td><?= esc($row['academic_program']) ?></td>
-                                                    </tr>
+                                                    <?php if (!empty($row['academic_group'])) : ?> <!-- Cek apakah academic_group tidak kosong -->
+                                                        <tr>
+                                                            <td><?= esc($row['academic_group']) ?></td>
+                                                        </tr>
+                                                    <?php endif; ?>
                                                 <?php endforeach; ?>
                                             <?php else : ?>
                                                 <tr>
@@ -165,72 +256,77 @@
                                     </table>
                                 </div>
                             </div>
+
+
+                            <div class="container mt-2 tab-content" id="prodi" style="display:none;">
+                                <div class="d-flex justify-content-between">
+                                    <h2>Data Prodi</h2>
+                                    <a class="btn btn-primary kuesioner" style="font-size:14px;padding:2px 5px;color:white; height:25px;" onclick="openTab(event, 'tambahorganisasi')">
+                                        Tambah Organisasi
+                                    </a>
+
+                                </div>
+                                <div>
+                                    <nav class="nav mb-1">
+                                        <a class=" nav-link  btn-outline-primary" onclick="openTab(event, 'user')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Semua</a>
+                                        <a class="nav-link  btn-outline-primary" onclick="openTab(event, 'jurusan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Jurusan</a>
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'prodi')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Prodi</a>
+                                    </nav>
+                                </div>
+                                
+                                <hr>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <tbody>
+
+                                            <?php if (!empty($organisasi)) : ?>
+                                                <?php foreach ($organisasi as $row) : ?>
+                                                    <?php if (!empty($row['academic_program'])) : ?> <!-- Cek apakah academic_group tidak kosong -->
+                                                        <tr>
+                                                            <td><?= esc($row['academic_program']) ?></td>
+                                                        </tr>
+                                                    <?php endif; ?>
+                                                <?php endforeach; ?>
+                                            <?php else : ?>
+                                                <tr>
+                                                    <td colspan="2" class="text-center">No data found</td>
+                                                </tr>
+                                            <?php endif; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                                
+                                
                         </div>
                     </div>
                 </div>
-                <!-- Sunting Kuesioner START-->
 
-                <div class="card tab-content" id="tambahorganisasi" style="display:none;">
-                    <div class="card-header">
-                        <div class="d-flex justify-content-between">
-                            <h2>tambah organisasi</h2>
-                        </div>
-                        <hr>
-
-                        <div class="m-2">
-                            <form action="<?= base_url('/organisasi') ?>" method="post">
-                            <?php if (session()->getFlashdata('success')): ?>
-                                    <div class="alert alert-success">
-                                        <?= session()->getFlashdata('success'); ?>
-                                    </div>
-                                <?php endif; ?>
-
-                                <?php if (session()->getFlashdata('error')): ?>
-                                    <div class="alert alert-danger">
-                                        <?= session()->getFlashdata('error'); ?>
-                                    </div>
-                                <?php endif; ?>
-                                <div class="form-group">
-                                    <label for="exampleInputTitle">Jurusan</label>
-                                    <input type="text" class="form-control" id="fakultas" name="fakultas" style="margin-right: 10px;  width:42%;" placeholder="Masukkan nama jurusan">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputDeskripsi">Prodi</label>
-                                    <input type="text" class="form-control" id="program" name="program" style="margin-right: 10px;  width:42%;" placeholder="Masukkan nama prodi">
-                                </div>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                <button href="<?= base_url('/organisasi') ?>" class="btn btn-danger">Batal</button>
-                               
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-
-                <script>
-                    function openTab(evt, tabId) {
-                        // Sembunyikan semua tab content
-                        var tabcontent = document.getElementsByClassName("tab-content");
-                        for (var i = 0; i < tabcontent.length; i++) {
-                            tabcontent[i].style.display = "none"; // Sembunyikan semua tab
-                        }
-
-                        // Tampilkan tab yang dipilih
-                        document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
-
-                        // Menandai tombol tab yang aktif
-                        var tablinks = document.getElementsByClassName("nav-link");
-                        for (var i = 0; i < tablinks.length; i++) {
-                            tablinks[i].className = tablinks[i].className.replace(" active", ""); // Hilangkan kelas active dari semua tab
-                        }
-
-                        // Tambahkan kelas active pada tombol yang ditekan
-                        evt.currentTarget.className += " active";
-                    }
-                </script>
-
-            </div>
         </div>
+        <script>
+            function openTab(evt, tabId) {
+                // Sembunyikan semua tab content
+                var tabcontent = document.getElementsByClassName("tab-content");
+                for (var i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none"; // Sembunyikan semua tab
+                }
+
+                // Tampilkan tab yang dipilih
+                document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
+
+                // Menandai tombol tab yang aktif
+                var tablinks = document.getElementsByClassName("nav-link");
+                for (var i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", ""); // Hilangkan kelas active dari semua tab
+                }
+
+                // Tambahkan kelas active pada tombol yang ditekan
+                evt.currentTarget.className += " active";
+            }
+        </script>
+
+    </div>
+    </div>
     </div>
     <!-- Edit Kuesioner END -->
 

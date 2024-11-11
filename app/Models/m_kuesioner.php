@@ -21,7 +21,7 @@ class m_kuesioner extends Model
     public function getUsers()
     {
         $db = \Config\Database::connect();
-        $query = $db->query('SELECT id, title, FROM kuesioner_kuesioner');
+        $query = $db->query('SELECT id, title FROM kuesioner_kuesioner');
         return $query->getResultArray();  // Mengembalikan data sebagai array
 
     }

@@ -197,10 +197,14 @@
                                                         <td><?= $row['deskripsi']; ?></td>
                                                         <td>
                                                             <?= $row['entries']; ?> <br>
-                                        
 
-                                                                <a class="btn btn-info btn-sm" style='font-size:10px;padding:2px 5px;color:white;' onclick="openTab(event, 'dataTabel')">Lihat</a>
-                                
+
+                                                            <a
+                                                                class="btn btn-info btn-sm lihat-btn"
+                                                                style='font-size:10px;padding:2px 5px;color:white;'
+                                                                data-logic="<?= esc($row['conditional_logic']) ?>"
+                                                                onclick="openTab(event, 'dataTabel')">Lihat
+                                                            </a>
                                                         </td>
                                                         <td><?= $row['active_status']; ?></td>
                                                         <td>Show if : <?= $row['conditional_logic']; ?></td>
@@ -228,6 +232,31 @@
                                 </div>
                             </div>
                         </div>
+
+
+                        <script>
+                            $(document).ready(function() {
+                                $('.lihat-btn').on('click', function() {
+                                    const conditionalLogic = $(this).data('logic');
+
+                                    // Mengirim AJAX request untuk memfilter data
+                                    $.ajax({
+                                        url: '/c_kuesioner/filterData', // Ganti dengan URL yang sesuai
+                                        method: 'GET',
+                                        data: {
+                                            logic: conditionalLogic
+                                        },
+                                        success: function(response) {
+                                            // Tampilkan data yang difilter di tab "dataTabel"
+                                            $('#dataTabel').html(response);
+                                        },
+                                        error: function() {
+                                            alert('Gagal memuat data.');
+                                        }
+                                    });
+                                });
+                            });
+                        </script>
                         <!-- Table Kuesioner END -->
 
                         <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">

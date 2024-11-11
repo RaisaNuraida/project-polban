@@ -18,11 +18,12 @@ $routes->get('/kuesionerkuesioner', 'c_kuesioner::index');
 $routes->get('/', 'Home::dataAdministrator');
 $routes->get('/', 'Home::dataAtasan');
 $routes->get('importdata', 'Import::index');
-$routes->get('/tracer', 'Home::tracer');
+$routes->get('/halamantracer', 'Home::tracer');
 $routes->get('/halamanlogin', 'login::halamanlogin');
 $routes->get('/login', 'login::login');
 $routes->get('/loginuser', 'login::halamanloginuser');
-$routes->get('/indexuser', 'login::indexuser');
+$routes->get('/halamanuser', 'login::indexuser');
+$routes->get('/indexuser', 'c_kuesioner::indexuser');
 $routes->get('/index', 'login::index');
 $routes->get('/tabeluser', 'c_kuesioner::indexuser');
 $routes->get('/kuesionerkuesioner', 'dataisian::dataisian');
@@ -38,6 +39,7 @@ $routes->get('/organisasiindex', 'Home::organisasi');
 $routes->get('/organisasi', 'c_organisasi::tabelorganisasi');
 $routes->get('/data', 'welcomepage::data');
 $routes->get('/pengaturan', 'Home::setting');
+$routes->get('/halamaneditprofile', 'editprofile::index');
 
 
 $routes->post('/pengaturan', 'pengaturan::submitPengaturan');
