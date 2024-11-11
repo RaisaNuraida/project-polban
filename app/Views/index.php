@@ -142,412 +142,435 @@
                         <div class="card">
 
                             <!-- Table Data User START-->
-                            <div class="container ml-2 mr-2 mt-2 tab-content" id="user" style="display:block">
-                                <div class="d-flex justify-content-between ">
-                                    <h2 class="">Data Pengguna</h2>
-                                    <a class="btn btn-primary" style="font-size:14px;padding:2px 5px;color:white; height:25px;" href="<?= base_url('importdata') ?>">
-                                        Import Data
-                                    </a>
-                                </div>
+                            <div class="mr-2 ml-2">
+                                <div class="container mt-2 tab-content" id="user" style="display:block">
+                                    <!-- Header -->
+                                    <div class="d-flex justify-content-between ">
+                                        <h2 class="">Data Pengguna</h2>
+                                        <a class="btn btn-primary" style="font-size:14px;padding:2px 5px;color:white; height:25px;" href="<?= base_url('importdata') ?>">
+                                            Import Data
+                                        </a>
+                                    </div>
 
-                                <div>
-                                    <nav class="nav mb-1">
-                                        <a class="active nav-link  btn-outline-primary" onclick="openTab(event, 'user')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Semua Data</a>
-                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'administrator')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Administrator</a>
-                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'atasan')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Atasan</a>
-                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'alumni')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Alumni</a>
-                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'perusahaan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Perusahaan</a>
-                                    </nav>
-                                </div>
+                                    <div>
+                                        <nav class="nav mb-1">
+                                            <a class="active nav-link  btn-outline-primary" onclick="openTab(event, 'user')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Semua Data</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'administrator')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Administrator</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'atasan')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Atasan</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'alumni')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Alumni</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'perusahaan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Perusahaan</a>
+                                        </nav>
+                                    </div>
+                                    <!-- Header END-->
 
-                                <hr>
-                                <!-- Filter start -->
-                                <div>
-                                    <form method="get" action="<?= base_url(relativePath: '/cariuser') ?>" onsubmit="removeEmptyInputs()">
-                                        <input type="text" class="form-control" name="cariuser" id="cariuser" placeholder="Cari..." style="margin-right: 10px;  width:22%;">
-                                        <div>
-                                            <button href="<?= base_url('/cariuser') ?>" type="submit" class="btn btn-primary mt-1" style="font-size:12px; padding:5px 6px; height:25px; color: white;">Filter</button>
-                                            <a href="<?= base_url('/') ?>" type="submit" class="btn btn-secondary mt-1" style="font-size:12px; padding:5px 6px; height:25px;  color: white;">Clear</a>
-                                            <a href="" type="submit" class="btn btn-success mt-1" style="font-size:12px; padding:5px 6px; height:25px;  color: white;">Unduh CSV</a>
-                                            <a href="" type="submit" class="btn btn-success mt-1" style="font-size:12px; padding:5px 6px; height:25px; ">Unduh</a>
-                                        </div>
 
-                                    </form>
-                                </div>
+                                    <!-- Filter -->
+                                    <hr>
+                                    <div>
+                                        <form method="get" action="<?= base_url(relativePath: '/cariuser') ?>" onsubmit="removeEmptyInputs()">
+                                            <input type="text" class="form-control" name="cariuser" id="cariuser" placeholder="Cari..." style="margin-right: 10px;  width:22%;">
+                                            <div>
+                                                <button href="<?= base_url('/cariuser') ?>" type="submit" class="btn btn-primary mt-1" style="font-size:12px; padding:5px 6px; height:25px; color: white;">Filter</button>
+                                                <a href="<?= base_url('/') ?>" type="submit" class="btn btn-secondary mt-1" style="font-size:12px; padding:5px 6px; height:25px;  color: white;">Clear</a>
+                                                <a href="" type="submit" class="btn btn-success mt-1" style="font-size:12px; padding:5px 6px; height:25px;  color: white;">Unduh CSV</a>
+                                                <a href="" type="submit" class="btn btn-success mt-1" style="font-size:12px; padding:5px 6px; height:25px; ">Unduh</a>
+                                            </div>
 
-                                <script>
-                                    // SCRIPT SEARCH AUTO DELETE
-                                    function removeEmptyInputs() {
-                                        const form = document.getElementById('searchForm');
-                                        const inputs = form.querySelectorAll('input, select');
+                                        </form>
+                                    </div>
+                                    <!-- Filter End -->
 
-                                        inputs.forEach(input => {
-                                            if (!input.value) {
-                                                input.removeAttribute('name');
-                                            }
-                                        });
-                                    }
-                                </script>
-                                <!-- Filter End -->
+                                    <!-- Script Filter -->
+                                    <script>
+                                        // SCRIPT SEARCH AUTO DELETE
+                                        function removeEmptyInputs() {
+                                            const form = document.getElementById('searchForm');
+                                            const inputs = form.querySelectorAll('input, select');
 
-                                <hr>
-                                <div class="table-responsive">
-                                    <table class="table table-bordered text-center">
-                                        <thead>
-                                            <tr>
-                                                <th>NO</th>
-                                                <th>Nama Lengkap</th>
-                                                <th>Username</th>
-                                                <th>Password</th>
-                                                <th>Email</th>
-                                                <th>Grup</th>
-                                                <th>Dibuat Pada</th>
-                                                <th>Terakhir Diupdate</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php if (!empty($my_data)) : ?>
-                                                <?php $no = 1; ?>
-                                                <?php foreach ($my_data as $row) : ?>
-                                                    <tr>
-                                                        <td><?= $no++; ?></td>
-                                                        <td><?= $row['display_name']; ?></td>
-                                                        <td><?= $row['username']; ?></td>
-                                                        <td><?= $row['password']; ?></td>
-                                                        <td><?= $row['email']; ?></td>
-                                                        <td><?= $row['group']; ?></td>
-                                                        <td><?= $row['created_at']; ?></td>
-                                                        <td><?= $row['updated_at']; ?></td>
-                                                        <td>
-                                                            <button data-target='#updateModal' id='update' data-toggle='modal' data-id="<?= $row['id']; ?>" data-username="<?= $row['username']; ?>" data-email="<?= $row['email']; ?>" data-group="<?= $row['group']; ?>" data-password="<?= $row['password']; ?>" class='btn btn-warning updateModal' style='font-size:10px;padding:2px 5px;color:white;'>Ubah</button>
-                                                            <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
-                                                        </td>
+                                            inputs.forEach(input => {
+                                                if (!input.value) {
+                                                    input.removeAttribute('name');
+                                                }
+                                            });
+                                        }
+                                    </script>
+                                    <!-- Script Filter End -->
 
-                                                    </tr>
-                                                <?php endforeach; ?>
-                                            <?php else : ?>
+                                    <!-- Table Data Users START -->
+
+                                    <hr>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered text-center">
+                                            <thead>
                                                 <tr>
-                                                    <td colspan="9" class="text-center">No data found</td>
+                                                    <th>NO</th>
+                                                    <th>Nama Lengkap</th>
+                                                    <th>Username</th>
+                                                    <th>Password</th>
+                                                    <th>Email</th>
+                                                    <th>Grup</th>
+                                                    <th>Dibuat Pada</th>
+                                                    <th>Terakhir Diupdate</th>
+                                                    <th>Aksi</th>
                                                 </tr>
-                                            <?php endif; ?>
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                <?php if (!empty($my_data)) : ?>
+                                                    <?php $no = 1; ?>
+                                                    <?php foreach ($my_data as $row) : ?>
+                                                        <tr>
+                                                            <td><?= $no++; ?></td>
+                                                            <td><?= $row['display_name']; ?></td>
+                                                            <td><?= $row['username']; ?></td>
+                                                            <td><?= $row['password']; ?></td>
+                                                            <td><?= $row['email']; ?></td>
+                                                            <td><?= $row['group']; ?></td>
+                                                            <td><?= $row['created_at']; ?></td>
+                                                            <td><?= $row['updated_at']; ?></td>
+                                                            <td>
+                                                                <button data-target='#updateModal' id='update' data-toggle='modal' data-id="<?= $row['id']; ?>" data-username="<?= $row['username']; ?>" data-email="<?= $row['email']; ?>" data-group="<?= $row['group']; ?>" data-password="<?= $row['password']; ?>" class='btn btn-warning updateModal' style='font-size:10px;padding:2px 5px;color:white;'>Ubah</button>
+                                                                <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
+                                                            </td>
+
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                <?php else : ?>
+                                                    <tr>
+                                                        <td colspan="9" class="text-center">No data found</td>
+                                                    </tr>
+                                                <?php endif; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                             <!-- Table Data Users END -->
 
 
-                            <div class="container mt-2 tab-content" id="cari" style="display:none;">
-                                <div class="d-flex justify-content-between">
-                                    <h2>Data Administrator</h2>
-                                    <a class="btn btn-primary" style="font-size:14px;padding:2px 5px;color:white; height:25px;" href="<?= base_url('importdata') ?>">
-                                        Import Data
-                                    </a>
-                                </div>
+                            <!-- Table Data Pencarian START -->
+                            <div class="mr-2 ml-2">
+                                <div class="container mt-2 tab-content" id="cari" style="display:none;">
+                                    <div class="d-flex justify-content-between">
+                                        <h2>Data </h2>
+                                        <a class="btn btn-primary" style="font-size:14px;padding:2px 5px;color:white; height:25px;" href="<?= base_url('importdata') ?>">
+                                            Import Data
+                                        </a>
+                                    </div>
 
-                                <div>
-                                    <nav class="nav mb-1">
-                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'user')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Semua Data</a>
-                                        <a class="active nav-link btn-outline-primary" onclick="openTab(event, 'administrator')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Administrator</a>
-                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'atasan')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Atasan</a>
-                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'alumni')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Alumni</a>
-                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'perusahaan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Perusahaan</a>
-                                    </nav>
-                                </div>
+                                    <div>
+                                        <nav class="nav mb-1">
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'user')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Semua Data</a>
+                                            <a class="active nav-link btn-outline-primary" onclick="openTab(event, 'administrator')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Administrator</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'atasan')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Atasan</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'alumni')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Alumni</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'perusahaan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Perusahaan</a>
+                                        </nav>
+                                    </div>
 
-                                <div class="table-responsive">
-                                    <table class="table table-bordered text-center">
-                                        <thead>
-                                            <tr>
-                                                <th>NO</th>
-                                                <th>Nama Lengkap</th>
-                                                <th>Username</th>
-                                                <th>Password</th>
-                                                <th>Email</th>
-                                                <th>Dibuat Pada</th>
-                                                <th>Terakhir Diupdate</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php if (!empty($administrator)) : ?>
-                                                <?php $no = 1; ?>
-                                                <?php foreach ($administrator as $row) : ?>
-                                                    <tr>
-                                                        <td><?= $no++; ?></td>
-                                                        <td><?= $row['display_name']; ?></td>
-                                                        <td><?= $row['username']; ?></td>
-                                                        <td><?= $row['password']; ?></td>
-                                                        <td><?= $row['email']; ?></td>
-                                                        <td><?= $row['created_at']; ?></td>
-                                                        <td><?= $row['updated_at']; ?></td>
-                                                        <td>
-                                                            <button data-target='#updateModal' id='update' data-toggle='modal' data-id="<?= $row['id']; ?>" data-username="<?= $row['username']; ?>" data-email="<?= $row['email']; ?>" data-password="<?= $row['password']; ?>" class='btn btn-warning updateModal' style='font-size:10px;padding:2px 5px;color:white;'>Ubah</button>
-                                                            <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
-                                                        </td>
-                                                    </tr>
-                                                <?php endforeach; ?>
-                                            <?php else : ?>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered text-center">
+                                            <thead>
                                                 <tr>
-                                                    <td colspan="8" class="text-center">No data found</td>
+                                                    <th>NO</th>
+                                                    <th>Nama Lengkap</th>
+                                                    <th>Username</th>
+                                                    <th>Password</th>
+                                                    <th>Email</th>
+                                                    <th>Dibuat Pada</th>
+                                                    <th>Terakhir Diupdate</th>
+                                                    <th>Aksi</th>
                                                 </tr>
-                                            <?php endif; ?>
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                <?php if (!empty($administrator)) : ?>
+                                                    <?php $no = 1; ?>
+                                                    <?php foreach ($administrator as $row) : ?>
+                                                        <tr>
+                                                            <td><?= $no++; ?></td>
+                                                            <td><?= $row['display_name']; ?></td>
+                                                            <td><?= $row['username']; ?></td>
+                                                            <td><?= $row['password']; ?></td>
+                                                            <td><?= $row['email']; ?></td>
+                                                            <td><?= $row['created_at']; ?></td>
+                                                            <td><?= $row['updated_at']; ?></td>
+                                                            <td>
+                                                                <button data-target='#updateModal' id='update' data-toggle='modal' data-id="<?= $row['id']; ?>" data-username="<?= $row['username']; ?>" data-email="<?= $row['email']; ?>" data-password="<?= $row['password']; ?>" class='btn btn-warning updateModal' style='font-size:10px;padding:2px 5px;color:white;'>Ubah</button>
+                                                                <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                <?php else : ?>
+                                                    <tr>
+                                                        <td colspan="8" class="text-center">No data found</td>
+                                                    </tr>
+                                                <?php endif; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
-
+                            <!-- Table Data Pencarian END -->
 
 
                             <!-- Table Data administrator START-->
-                            <div class="container mt-2 tab-content" id="administrator" style="display:none;">
-                                <div class="d-flex justify-content-between">
-                                    <h2>Data Administrator</h2>
-                                    <a class="btn btn-primary" style="font-size:14px;padding:2px 5px;color:white; height:25px;" href="<?= base_url('importdata') ?>">
-                                        Import Data
-                                    </a>
-                                </div>
+                            <div class="mr-2 ml-2">
+                                <div class="container mt-2 tab-content" id="administrator" style="display:none;">
+                                    <div class="d-flex justify-content-between">
+                                        <h2>Data Administrator</h2>
+                                        <a class="btn btn-primary" style="font-size:14px;padding:2px 5px;color:white; height:25px;" href="<?= base_url('importdata') ?>">
+                                            Import Data
+                                        </a>
+                                    </div>
 
-                                <div>
-                                    <nav class="nav mb-1">
-                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'user')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Semua Data</a>
-                                        <a class="active nav-link btn-outline-primary" onclick="openTab(event, 'administrator')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Administrator</a>
-                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'atasan')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Atasan</a>
-                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'alumni')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Alumni</a>
-                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'perusahaan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Perusahaan</a>
-                                    </nav>
-                                </div>
+                                    <div>
+                                        <nav class="nav mb-1">
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'user')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Semua Data</a>
+                                            <a class="active nav-link btn-outline-primary" onclick="openTab(event, 'administrator')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Administrator</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'atasan')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Atasan</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'alumni')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Alumni</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'perusahaan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Perusahaan</a>
+                                        </nav>
+                                    </div>
 
-                                <div class="table-responsive">
-                                    <table class="table table-bordered text-center">
-                                        <thead>
-                                            <tr>
-                                                <th>NO</th>
-                                                <th>Nama Lengkap</th>
-                                                <th>Username</th>
-                                                <th>Password</th>
-                                                <th>Email</th>
-                                                <th>Dibuat Pada</th>
-                                                <th>Terakhir Diupdate</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php if (!empty($administrator)) : ?>
-                                                <?php $no = 1; ?>
-                                                <?php foreach ($administrator as $row) : ?>
-                                                    <tr>
-                                                        <td><?= $no++; ?></td>
-                                                        <td><?= $row['display_name']; ?></td>
-                                                        <td><?= $row['username']; ?></td>
-                                                        <td><?= $row['password']; ?></td>
-                                                        <td><?= $row['email']; ?></td>
-                                                        <td><?= $row['created_at']; ?></td>
-                                                        <td><?= $row['updated_at']; ?></td>
-                                                        <td>
-                                                            <button data-target='#updateModal' id='update' data-toggle='modal' data-id="<?= $row['id']; ?>" data-username="<?= $row['username']; ?>" data-email="<?= $row['email']; ?>" data-password="<?= $row['password']; ?>" class='btn btn-warning updateModal' style='font-size:10px;padding:2px 5px;color:white;'>Ubah</button>
-                                                            <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
-                                                        </td>
-                                                    </tr>
-                                                <?php endforeach; ?>
-                                            <?php else : ?>
+                                    <hr>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered text-center">
+                                            <thead>
                                                 <tr>
-                                                    <td colspan="8" class="text-center">No data found</td>
+                                                    <th>NO</th>
+                                                    <th>Nama Lengkap</th>
+                                                    <th>Username</th>
+                                                    <th>Password</th>
+                                                    <th>Email</th>
+                                                    <th>Dibuat Pada</th>
+                                                    <th>Terakhir Diupdate</th>
+                                                    <th>Aksi</th>
                                                 </tr>
-                                            <?php endif; ?>
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                <?php if (!empty($administrator)) : ?>
+                                                    <?php $no = 1; ?>
+                                                    <?php foreach ($administrator as $row) : ?>
+                                                        <tr>
+                                                            <td><?= $no++; ?></td>
+                                                            <td><?= $row['display_name']; ?></td>
+                                                            <td><?= $row['username']; ?></td>
+                                                            <td><?= $row['password']; ?></td>
+                                                            <td><?= $row['email']; ?></td>
+                                                            <td><?= $row['created_at']; ?></td>
+                                                            <td><?= $row['updated_at']; ?></td>
+                                                            <td>
+                                                                <button data-target='#updateModal' id='update' data-toggle='modal' data-id="<?= $row['id']; ?>" data-username="<?= $row['username']; ?>" data-email="<?= $row['email']; ?>" data-password="<?= $row['password']; ?>" class='btn btn-warning updateModal' style='font-size:10px;padding:2px 5px;color:white;'>Ubah</button>
+                                                                <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                <?php else : ?>
+                                                    <tr>
+                                                        <td colspan="8" class="text-center">No data found</td>
+                                                    </tr>
+                                                <?php endif; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                             <!-- Table Data Administrator END -->
 
 
                             <!-- Table Data atasan START-->
-                            <div class="container mt-2 tab-content" id="atasan" style="display:none;">
-                                <div class="d-flex justify-content-between">
-                                    <h2>Data Atasan</h2>
-                                    <a class="btn btn-primary" style="font-size:14px;padding:2px 5px;color:white; height:25px;" href="<?= base_url('importdata') ?>">
-                                        Import Data
-                                    </a>
-                                </div>
+                            <div class="mr-2 ml-2">
+                                <div class="container mt-2 tab-content" id="atasan" style="display:none;">
+                                    <div class="d-flex justify-content-between">
+                                        <h2>Data Atasan</h2>
+                                        <a class="btn btn-primary" style="font-size:14px;padding:2px 5px;color:white; height:25px;" href="<?= base_url('importdata') ?>">
+                                            Import Data
+                                        </a>
+                                    </div>
 
-                                <div>
-                                    <nav class="nav mb-1">
-                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'user')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Semua Data</a>
-                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'administrator')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Administrator</a>
-                                        <a class="active nav-link btn-outline-primary" onclick="openTab(event, 'atasan')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Atasan</a>
-                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'alumni')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Alumni</a>
-                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'perusahaan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Perusahaan</a>
-                                    </nav>
-                                </div>
+                                    <div>
+                                        <nav class="nav mb-1">
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'user')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Semua Data</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'administrator')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Administrator</a>
+                                            <a class="active nav-link btn-outline-primary" onclick="openTab(event, 'atasan')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Atasan</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'alumni')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Alumni</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'perusahaan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Perusahaan</a>
+                                        </nav>
+                                    </div>
 
-                                <div class="table-responsive">
-                                    <table class="table table-bordered text-center">
-                                        <thead>
-                                            <tr>
-                                                <th>NO</th>
-                                                <th>Nama Lengkap</th>
-                                                <th>Username</th>
-                                                <th>Password</th>
-                                                <th>Email</th>
-
-                                                <th>Dibuat Pada</th>
-                                                <th>Terakhir Diupdate</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php if (!empty($atasan)) : ?>
-                                                <?php $no = 1; ?>
-                                                <?php foreach ($atasan as $row) : ?>
-                                                    <tr>
-                                                        <td><?= $no++; ?></td>
-                                                        <td><?= $row['display_name']; ?></td>
-                                                        <td><?= $row['username']; ?></td>
-                                                        <td><?= $row['password']; ?></td>
-                                                        <td><?= $row['email']; ?></td>
-
-                                                        <td><?= $row['created_at']; ?></td>
-                                                        <td><?= $row['updated_at']; ?></td>
-                                                        <td>
-                                                            <button data-target='#updateModal' id='update' data-toggle='modal' data-id="<?= $row['id']; ?>" data-username="<?= $row['username']; ?>" data-email="<?= $row['email']; ?>" data-password="<?= $row['password']; ?>" class='btn btn-warning updateModal' style='font-size:10px;padding:2px 5px;color:white;'>Ubah</button>
-                                                            <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
-                                                        </td>
-                                                    </tr>
-                                                <?php endforeach; ?>
-                                            <?php else : ?>
+                                    <hr>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered text-center">
+                                            <thead>
                                                 <tr>
-                                                    <td colspan="8" class="text-center">No data found</td>
+                                                    <th>NO</th>
+                                                    <th>Nama Lengkap</th>
+                                                    <th>Username</th>
+                                                    <th>Password</th>
+                                                    <th>Email</th>
+                                                    <th>Dibuat Pada</th>
+                                                    <th>Terakhir Diupdate</th>
+                                                    <th>Aksi</th>
                                                 </tr>
-                                            <?php endif; ?>
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                <?php if (!empty($atasan)) : ?>
+                                                    <?php $no = 1; ?>
+                                                    <?php foreach ($atasan as $row) : ?>
+                                                        <tr>
+                                                            <td><?= $no++; ?></td>
+                                                            <td><?= $row['display_name']; ?></td>
+                                                            <td><?= $row['username']; ?></td>
+                                                            <td><?= $row['password']; ?></td>
+                                                            <td><?= $row['email']; ?></td>
+
+                                                            <td><?= $row['created_at']; ?></td>
+                                                            <td><?= $row['updated_at']; ?></td>
+                                                            <td>
+                                                                <button data-target='#updateModal' id='update' data-toggle='modal' data-id="<?= $row['id']; ?>" data-username="<?= $row['username']; ?>" data-email="<?= $row['email']; ?>" data-password="<?= $row['password']; ?>" class='btn btn-warning updateModal' style='font-size:10px;padding:2px 5px;color:white;'>Ubah</button>
+                                                                <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                <?php else : ?>
+                                                    <tr>
+                                                        <td colspan="8" class="text-center">No data found</td>
+                                                    </tr>
+                                                <?php endif; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                             <!-- Table Data atasan END-->
 
                             <!-- Table Data alumni START-->
-                            <div class="container mt-2 tab-content" id="alumni" style="display:none;">
-                                <div class="d-flex justify-content-between">
-                                    <h2>Data Alumni</h2>
-                                    <a class="btn btn-primary" style="font-size:14px;padding:2px 5px;color:white; height:25px;" href="<?= base_url('importdata') ?>">
-                                        Import Data
-                                    </a>
-                                </div>
+                            <div class="mr-2 ml-2">
+                                <div class="container mt-2 tab-content" id="alumni" style="display:none;">
+                                    <div class="d-flex justify-content-between">
+                                        <h2>Data Alumni</h2>
+                                        <a class="btn btn-primary" style="font-size:14px;padding:2px 5px;color:white; height:25px;" href="<?= base_url('importdata') ?>">
+                                            Import Data
+                                        </a>
+                                    </div>
 
-                                <div>
-                                    <nav class="nav mb-1">
-                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'user')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Semua Data</a>
-                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'administrator')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Administrator</a>
-                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'atasan')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Atasan</a>
-                                        <a class="active nav-link btn-outline-primary" onclick="openTab(event, 'alumni')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Alumni</a>
-                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'perusahaan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Perusahaan</a>
-                                    </nav>
-                                </div>
+                                    <div>
+                                        <nav class="nav mb-1">
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'user')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Semua Data</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'administrator')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Administrator</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'atasan')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Atasan</a>
+                                            <a class="active nav-link btn-outline-primary" onclick="openTab(event, 'alumni')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Alumni</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'perusahaan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Perusahaan</a>
+                                        </nav>
+                                    </div>
 
-                                <div class="table-responsive">
-                                    <table class="table table-bordered text-center">
-                                        <thead>
-                                            <tr>
-                                                <th>NO</th>
-                                                <th>Nama Lengkap</th>
-                                                <th>Username</th>
-                                                <th>Password</th>
-                                                <th>Email</th>
-
-                                                <th>Dibuat Pada</th>
-                                                <th>Terakhir Diupdate</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php if (!empty($alumni)) : ?>
-                                                <?php $no = 1; ?>
-                                                <?php foreach ($alumni as $row) : ?>
-                                                    <tr>
-                                                        <td><?= $no++; ?></td>
-                                                        <td><?= $row['display_name']; ?></td>
-                                                        <td><?= $row['username']; ?></td>
-                                                        <td><?= $row['password']; ?></td>
-                                                        <td><?= $row['email']; ?></td>
-                                                        <td><?= $row['created_at']; ?></td>
-                                                        <td><?= $row['updated_at']; ?></td>
-                                                        <td>
-                                                            <button data-target='#updateModal' id='update' data-toggle='modal' data-id="<?= $row['id']; ?>" data-username="<?= $row['username']; ?>" data-email="<?= $row['email']; ?>" data-password="<?= $row['password']; ?>" class='btn btn-warning updateModal' style='font-size:10px;padding:2px 5px;color:white;'>Ubah</button>
-                                                            <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
-                                                        </td>
-                                                    </tr>
-                                                <?php endforeach; ?>
-                                            <?php else : ?>
+                                    <hr>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered text-center">
+                                            <thead>
                                                 <tr>
-                                                    <td colspan="8" class="text-center">No data found</td>
+                                                    <th>NO</th>
+                                                    <th>Nama Lengkap</th>
+                                                    <th>Username</th>
+                                                    <th>Password</th>
+                                                    <th>Email</th>
+
+                                                    <th>Dibuat Pada</th>
+                                                    <th>Terakhir Diupdate</th>
+                                                    <th>Aksi</th>
                                                 </tr>
-                                            <?php endif; ?>
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                <?php if (!empty($alumni)) : ?>
+                                                    <?php $no = 1; ?>
+                                                    <?php foreach ($alumni as $row) : ?>
+                                                        <tr>
+                                                            <td><?= $no++; ?></td>
+                                                            <td><?= $row['display_name']; ?></td>
+                                                            <td><?= $row['username']; ?></td>
+                                                            <td><?= $row['password']; ?></td>
+                                                            <td><?= $row['email']; ?></td>
+                                                            <td><?= $row['created_at']; ?></td>
+                                                            <td><?= $row['updated_at']; ?></td>
+                                                            <td>
+                                                                <button data-target='#updateModal' id='update' data-toggle='modal' data-id="<?= $row['id']; ?>" data-username="<?= $row['username']; ?>" data-email="<?= $row['email']; ?>" data-password="<?= $row['password']; ?>" class='btn btn-warning updateModal' style='font-size:10px;padding:2px 5px;color:white;'>Ubah</button>
+                                                                <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                <?php else : ?>
+                                                    <tr>
+                                                        <td colspan="8" class="text-center">No data found</td>
+                                                    </tr>
+                                                <?php endif; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                             <!-- Table Data alumni END-->
 
                             <!-- Table Data perusahaan START-->
-                            <div class="container mt-2 tab-content" id="perusahaan" style="display:none;">
-                                <div class="d-flex justify-content-between">
-                                    <h2>Data Perusahaan</h2>
-                                    <a class="btn btn-primary" style="font-size:14px;padding:2px 5px;color:white; height:25px;" href="<?= base_url('importdata') ?>">
-                                        Import Data
-                                    </a>
-                                </div>
+                            <div class="mr-2 ml-2">
+                                <div class="container mt-2 tab-content" id="perusahaan" style="display:none;">
+                                    <div class="d-flex justify-content-between">
+                                        <h2>Data Perusahaan</h2>
+                                        <a class="btn btn-primary" style="font-size:14px;padding:2px 5px;color:white; height:25px;" href="<?= base_url('importdata') ?>">
+                                            Import Data
+                                        </a>
+                                    </div>
 
-                                <div>
-                                    <nav class="nav mb-1">
-                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'user')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Semua Data</a>
-                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'administrator')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Administrator</a>
-                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'atasan')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Atasan</a>
-                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'alumni')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Alumni</a>
-                                        <a class="active nav-link btn-outline-primary " onclick="openTab(event, 'perusahaan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Perusahaan</a>
-                                    </nav>
-                                </div>
+                                    <div>
+                                        <nav class="nav mb-1">
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'user')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Semua Data</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'administrator')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Administrator</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'atasan')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Atasan</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'alumni')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Alumni</a>
+                                            <a class="active nav-link btn-outline-primary " onclick="openTab(event, 'perusahaan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Perusahaan</a>
+                                        </nav>
+                                    </div>
 
-                                <div class="table-responsive">
-                                    <table class="table table-bordered text-center">
-                                        <thead>
-                                            <tr>
-                                                <th>NO</th>
-                                                <th>Nama Lengkap</th>
-                                                <th>Username</th>
-                                                <th>Password</th>
-                                                <th>Email</th>
-                                                <th>Dibuat Pada</th>
-                                                <th>Terakhir Diupdate</th>
-                                                <th>Aksi</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php if (!empty($perusahaan)) : ?>
-                                                <?php $no = 1; ?>
-                                                <?php foreach ($perusahaan as $row) : ?>
-                                                    <tr>
-                                                        <td><?= $no++; ?></td>
-                                                        <td><?= $row['display_name']; ?></td>
-                                                        <td><?= $row['username']; ?></td>
-                                                        <td><?= $row['password']; ?></td>
-                                                        <td><?= $row['email']; ?></td>
-                                                        <td><?= $row['created_at']; ?></td>
-                                                        <td><?= $row['updated_at']; ?></td>
-                                                        <td>
-                                                            <button data-target='#updateModal' id='update' data-toggle='modal' data-id="<?= $row['id']; ?>" data-username="<?= $row['username']; ?>" data-email="<?= $row['email']; ?>" data-password="<?= $row['password']; ?>" class='btn btn-warning updateModal' style='font-size:10px;padding:2px 5px;color:white;'>Ubah</button>
-                                                            <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
-                                                        </td>
-                                                    </tr>
-                                                <?php endforeach; ?>
-                                            <?php else : ?>
+                                    <hr>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered text-center">
+                                            <thead>
                                                 <tr>
-                                                    <td colspan="8" class="text-center">No data found</td>
+                                                    <th>NO</th>
+                                                    <th>Nama Lengkap</th>
+                                                    <th>Username</th>
+                                                    <th>Password</th>
+                                                    <th>Email</th>
+                                                    <th>Dibuat Pada</th>
+                                                    <th>Terakhir Diupdate</th>
+                                                    <th>Aksi</th>
                                                 </tr>
-                                            <?php endif; ?>
-                                        </tbody>
-                                    </table>
+                                            </thead>
+                                            <tbody>
+                                                <?php if (!empty($perusahaan)) : ?>
+                                                    <?php $no = 1; ?>
+                                                    <?php foreach ($perusahaan as $row) : ?>
+                                                        <tr>
+                                                            <td><?= $no++; ?></td>
+                                                            <td><?= $row['display_name']; ?></td>
+                                                            <td><?= $row['username']; ?></td>
+                                                            <td><?= $row['password']; ?></td>
+                                                            <td><?= $row['email']; ?></td>
+                                                            <td><?= $row['created_at']; ?></td>
+                                                            <td><?= $row['updated_at']; ?></td>
+                                                            <td>
+                                                                <button data-target='#updateModal' id='update' data-toggle='modal' data-id="<?= $row['id']; ?>" data-username="<?= $row['username']; ?>" data-email="<?= $row['email']; ?>" data-password="<?= $row['password']; ?>" class='btn btn-warning updateModal' style='font-size:10px;padding:2px 5px;color:white;'>Ubah</button>
+                                                                <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                <?php else : ?>
+                                                    <tr>
+                                                        <td colspan="8" class="text-center">No data found</td>
+                                                    </tr>
+                                                <?php endif; ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                             <!-- Table Data perusahaan END-->
@@ -577,9 +600,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
                 <!-- CRUD END-->
 
             </div>
@@ -621,119 +641,123 @@
                 </div>
             </div>
         </div>
+    </div>
 
-        <script>
-            $('.updateModal').click(function() {
-                // Ambil data dari atribut data-* pada tombol yang diklik
+    <!-- BEGIN: UPDATE MODAL -->
+    <script>
+        $('.updateModal').click(function() {
+            // Ambil data dari atribut data-* pada tombol yang diklik
 
-                var username = $(this).data('username');
-                var email = $(this).data('email');
-                var group = $(this).data('group');
-                var password = $(this).data('password');
+            var username = $(this).data('username');
+            var email = $(this).data('email');
+            var group = $(this).data('group');
+            var password = $(this).data('password');
 
-                // Isi nilai input dalam form modal dengan data yang diperoleh
+            // Isi nilai input dalam form modal dengan data yang diperoleh
 
-                $('#editForm #username').val(username);
-                $('#editForm #email').val(email);
-                $('#editForm #group').val(group);
-                $('#editForm #password').val(password); // Kosongkan password, jika tidak ingin mengedit
+            $('#editForm #username').val(username);
+            $('#editForm #email').val(email);
+            $('#editForm #group').val(group);
+            $('#editForm #password').val(password); // Kosongkan password, jika tidak ingin mengedit
 
-                // Tampilkan modal
-                $('#updateModal').modal('show');
-            });
+            // Tampilkan modal
+            $('#updateModal').modal('show');
+        });
 
-            // Submit form ketika tombol simpan di klik
-            $('#editForm').submit(function(e) {
-                e.preventDefault(); // Mencegah form melakukan submit default
+        // Submit form ketika tombol simpan di klik
+        $('#editForm').submit(function(e) {
+            e.preventDefault(); // Mencegah form melakukan submit default
 
-                // Ambil data dari form
-                var id = $('#id').val();
-                var username = $('#username').val();
-                var email = $('#email').val();
-                var group = $('#group').val();
-                var password = $('#password').val();
-                $.ajax({
-                    url: '<?= base_url("update") ?>', // Endpoint untuk update user
-                    method: 'POST',
-                    data: {
-                        id: id,
-                        username: username,
-                        email: email,
-                        group: group,
-                        password: password
-                    },
-                    success: function(response) {
+            // Ambil data dari form
+            var id = $('#id').val();
+            var username = $('#username').val();
+            var email = $('#email').val();
+            var group = $('#group').val();
+            var password = $('#password').val();
+            $.ajax({
+                url: '<?= base_url("update") ?>', // Endpoint untuk update user
+                method: 'POST',
+                data: {
+                    id: id,
+                    username: username,
+                    email: email,
+                    group: group,
+                    password: password
+                },
+                success: function(response) {
 
-                        location.reload(); // Refresh halaman setelah berhasil disimpan
-                    },
-                    error: function(err) {
-                        console.log(err);
-                        if (err.responseJSON) {
-                            alert("Error: " + err.responseJSON.message); // Menampilkan pesan error dari server
-                        } else {
-                            alert("Terjadi kesalahan saat menyimpan data.");
-                        }
+                    location.reload(); // Refresh halaman setelah berhasil disimpan
+                },
+                error: function(err) {
+                    console.log(err);
+                    if (err.responseJSON) {
+                        alert("Error: " + err.responseJSON.message); // Menampilkan pesan error dari server
+                    } else {
+                        alert("Terjadi kesalahan saat menyimpan data.");
                     }
-                });
+                }
             });
-        </script>
-        <!-- UPDATE TABLE END -->
+        });
+    </script>
+    <!-- END: UPDATE MODAL -->
 
-        <!-- Modal Konfirmasi Hapus START -->
-        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content text-center">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Apakah Anda yakin ingin menghapus data <strong id="username"></strong>?</p>
-                        <form id="deleteForm" method="post" action="<?= base_url('delete') ?>">
-                            <input type="hidden" id="delete_id" name="id">
-                            <button type="submit" class="btn btn-danger">Hapus</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                        </form>
-                    </div>
+    <!-- UPDATE TABLE END -->
+
+    <!-- Modal Konfirmasi Hapus START -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content text-center">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Apakah Anda yakin ingin menghapus data <strong id="username"></strong>?</p>
+                    <form id="deleteForm" method="post" action="<?= base_url('delete') ?>">
+                        <input type="hidden" id="delete_id" name="id">
+                        <button type="submit" class="btn btn-danger">Hapus</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    </form>
                 </div>
             </div>
         </div>
+    </div>
 
-        <script>
-            $('.deleteModal').click(function() {
-                var href = $(this).data('target');
-                var id = $(this).data('id');
-                $('#delete_id').val(id);
-            });
-        </script>
+    <script>
+        $('.deleteModal').click(function() {
+            var href = $(this).data('target');
+            var id = $(this).data('id');
+            $('#delete_id').val(id);
+        });
+    </script>
 
-        <!-- Modal Konfirmasi Hapus END-->
+    <!-- Modal Konfirmasi Hapus END-->
 
-        <!-- END: Content-->
+    <!-- END: Content-->
 
-        <!-- BEGIN: Vendor JS-->
-        <script src="assets/js/vendors.min.js" type="text/javascript"></script>
-        <script src="assets/js/switchery.min.js" type="text/javascript"></script>
-        <script src="assets/js/switch.min.js" type="text/javascript"></script>
-        <!-- BEGIN Vendor JS-->
+    <!-- BEGIN: Vendor JS-->
+    <script src="assets/js/vendors.min.js" type="text/javascript"></script>
+    <script src="assets/js/switchery.min.js" type="text/javascript"></script>
+    <script src="assets/js/switch.min.js" type="text/javascript"></script>
+    <!-- BEGIN Vendor JS-->
 
-        <!-- BEGIN: Page Vendor JS-->
-        <script src="assets/js/chartist.min.js" type="text/javascript"></script>
-        <script src="assets/js/chartist-plugin-tooltip.min.js" type="text/javascript"></script>
-        <!-- END: Page Vendor JS-->
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="assets/js/chartist.min.js" type="text/javascript"></script>
+    <script src="assets/js/chartist-plugin-tooltip.min.js" type="text/javascript"></script>
+    <!-- END: Page Vendor JS-->
 
-        <!-- BEGIN: Theme JS-->
-        <script src="assets/js/app-menu.min.js" type="text/javascript"></script>
-        <script src="assets/js/app.min.js" type="text/javascript"></script>
-        <script src="assets/js/customizer.min.js" type="text/javascript"></script>
-        <script src="assets/js/jquery.sharrre.js" type="text/javascript"></script>
-        <!-- END: Theme JS-->
+    <!-- BEGIN: Theme JS-->
+    <script src="assets/js/app-menu.min.js" type="text/javascript"></script>
+    <script src="assets/js/app.min.js" type="text/javascript"></script>
+    <script src="assets/js/customizer.min.js" type="text/javascript"></script>
+    <script src="assets/js/jquery.sharrre.js" type="text/javascript"></script>
+    <!-- END: Theme JS-->
 
-        <!-- BEGIN: Page JS-->
-        <script src="assets/js/dashboard-analytics.min.js" type="text/javascript"></script>
-        <!-- END: Page JS-->
+    <!-- BEGIN: Page JS-->
+    <script src="assets/js/dashboard-analytics.min.js" type="text/javascript"></script>
+    <!-- END: Page JS-->
 
 </body>
 <!-- END: Body-->

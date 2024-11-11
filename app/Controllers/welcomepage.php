@@ -28,6 +28,7 @@ class welcomepage extends BaseController
         }
     }
 
+<<<<<<< HEAD
 public function data(): string
 {
         $model = new welcome();
@@ -37,4 +38,16 @@ public function data(): string
         $data = ['message' => $message];
         return view('/tracer', $data); 
 }
+=======
+    public function data(): string
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query("SELECT * FROM welcome_message");
+        $message = $query->getResultArray();
+        $data = ['message' => $message];
+
+        // Render view dan kirim data
+        return view('welcomepage', $data);
+    }
+>>>>>>> 8c18116619080806ed9f78fe1191a333a1be90a1
 }
