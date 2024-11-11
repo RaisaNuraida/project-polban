@@ -141,53 +141,54 @@
 
                         <!-- Import Data Start -->
                         <div class="card">
-                            <div class="card-header">
-                                <h2>Pengaturan Situs</h2>
-                                <hr>
-                                <div class="card-content">
-                                    <div class="card-body"> <?php if (session()->getFlashdata('success')): ?>
-                                            <div class="alert alert-success">
-                                                <?= session()->getFlashdata('success'); ?>
-                                            </div>
-                                        <?php endif; ?>
+                            <div class="mr-2 ml-2">
+                                <div class="card-header">
+                                    <h2>Pengaturan Situs</h2>
+                                    <hr>
+                                    <div class="card-content">
+                                        <div class="card-body"> <?php if (session()->getFlashdata('success')): ?>
+                                                <div class="alert alert-success">
+                                                    <?= session()->getFlashdata('success'); ?>
+                                                </div>
+                                            <?php endif; ?>
 
-                                        <?php if (session()->getFlashdata('error')): ?>
-                                            <div class="alert alert-danger">
-                                                <?= session()->getFlashdata('error'); ?>
-                                            </div>
-                                        <?php endif; ?>
-                                        <div class="container mb-1 border border-primary">
+                                            <?php if (session()->getFlashdata('error')): ?>
+                                                <div class="alert alert-danger">
+                                                    <?= session()->getFlashdata('error'); ?>
+                                                </div>
+                                            <?php endif; ?>
+                                            <div class="container mb-1 border border-primary">
 
-                                            <!-- Form untuk pengaturan -->
-                                            <form action="<?= base_url('/pengaturan') ?>" method="post" class="m-1">
-                                                <div class="d-flex">
-                                                    <label for="nama-situs" class="m-1" style="width: 10%;">Nama Situs</label>
-                                                    <div class="form-group">
-                                                        <input type="text" style="width: 45%;" name="nama" id="nama" class="form-control" value="<?= session()->get('nama') ?? '$nama' ?>">
-                                                        <p>Nama situs untuk judul halaman dan penggunaan lain di dalam situs.</p>
+                                                <!-- Form untuk pengaturan -->
+                                                <form action="<?= base_url('/pengaturan') ?>" method="post" class="m-1">
+                                                    <div class="d-flex">
+                                                        <label for="nama-situs" class="m-1" style="width: 10%;">Nama Situs</label>
+                                                        <div class="form-group">
+                                                            <input type="text" style="width: 45%;" name="nama" id="nama" class="form-control" value="<?= session()->get('nama') ?>" required>
+                                                            <p>Nama situs untuk judul halaman dan penggunaan lain di dalam situs.</p>
 
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="d-flex">
-                                                    <label for="slogan" class="m-1" style="width: 10%;">Slogan Situs</label>
-                                                    <div class="form-group">
-                                                        <input type="text" style="width: 45%;" name="slogan" id="slogan" class="form-control" value="<?= session()->get('slogan') ?? '$slogan' ?>">
-                                                        <p>Slogan situs untuk judul halaman dan penggunaan lain di dalam situs.</p>
+                                                    <div class="d-flex">
+                                                        <label for="slogan" class="m-1" style="width: 10%;">Slogan Situs</label>
+                                                        <div class="form-group">
+                                                            <input type="text" style="width: 45%;" name="slogan" id="slogan" class="form-control" value="<?= session()->get('slogan') ?>" required>
+                                                            <p>Slogan situs untuk judul halaman dan penggunaan lain di dalam situs.</p>
 
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="d-flex justify-content-start">
-                                                    <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-                                                    <a href="<?= base_url('/pengaturan') ?>" class="btn btn-danger">Batal</a>
-                                                </div>
-                                            </form>
+                                                    <div class="d-flex justify-content-start">
+                                                        <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+                                                        <a href="<?= base_url('/pengaturan') ?>" class="btn btn-danger">Batal</a>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <!-- END: Content-->

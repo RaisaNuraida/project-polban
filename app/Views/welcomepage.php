@@ -121,7 +121,7 @@
                 <li class="menu-item">
                     <a href="<?= base_url('/pengaturan') ?>">
                         <i class="ft-file"></i>
-                        <span class="menu-title">pengaturan</span>
+                        <span class="menu-title">Pengaturan Situs</span>
                     </a>
                 </li>
             </ul>
@@ -141,33 +141,35 @@
 
                         <!-- Import Data Start -->
                         <div class="card">
-                            <div class="card-header">
-                                <h2>Sunting Welcome</h2>
-                                <hr>
-                                <div class="card-content">
-                                    <div class="card-body">
-                                        <div class="container mb-1">
-                                            <form action="<?= base_url('/welcomepage') ?>" method="post">
-                                                <label for="content">Welcome Message:</label>
-                                                <div class="form-group">
-                                                    <textarea name="content" id="content" <?= isset($message) ? esc($message['message']) : '' ?>></textarea>
-                                                </div>
-                                                <br>
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                                <button href="<?= base_url('/welcomepage') ?>" class="btn btn-danger">Batal</button>
-                                                <a href="" class="btn btn-secondary">Detail</a>
-                                            </form>
+                            <div class="mr-2 ml-2">
+                                <div class="card-header">
+                                    <h2>Sunting Welcome</h2>
+                                    <hr>
+                                    <div class="card-content">
+                                        <div class="card-body">
+                                            <div class="container mb-1">
+                                                <form action="<?= base_url('/welcomepage') ?>" method="post">
+                                                    <label for="content">Welcome Message:</label>
+                                                    <div class="form-group">
+                                                        <textarea name="content" id="content" value="<?= session()->get('message') ?? '$message' ?>"></textarea>
+                                                    </div>
+                                                    <br>
+                                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                                    <button href="<?= base_url('/welcomepage') ?>" class="btn btn-danger">Batal</button>
+                                                    <a href="" class="btn btn-secondary">Detail</a>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- Import CKEditor Script -->
+                                <script src="//cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
+                                <script>
+                                    CKEDITOR.replace('content');
+                                </script>
+
                             </div>
-
-                            <!-- Import CKEditor Script -->
-                            <script src="//cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
-                            <script>
-                                CKEDITOR.replace('content');
-                            </script>
-
                         </div>
                     </div>
                     <!-- END: Content-->
