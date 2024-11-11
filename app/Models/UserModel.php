@@ -10,6 +10,7 @@ class UserModel extends Model
     protected $primaryKey = 'id';
     protected $allowedFields = ['id', 'display_name', 'username', 'password', 'email', 'group', 'created_at', 'updated_at', 'academic_nim', 'academic_faculty', 'academic_program', 'academic_year', 'academic_graduate_year', 'street', 'city', 'state_code', 'zip_code', 'jenis_kelamin', 'no_telp', 'nik', 'npwp'];
 
+    
     // Alternatif: Fungsi untuk mengambil data menggunakan query SQL manual
     public function getAllDataManual()
     {
@@ -44,5 +45,10 @@ class UserModel extends Model
         $db = \Config\Database::connect();
         $query = $db->query('SELECT  id, display_name, username, password, email, created_at, updated_at FROM users WHERE `group` = "perusahaan"');
         return $query->getResultArray();
+    }
+
+    public function updateUser($id, $data)
+    {
+        return $this->update($id, $data); // Update berdasarkan ID
     }
 }

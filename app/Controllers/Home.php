@@ -43,8 +43,6 @@ class Home extends BaseController
         // echo"ddd"; exit();
     }
 
-
-
     // Fungsi untuk mengimpor file Excel ke database
     public function import()
     {
@@ -190,8 +188,6 @@ class Home extends BaseController
         }
     }
 
-
-
     public function deleteUser()
     {
         $userModel = new UserModel();
@@ -231,8 +227,6 @@ class Home extends BaseController
         return view('welcomepage');
     }
 
-
-    
     public function setting(): string
     {
         return view('pengaturan');
@@ -253,18 +247,18 @@ class Home extends BaseController
         // Melakukan pencarian berdasarkan display_name
         if ($cari) {
             $data['my_data'] = $users
-            ->like('display_name', $cari)
-            ->orlike('username', $cari)
-            ->orlike('email', $cari) 
-            ->orlike('group', $cari)->findAll(); // Menggunakan like untuk pencarian
+                ->like('display_name', $cari)
+                ->orlike('username', $cari)
+                ->orlike('email', $cari)
+                ->orlike('group', $cari)->findAll(); // Menggunakan like untuk pencarian
         } else {
             $data['my_data'] = []; // Jika tidak ada input, set hasil kosong
         }
 
-        return view('index', $data); 
+        return view('index', $data);
     }
 
-   
+
     public function kuesioner_answer(): string
     {
         $model = new UserModel();
@@ -279,4 +273,37 @@ class Home extends BaseController
         // echo"ddd"; exit();
         //return view('index');
     }
-}
+
+    public function update()
+    {
+        $id = $this->request->getPost('id');
+        $username = $this->request->getPost('username');
+        $email = $this->request->getPost('email');
+        $group = $this->request->getPost('group');
+        $password = $this->request->getPost('password');
+
+        if (empty($password)) {
+            $password = null;
+        } else {
+            $password = password_hash($password, PASSWORD_DEFAULT);
+        }
+
+        $data = [
+            'username' => $username,
+            'email' => $email,
+            'group' => $group,
+            'password' => $password
+        ];
+
+        $db = \Config\Database::connect();
+            $builder = $db->table('users');
+            $builder->where('id', $id);
+            $update = $builder->update($data);
+
+            if ($update) {
+                return $this->response->setJSON(['message' => 'User berhasil diupdate.']);
+            } else {
+                return $this->response->setJSON(['message' => 'Terjadi kesalahan saat memperbarui data.'], 500);
+            }
+        }
+    }

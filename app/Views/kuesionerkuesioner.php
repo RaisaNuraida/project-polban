@@ -121,7 +121,7 @@
                 <li class="menu-item">
                     <a href="<?= base_url('/pengaturan') ?>">
                         <i class="ft-file"></i>
-                        <span class="menu-title">pengaturan</span>
+                        <span class="menu-title">Pengaturan Situs</span>
                     </a>
                 </li>
             </ul>
