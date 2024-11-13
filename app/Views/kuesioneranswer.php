@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, minimal-ui">
     <meta name="author" content="ThemeSelect">
-    <title>Dashboard Admin</title>
+    <title>Dashboard Admin - Kuesioner Answer</title>
     <link rel="apple-touch-icon" href="assets/images/apple-icon-120.png">
     <link rel="shortcut icon" type="assets/image/x-icon" href="images/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700" rel="stylesheet">
@@ -111,12 +111,13 @@
 
                 <li class=" nav-item"><a href="#"><i class="ft-sidebar"></i><span class="menu-title" data-i18n="">Organisasi</span></a>
                     <ul class="menu-content">
-                        <li><a class="menu-item" href="gallery-grid.html">Satuan Organisasi</a>
+                        <li><a class="menu-item" href="<?= base_url('/organisasi') ?>">Satuan Organisasi</a>
                         </li>
                         <li><a class="menu-item" href="search.html">Tipe</a>
                         </li>
                     </ul>
                 </li>
+
 
                 <li class="menu-item">
                     <a href="<?= base_url('/pengaturan') ?>">
