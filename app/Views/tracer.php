@@ -124,11 +124,7 @@
                 </div>
 
                 <div class="m-5 text-justify">
-                  <?php if (!empty($message)) : ?>
-                    <?php foreach ($message as $row) : ?>
-                     <?= esc($row['message']) ?>
-                    <?php endforeach; ?>
-                  <?php endif; ?>
+                  <?= $message; ?>
                   <div class="d-flex justify-content-center m-4">
                     <a
                       type="button"
@@ -146,12 +142,12 @@
       </div>
     </div>
     <!-- END: Content-->
-   
+
     <!-- START: Footer -->
 
     <footer
       class="footer footer-static footer-light navbar-border navbar-shadow text-center">
-      <div class="clearfix blue-grey lighten-2 text-sm-center">
+      <div class="blue-grey lighten-2 text-sm-center">
         <strong>Powered by tracer.id</strong>
       </div>
       <hr />

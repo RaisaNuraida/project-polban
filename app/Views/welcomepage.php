@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, minimal-ui">
     <meta name="author" content="ThemeSelect">
-    <title>Dashboard Admin</title>
+    <title>Dashboard Admin -  Welcome Page</title>
     <link rel="apple-touch-icon" href="assets/images/apple-icon-120.png">
     <link rel="shortcut icon" type="assets/image/x-icon" href="images/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700" rel="stylesheet">
@@ -81,7 +81,7 @@
     <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow " data-scroll-to-active="true" data-img="images/backgrounds/02.jpg">
         <div class="navbar-header">
             <ul class="nav navbar-nav flex-row">
-                <li class="nav-item mr-auto"><a class="navbar-brand" href="index.php"><img class="brand-logo" alt="Chameleon admin logo" src="assets/images/apple-icon-120.png" />
+                <li class="nav-item mr-auto"><a class="navbar-brand" href="index.php"><img class="brand-logo" alt="polban" src="assets/images/apple-icon-120.png" />
                 <li class="nav-item d-md-none"><a class="nav-link close-navbar"><i class="ft-x"></i></a></li>
             </ul>
         </div>
@@ -115,6 +115,7 @@
                         <span class="menu-title">Organisasi</span>
                     </a>
                 </li>
+
 
                 <li class="menu-item">
                     <a href="<?= base_url('/pengaturan') ?>">
@@ -159,7 +160,7 @@
                                                 <form action="<?= base_url('/welcomepage') ?>" method="post">
                                                     <label for="content">Welcome Message:</label>
                                                     <div class="form-group">
-                                                        <textarea name="content" id="content"><?= session()->get('message') ?? 'hskjhdskjadksahdoiys' ?></textarea>
+                                                        <textarea name="content" id="content" value="<?= session()->get('message')  ?? '' ?>"></textarea>
                                                     </div>
                                                     <br>
                                                     <button type="submit" class="btn btn-primary">Submit</button>
