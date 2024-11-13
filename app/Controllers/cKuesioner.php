@@ -67,12 +67,8 @@ class cKuesioner extends Controller
     
         // Simpan ke output
         $writer->save('php://output');
-        exit();
+        exit();   
     }
-    
-    
-
-
 
     public function dataisian(){
         return view ('dataisian');

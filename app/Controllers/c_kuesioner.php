@@ -33,6 +33,8 @@ class c_kuesioner extends BaseController
         return view('kuesionerkuesioner', $data);
     }
 
+    
+
     public function indexuser(): string
     {
         $model = new m_kuesioner();
@@ -119,5 +121,7 @@ class c_kuesioner extends BaseController
         // Mengirim data ke view
         return view('dataisian', $deskripsi);
     }
+    
+    
     
 }

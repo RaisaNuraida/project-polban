@@ -1149,6 +1149,7 @@
                                         <a class="btn btn-info" style="font-size:14px;padding:8px 10px;color:white;" href="<?= base_url('kuesionerkuesioner') ?>">Simpan</a>
                                         <a class="btn btn-danger" style="font-size:14px;padding:8px 10px;color:white;" href="<?= base_url('kuesionerkuesioner') ?>">Batal</a>
                                     </div>
+                                    
                                 </form>
 
                                 <!-- ISI DISINI -->
@@ -1178,22 +1179,17 @@
                                         <ul id="sortable">
                                             <!-- Pertanyaan akan ditambahkan di sini -->
                                         </ul>
-                                        </div>
+                                    </div>
                             </div>
                             
-                        </div>
-                    </div>
-                </div>
-                <!-- Sunting Kuesioner Section END -->
-            </div>
-        </div>
-                                        <!-- JS -->
-                                    <script type="text/javascript">
+                            
+                                <script type="text/javascript">
+                                    
+                                    
                                         function deletequestion(anu){
                                         var q = anu.parents("li:first");
-                                        q.remove();
-    
-}
+                                        q.remove();}
+                                        
                                     function quest_done(anu){
                                         var view = anu.parents("li:first").find(".single_view_state");
                                         var edit = anu.parents("li:first").find(".single_edit_state");
@@ -1245,6 +1241,7 @@
                                         }
                                     
                                     }
+                                    
                                            function add_grid() {
                                             var id = ++fields_sum;
                                             fields_id.push(id);
@@ -2000,7 +1997,15 @@
                                         }
                                         
                                     </script>
-
+                                    
+                        </div>
+                    </div>
+                </div>
+                <!-- Sunting Kuesioner Section END -->
+            </div>
+        </div>
+                                        <!-- JS -->
+                               
         <!-- OPEN TAB -->
         <script>
             function openTab(evt, tabId) {
@@ -2241,8 +2246,9 @@
                             
                             <script>
                                 
-                                $(document).ready(function() {
+                                $(document).ready(function() {    
                                     function loadTableData() {
+                                        
                                         $.ajax({
                                             url: "<?= site_url('/kuesionerkuesioner') ?>", // Ganti dengan URL endpoint yang sesuai
                                             method: "GET",
