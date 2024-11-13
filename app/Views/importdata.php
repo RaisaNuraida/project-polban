@@ -50,8 +50,8 @@
 
 <body class="vertical-layout vertical-menu 2-columns fixed-navbar" data-open="click" data-menu="vertical-menu" data-color="bg-gradient-x-purple-blue" data-col="2-columns">
 
-    <!-- BEGIN: Header-->
-    <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light">
+   <!-- BEGIN: Header-->
+   <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light">
         <div class="navbar-wrapper">
             <div class="navbar-container content">
                 <div class="collapse navbar-collapse show" id="navbar-mobile">
@@ -63,9 +63,9 @@
                     <ul class="nav navbar-nav float-right">
                         <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"> <span class="avatar avatar-online"><img src="assets/images/avatar-s-19.png" alt="avatar"></span></a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <div class="arrow_box_right"> <a class="dropdown-item" href="#"><span class="avatar avatar-online"><img src="assets/images/avatar-s-19.png" alt="avatar"><span class="user-name text-bold-700 ml-1">Lando</span></span></a>
-                                    <div class="dropdown-divider"></div><a class="dropdown-item" href="user-profile.html"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My Inbox</a><a class="dropdown-item" href="project-summary.html"><i class="ft-check-square"></i> Task</a><a class="dropdown-item" href="chat-application.html"><i class="ft-message-square"></i> Chats</a>
-                                    <div class="dropdown-divider"></div><a class="dropdown-item" action="<?= base_url('tracer') ?>"><i class="ft-power"></i> Logout</a>
+                                <div class="arrow_box_right"> <a class="dropdown-item" href="#"><span class="avatar avatar-online"><img src="assets/images/avatar-s-19.png" alt="avatar"><span class="user-name text-bold-500 ml-1 "><?= session()->get('username') ?></span></span></a>
+                                    <div class="dropdown-divider"></div><a class="dropdown-item" href="<?= base_url('halamaneditprofile') ?>"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My Inbox</a>
+                                    <div class="dropdown-divider"></div><a class="dropdown-item" href="<?= base_url('tracer') ?>"><i class="ft-power"></i> Logout</a>
                                 </div>
                             </div>
                         </li>
@@ -108,14 +108,12 @@
                         <span class="menu-title">Welcome</span>
                     </a>
                 </li>
-        
-                <li class=" nav-item"><a href="#"><i class="ft-sidebar"></i><span class="menu-title" data-i18n="">Organisasi</span></a>
-                    <ul class="menu-content">
-                        <li><a class="menu-item" href="gallery-grid.html">Satuan Organisasi</a>
-                        </li>
-                        <li><a class="menu-item" href="search.html">Tipe</a>
-                        </li>
-                    </ul>
+
+                <li class="menu-item">
+                    <a href="<?= base_url('/organisasi') ?>">
+                        <i class="ft-edit"></i>
+                        <span class="menu-title">Organisasi</span>
+                    </a>
                 </li>
 
                 <li class="menu-item">
@@ -128,7 +126,6 @@
         </div>
     </div>
     <!-- END: Main Menu-->
-
     <!-- BEGIN: Content-->
     <div class="app-content content">
         <div class="content-wrapper">

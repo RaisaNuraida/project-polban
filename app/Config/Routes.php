@@ -37,6 +37,8 @@ $routes->get('/welcomepage', 'Home::welcome');
 $routes->get('/tracer', 'welcomepage::data');
 $routes->get('/organisasiindex', 'Home::organisasi');
 $routes->get('/organisasi', 'c_organisasi::tabelorganisasi');
+$routes->get('/organisasijurusan', 'c_organisasi::index');
+
 $routes->get('/data', 'welcomepage::data');
 $routes->get('/pengaturan', 'Home::setting');
 $routes->get('/halamaneditprofile', 'editprofile::index');
@@ -47,6 +49,9 @@ $routes->get('/halamaneditprofile', 'editprofile::index');
 $routes->post('/import', 'Home::import');
 $routes->post('/downloadCSV', 'cKuesioner::downloadCSV');
 $routes->post('/delete', 'Home::deleteUser');
+$routes->post('/deleteprogram', 'c_organisasi::deleteUser');
+$routes->post('/deleteUser', 'c_organisasi::deleteUser');
+$routes->post('/deleteFaculty', 'c_organisasi::deleteFaculty');
 $routes->post('/deletekuesioner', 'c_kuesioner::deleteUser');
 $routes->post('/deletekuesioner', 'c_kuesioner::deleteUser');
 $routes->post('/halamanlogin', 'login::halamanlogin');

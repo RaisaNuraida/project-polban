@@ -50,8 +50,8 @@
 
 <body class="vertical-layout vertical-menu 2-columns fixed-navbar" data-open="click" data-menu="vertical-menu" data-color="bg-gradient-x-purple-blue" data-col="2-columns">
 
-    <!-- BEGIN: Header-->
-    <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light">
+<!-- BEGIN: Header-->
+<nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light">
         <div class="navbar-wrapper">
             <div class="navbar-container content">
                 <div class="collapse navbar-collapse show" id="navbar-mobile">
@@ -64,7 +64,7 @@
                         <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"> <span class="avatar avatar-online"><img src="assets/images/avatar-s-19.png" alt="avatar"></span></a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <div class="arrow_box_right"> <a class="dropdown-item" href="#"><span class="avatar avatar-online"><img src="assets/images/avatar-s-19.png" alt="avatar"><span class="user-name text-bold-500 ml-1 "><?= session()->get('username') ?></span></span></a>
-                                    <div class="dropdown-divider"></div><a class="dropdown-item" href="user-profile.html"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My Inbox</a><a class="dropdown-item" href="project-summary.html"><i class="ft-check-square"></i> Task</a><a class="dropdown-item" href="chat-application.html"><i class="ft-message-square"></i> Chats</a>
+                                    <div class="dropdown-divider"></div><a class="dropdown-item" href="<?= base_url('halamaneditprofile') ?>"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My Inbox</a>
                                     <div class="dropdown-divider"></div><a class="dropdown-item" href="<?= base_url('tracer') ?>"><i class="ft-power"></i> Logout</a>
                                 </div>
                             </div>
@@ -109,13 +109,11 @@
                     </a>
                 </li>
 
-                <li class=" nav-item"><a href="#"><i class="ft-sidebar"></i><span class="menu-title" data-i18n="">Organisasi</span></a>
-                    <ul class="menu-content">
-                        <li><a class="menu-item" href="gallery-grid.html">Satuan Organisasi</a>
-                        </li>
-                        <li><a class="menu-item" href="search.html">Tipe</a>
-                        </li>
-                    </ul>
+                <li class="menu-item">
+                    <a href="<?= base_url('/organisasi') ?>">
+                        <i class="ft-edit"></i>
+                        <span class="menu-title">Organisasi</span>
+                    </a>
                 </li>
 
                 <li class="menu-item">
@@ -159,21 +157,43 @@
                                     </div>
                                     <hr>
                                     <div class="table-responsive">
-                                        <table class="table table-bordered text-center">
+                                        <table class="table table-bordered ">
                                             <tbody>
 
                                                 <?php if (!empty($organisasi)) : ?>
-                                                    <?php foreach ($organisasi as $row) : ?>
+                                                    <?php foreach ($organisasi as $faculty => $program) : ?>
                                                         <tr>
-                                                            <td><?= esc($row['academic_group']) ?></td>
-                                                            <td><?= esc($row['academic_program']) ?></td>
+                                                            <td><strong><?= esc($faculty) ?></strong></td>
+                                                            <td>
+                                                                <!-- Mengambil ID dari program pertama untuk tombol Hapus fakultas -->
+                                                                <button
+                                                                    data-target="#deleteModalfaculty"
+                                                                    id="deletefaculty"
+                                                                    data-toggle="modal"
+                                                                    data-id="<?= esc($program[0]['faculty']); ?>"
+                                                                    class="btn btn-danger deleteModalfaculty"
+                                                                    style="font-size:10px;padding:2px 5px;color:white;">
+                                                                    Hapus
+                                                                </button>
+                                                            </td>
                                                         </tr>
+                                                        <?php foreach ($program as $program) : ?>
+                                                            <tr>
+                                                                <td>&emsp;- <?= esc($program['name']) ?></td>
+                                                                <td>
+                                                                    <!-- Mengambil ID program untuk tombol Hapus -->
+                                                                    <button data-target="#deleteModal" id="delete" data-toggle="modal" data-id="<?= esc($program['id']); ?>" class="btn btn-danger deleteModal" style="font-size:10px;padding:2px 5px;color:white;">Hapus</button>
+                                                                </td>
+                                                            </tr>
+                                                        <?php endforeach; ?>
                                                     <?php endforeach; ?>
                                                 <?php else : ?>
                                                     <tr>
                                                         <td colspan="2" class="text-center">No data found</td>
                                                     </tr>
                                                 <?php endif; ?>
+
+
                                             </tbody>
                                         </table>
                                     </div>
@@ -240,12 +260,11 @@
                                         <tbody>
 
                                             <?php if (!empty($organisasi)) : ?>
-                                                <?php foreach ($organisasi as $row) : ?>
-                                                    <?php if (!empty($row['academic_group'])) : ?> <!-- Cek apakah academic_group tidak kosong -->
-                                                        <tr>
-                                                            <td><?= esc($row['academic_group']) ?></td>
-                                                        </tr>
-                                                    <?php endif; ?>
+                                                <?php foreach ($organisasi as $faculty => $programs) : ?>
+                                                    <tr>
+                                                        <td><strong><?= esc($faculty) ?></strong></td>
+                                                    </tr>
+
                                                 <?php endforeach; ?>
                                             <?php else : ?>
                                                 <tr>
@@ -273,19 +292,21 @@
                                         <a class="nav-link btn-outline-primary" onclick="openTab(event, 'prodi')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Prodi</a>
                                     </nav>
                                 </div>
-                                
+
                                 <hr>
                                 <div class="table-responsive">
                                     <table class="table table-bordered">
                                         <tbody>
 
                                             <?php if (!empty($organisasi)) : ?>
-                                                <?php foreach ($organisasi as $row) : ?>
-                                                    <?php if (!empty($row['academic_program'])) : ?> <!-- Cek apakah academic_group tidak kosong -->
+                                                <?php foreach ($organisasi as $faculty => $programs) : ?>
+
+                                                    <?php foreach ($programs as $program) : ?>
                                                         <tr>
-                                                            <td><?= esc($row['academic_program']) ?></td>
+                                                            <td><?= esc($program['name']) ?></td>
+
                                                         </tr>
-                                                    <?php endif; ?>
+                                                    <?php endforeach; ?>
                                                 <?php endforeach; ?>
                                             <?php else : ?>
                                                 <tr>
@@ -296,13 +317,73 @@
                                     </table>
                                 </div>
                             </div>
-                                
-                                
+
+
                         </div>
                     </div>
                 </div>
 
         </div>
+
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content text-center">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Apakah Anda yakin ingin menghapus data?</p>
+                        <form id="deleteForm" method="post" action="<?= base_url('/deleteUser') ?>">
+                            <input type="hidden" id="delete_id" name="id">
+                            <button type="submit" class="btn btn-danger">Hapus</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            $('.deleteModal').click(function() {
+                var href = $(this).data('target');
+                var id = $(this).data('id');
+                $('#delete_id').val(id);
+            });
+        </script>
+
+        <div class="modal fade" id="deleteModalfaculty" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content text-center">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Apakah Anda yakin ingin menghapus data?</p>
+                        <form id="deleteForm" method="post" action="<?= base_url('/deleteFaculty') ?>">
+                            <?= csrf_field(); ?>
+                            <input type="hidden" id="delete_faculty" name="academic_faculty">
+                            <button type="submit" class="btn btn-danger">Hapus</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+            $(document).on('click', '.deleteModalfaculty', function() {
+                const facultyId = $(this).data('id');
+                $('#delete_faculty').val(facultyId); // Isi input hidden dengan academic_faculty
+            });
+        </script>
+
         <script>
             function openTab(evt, tabId) {
                 // Sembunyikan semua tab content

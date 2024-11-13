@@ -64,7 +64,7 @@
                         <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"> <span class="avatar avatar-online"><img src="assets/images/avatar-s-19.png" alt="avatar"></span></a>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <div class="arrow_box_right"> <a class="dropdown-item" href="#"><span class="avatar avatar-online"><img src="assets/images/avatar-s-19.png" alt="avatar"><span class="user-name text-bold-500 ml-1 "><?= session()->get('username') ?></span></span></a>
-                                    <div class="dropdown-divider"></div><a class="dropdown-item" href="<?= base_url('halamaneditprofile') ?>"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My Inbox</a><a class="dropdown-item" href="project-summary.html"><i class="ft-check-square"></i> Task</a><a class="dropdown-item" href="chat-application.html"><i class="ft-message-square"></i> Chats</a>
+                                    <div class="dropdown-divider"></div><a class="dropdown-item" href="<?= base_url('halamaneditprofile') ?>"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My Inbox</a>
                                     <div class="dropdown-divider"></div><a class="dropdown-item" href="<?= base_url('tracer') ?>"><i class="ft-power"></i> Logout</a>
                                 </div>
                             </div>
@@ -109,13 +109,11 @@
                     </a>
                 </li>
 
-                <li class=" nav-item"><a href="#"><i class="ft-sidebar"></i><span class="menu-title" data-i18n="">Organisasi</span></a>
-                    <ul class="menu-content">
-                        <li><a class="menu-item" href="<?= base_url('/organisasi') ?>">Satuan Organisasi</a>
-                        </li>
-                        <li><a class="menu-item" href="search.html">Tipe</a>
-                        </li>
-                    </ul>
+                <li class="menu-item">
+                    <a href="<?= base_url('/organisasi') ?>">
+                        <i class="ft-edit"></i>
+                        <span class="menu-title">Organisasi</span>
+                    </a>
                 </li>
 
                 <li class="menu-item">
@@ -228,7 +226,20 @@
                                                             <td><?= $row['created_at']; ?></td>
                                                             <td><?= $row['updated_at']; ?></td>
                                                             <td>
-                                                                <button data-target='#updateModal' id='update' data-toggle='modal' data-id="<?= $row['id']; ?>" data-username="<?= $row['username']; ?>" data-email="<?= $row['email']; ?>" data-group="<?= $row['group']; ?>" data-password="<?= $row['password']; ?>" class='btn btn-warning updateModal' style='font-size:10px;padding:2px 5px;color:white;'>Ubah</button>
+                                                                <button
+                                                                    data-target="#updateModal"
+                                                                    id="update"
+                                                                    data-toggle="modal"
+                                                                    data-id="<?= $row['id']; ?>"
+                                                                    data-username="<?= $row['username']; ?>"
+                                                                    data-email="<?= $row['email']; ?>"
+                                                                    data-group="<?= $row['group']; ?>"
+                                                                    data-password="<?= $row['password']; ?>"
+                                                                    class="btn btn-warning updateModal"
+                                                                    style="font-size:10px;padding:2px 5px;color:white;">
+                                                                    Ubah
+                                                                </button>
+
                                                                 <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
                                                             </td>
 
@@ -294,8 +305,18 @@
                                                             <td><?= $row['created_at']; ?></td>
                                                             <td><?= $row['updated_at']; ?></td>
                                                             <td>
-                                                                <button data-target='#updateModal' id='update' data-toggle='modal' data-id="<?= $row['id']; ?>" data-username="<?= $row['username']; ?>" data-email="<?= $row['email']; ?>" data-password="<?= $row['password']; ?>" class='btn btn-warning updateModal' style='font-size:10px;padding:2px 5px;color:white;'>Ubah</button>
-                                                                <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
+                                                            <button
+                                                                    data-target="#updateModal"
+                                                                    id="update"
+                                                                    data-toggle="modal"
+                                                                    data-id="<?= $row['id']; ?>"
+                                                                    data-username="<?= $row['username']; ?>"
+                                                                    data-email="<?= $row['email']; ?>"
+                                                                    data-password="<?= $row['password']; ?>"
+                                                                    class="btn btn-warning updateModal"
+                                                                    style="font-size:10px;padding:2px 5px;color:white;">
+                                                                    Ubah
+                                                                </button>                                                                <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
                                                             </td>
                                                         </tr>
                                                     <?php endforeach; ?>
@@ -360,8 +381,18 @@
                                                             <td><?= $row['created_at']; ?></td>
                                                             <td><?= $row['updated_at']; ?></td>
                                                             <td>
-                                                                <button data-target='#updateModal' id='update' data-toggle='modal' data-id="<?= $row['id']; ?>" data-username="<?= $row['username']; ?>" data-email="<?= $row['email']; ?>" data-password="<?= $row['password']; ?>" class='btn btn-warning updateModal' style='font-size:10px;padding:2px 5px;color:white;'>Ubah</button>
-                                                                <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
+                                                            <button
+                                                                    data-target="#updateModal"
+                                                                    id="update"
+                                                                    data-toggle="modal"
+                                                                    data-id="<?= $row['id']; ?>"
+                                                                    data-username="<?= $row['username']; ?>"
+                                                                    data-email="<?= $row['email']; ?>"
+                                                                    data-password="<?= $row['password']; ?>"
+                                                                    class="btn btn-warning updateModal"
+                                                                    style="font-size:10px;padding:2px 5px;color:white;">
+                                                                    Ubah
+                                                                </button>                                                                <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
                                                             </td>
                                                         </tr>
                                                     <?php endforeach; ?>
@@ -427,8 +458,18 @@
                                                             <td><?= $row['created_at']; ?></td>
                                                             <td><?= $row['updated_at']; ?></td>
                                                             <td>
-                                                                <button data-target='#updateModal' id='update' data-toggle='modal' data-id="<?= $row['id']; ?>" data-username="<?= $row['username']; ?>" data-email="<?= $row['email']; ?>" data-password="<?= $row['password']; ?>" class='btn btn-warning updateModal' style='font-size:10px;padding:2px 5px;color:white;'>Ubah</button>
-                                                                <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
+                                                            <button
+                                                                    data-target="#updateModal"
+                                                                    id="update"
+                                                                    data-toggle="modal"
+                                                                    data-id="<?= $row['id']; ?>"
+                                                                    data-username="<?= $row['username']; ?>"
+                                                                    data-email="<?= $row['email']; ?>"
+                                                                    data-password="<?= $row['password']; ?>"
+                                                                    class="btn btn-warning updateModal"
+                                                                    style="font-size:10px;padding:2px 5px;color:white;">
+                                                                    Ubah
+                                                                </button>                                                                <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
                                                             </td>
                                                         </tr>
                                                     <?php endforeach; ?>
@@ -493,8 +534,18 @@
                                                             <td><?= $row['created_at']; ?></td>
                                                             <td><?= $row['updated_at']; ?></td>
                                                             <td>
-                                                                <button data-target='#updateModal' id='update' data-toggle='modal' data-id="<?= $row['id']; ?>" data-username="<?= $row['username']; ?>" data-email="<?= $row['email']; ?>" data-password="<?= $row['password']; ?>" class='btn btn-warning updateModal' style='font-size:10px;padding:2px 5px;color:white;'>Ubah</button>
-                                                                <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
+                                                            <button
+                                                                    data-target="#updateModal"
+                                                                    id="update"
+                                                                    data-toggle="modal"
+                                                                    data-id="<?= $row['id']; ?>"
+                                                                    data-username="<?= $row['username']; ?>"
+                                                                    data-email="<?= $row['email']; ?>"
+                                                                    data-password="<?= $row['password']; ?>"
+                                                                    class="btn btn-warning updateModal"
+                                                                    style="font-size:10px;padding:2px 5px;color:white;">
+                                                                    Ubah
+                                                                </button>                                                                <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
                                                             </td>
                                                         </tr>
                                                     <?php endforeach; ?>
@@ -558,8 +609,19 @@
                                                             <td><?= $row['created_at']; ?></td>
                                                             <td><?= $row['updated_at']; ?></td>
                                                             <td>
-                                                                <button data-target='#updateModal' id='update' data-toggle='modal' data-id="<?= $row['id']; ?>" data-username="<?= $row['username']; ?>" data-email="<?= $row['email']; ?>" data-password="<?= $row['password']; ?>" class='btn btn-warning updateModal' style='font-size:10px;padding:2px 5px;color:white;'>Ubah</button>
-                                                                <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
+                                                            <button
+                                                                    data-target="#updateModal"
+                                                                    id="update"
+                                                                    data-toggle="modal"
+                                                                    data-id="<?= $row['id']; ?>"
+                                                                    data-username="<?= $row['username']; ?>"
+                                                                    data-email="<?= $row['email']; ?>"
+                                                                    data-group="<?= $row['group']; ?>"
+                                                                    data-password="<?= $row['password']; ?>"
+                                                                    class="btn btn-warning updateModal"
+                                                                    style="font-size:10px;padding:2px 5px;color:white;">
+                                                                    Ubah
+                                                                </button>                                                                <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
                                                             </td>
                                                         </tr>
                                                     <?php endforeach; ?>
@@ -608,74 +670,69 @@
         <!-- UPDATE TABLE START -->
         <!-- Modal -->
         <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="editModalLabel">Edit Data User</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Edit Data User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editForm" method="post">
+                    <input type="hidden" id="id" name="id">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" id="username" name="username" required>
                     </div>
-                    <div class="modal-body">
-                        <form id="editForm" method="post">
-                            <input type="hidden" id="id" name="id">
-                            <div class="form-group">
-                                <label for="username">Username</label>
-                                <input type="text" class="form-control" id="username" name="username" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="group">group</label>
-                                <input type="text" class="form-control" id="group" name="group" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control" id="password" name="password">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                        </form>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
                     </div>
-                </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Password </label>
+                        <input type="text" class="form-control" id="password" name="password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
+
 
     <!-- BEGIN: UPDATE MODAL -->
     <script>
         $('.updateModal').click(function() {
             // Ambil data dari atribut data-* pada tombol yang diklik
-
+            var id = $(this).data('id'); // Ambil id
             var username = $(this).data('username');
             var email = $(this).data('email');
             var group = $(this).data('group');
             var password = $(this).data('password');
 
             // Isi nilai input dalam form modal dengan data yang diperoleh
-
+            $('#editForm #id').val(id); // Isi input hidden id
             $('#editForm #username').val(username);
             $('#editForm #email').val(email);
             $('#editForm #group').val(group);
-            $('#editForm #password').val(password); // Kosongkan password, jika tidak ingin mengedit
+            $('#editForm #password').val(password); // Kosongkan password jika tidak ingin diubah
 
             // Tampilkan modal
             $('#updateModal').modal('show');
         });
-
-        // Submit form ketika tombol simpan di klik
         $('#editForm').submit(function(e) {
-            e.preventDefault(); // Mencegah form melakukan submit default
+            e.preventDefault(); // Mencegah form submit default
 
-            // Ambil data dari form
             var id = $('#id').val();
             var username = $('#username').val();
             var email = $('#email').val();
             var group = $('#group').val();
             var password = $('#password').val();
+
             $.ajax({
-                url: '<?= base_url("update") ?>', // Endpoint untuk update user
+                url: '<?= base_url("update") ?>',
                 method: 'POST',
                 data: {
                     id: id,
@@ -685,16 +742,12 @@
                     password: password
                 },
                 success: function(response) {
-
+                    alert(response.message);
                     location.reload(); // Refresh halaman setelah berhasil disimpan
                 },
                 error: function(err) {
                     console.log(err);
-                    if (err.responseJSON) {
-                        alert("Error: " + err.responseJSON.message); // Menampilkan pesan error dari server
-                    } else {
-                        alert("Terjadi kesalahan saat menyimpan data.");
-                    }
+                    alert("Gagal menyimpan data. Silakan coba lagi.");
                 }
             });
         });

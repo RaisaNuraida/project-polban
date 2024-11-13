@@ -281,29 +281,37 @@ class Home extends BaseController
         $email = $this->request->getPost('email');
         $group = $this->request->getPost('group');
         $password = $this->request->getPost('password');
-
+    
+        // Periksa apakah password diisi
         if (empty($password)) {
-            $password = null;
+            $data = [
+                'username' => $username,
+                'email' => $email,
+                'group' => $group,
+            ];
         } else {
-            $password = password_hash($password, PASSWORD_DEFAULT);
+            // Hash password baru
+            $data = [
+                'username' => $username,
+                'email' => $email,
+                'group' => $group,
+                'password' => $password,
+                'updated_at' => date('Y-m-d H:i:s')
+            ];
         }
-
-        $data = [
-            'username' => $username,
-            'email' => $email,
-            'group' => $group,
-            'password' => $password
-        ];
-
+    
+        // Update data ke database
         $db = \Config\Database::connect();
-            $builder = $db->table('users');
-            $builder->where('id', $id);
-            $update = $builder->update($data);
-
-            if ($update) {
-                return $this->response->setJSON(['message' => 'User berhasil diupdate.']);
-            } else {
-                return $this->response->setJSON(['message' => 'Terjadi kesalahan saat memperbarui data.'], 500);
-            }
+        $builder = $db->table('users');
+        $builder->where('id', $id);
+        $update = $builder->update($data);
+    
+        // Cek hasil update
+        if ($update) {
+            return $this->response->setJSON(['message' => 'User berhasil diupdate.']);
+        } else {
+            return $this->response->setJSON(['message' => 'Terjadi kesalahan saat memperbarui data.'], 500);
         }
+    }
+    
     }
