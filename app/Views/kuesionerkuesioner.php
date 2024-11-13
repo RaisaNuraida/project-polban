@@ -2271,54 +2271,52 @@
                             </table>
                             
                             <script>
-                                
-                                $(document).ready(function() {    
-                                    function loadTableData() {
-                                        
-                                        $.ajax({
-                                            url: "<?= site_url('/kuesionerkuesioner') ?>", // Ganti dengan URL endpoint yang sesuai
-                                            method: "GET",
-                                            dataType: "json",
-                                            success: function(data) {
-                                                console.log("Data yang diterima:", data);
-                                                $('#dataTabel tbody').empty(); // Mengosongkan tbody sebelum memuat data baru
+                        $(document).ready(function() {    
+                            function loadTableData() {
+                                $.ajax({
+                                    url: "<?= site_url('/kuesionerkuesioner') ?>", // Ganti dengan URL endpoint yang sesuai
+                                    method: "GET",
+                                    dataType: "json",
+                                    success: function(data) {
+                                        console.log("Data yang diterima:", data);
+                                        $('#dataTable tbody').empty(); // Mengosongkan tbody sebelum memuat data baru
 
-                                            if (data.length === 0) {
-                                                alert("Tidak ada data yang tersedia.");
-                                            } else {
-                                                let no = 1;
+                                        if (data.length === 0) {
+                                            alert("Tidak ada data yang tersedia.");
+                                        } else {
+                                            let no = 1;
 
-                                                                // Looping data untuk menampilkan di tabel
-                                                                $.each(data, function(index, row) {
-                                                                    $('#dataTable tbody').append(`
-                                                        <tr>
-                                                            <td>${no}</td>  <!-- Kolom nomor urut -->
-                                                            <td>${row.academic_nim}</td>
-                                                            <td>${row.display_name}</td>
-                                                            <td>${row.academic_faculty}</td>
-                                                            <td>${row.academic_program}</td>
-                                                            <td>${row.academic_year}</td>
-                                                            <td>${row.created_on}</td>
-                                                            <td>${row.updated_on}</td>
-                                                            
-                                                        </tr>
-                                                    `);
-                                                                    no++; // Increment nomor urut untuk baris berikutnya
-                                                                });
-                                                            }
-                                                            },
-                                                            error: function(xhr, status, error) {
-                                                                console.error("Error loading data:", error);
-                                                            }
-                                                        });
-                                                }
+                                            // Looping data untuk menampilkan di tabel
+                                            $.each(data, function(index, row) {
+                                                $('#dataTable tbody').append(`
+                                                    <tr>
+                                                        <td>${no}</td>  <!-- Kolom nomor urut -->
+                                                        <td>${row.academic_nim}</td>
+                                                        <td>${row.display_name}</td>
+                                                        <td>${row.academic_faculty}</td>
+                                                        <td>${row.academic_program}</td>
+                                                        <td>${row.academic_year}</td>
+                                                        <td>${row.created_on}</td>
+                                                        <td>${row.updated_on}</td>
+                                                    </tr>
+                                                `);
+                                                no++; // Increment nomor urut untuk baris berikutnya
+                                            });
+                                        }
+                                    },
+                                    error: function(xhr, status, error) {
+                                        console.error("Error loading data:", error);
+                                    }
+                                });
+                            }
+                            
+                            // Fungsi untuk memuat data saat halaman pertama kali dimuat
+                            loadTableData();
 
-                                // Fungsi untuk memuat data saat halaman pertama kali dimuat
-                                loadTableData();
-
-                                // Refresh data setiap 10 detik (opsional)
-                                setInterval(loadTableData, 10000);
-                            </script>
+                            // Refresh data setiap 10 detik (opsional)
+                            setInterval(loadTableData, 10000);
+                        });
+                    </script>
 
 
                         </div>
