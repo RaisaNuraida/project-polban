@@ -50,8 +50,8 @@
 
 <body class="vertical-layout vertical-menu 2-columns fixed-navbar" data-open="click" data-menu="vertical-menu" data-color="bg-gradient-x-purple-blue" data-col="2-columns">
 
-<!-- BEGIN: Header-->
-<nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light">
+    <!-- BEGIN: Header-->
+    <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light">
         <div class="navbar-wrapper">
             <div class="navbar-container content">
                 <div class="collapse navbar-collapse show" id="navbar-mobile">
@@ -263,8 +263,17 @@
                                                 <?php foreach ($organisasi as $faculty => $programs) : ?>
                                                     <tr>
                                                         <td><strong><?= esc($faculty) ?></strong></td>
-                                                    </tr>
-
+                                                   
+                                                    <td> <button
+                                                            data-target="#deleteModalfaculty"
+                                                            id="deletefaculty"
+                                                            data-toggle="modal"
+                                                            data-id="<?= esc($program['faculty']); ?>"
+                                                            class="btn btn-danger deleteModalfaculty"
+                                                            style="font-size:10px;padding:2px 5px;color:white;">
+                                                            Hapus
+                                                        </button></td>
+                                                        </tr>
                                                 <?php endforeach; ?>
                                             <?php else : ?>
                                                 <tr>

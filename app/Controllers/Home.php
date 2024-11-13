@@ -279,7 +279,6 @@ class Home extends BaseController
         $id = $this->request->getPost('id');
         $username = $this->request->getPost('username');
         $email = $this->request->getPost('email');
-        $group = $this->request->getPost('group');
         $password = $this->request->getPost('password');
     
         // Periksa apakah password diisi
@@ -287,14 +286,12 @@ class Home extends BaseController
             $data = [
                 'username' => $username,
                 'email' => $email,
-                'group' => $group,
             ];
         } else {
             // Hash password baru
             $data = [
                 'username' => $username,
                 'email' => $email,
-                'group' => $group,
                 'password' => $password,
                 'updated_at' => date('Y-m-d H:i:s')
             ];
