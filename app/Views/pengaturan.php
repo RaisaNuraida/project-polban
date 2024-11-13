@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, minimal-ui">
     <meta name="author" content="ThemeSelect">
-    <title>Dashboard Admin</title>
+    <title>Dashboard Admin - Pengaturan Situs</title>
     <link rel="apple-touch-icon" href="assets/images/apple-icon-120.png">
     <link rel="shortcut icon" type="assets/image/x-icon" href="images/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700" rel="stylesheet">
@@ -59,7 +59,7 @@
                         <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
                         <li class="nav-item d-none d-md-block"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu"></i></a></li>
                         <li class="nav-item d-none d-md-block"><a class="nav-link nav-link-expand" href="#"><i class="ficon ft-maximize"></i></a></li>
-                    </ul>
+                    </ul>   
                     <ul class="nav navbar-nav float-right">
                         <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"> <span class="avatar avatar-online"><img src="assets/images/avatar-s-19.png" alt="avatar"></span></a>
                             <div class="dropdown-menu dropdown-menu-right">
@@ -69,7 +69,7 @@
                                 </div>
                             </div>
                         </li>
-                    </ul>
+                    </ul>   
                 </div>
             </div>
         </div>
@@ -115,6 +115,7 @@
                         <span class="menu-title">Organisasi</span>
                     </a>
                 </li>
+
 
                 <li class="menu-item">
                     <a href="<?= base_url('/pengaturan') ?>">
@@ -163,7 +164,7 @@
                                                     <div class="d-flex">
                                                         <label for="nama-situs" class="m-1" style="width: 10%;">Nama Situs</label>
                                                         <div class="form-group">
-                                                            <input type="text" style="width: 45%;" name="nama" id="nama" class="form-control" value="<?= session()->get('nama') ?>" required>
+                                                            <input type="text" style="width: 45%;" name="nama" id="nama" class="form-control" value="<?= session()->get('nama') ?? 'Tracer Study' ?>" required>
                                                             <p>Nama situs untuk judul halaman dan penggunaan lain di dalam situs.</p>
 
                                                         </div>
@@ -172,7 +173,7 @@
                                                     <div class="d-flex">
                                                         <label for="slogan" class="m-1" style="width: 10%;">Slogan Situs</label>
                                                         <div class="form-group">
-                                                            <input type="text" style="width: 45%;" name="slogan" id="slogan" class="form-control" value="<?= session()->get('slogan') ?>" required>
+                                                            <input type="text" style="width: 45%;" name="slogan" id="slogan" class="form-control" value="<?= session()->get('slogan') ?? ''  ?>" required>
                                                             <p>Slogan situs untuk judul halaman dan penggunaan lain di dalam situs.</p>
 
                                                         </div>
