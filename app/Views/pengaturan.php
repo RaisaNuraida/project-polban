@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, minimal-ui">
     <meta name="author" content="ThemeSelect">
-    <title>Dashboard Admin</title>
+    <title>Dashboard Admin - Pengaturan Situs</title>
     <link rel="apple-touch-icon" href="assets/images/apple-icon-120.png">
     <link rel="shortcut icon" type="assets/image/x-icon" href="images/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700" rel="stylesheet">
@@ -50,8 +50,8 @@
 
 <body class="vertical-layout vertical-menu 2-columns fixed-navbar" data-open="click" data-menu="vertical-menu" data-color="bg-gradient-x-purple-blue" data-col="2-columns">
 
-    <!-- BEGIN: Header-->
-    <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light">
+  <!-- BEGIN: Header-->
+  <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light">
         <div class="navbar-wrapper">
             <div class="navbar-container content">
                 <div class="collapse navbar-collapse show" id="navbar-mobile">
@@ -59,17 +59,17 @@
                         <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
                         <li class="nav-item d-none d-md-block"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu"></i></a></li>
                         <li class="nav-item d-none d-md-block"><a class="nav-link nav-link-expand" href="#"><i class="ficon ft-maximize"></i></a></li>
-                    </ul>
+                    </ul>   
                     <ul class="nav navbar-nav float-right">
                         <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"> <span class="avatar avatar-online"><img src="assets/images/avatar-s-19.png" alt="avatar"></span></a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <div class="arrow_box_right"> <a class="dropdown-item" href="#"><span class="avatar avatar-online"><img src="assets/images/avatar-s-19.png" alt="avatar"><span class="user-name text-bold-700 ml-1">Lando</span></span></a>
-                                    <div class="dropdown-divider"></div><a class="dropdown-item" href="user-profile.html"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My Inbox</a><a class="dropdown-item" href="project-summary.html"><i class="ft-check-square"></i> Task</a><a class="dropdown-item" href="chat-application.html"><i class="ft-message-square"></i> Chats</a>
-                                    <div class="dropdown-divider"></div><a class="dropdown-item" action="<?= base_url('tracer') ?>"><i class="ft-power"></i> Logout</a>
+                                <div class="arrow_box_right"> <a class="dropdown-item" href="#"><span class="avatar avatar-online"><img src="assets/images/avatar-s-19.png" alt="avatar"><span class="user-name text-bold-500 ml-1 "><?= session()->get('username') ?></span></span></a>
+                                    <div class="dropdown-divider"></div><a class="dropdown-item" href="<?= base_url('halamaneditprofile') ?>"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My Inbox</a>
+                                    <div class="dropdown-divider"></div><a class="dropdown-item" href="<?= base_url('tracer') ?>"><i class="ft-power"></i> Logout</a>
                                 </div>
                             </div>
                         </li>
-                    </ul>
+                    </ul>   
                 </div>
             </div>
         </div>
@@ -109,14 +109,13 @@
                     </a>
                 </li>
 
-                <li class=" nav-item"><a href="#"><i class="ft-sidebar"></i><span class="menu-title" data-i18n="">Organisasi</span></a>
-                    <ul class="menu-content">
-                        <li><a class="menu-item" href="gallery-grid.html">Satuan Organisasi</a>
-                        </li>
-                        <li><a class="menu-item" href="search.html">Tipe</a>
-                        </li>
-                    </ul>
+                <li class="menu-item">
+                    <a href="<?= base_url('/organisasi') ?>">
+                        <i class="ft-edit"></i>
+                        <span class="menu-title">Organisasi</span>
+                    </a>
                 </li>
+
 
                 <li class="menu-item">
                     <a href="<?= base_url('/pengaturan') ?>">
@@ -141,53 +140,55 @@
 
                         <!-- Import Data Start -->
                         <div class="card">
-                            <div class="card-header">
-                                <h2>Pengaturan Situs</h2>
-                                <hr>
-                                <div class="card-content">
-                                    <div class="card-body"> <?php if (session()->getFlashdata('success')): ?>
-                                            <div class="alert alert-success">
-                                                <?= session()->getFlashdata('success'); ?>
-                                            </div>
-                                        <?php endif; ?>
+                            <div class="mr-2 ml-2">
+                                <div class="card-header">
+                                    <h2>Pengaturan Situs</h2>
+                                    <hr>
+                                    <div class="card-content">
+                                        <div class="card-body"> 
+                                            <?php if (session()->getFlashdata('success')): ?>
+                                                <div class="alert alert-success">
+                                                    <?= session()->getFlashdata('success'); ?>
+                                                </div>
+                                            <?php endif; ?>
 
-                                        <?php if (session()->getFlashdata('error')): ?>
-                                            <div class="alert alert-danger">
-                                                <?= session()->getFlashdata('error'); ?>
-                                            </div>
-                                        <?php endif; ?>
-                                        <div class="container mb-1 border border-primary">
+                                            <?php if (session()->getFlashdata('error')): ?>
+                                                <div class="alert alert-danger">
+                                                    <?= session()->getFlashdata('error'); ?>
+                                                </div>
+                                            <?php endif; ?>
+                                            <div class="container mb-1 border border-primary">
 
-                                            <!-- Form untuk pengaturan -->
-                                            <form action="<?= base_url('/pengaturan') ?>" method="post" class="m-1">
-                                                <div class="d-flex">
-                                                    <label for="nama-situs" class="m-1" style="width: 10%;">Nama Situs</label>
-                                                    <div class="form-group">
-                                                        <input type="text" style="width: 45%;" name="nama" id="nama" class="form-control" value="<?= session()->get('nama') ?? '$nama' ?>">
-                                                        <p>Nama situs untuk judul halaman dan penggunaan lain di dalam situs.</p>
+                                                <!-- Form untuk pengaturan -->
+                                                <form action="<?= base_url('/pengaturan') ?>" method="post" class="m-1">
+                                                    <div class="d-flex">
+                                                        <label for="nama-situs" class="m-1" style="width: 10%;">Nama Situs</label>
+                                                        <div class="form-group">
+                                                            <input type="text" style="width: 45%;" name="nama" id="nama" class="form-control" value="<?= session()->get('nama') ?? 'Tracer Study' ?>" required>
+                                                            <p>Nama situs untuk judul halaman dan penggunaan lain di dalam situs.</p>
 
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="d-flex">
-                                                    <label for="slogan" class="m-1" style="width: 10%;">Slogan Situs</label>
-                                                    <div class="form-group">
-                                                        <input type="text" style="width: 45%;" name="slogan" id="slogan" class="form-control" value="<?= session()->get('slogan') ?? '$slogan' ?>">
-                                                        <p>Slogan situs untuk judul halaman dan penggunaan lain di dalam situs.</p>
+                                                    <div class="d-flex">
+                                                        <label for="slogan" class="m-1" style="width: 10%;">Slogan Situs</label>
+                                                        <div class="form-group">
+                                                            <input type="text" style="width: 45%;" name="slogan" id="slogan" class="form-control" value="<?= session()->get('slogan') ?? ''  ?>" required>
+                                                            <p>Slogan situs untuk judul halaman dan penggunaan lain di dalam situs.</p>
 
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="d-flex justify-content-start">
-                                                    <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-                                                    <a href="<?= base_url('/pengaturan') ?>" class="btn btn-danger">Batal</a>
-                                                </div>
-                                            </form>
+                                                    <div class="d-flex justify-content-start">
+                                                        <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+                                                        <a href="<?= base_url('/pengaturan') ?>" class="btn btn-danger">Batal</a>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <!-- END: Content-->

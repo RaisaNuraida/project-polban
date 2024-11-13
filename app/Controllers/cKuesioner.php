@@ -17,11 +17,11 @@ class cKuesioner extends Controller
     public function downloadCSV()
     {
         $filename = "DataAlumni-" . date('ymd') . ".xlsx";
-        $cari = $this->request->getVar("carianswer"); 
+        $cari = $this->request->getVar("carianswer");
         // Mengambil input pencarian
         $db = \Config\Database::connect();
         $builder = $db->table("users");
-    
+
         // Melakukan pencarian jika ada input
         if ($cari != "") {
             $builder->like('display_name', $cari);
@@ -30,15 +30,15 @@ class cKuesioner extends Controller
             $builder->orLike('academic_program', $cari);
             $builder->orLike('academic_year', $cari);
         }
-    
+
         // Mengambil data dari query
         $query = $builder->get();
         $data = $query->getResult(); // Mengambil hasil query
-    
+
         // Membuat instance Spreadsheet
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
-    
+
         // Menulis header kolom
         $sheet->setCellValue("A1", "No");
         $sheet->setCellValue("B1", "NIM");
@@ -46,7 +46,7 @@ class cKuesioner extends Controller
         $sheet->setCellValue("D1", "Jurusan");
         $sheet->setCellValue("E1", "Program Studi");
         $sheet->setCellValue("F1", "Angkatan");
-    
+
         $column = 2; // Mulai dari baris 2 untuk data
         foreach ($data as $key => $value) {
             // Mengakses properti dari stdClass dengan menggunakan sintaks objek
@@ -58,13 +58,13 @@ class cKuesioner extends Controller
             $sheet->setCellValue("F" . $column, $value->academic_year); // Angkatan
             $column++;
         }
-    
+
         // Pengaturan header untuk download
         $writer = new Xlsx($spreadsheet);
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment; filename="' . $filename . '"'); // Menggunakan variabel filename
         header('Cache-Control: max-age=0');
-    
+
         // Simpan ke output
         $writer->save('php://output');
         exit();   
@@ -73,6 +73,4 @@ class cKuesioner extends Controller
     public function dataisian(){
         return view ('dataisian');
     }
-
-    
 }

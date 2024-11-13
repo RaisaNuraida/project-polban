@@ -124,13 +124,7 @@
                 </div>
 
                 <div class="m-5 text-justify">
-                  <?php if (!empty($message) && is_array($message)): ?>
-                    <?php foreach ($message as $message) : ?> 
-                    <span><?= esc($message['message']); ?></span>
-                    <?php endforeach?>
-                  <?php else: ?>
-                    <p>Tidak ada pesan yang tersedia.</p>
-                  <?php endif; ?>
+                  <?= $message; ?>
                   <div class="d-flex justify-content-center m-4">
                     <a
                       type="button"
@@ -153,7 +147,7 @@
 
     <footer
       class="footer footer-static footer-light navbar-border navbar-shadow text-center">
-      <div class="clearfix blue-grey lighten-2 text-sm-center">
+      <div class="blue-grey lighten-2 text-sm-center">
         <strong>Powered by tracer.id</strong>
       </div>
       <hr />

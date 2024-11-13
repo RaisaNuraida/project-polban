@@ -32,9 +32,11 @@ class welcomepage extends BaseController
     {
         $model = new welcome();
 
-        $data['message'] = $model->getmessage();
+        // Mengambil data pertama dan hanya field 'message'
+        $messageData = $model->first();
+        $message = $messageData['message'] ?? 'Tidak ada pesan yang tersedia.';
 
-        // Render view dan kirim data
-        return view('tracer', $data);
+        $data = ['message' => $message];
+        return view('/tracer', $data);
     }
 }

@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, minimal-ui">
     <meta name="author" content="ThemeSelect">
-    <title>Dashboard Admin - Kuesioner</title>
+    <title>Dashboard Admin - Edit Profile</title>
     <link rel="apple-touch-icon" href="assets/images/apple-icon-120.png">
     <link rel="shortcut icon" type="assets/image/x-icon" href="images/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700" rel="stylesheet">
@@ -87,41 +87,14 @@
             <div class="content-header row"></div>
             <div class="content-body">
                 <div class="row justify-content-center">
-                    <div class="col-lg-8 col-md-10">
+                    <div class="col-lg-6 col-md-10">
                         <h1 class="text-center">Tracer Study</h1>
                         <div class="card">
                             <div class="card-header container p-1 m-0">
-                                <h3><strong>Halaman Users</strong></h3>
+                                <h3><strong>Edit Profile</strong></h3>
                                 <hr>
                                 <div class="table-responsive">
-                                    <table class="table table-bordered text-center">
-                                        <thead>
-                                            <tr>
-                                                <td>NO</td>
-                                                <td>Judul</td>
-                                                <td>Aksi</td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php if (!empty($user)) : ?>
-                                                <?php $no = 1; ?>
-                                                <?php foreach ($user as $row) : ?>
-                                                    <tr>
-                                                        <td><?= $no++; ?></td>
-                                                        <td><?= $row['title']; ?></td>
-                                                        <td>
-                                                            <a class="btn btn-danger btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Lihat</a>
-                                                        </td>
-                                                    </tr>
-                                                <?php endforeach; ?>
-                                            <?php else : ?>
-                                                <tr>
-                                                    <td colspan="3" class="text-center">No data found</td>
-                                                </tr>
-                                            <?php endif; ?>
-
-                                        </tbody>
-                                    </table>
+                                    
                                 </div>
 
                             </div>
