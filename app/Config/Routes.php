@@ -19,7 +19,7 @@ $routes->get('/', 'Home::dataAdministrator');
 $routes->get('/', 'Home::dataAtasan');
 $routes->get('importdata', 'Import::index');
 $routes->get('/halamantracer', 'Home::tracer');
-$routes->get('/halamanlogin', 'login::halamanlogin');
+$routes->get('/halamanloginh', 'login::halamanlogin');
 $routes->get('/login', 'login::login');
 $routes->get('/loginuser', 'login::halamanloginuser');
 $routes->get('/halamanuser', 'login::indexuser');
@@ -38,6 +38,7 @@ $routes->get('/tracer', 'welcomepage::data');
 $routes->get('/organisasiindex', 'Home::organisasi');
 $routes->get('/organisasi', 'c_organisasi::tabelorganisasi');
 $routes->get('/organisasijurusan', 'c_organisasi::index');
+$routes->get('/halamanlogin', 'pengaturan::index');
 
 $routes->get('/data', 'welcomepage::data');
 $routes->get('/pengaturan', 'Home::setting');

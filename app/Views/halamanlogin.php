@@ -109,8 +109,15 @@
                   <div class="d-flex flex-row justify-content-center align-items-center text-center">
                     <div class="flex-row m-4">
                       <div class="header mb-1">
-                        <h2>Tracer Study</h2>
-                        <p>slogan</p>
+                        <?php if (!empty($my_data)) : ?>
+                          <?php foreach ($my_data as $row) : ?>
+                            
+                          <span class="font-size-large"><?= $row['nama']; ?></span>    
+                              <br>
+                              <?= $row['slogan']; ?>
+
+                            <?php endforeach; ?>
+                          <?php endif; ?>
                       </div>
                       <div class="form-group">
                         <input type="text" name="username" placeholder="Username" class="form-control" value="<?php echo session()->getFlashdata('username') ?>" id="username" required>
