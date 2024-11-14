@@ -63,7 +63,7 @@
                     <ul class="nav navbar-nav float-right">
                         <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"> <span class="avatar avatar-online"><img src="assets/images/avatar-s-19.png" alt="avatar"></span></a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <div class="arrow_box_right"> <a class="dropdown-item" href="#"><span class="avatar avatar-online"><img src="assets/images/avatar-s-19.png" alt="avatar"><span class="user-name text-bold-500 ml-1 "><?= session()->get('username') ?></span></span></a>
+                                <div class="arrow_box_right"> <a class="dropdown-item" href="#"><span class="avatar avatar-online"><img src="assets/images/avatar-s-19.png" alt="avatar"><span class="user-name text-bold-500 ml-1 text-capitalize"><?= session()->get('username') ?></span></span></a>
                                     <div class="dropdown-divider"></div><a class="dropdown-item" href="<?= base_url('halamaneditprofile') ?>"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My Inbox</a>
                                     <div class="dropdown-divider"></div><a class="dropdown-item" href="<?= base_url('tracer') ?>"><i class="ft-power"></i> Logout</a>
                                 </div>
@@ -305,7 +305,7 @@
                                                             <td><?= $row['created_at']; ?></td>
                                                             <td><?= $row['updated_at']; ?></td>
                                                             <td>
-                                                            <button
+                                                                <button
                                                                     data-target="#updateModal"
                                                                     id="update"
                                                                     data-toggle="modal"
@@ -316,7 +316,7 @@
                                                                     class="btn btn-warning updateModal"
                                                                     style="font-size:10px;padding:2px 5px;color:white;">
                                                                     Ubah
-                                                                </button>                                                                <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
+                                                                </button> <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
                                                             </td>
                                                         </tr>
                                                     <?php endforeach; ?>
@@ -381,7 +381,7 @@
                                                             <td><?= $row['created_at']; ?></td>
                                                             <td><?= $row['updated_at']; ?></td>
                                                             <td>
-                                                            <button
+                                                                <button
                                                                     data-target="#updateModal"
                                                                     id="update"
                                                                     data-toggle="modal"
@@ -392,7 +392,7 @@
                                                                     class="btn btn-warning updateModal"
                                                                     style="font-size:10px;padding:2px 5px;color:white;">
                                                                     Ubah
-                                                                </button>                                                                <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
+                                                                </button> <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
                                                             </td>
                                                         </tr>
                                                     <?php endforeach; ?>
@@ -458,7 +458,7 @@
                                                             <td><?= $row['created_at']; ?></td>
                                                             <td><?= $row['updated_at']; ?></td>
                                                             <td>
-                                                            <button
+                                                                <button
                                                                     data-target="#updateModal"
                                                                     id="update"
                                                                     data-toggle="modal"
@@ -469,7 +469,7 @@
                                                                     class="btn btn-warning updateModal"
                                                                     style="font-size:10px;padding:2px 5px;color:white;">
                                                                     Ubah
-                                                                </button>                                                                <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
+                                                                </button> <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
                                                             </td>
                                                         </tr>
                                                     <?php endforeach; ?>
@@ -534,7 +534,7 @@
                                                             <td><?= $row['created_at']; ?></td>
                                                             <td><?= $row['updated_at']; ?></td>
                                                             <td>
-                                                            <button
+                                                                <button
                                                                     data-target="#updateModal"
                                                                     id="update"
                                                                     data-toggle="modal"
@@ -545,7 +545,7 @@
                                                                     class="btn btn-warning updateModal"
                                                                     style="font-size:10px;padding:2px 5px;color:white;">
                                                                     Ubah
-                                                                </button>                                                                <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
+                                                                </button> <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
                                                             </td>
                                                         </tr>
                                                     <?php endforeach; ?>
@@ -609,7 +609,7 @@
                                                             <td><?= $row['created_at']; ?></td>
                                                             <td><?= $row['updated_at']; ?></td>
                                                             <td>
-                                                            <button
+                                                                <button
                                                                     data-target="#updateModal"
                                                                     id="update"
                                                                     data-toggle="modal"
@@ -621,7 +621,8 @@
                                                                     class="btn btn-warning updateModal"
                                                                     style="font-size:10px;padding:2px 5px;color:white;">
                                                                     Ubah
-                                                                </button>                                                                <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
+                                                                </button>
+                                                                <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
                                                             </td>
                                                         </tr>
                                                     <?php endforeach; ?>
@@ -670,147 +671,147 @@
         <!-- UPDATE TABLE START -->
         <!-- Modal -->
         <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editModalLabel">Edit Data User</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form id="editForm" method="post">
-                    <input type="hidden" id="id" name="id">
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" required>
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editModalLabel">Edit Data User</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
+                    <div class="modal-body">
+                        <form id="editForm" method="post">
+                            <input type="hidden" id="id" name="id">
+                            <div class="form-group">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control" id="username" name="username" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password </label>
+                                <input type="text" class="form-control" id="password" name="password">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                        </form>
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="password">Password </label>
-                        <input type="text" class="form-control" id="password" name="password">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                </form>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
 
-    <!-- BEGIN: UPDATE MODAL -->
-    <script>
-        $('.updateModal').click(function() {
-            // Ambil data dari atribut data-* pada tombol yang diklik
-            var id = $(this).data('id'); // Ambil id
-            var username = $(this).data('username');
-            var email = $(this).data('email');
-            var group = $(this).data('group');
-            var password = $(this).data('password');
+        <!-- BEGIN: UPDATE MODAL -->
+        <script>
+            $('.updateModal').click(function() {
+                // Ambil data dari atribut data-* pada tombol yang diklik
+                var id = $(this).data('id'); // Ambil id
+                var username = $(this).data('username');
+                var email = $(this).data('email');
+                var group = $(this).data('group');
+                var password = $(this).data('password');
 
-            // Isi nilai input dalam form modal dengan data yang diperoleh
-            $('#editForm #id').val(id); // Isi input hidden id
-            $('#editForm #username').val(username);
-            $('#editForm #email').val(email);
-            $('#editForm #group').val(group);
-            $('#editForm #password').val(password); // Kosongkan password jika tidak ingin diubah
+                // Isi nilai input dalam form modal dengan data yang diperoleh
+                $('#editForm #id').val(id); // Isi input hidden id
+                $('#editForm #username').val(username);
+                $('#editForm #email').val(email);
+                $('#editForm #group').val(group);
+                $('#editForm #password').val(password); // Kosongkan password jika tidak ingin diubah
 
-            // Tampilkan modal
-            $('#updateModal').modal('show');
-        });
-        $('#editForm').submit(function(e) {
-            e.preventDefault(); // Mencegah form submit default
-
-            var id = $('#id').val();
-            var username = $('#username').val();
-            var email = $('#email').val();
-            var group = $('#group').val();
-            var password = $('#password').val();
-
-            $.ajax({
-                url: '<?= base_url("update") ?>',
-                method: 'POST',
-                data: {
-                    id: id,
-                    username: username,
-                    email: email,
-                    group: group,
-                    password: password
-                },
-                success: function(response) {
-                    alert(response.message);
-                    location.reload(); // Refresh halaman setelah berhasil disimpan
-                },
-                error: function(err) {
-                    console.log(err);
-                    alert("Gagal menyimpan data. Silakan coba lagi.");
-                }
+                // Tampilkan modal
+                $('#updateModal').modal('show');
             });
-        });
-    </script>
-    <!-- END: UPDATE MODAL -->
+            $('#editForm').submit(function(e) {
+                e.preventDefault(); // Mencegah form submit default
 
-    <!-- UPDATE TABLE END -->
+                var id = $('#id').val();
+                var username = $('#username').val();
+                var email = $('#email').val();
+                var group = $('#group').val();
+                var password = $('#password').val();
 
-    <!-- Modal Konfirmasi Hapus START -->
-    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content text-center">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>Apakah Anda yakin ingin menghapus data <strong id="username"></strong>?</p>
-                    <form id="deleteForm" method="post" action="<?= base_url('delete') ?>">
-                        <input type="hidden" id="delete_id" name="id">
-                        <button type="submit" class="btn btn-danger">Hapus</button>
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                    </form>
+                $.ajax({
+                    url: '<?= base_url("update") ?>',
+                    method: 'POST',
+                    data: {
+                        id: id,
+                        username: username,
+                        email: email,
+                        group: group,
+                        password: password
+                    },
+                    success: function(response) {
+                        alert(response.message);
+                        location.reload(); // Refresh halaman setelah berhasil disimpan
+                    },
+                    error: function(err) {
+                        console.log(err);
+                        alert("Gagal menyimpan data. Silakan coba lagi.");
+                    }
+                });
+            });
+        </script>
+        <!-- END: UPDATE MODAL -->
+
+        <!-- UPDATE TABLE END -->
+
+        <!-- Modal Konfirmasi Hapus START -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content text-center">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Apakah Anda yakin ingin menghapus data <strong id="username"></strong>?</p>
+                        <form id="deleteForm" method="post" action="<?= base_url('delete') ?>">
+                            <input type="hidden" id="delete_id" name="id">
+                            <button type="submit" class="btn btn-danger">Hapus</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script>
-        $('.deleteModal').click(function() {
-            var href = $(this).data('target');
-            var id = $(this).data('id');
-            $('#delete_id').val(id);
-        });
-    </script>
+        <script>
+            $('.deleteModal').click(function() {
+                var href = $(this).data('target');
+                var id = $(this).data('id');
+                $('#delete_id').val(id);
+            });
+        </script>
 
-    <!-- Modal Konfirmasi Hapus END-->
+        <!-- Modal Konfirmasi Hapus END-->
 
-    <!-- END: Content-->
+        <!-- END: Content-->
 
-    <!-- BEGIN: Vendor JS-->
-    <script src="assets/js/vendors.min.js" type="text/javascript"></script>
-    <script src="assets/js/switchery.min.js" type="text/javascript"></script>
-    <script src="assets/js/switch.min.js" type="text/javascript"></script>
-    <!-- BEGIN Vendor JS-->
+        <!-- BEGIN: Vendor JS-->
+        <script src="assets/js/vendors.min.js" type="text/javascript"></script>
+        <script src="assets/js/switchery.min.js" type="text/javascript"></script>
+        <script src="assets/js/switch.min.js" type="text/javascript"></script>
+        <!-- BEGIN Vendor JS-->
 
-    <!-- BEGIN: Page Vendor JS-->
-    <script src="assets/js/chartist.min.js" type="text/javascript"></script>
-    <script src="assets/js/chartist-plugin-tooltip.min.js" type="text/javascript"></script>
-    <!-- END: Page Vendor JS-->
+        <!-- BEGIN: Page Vendor JS-->
+        <script src="assets/js/chartist.min.js" type="text/javascript"></script>
+        <script src="assets/js/chartist-plugin-tooltip.min.js" type="text/javascript"></script>
+        <!-- END: Page Vendor JS-->
 
-    <!-- BEGIN: Theme JS-->
-    <script src="assets/js/app-menu.min.js" type="text/javascript"></script>
-    <script src="assets/js/app.min.js" type="text/javascript"></script>
-    <script src="assets/js/customizer.min.js" type="text/javascript"></script>
-    <script src="assets/js/jquery.sharrre.js" type="text/javascript"></script>
-    <!-- END: Theme JS-->
+        <!-- BEGIN: Theme JS-->
+        <script src="assets/js/app-menu.min.js" type="text/javascript"></script>
+        <script src="assets/js/app.min.js" type="text/javascript"></script>
+        <script src="assets/js/customizer.min.js" type="text/javascript"></script>
+        <script src="assets/js/jquery.sharrre.js" type="text/javascript"></script>
+        <!-- END: Theme JS-->
 
-    <!-- BEGIN: Page JS-->
-    <script src="assets/js/dashboard-analytics.min.js" type="text/javascript"></script>
-    <!-- END: Page JS-->
+        <!-- BEGIN: Page JS-->
+        <script src="assets/js/dashboard-analytics.min.js" type="text/javascript"></script>
+        <!-- END: Page JS-->
 
 </body>
 <!-- END: Body-->

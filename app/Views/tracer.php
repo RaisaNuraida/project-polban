@@ -79,25 +79,37 @@
     class="header-navbar navbar-expand navbar navbar-without-dd-arrow fixed-top navbar-semi-light">
     <div class="navbar-wrapper" style="background-color: #f4f5fa;">
       <div class="justify-content-end">
-              <img src="assets/images/layanankealumnian.png" class="d-block mx-auto m-1 " style="width: 320px;" alt="layanankealumnian.png">
+        <img src="assets/images/layanankealumnian.png" class="d-block mx-auto m-1 " style="width: 320px;" alt="layanankealumnian.png">
       </div>
       <div class="navbar-container">
-        <div class="d-flex justify-content-center flex-column">
-          <ul>
-            <li>Tentang</li>
-            <li>Kontak</li>
-            <li>Respon TS</li>
-            <li>Laporan TS</li>
+        <div class="collapse navbar-collapse justify-content-center align-items-center" id="navbarTop">
+          <ul class="navbar-nav h2">
+            <li class="nav-item">
+              <a class="nav-link h1" href="#">Tracer Study</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Tentang</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Kontak</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Respon TS</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Laporan TS</a>
+            </li>
           </ul>
         </div>
+
       </div>
     </div>
   </nav>
   <!-- END: Header-->
 
   <!-- BEGIN: Content-->
-   <br><br><br>
-   <br>
+  <br><br><br>
+  <br>
   <div class="app-content content">
     <div class="content-wrapper">
       <div class="content-wrapper-before"></div>
