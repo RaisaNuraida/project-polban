@@ -198,7 +198,7 @@
 
                                     <hr>
                                     <div class="table-responsive">
-                                        <table class="table table-bordered text-center">
+                                        <table class="table table-bordered text-center table-striped table-hover">
                                             <thead>
                                                 <tr>
                                                     <th>NO</th>
@@ -279,7 +279,7 @@
                                     </div>
 
                                     <div class="table-responsive">
-                                        <table class="table table-bordered text-center">
+                                        <table class="table table-bordered text-center table-striped table-hover">
                                             <thead>
                                                 <tr>
                                                     <th>NO</th>
@@ -355,7 +355,7 @@
 
                                     <hr>
                                     <div class="table-responsive">
-                                        <table class="table table-bordered text-center">
+                                        <table class="table table-bordered text-center table-striped table-hover">
                                             <thead>
                                                 <tr>
                                                     <th>NO</th>
@@ -431,7 +431,7 @@
 
                                     <hr>
                                     <div class="table-responsive">
-                                        <table class="table table-bordered text-center">
+                                        <table class="table table-bordered text-center table-striped table-hover">
                                             <thead>
                                                 <tr>
                                                     <th>NO</th>
@@ -507,7 +507,7 @@
 
                                     <hr>
                                     <div class="table-responsive">
-                                        <table class="table table-bordered text-center">
+                                        <table class="table table-bordered text-center table-striped table-hover">
                                             <thead>
                                                 <tr>
                                                     <th>NO</th>
@@ -583,7 +583,7 @@
 
                                     <hr>
                                     <div class="table-responsive">
-                                        <table class="table table-bordered text-center">
+                                        <table class="table table-bordered text-center table-striped table-hover">
                                             <thead>
                                                 <tr>
                                                     <th>NO</th>

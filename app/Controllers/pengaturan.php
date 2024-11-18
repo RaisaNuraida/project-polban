@@ -43,7 +43,6 @@ class pengaturan extends BaseController
             'my_data' => $my_data,
         ];
 
-
         // Render view dan kirim data
         return view('halamanlogin', $data);  // Pastikan 'index' adalah nama view yang benar
         // echo"ddd"; exit();

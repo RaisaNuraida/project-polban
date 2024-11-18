@@ -82,10 +82,14 @@
         <img src="assets/images/layanankealumnian.png" class="d-block mx-auto m-1 " style="width: 320px;" alt="layanankealumnian.png">
       </div>
       <div class="navbar-container">
-        <div class="collapse navbar-collapse justify-content-center align-items-center" id="navbarTop">
-          <ul class="navbar-nav h2">
+        <div class="navbar-collapse justify-content-center align-items-center">
+          <ul class="navbar-nav h2 d-flex justify-content-center mt-1">
             <li class="nav-item">
-              <a class="nav-link h1" href="#">Tracer Study</a>
+              <a class="nav-link" href="#">
+                <strong>
+                  
+                </strong>
+              </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Tentang</a>
@@ -145,7 +149,6 @@
                       href="<?= base_url('halamanlogin') ?>">
                       Masuk Situs ≫
                     </a>
-
                   </div>
                 </div>
               </div>

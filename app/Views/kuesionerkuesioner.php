@@ -363,8 +363,7 @@
                                 <hr>
 
                                 <div class="table-responsive">
-                                    <table class="table table-bordered text-center">
-
+                                    <table class="table table-bordered text-center table-striped table-hover">
                                         <thead>
                                             <tr>
                                                 <td>NO</td>
