@@ -21,7 +21,7 @@ class carianswer extends BaseController
 
         // Melakukan pencarian berdasarkan display_name
         if ($cari) {
-            $data['alumni'] = $users
+            $data['dataalumni'] = $users
                 ->like('display_name', $cari)
                 ->orlike('academic_nim', $cari)
                 ->orlike('academic_faculty', $cari)
@@ -29,7 +29,7 @@ class carianswer extends BaseController
                 ->orlike('academic_year', $cari)
                 ->findAll(); // Menggunakan like untuk pencarian
         } else {
-            $data['alumni'] = []; // Jika tidak ada input, set hasil kosong
+            $data['dataalumni'] = []; // Jika tidak ada input, set hasil kosong
         }
 
         return view('/dataisian', $data);
