@@ -34,7 +34,7 @@ class welcomepage extends BaseController
 
         // Mengambil data pertama dan hanya field 'message'
         $messageData = $model->first();
-        $message = $messageData['message'] ?? 'Tidak ada pesan yang tersedia.';
+        $message = $messageData['message'] ?? 'Tidak ada pesan yang tersedia.'; 
 
         $data = ['message' => $message];
         return view('/tracer', $data);
