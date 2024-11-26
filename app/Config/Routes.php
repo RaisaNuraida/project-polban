@@ -44,6 +44,7 @@ $routes->get('/organisasiindex', 'Home::organisasi');
 $routes->get('/organisasi', 'c_organisasi::tabelorganisasi');
 $routes->get('/organisasijurusan', 'c_organisasi::index');
 $routes->get('/halamanlogin', 'pengaturan::index');
+$routes->get('/pengaturan', 'pengaturan::indexpengaturan');
 $routes->get('/tracer', 'pengaturan::namasitus');
 
 $routes->get('/data', 'welcomepage::data');

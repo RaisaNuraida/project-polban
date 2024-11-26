@@ -7,7 +7,7 @@ use App\Models\PengaturanModel;
 
 class pengaturan extends BaseController
 {
-    public function submitPengaturan ()
+    public function submitPengaturan()
     {
         $nama = $this->request->getPost('nama');
         $slogan = $this->request->getPost('slogan');
@@ -16,7 +16,7 @@ class pengaturan extends BaseController
         $pengaturanModel->truncate();
 
         session()->set('nama', $nama);
-        session()->set('slogan', $slogan);        
+        session()->set('slogan', $slogan);
 
         $data = [
             'nama' => $nama,
@@ -48,7 +48,7 @@ class pengaturan extends BaseController
         // echo"ddd"; exit();
     }
 
-    public function namasitus(): string
+    public function indexpengaturan(): string
     {
         $model = new PengaturanModel();
 
@@ -62,7 +62,7 @@ class pengaturan extends BaseController
         ];
 
         // Render view dan kirim data
-        return view('tracer', $data);  // Pastikan 'index' adalah nama view yang benar
+        return view('pengaturan', $data);  // Pastikan 'index' adalah nama view yang benar
         // echo"ddd"; exit();
     }
 }
