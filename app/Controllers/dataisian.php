@@ -33,14 +33,29 @@ class dataisian extends BaseController
     }
     public function AlumniDistinct(): string {
         $model = new UserModel();
-        $dataalumni = $model->getAlumniDistinc();  // Mengambil semua data dari tabel 'students'
+        $distinct = $model->getAlumniDistinc();  // Mengambil semua data dari tabel 'students'
 
         // Menyusun data agar sesuai dengan format yang dibutuhkan di frontend
             $data = [
-                'dataalumni' => $dataalumni,
+                'distinct' => $distinct,
             ];
 
         // Mengembalikan response dalam format JSON
         return view('/dataisian', $data);  // Pastikan 'index' adalah nama view yang benar
     }
+
+    public function handleRequest()
+{
+    $function = $this->request->getGet('function');
+
+    switch ($function) {
+        case 'dataisian':
+            return $this->dataisian();
+        case 'AlumniDistinct':
+            return $this->AlumniDistinct();
+        default:
+            throw new \CodeIgniter\Exceptions\PageNotFoundException();
+    }
+}
+
 }

@@ -32,7 +32,7 @@ $routes->get('/kuesionerkuesioner', 'cKuesioner::countTables');
 $routes->get('/page', 'kuesioner_page::tabel');
 $routes->get('/page', 'kuesioner_page::index');
 
-$routes->get('/dataisiannn', 'dataisian::dataisian');
+$routes->get('/dataisian', 'dataisian::dataisian');
 $routes->get('/dataisiann', 'dataisian::index');
 $routes->get('/dataisian', 'dataisian::AlumniDistinct');
 
@@ -49,6 +49,7 @@ $routes->get('/tracer', 'pengaturan::namasitus');
 $routes->get('/data', 'welcomepage::data');
 $routes->get('/pengaturan', 'Home::setting');
 $routes->get('/halamaneditprofile', 'editprofile::index');
+//$routes->get('/dataisian', 'dataisian::handleRequest');
 
 
 
