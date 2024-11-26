@@ -85,15 +85,14 @@
         <nav class="navbar navbar-expand-lg">
           <div class="container justify-content-center">
             <!-- Nama dari PHP -->
-            <?php if (!empty($my_data)) : ?>
-              <?php foreach ($my_data as $row) : ?>
-                <span class="navbar-brand h1 mx-3"><strong><?= $row['nama']; ?></strong></span>
-              <?php endforeach; ?>
-            <?php endif; ?>
 
             <!-- Menu navigasi -->
             <div class="collapse navbar-collapse justify-content-center">
               <ul class="navbar-nav">
+                <li class="mx-2 h1">
+                  <a style="color:#f4f5fa"><strong>Tracer Study</strong></a>
+                </li>
+
                 <li class="nav-item mx-2">
                   <a class="nav-link" href="https://penelusuranalumni.polban.ac.id/tentang">Tentang</a>
                 </li>
