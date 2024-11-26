@@ -101,7 +101,7 @@
             <div class="header text-center mb-2">
               <?php if (!empty($my_data)) : ?>
                 <?php foreach ($my_data as $row) : ?>
-                  <span class="h1"><?= $row['nama']; ?></span>
+                  <span class="h1"><strong><?= $row['nama']; ?></strong></span>
                   <p class="text-primary"><?= $row['slogan']; ?></p>
                 <?php endforeach; ?>
               <?php endif; ?>
