@@ -331,7 +331,7 @@
                 <!-- CRUD START-->
                 <div class="row">
                     <div class="col-lg-12 col-md-12">
-
+        
                         <!-- Table Kuesioner START-->
                         <div class="card tab-content">
                             <div class="card-header ml-2 mr-2">

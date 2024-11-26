@@ -81,31 +81,35 @@
       <div class="justify-content-end">
         <img src="assets/images/layanankealumnian.png" class="d-block mx-auto m-1 " style="width: 320px;" alt="layanankealumnian.png">
       </div>
-      <div class="navbar-container">
-        <div class="navbar-collapse justify-content-center align-items-center">
-          <ul class="navbar-nav h2 d-flex justify-content-center mt-1">
-            <li class="nav-item">
-              <a class="nav-link" href="#">
-                <strong>
-                  
-                </strong>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Tentang</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Kontak</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Respon TS</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Laporan TS</a>
-            </li>
-          </ul>
-        </div>
+      <div class="container-fluid navbar-container py-1">
+        <nav class="navbar navbar-expand-lg">
+          <div class="container justify-content-center">
+            <!-- Nama dari PHP -->
+            <?php if (!empty($my_data)) : ?>
+              <?php foreach ($my_data as $row) : ?>
+                <span class="navbar-brand h1 mx-3"><strong><?= $row['nama']; ?></strong></span>
+              <?php endforeach; ?>
+            <?php endif; ?>
 
+            <!-- Menu navigasi -->
+            <div class="collapse navbar-collapse justify-content-center">
+              <ul class="navbar-nav">
+                <li class="nav-item mx-2">
+                  <a class="nav-link" href="https://penelusuranalumni.polban.ac.id/tentang">Tentang</a>
+                </li>
+                <li class="nav-item mx-2">
+                  <a class="nav-link" href="https://penelusuranalumni.polban.ac.id/kontak">Kontak</a>
+                </li>
+                <li class="nav-item mx-2">
+                  <a class="nav-link" href="https://penelusuranalumni.polban.ac.id/kuesioner/kuesioner/hasil">Respon TS</a>
+                </li>
+                <li class="nav-item mx-2">
+                  <a class="nav-link" href="https://penelusuranalumni.polban.ac.id/kuesioner/kuesioner/laporan">Laporan TS</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
       </div>
     </div>
   </nav>
@@ -127,7 +131,7 @@
                   <iframe
                     class="mt-4 mb-4"
                     width="550"
-                    height="315"
+                    height="309"
                     src="https://www.youtube.com/embed/dZsTR26OP84?si=QHZDbCOYucjnUQHL"
                     title="YouTube video player"
                     frameborder="0"
