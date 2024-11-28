@@ -11,6 +11,7 @@ $routes->get('/', 'Home::index');
 $routes->get('/kuesioner', 'Home::kuesioner');
 $routes->get('/unduh', 'Home::index');
 $routes->get('/import', 'Home::index');
+$routes->get('/tentang', 'Home::tentang');
 $routes->get('/cariuser', 'Home::cariuser');
 $routes->get('/carianswer', 'carianswer::carianswer');
 $routes->get('/carikuesioner', 'c_kuesioner::carikuesioner');
@@ -46,8 +47,10 @@ $routes->get('/organisasijurusan', 'c_organisasi::index');
 $routes->get('/halamanlogin', 'pengaturan::index');
 $routes->get('/pengaturan', 'pengaturan::indexpengaturan');
 $routes->get('/tracer', 'pengaturan::namasitus');
+$routes->get('/kontak', 'Home::kontak');
 
 $routes->get('/data', 'welcomepage::data');
+$routes->get('/welcomepage', 'welcomepage::welcomepage');
 $routes->get('/pengaturan', 'Home::setting');
 $routes->get('/halamaneditprofile', 'editprofile::index');
 
