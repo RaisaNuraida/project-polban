@@ -52,16 +52,12 @@ class pengaturan extends BaseController
     {
         $model = new PengaturanModel();
 
-        // Mengambil data dari model
         $my_data = $model->getPengaturan();
-        // Jangan pakai $this->$model, cukup $model
-        //echo '<pre>'; print_r($my_data); exit();
-        // Siapkan data untuk dikirim ke view
+        
         $data = [
             'my_data' => $my_data,
         ];
 
-        // Render view dan kirim data
         return view('pengaturan', $data);  // Pastikan 'index' adalah nama view yang benar
         // echo"ddd"; exit();
     }
