@@ -63,3 +63,4 @@ $routes->post('/update', 'Home::update');
 $routes->post('/kuesionerkuesioner', 'c_kuesioner::index');
 $routes->post('/organisasi', 'c_organisasi::submitMessage');
 $routes->post('/pengaturan', 'pengaturan::submitPengaturan');
+$routes->post('/simpan-kuesioner', 'c_kuesioner::simpan');

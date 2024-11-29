@@ -10,6 +10,8 @@ class m_kuesioner extends Model
     protected $primaryKey = 'id';
     protected $allowedFields = ['id', 'title', 'deskripsi', 'entries', 'active_status', 'pages', 'created_on', 'created_by', 'updated_on', 'updated_by', 'ordering_count', 'conditional_logic'];
 
+    
+
     public function getKuesionerWithUsers()
     {
         $db = \Config\Database::connect();
@@ -42,7 +44,7 @@ class m_kuesioner extends Model
             $values['entries'] = 0;
             
         return $count;
-    }    
+    }     
     
 }
 

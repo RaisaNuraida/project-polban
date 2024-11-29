@@ -17,7 +17,7 @@ class c_kuesioner extends BaseController
 {
     public function index(): string
     {
-        $model = new m_kuesioner();
+        $model = new m_kuesioner();  
 
         $user = $model->getKuesionerWithUsers();
 
@@ -32,8 +32,6 @@ class c_kuesioner extends BaseController
         // Kirim data ke view
         return view('kuesionerkuesioner', $data);
     }
-
-    
 
     public function indexuser(): string
     {
@@ -122,6 +120,29 @@ class c_kuesioner extends BaseController
         return view('dataisian', $deskripsi);
     }
     
-    
+    public function simpan()
+{
+    $model = new m_kuesioner();
+
+    // Ambil data dari request POST
+    $data = [
+        'title' => $this->request->getPost('title'),
+        'deskripsi' => $this->request->getPost('deskripsi'),
+        'created_on' => date('Y-m-d H:i:s'), // Misalnya, untuk menyimpan waktu pembuatan
+        'created_by' => session()->get('user_id'), // Jika Anda menyimpan ID pengguna yang membuat
+        // Tambahkan field lain sesuai kebutuhan
+    ];
+
+    // Debugging: Cek data yang akan disimpan
+    log_message('debug', 'Data yang akan disimpan: ' . json_encode($data));
+
+    // Simpan data ke database
+    if ($model->save($data)) {
+        return $this->response->setJSON(['status' => 'success']);
+    } else {
+        // Jika gagal, tampilkan kesalahan
+        return $this->response->setJSON(['status' => 'error', 'errors' => $model->errors()]);
+    }
+}
     
 }

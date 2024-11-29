@@ -1172,7 +1172,7 @@
 
                                     <br>
                                     <div>
-                                        <a class="btn btn-info" style="font-size:14px;padding:8px 10px;color:white;" href="<?= base_url('kuesionerkuesioner') ?>">Simpan</a>
+                                        <a class="btn btn-info" style="font-size:14px;padding:8px 10px;color:white;" href="javascript:void(0);"onclick="simpanKuesioner()">Simpan</a>
                                         <a class="btn btn-danger" style="font-size:14px;padding:8px 10px;color:white;" href="<?= base_url('kuesionerkuesioner') ?>">Batal</a>
                                     </div>
                                     
@@ -1210,9 +1210,7 @@
                             
                             
                                 <script type="text/javascript">
-                                    
-                                    
-                                        function deletequestion(anu){
+                                    function deletequestion(anu){
                                         var q = anu.parents("li:first");
                                         q.remove();}
                                         
@@ -1266,6 +1264,26 @@
                                             }
                                         }
                                     
+                                    }
+
+                                    function simpanKuesioner() {
+                                        var formData = $('#kuesionerForm').serialize(); // Mengambil data dari form
+
+                                        $.ajax({
+                                            type: 'POST',
+                                            url: 'c_kuesioner/simpan', // Sesuaikan URL dengan controller dan metode Anda
+                                            data: formData,
+                                            success: function(response) {
+                                                alert('Data berhasil disimpan!');
+                                                // Opsional: Kosongkan form atau lakukan tindakan lain
+                                                $('#kuesionerForm')[0].reset();
+                                            },
+                                            error: function(xhr, status, error) {
+                                                console.error('Error:', error);
+                                                console.error('Response:', xhr.responseText);
+                                                alert('Terjadi kesalahan saat menyimpan data. Silakan coba lagi.');
+                                            }
+                                        });
                                     }
                                     
                                            function add_grid() {
@@ -2022,7 +2040,8 @@
                                             });
                                         }
                                         
-                                    </script>
+                                        
+                                </script>
                                     
                         </div>
                     </div>
