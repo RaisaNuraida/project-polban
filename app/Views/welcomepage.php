@@ -145,7 +145,7 @@
                                     <hr>
                                     <div>
                                         <nav class="nav mb-1">
-                                            <a class="nav-link btn-outline-primary active" onclick="openTab(event, 'welcomemessage')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Welcome Message</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'welcomemessage')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Welcome Message</a>
                                             <a class="nav-link btn-outline-primary" onclick="openTab(event, 'tentang')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Tentang</a>
                                             <a class="nav-link btn-outline-primary" onclick="openTab(event, 'kontak')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Kontak</a>
                                             <!-- <a class="nav-link btn-outline-primary" onclick="openTab(event, 'alumni')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Alumni</a>
@@ -167,8 +167,9 @@
                                                 </div>
                                             <?php endif; ?>
                                             <form action="<?= base_url('/welcomepage/submitMessage') ?>" method="post">
+                                                <label for="content">Welcome Message:</label>
                                                 <div class="form-group">
-                                                    <textarea name="content" id="content"><?= session()->get('message') ?? '' ?></textarea>
+                                                    <textarea name="content" id="content"><?= session()->get('message')?></textarea>
                                                 </div>
                                                 <br>
                                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -190,6 +191,7 @@
                                                 </div>
                                             <?php endif; ?>
                                             <form action="<?= base_url('/welcomepage/submitTentang') ?>" method="post">
+                                                <label for="tentangarea">Tentang:</label>
                                                 <div class="form-group">
                                                     <textarea name="tentangarea" id="tentangarea"><?= session()->get('tentang') ?? '' ?></textarea>
                                                 </div>
@@ -213,7 +215,7 @@
                                                 </div>
                                             <?php endif; ?>
                                             <form action="<?= base_url('/welcomepage/submitKontak') ?>" method="post">
-                                                
+                                                <label for="kontakarea">Kontak:</label>
                                                 <div class="form-group">
                                                     <textarea name="kontakarea" id="kontakarea"><?= session()->get('kontak') ?? '' ?></textarea>
                                                 </div>
