@@ -60,5 +60,5 @@ class pengaturan extends BaseController
 
         return view('pengaturan', $data);  // Pastikan 'index' adalah nama view yang benar
         // echo"ddd"; exit();
-    }
+    } 
 }
