@@ -67,14 +67,36 @@ class welcomepage extends BaseController
     {
         $model = new welcome();
 
-        // Mengambil data pertama dari tabel welcome
+        // Mengambil data pertama dan hanya field 'tentang'
         $tentangData = $model->first();
+        $tentang = $tentangData['tentang'];
 
-        // Pastikan field 'tentang' memiliki nilai default
-        $tentang = $tentangData['tentang'] ?? 'Tidak ada pesan yang tersedia.';
-
-        // Kirimkan data ke view
         $data = ['tentang' => $tentang];
-        return view('tentang', $data);
+        return view('/tentang', $data);
+    }
+
+    public function dataKontak(): string
+    {
+        $model = new welcome();
+
+        // Mengambil data pertama dan hanya field 'tentang'
+        $kontakData = $model->first();
+        $kontak = $kontakData['tentang'];
+
+        $data = ['tentang' => $kontak];
+        return view('/kontak', $data);
+    }
+
+    public function index(): string
+    {
+        $model = new welcome();
+        
+        $my_data = $model->getWelcome();
+
+        $data = [
+            'my_data' => $my_data,
+        ];
+
+        return view('welcomepage', $data);
     }
 }

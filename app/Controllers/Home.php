@@ -218,6 +218,7 @@ class Home extends BaseController
 
     public function tentang()
     {
+        
         return view('tentang');
     }
 

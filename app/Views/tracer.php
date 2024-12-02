@@ -98,16 +98,16 @@
               <!-- Kanan -->
               <ul class="navbar-nav">
                 <li class="nav-item mx-2">
-                  <a class="nav-link" href="<?= base_url('tentang') ?>">Tentang</a>
+                  <a class="nav-link" id="nav-tracer" href="<?= base_url('tentang') ?>">Tentang</a>
                 </li>
                 <li class="nav-item mx-2">
-                  <a class="nav-link" href="<?= base_url('kontak') ?>">Kontak</a>
+                  <a class="nav-link" id="nav-tracer" href="<?= base_url('kontak') ?>">Kontak</a>
                 </li>
                 <li class="nav-item mx-2">
-                  <a class="nav-link" href="https://penelusuranalumni.polban.ac.id/kuesioner/kuesioner/hasil">Respon TS</a>
+                  <a class="nav-link" id="nav-tracer" href="https://penelusuranalumni.polban.ac.id/kuesioner/kuesioner/hasil">Respon TS</a>
                 </li>
                 <li class="nav-item mx-2">
-                  <a class="nav-link" href="https://penelusuranalumni.polban.ac.id/kuesioner/kuesioner/laporan">Laporan TS</a>
+                  <a class="nav-link" id="nav-tracer" href="https://penelusuranalumni.polban.ac.id/kuesioner/kuesioner/laporan">Laporan TS</a>
                 </li>
               </ul>
             </div>

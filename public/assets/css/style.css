@@ -1,9 +1,9 @@
-.nav-link {
-    transition: color  0.3s ease-in-out, transform 0.3s ease-in-out;
-  }
+#nav-tracer {
+  transition: color 0.2s ease-in-out, transform 0.5s ease-in-out;
+  color: #f4f5fa; /* Warna default */
+  text-decoration: none;
+}
 
-  .nav-link:hover {
-    /* Warna biru saat hover */
-    transform: scale(1.1);
-    /* Efek membesar */
-  }
+#nav-tracer:hover {
+  color: #4460b5 !important; /* Warna hitam saat hover */
+}

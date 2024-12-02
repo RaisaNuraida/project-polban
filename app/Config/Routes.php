@@ -19,8 +19,7 @@ $routes->get('/kuesionerkuesioner', 'c_kuesioner::index');
 $routes->get('/', 'Home::dataAdministrator');
 $routes->get('/', 'Home::dataAtasan');
 $routes->get('importdata', 'Import::index');
-$routes->get('/halamantracer', 'Home::tracer');
-$routes->get('/halamanloginh', 'login::halamanlogin');
+$routes->get('/halamanlogin', 'login::halamanlogin');
 $routes->get('/login', 'login::login');
 $routes->get('/loginuser', 'login::halamanloginuser');
 $routes->get('/halamanuser', 'login::indexuser');
@@ -42,6 +41,7 @@ $routes->get('/organisasi', 'c_organisasi::tabelorganisasi');
 $routes->get('/organisasijurusan', 'c_organisasi::index');
 $routes->get('/halamanlogin', 'pengaturan::index');
 $routes->get('/pengaturan', 'pengaturan::indexpengaturan');
+$routes->get('/welcomepage', 'pengaturan::index');
 $routes->get('/tracer', 'pengaturan::namasitus');
 $routes->get('/kontak', 'Home::kontak');
 $routes->get('/dataisian', 'dataisian::dataisian');
@@ -49,8 +49,7 @@ $routes->get('/data', 'welcomepage::data');
 $routes->get('/welcomepage', 'welcomepage::welcomepage');
 $routes->get('/pengaturan', 'Home::setting');
 $routes->get('/halamaneditprofile', 'editprofile::index');
-
-
+ 
 
 //routes post
 $routes->post('/import', 'Home::import');
