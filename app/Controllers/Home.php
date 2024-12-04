@@ -218,9 +218,13 @@ class Home extends BaseController
 
     public function tentang()
     {
-        
-        return view('tentang');
+        // Mengambil data tentang dari session flashdata jika ada
+        $tentang = session()->getFlashdata('tentang');
+
+        // Mengirimkan data ke view
+        return view('tentang', ['tentang' => $tentang]);
     }
+
 
     public function kuesioner()
     {
@@ -290,7 +294,7 @@ class Home extends BaseController
         $username = $this->request->getPost('username');
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
-    
+
         // Periksa apakah password diisi
         if (empty($password)) {
             $data = [
@@ -306,13 +310,13 @@ class Home extends BaseController
                 'updated_at' => date('Y-m-d H:i:s')
             ];
         }
-    
+
         // Update data ke database
         $db = \Config\Database::connect();
         $builder = $db->table('users');
         $builder->where('id', $id);
         $update = $builder->update($data);
-    
+
         // Cek hasil update
         if ($update) {
             return $this->response->setJSON(['message' => 'User berhasil diupdate.']);
@@ -320,5 +324,4 @@ class Home extends BaseController
             return $this->response->setJSON(['message' => 'Terjadi kesalahan saat memperbarui data.'], 500);
         }
     }
-    
-    }
+}
