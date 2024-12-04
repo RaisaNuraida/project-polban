@@ -98,7 +98,7 @@
               <!-- Kanan -->
               <ul class="navbar-nav">
                 <li class="nav-item mx-2">
-                  <a class="nav-link" id="nav-tracer" href="<?= base_url('tentang') ?>">Tentang</a>
+                  <a class="nav-link" id="nav-tracer" href="<?= base_url('tentang')?>">Tentang</a>
                 </li>
                 <li class="nav-item mx-2">
                   <a class="nav-link" id="nav-tracer" href="<?= base_url('halamankontak') ?>">Kontak</a>

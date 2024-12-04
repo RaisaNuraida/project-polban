@@ -34,4 +34,25 @@ class carianswer extends BaseController
 
         return view('/dataisian', $data);
     }
+
+    public function conditionalkuesioner()
+    {
+        $users = new UserModel();
+        $cari = $this->request->getGet('conditionalkuesioner'); // Mengambil input pencarian
+
+        // Melakukan pencarian berdasarkan display_name
+        if ($cari) {
+            $data['dataalumni'] = $users
+                ->like('display_name', $cari)
+                ->orlike('academic_nim', $cari)
+                ->orlike('academic_faculty', $cari)
+                ->orlike('academic_program', $cari)
+                ->orlike('academic_year', $cari)
+                ->findAll(); // Menggunakan like untuk pencarian
+        } else {
+            $data['dataalumni'] = []; // Jika tidak ada input, set hasil kosong
+        }
+
+        return view('/kuesionerkuesioner', $data);
+    }
 }

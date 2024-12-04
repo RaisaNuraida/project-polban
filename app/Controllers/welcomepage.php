@@ -63,17 +63,7 @@ class welcomepage extends BaseController
         return view('/tracer', $data);
     }
 
-    public function dataTentang(): string
-    {
-        $model = new welcome();
-
-        // Mengambil data pertama dan hanya field 'tentang'
-        $tentangData = $model->first();
-        $tentang = $tentangData['tentang'];
-
-        $data = ['tentang' => $tentang];
-        return view('/tentang', $data);
-    }
+    
 
     public function dataKontak(): string
     {
@@ -90,7 +80,7 @@ class welcomepage extends BaseController
     public function index(): string
     {
         $model = new welcome();
-        
+
         $my_data = $model->getWelcome();
 
         $data = [

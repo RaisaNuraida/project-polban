@@ -60,5 +60,5 @@ class pengaturan extends BaseController
 
         return view('pengaturan', $data);  
         // echo"ddd"; exit();
-    }
+    } 
 }

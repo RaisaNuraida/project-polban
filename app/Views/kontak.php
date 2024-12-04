@@ -126,7 +126,11 @@
                             <div class="card-header container p-1 m-0">
                                 <div class="m-3 text-justify">
                                     <div class="mb-3 d-block">
+<<<<<<< HEAD
                                         <?= $kontak; ?>
+=======
+                                        <p>aaaayaaaaaaa</p>
+>>>>>>> 64d5432964b64b3d13216113845d9e0cdcf86a43
                                     </div>
                                 </div>
                             </div>
