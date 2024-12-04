@@ -126,7 +126,7 @@
                             <div class="card-header container p-1 m-0">
                                 <div class="m-3 text-justify">
                                     <div class="mb-3 d-block">
-                                        <?= $kontak?>
+                                        <?= $kontak; ?>
                                     </div>
                                 </div>
                             </div>

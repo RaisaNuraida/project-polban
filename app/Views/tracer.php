@@ -101,7 +101,7 @@
                   <a class="nav-link" id="nav-tracer" href="<?= base_url('tentang') ?>">Tentang</a>
                 </li>
                 <li class="nav-item mx-2">
-                  <a class="nav-link" id="nav-tracer" href="<?= base_url('kontak') ?>">Kontak</a>
+                  <a class="nav-link" id="nav-tracer" href="<?= base_url('halamankontak') ?>">Kontak</a>
                 </li>
                 <li class="nav-item mx-2">
                   <a class="nav-link" id="nav-tracer" href="https://penelusuranalumni.polban.ac.id/kuesioner/kuesioner/hasil">Respon TS</a>

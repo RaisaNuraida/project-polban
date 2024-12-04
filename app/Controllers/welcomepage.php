@@ -81,9 +81,9 @@ class welcomepage extends BaseController
 
         // Mengambil data pertama dan hanya field 'tentang'
         $kontakData = $model->first();
-        $kontak = $kontakData['tentang'];
+        $kontak = $kontakData['kontak'];
 
-        $data = ['tentang' => $kontak];
+        $data = ['kontak' => $kontak];
         return view('/kontak', $data);
     }
 

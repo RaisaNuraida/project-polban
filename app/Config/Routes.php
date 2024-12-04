@@ -43,7 +43,9 @@ $routes->get('/halamanlogin', 'pengaturan::index');
 $routes->get('/pengaturan', 'pengaturan::indexpengaturan');
 $routes->get('/welcomepage', 'pengaturan::index');
 $routes->get('/tracer', 'pengaturan::namasitus');
-$routes->get('/kontak', 'Home::kontak');
+$routes->get('/halamankontak', 'Home::kontak');
+$routes->get('/kontak', 'welcomepage::dataKontak');
+
 $routes->get('/dataisian', 'dataisian::dataisian');
 $routes->get('/data', 'welcomepage::data');
 $routes->get('/welcomepage', 'welcomepage::welcomepage');
