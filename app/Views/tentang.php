@@ -8,13 +8,6 @@
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
-    <meta
-        name="description"
-        content="Chameleon Admin is a modern Bootstrap 4 webapp &amp; admin dashboard html template with a large number of components, elegant design, clean and organized code." />
-    <meta
-        name="keywords"
-        content="admin template, Chameleon admin template, dashboard template, gradient admin template, responsive admin template, webapp, eCommerce dashboard, analytic dashboard" />
-    <meta name="author" content="ThemeSelect" />
     <title>Home - Tracer Study</title>
     <link rel="apple-touch-icon" href="assets/images/apple-icon-120.png" />
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
@@ -111,6 +104,7 @@
                                 </li>
                             </ul>
                         </div>
+
                     </div>
                 </nav>
             </div>
@@ -131,7 +125,9 @@
                         <div class="card">
                             <div class="card-header container p-1 m-0">
                                 <div class="m-3 text-justify">
-                                    <?= $tentang; ?>
+                                    <div class="mb-3 d-block">
+                                        <p>ADSDAWDADSAWD</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -139,52 +135,53 @@
                 </div>
             </div>
         </div>
-        <!-- END: Content-->
+    </div>
+    <!-- END: Content-->
 
-        <!-- START: Footer -->
+    <!-- START: Footer -->
 
-        <footer
-            class="footer footer-static footer-light navbar-border navbar-shadow text-center">
-            <div class="blue-grey lighten-2 text-sm-center">
-                <strong>Powered by tracer.id</strong>
-            </div>
-            <hr />
-            <div class="">
-                <em>
-                    <span>
-                        This work by ITB Career Center & Aosan Technology, Customized by
-                        Tracer Study POLBAN Team, <br />
-                        is licensed under a Creative Commons
-                        Attribution-NonCommercial-ShareAlike 4.0 International License.
-                    </span>
-                </em>
-            </div>
-        </footer>
-        <!-- END: Footer-->
+    <footer
+        class="footer footer-static footer-light navbar-border navbar-shadow text-center">
+        <div class="blue-grey lighten-2 text-sm-center">
+            <strong>Powered by tracer.id</strong>
+        </div>
+        <hr />
+        <div class="">
+            <em>
+                <span>
+                    This work by ITB Career Center & Aosan Technology, Customized by
+                    Tracer Study POLBAN Team, <br />
+                    is licensed under a Creative Commons
+                    Attribution-NonCommercial-ShareAlike 4.0 International License.
+                </span>
+            </em>
+        </div>
+    </footer>
+    <!-- END: Footer-->
 
-        <!-- BEGIN: Vendor JS-->
-        <script src="js/vendors.min.js" type="text/javascript"></script>
-        <script src="js/switchery.min.js" type="text/javascript"></script>
-        <script src="js/switch.min.js" type="text/javascript"></script>
-        <!-- BEGIN Vendor JS-->
+    <!-- BEGIN: Vendor JS-->
+    <script src="js/vendors.min.js" type="text/javascript"></script>
+    <script src="js/switchery.min.js" type="text/javascript"></script>
+    <script src="js/switch.min.js" type="text/javascript"></script>
+    <!-- BEGIN Vendor JS-->
 
-        <!-- BEGIN: Page Vendor JS-->
-        <script src="js/chartist.min.js" type="text/javascript"></script>
-        <script
-            src="js/chartist-plugin-tooltip.min.js"
-            type="text/javascript"></script>
-        <!-- END: Page Vendor JS-->
+    <!-- BEGIN: Page Vendor JS-->
+    <script src="js/chartist.min.js" type="text/javascript"></script>
+    <script
+        src="js/chartist-plugin-tooltip.min.js"
+        type="text/javascript"></script>
+    <!-- END: Page Vendor JS-->
 
-        <!-- BEGIN: Theme JS-->
-        <script src="js/app-menu.min.js" type="text/javascript"></script>
-        <script src="js/app.min.js" type="text/javascript"></script>
-        <script src="js/customizer.min.js" type="text/javascript"></script>
-        <script src="js/jquery.sharrre.js" type="text/javascript"></script>
-        <!-- END: Theme JS-->
+    <!-- BEGIN: Theme JS-->
+    <script src="js/app-menu.min.js" type="text/javascript"></script>
+    <script src="js/app.min.js" type="text/javascript"></script>
+    <script src="js/customizer.min.js" type="text/javascript"></script>
+    <script src="js/jquery.sharrre.js" type="text/javascript"></script>
+    <!-- END: Theme JS-->
 
-        <!-- BEGIN: Page JS-->
-        <script src="js/dashboard-analytics.min.js" type="text/javascript"></script>
-        <!-- END: Page JS-->
+    <!-- BEGIN: Page JS-->
+    <script src="js/dashboard-analytics.min.js" type="text/javascript"></script>
+    <!-- END: Page JS-->
 </body>
 <!-- END: Body-->
 

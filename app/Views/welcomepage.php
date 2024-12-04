@@ -169,7 +169,7 @@
                                             <form action="<?= base_url('/welcomepage/submitMessage') ?>" method="post">
                                                 <label for="content">Welcome Message:</label>
                                                 <div class="form-group">
-                                                    <textarea name="content" id="content"><?= session()->get('message')?></textarea>
+                                                    <textarea name="content" id="content"><?= session()->get('message') ?? 'asasasasasassa' ?></textarea>
                                                 </div>
                                                 <br>
                                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -193,7 +193,7 @@
                                             <form action="<?= base_url('/welcomepage/submitTentang') ?>" method="post">
                                                 <label for="tentangarea">Tentang:</label>
                                                 <div class="form-group">
-                                                    <textarea name="tentangarea" id="tentangarea"><?= session()->get('tentang') ?? '' ?></textarea>
+                                                    <textarea name="tentangarea" id="tentangarea"><?= session()->get('tentang') ?? 'ADSDAWDADSAWD' ?></textarea>
                                                 </div>
                                                 <br>
                                                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -217,7 +217,7 @@
                                             <form action="<?= base_url('/welcomepage/submitKontak') ?>" method="post">
                                                 <label for="kontakarea">Kontak:</label>
                                                 <div class="form-group">
-                                                    <textarea name="kontakarea" id="kontakarea"><?= session()->get('kontak') ?? '' ?></textarea>
+                                                    <textarea name="kontakarea" id="kontakarea"><?= session()->get('kontak') ?? 'aaaayaaaaaaa' ?></textarea>
                                                 </div>
                                                 <br>
                                                 <button type="submit" class="btn btn-primary">Submit</button>

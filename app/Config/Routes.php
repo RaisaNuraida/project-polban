@@ -15,6 +15,8 @@ $routes->get('/tentang', 'Home::tentang');
 $routes->get('/cariuser', 'Home::cariuser');
 $routes->get('/carianswer', 'carianswer::carianswer');
 $routes->get('/carikuesioner', 'c_kuesioner::carikuesioner');
+$routes->get('/conditionalkuesioner', 'carianswer::conditionalkuesioner');
+
 $routes->get('/kuesionerkuesioner', 'c_kuesioner::index');
 $routes->get('/', 'Home::dataAdministrator');
 $routes->get('/', 'Home::dataAtasan');
@@ -49,7 +51,7 @@ $routes->get('/data', 'welcomepage::data');
 $routes->get('/welcomepage', 'welcomepage::welcomepage');
 $routes->get('/pengaturan', 'Home::setting');
 $routes->get('/halamaneditprofile', 'editprofile::index');
- 
+$routes->get('/welcomepage/tentang', 'welcomepage::dataTentang');
 
 //routes post
 $routes->post('/import', 'Home::import');
@@ -69,7 +71,6 @@ $routes->group('welcomepage', function ($routes) {
     $routes->post('submitTentang', 'welcomepage::submitTentang'); // Rute untuk submit Tentang
     $routes->post('submitKontak', 'welcomepage::submitKontak'); // Rute untuk submit Kontak
 });
-$routes->post('/tentang', 'welcomepage::dataTentang');
 $routes->post('/kuesionerpage', 'kuesioner_page::submitPengaturan');
 $routes->post('/login', 'login::login');
 $routes->post('/update', 'Home::update');
