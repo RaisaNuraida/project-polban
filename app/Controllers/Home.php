@@ -218,13 +218,8 @@ class Home extends BaseController
 
     public function tentang()
     {
-        // Mengambil data tentang dari session flashdata jika ada
-        $tentang = session()->getFlashdata('tentang');
-
-        // Mengirimkan data ke view
-        return view('tentang', ['tentang' => $tentang]);
+        return view('tentang');
     }
-
 
     public function kuesioner()
     {
