@@ -143,6 +143,22 @@
                                 <div class="card-header">
                                     <h2>Sunting Welcome</h2>
                                     <hr>
+                                    <div class="d-flex">
+                                        <select name="academic_graduate_year" id="academic_graduate_year" class="form-control mr-1" style="width: auto; height:auto">
+                                            <option value="">Pilih Tahun</option>
+                                            <?php if (!empty($academic_graduate_year)): ?>
+                                                <?php foreach ($academic_graduate_year as $year): ?>
+                                                    <option value="<?= htmlspecialchars($year['academic_graduate_year']); ?>">
+                                                        <?= htmlspecialchars($year['academic_graduate_year']); ?>
+                                                    </option>
+                                                <?php endforeach; ?>
+                                            <?php else: ?>
+                                                <option value="">Tidak ada data</option>
+                                            <?php endif; ?>
+                                        </select>
+                                        <button type="submit" class="btn btn-primary">GO</button>
+                                    </div>
+                                    <hr>
                                     <div>
                                         <nav class="nav mb-1">
                                             <a class="nav-link btn-outline-primary" onclick="openTab(event, 'welcomemessage')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Welcome Message</a>
@@ -169,7 +185,9 @@
                                             <form action="<?= base_url('/welcomepage/submitMessage') ?>" method="post">
                                                 <label for="content">Welcome Message:</label>
                                                 <div class="form-group">
-                                                    <textarea name="content" id="content"><?= session()->get('message') ?? 'asasasasasassa' ?></textarea>
+                                                    <textarea name="content" id="content">
+                                                    <?= isset($datamessage[0]['message']) ? $datamessage[0]['message'] : ''; ?>
+                                                    </textarea>
                                                 </div>
                                                 <br>
                                                 <button type="submit" class="btn btn-primary">Submit</button>
