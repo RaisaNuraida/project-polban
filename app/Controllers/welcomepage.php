@@ -100,14 +100,27 @@ class welcomepage extends BaseController
         return view('/kontak', $data);
     }
 
-    public function index(): string
+    public function dataWelcome(): string
     {
         $model = new welcome();
 
-        $my_data = $model->getWelcome();
+        // Mengambil data spesifik dari kolom 'tentang', 'message', dan 'kontak'
+        $datamessage = $model->select('tentang, message, kontak')->findAll();
 
+        $data = ['datamessage' => $datamessage];
+        return view('/welcomepage', $data);
+    }
+
+    public function academicYears()
+    {
+        $welcomeModel = new Welcome();
+
+        // Mengambil semua tahun akademik
+        $academicYears = $welcomeModel->getAcademicYears();
+
+        // Mengirim data ke view
         $data = [
-            'my_data' => $my_data,
+            'academic_graduate_year' => $academicYears
         ];
 
         return view('welcomepage', $data);
