@@ -43,15 +43,13 @@ $routes->get('/organisasi', 'c_organisasi::tabelorganisasi');
 $routes->get('/organisasijurusan', 'c_organisasi::index');
 $routes->get('/halamanlogin', 'pengaturan::index');
 $routes->get('/pengaturan', 'pengaturan::indexpengaturan');
-$routes->get('/welcomepage', 'pengaturan::index');
 $routes->get('/tracer', 'pengaturan::namasitus');
 $routes->get('/kontak', 'Home::kontak');
 $routes->get('/dataisian', 'dataisian::dataisian');
 $routes->get('/data', 'welcomepage::data');
-$routes->get('/welcomepage', 'welcomepage::welcomepage');
 $routes->get('/pengaturan', 'Home::setting');
 $routes->get('/halamaneditprofile', 'editprofile::index');
-$routes->get('/welcomepage/tentang', 'welcomepage::dataTentang');
+$routes->get('/welcomepage', 'welcomepage::dataWelcome');
 
 //routes post
 $routes->post('/import', 'Home::import');
