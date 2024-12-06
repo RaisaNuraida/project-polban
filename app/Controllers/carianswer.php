@@ -53,6 +53,6 @@ class carianswer extends BaseController
             $data['dataalumni'] = []; // Jika tidak ada input, set hasil kosong
         }
 
-        return view('/kuesionerkuesioner', $data);
+        return view('/dataisian', $data);
     }
 }
