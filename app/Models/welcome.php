@@ -8,13 +8,13 @@ class welcome extends Model
 {
     protected $table      = 'welcome_message';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['id', 'message', 'tentang', 'kontak', 'academic_graduate_year'];
+    protected $allowedFields = ['id', 'message', 'tentang', 'kontak', 'tahun', 'deskripsi'];
 
     public function getmessage()
     {
         // Contoh pengambilan pesan terakhir
         $db = \Config\Database::connect();
-        $query = $db->query('SELECT id, message, tentang, kontak, academic_graduate_year FROM welcome_message ORDER BY id DESC LIMIT 1');
+        $query = $db->query('SELECT id, message, tentang, kontak, tahun, deskripsi FROM welcome_message');
         return $query->getResultArray();
     }
 

@@ -103,9 +103,9 @@
                 </li>
 
                 <li class="menu-item">
-                    <a href="<?= base_url('/welcomepage') ?>">
+                    <a href="<?= base_url('/welcomepageee') ?>">
                         <i class="ft-edit"></i>
-                        <span class="menu-title">Welcome</span>
+                        <span class="menu-title">Welcome Page</span>
                     </a>
                 </li>
 
@@ -140,165 +140,111 @@
                         <!-- Import Data Start -->
                         <div class="card">
                             <div class="mr-2 ml-2">
-                                <div class="card-header">
-                                    <h2>Sunting Welcome</h2>
-                                    <hr>
-                                    <div class="d-flex">
-                                        <select name="academic_graduate_year" id="academic_graduate_year" class="form-control mr-1" style="width: auto; height:auto">
-                                            <option value="">Pilih Tahun</option>
-                                            <?php if (!empty($academic_graduate_year)): ?>
-                                                <?php foreach ($academic_graduate_year as $year): ?>
-                                                    <option value="<?= htmlspecialchars($year['academic_graduate_year']); ?>">
-                                                        <?= htmlspecialchars($year['academic_graduate_year']); ?>
-                                                    </option>
-                                                <?php endforeach; ?>
-                                            <?php else: ?>
-                                                <option value="">Tidak ada data</option>
-                                            <?php endif; ?>
-                                        </select>
-                                        <button type="submit" class="btn btn-primary">GO</button>
+                                <div class="container mt-2 tab-content" id="user" style="display:block">
+                                    <!-- Header -->
+                                    <div class="d-flex justify-content-between ">
+                                        <h2 class="">Data Pengguna</h2>
+                                        <a class="btn btn-primary" style="font-size:14px;padding:2px 5px;color:white; height:25px;" href="<?= base_url('importdata') ?>">
+                                            Import Data
+                                        </a>
                                     </div>
+                                    <!-- Header END-->
+
+
+                                    <!-- Filter -->
                                     <hr>
                                     <div>
-                                        <nav class="nav mb-1">
-                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'welcomemessage')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Welcome Message</a>
-                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'tentang')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Tentang</a>
-                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'kontak')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Kontak</a>
-                                            <!-- <a class="nav-link btn-outline-primary" onclick="openTab(event, 'alumni')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Alumni</a>
-                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'perusahaan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Perusahaan</a> -->
-                                        </nav>
+                                        <form method="get" action="<?= base_url(relativePath: '/cariuser') ?>" onsubmit="removeEmptyInputs()">
+                                            <input type="text" class="form-control" name="cariuser" id="cariuser" placeholder="Cari..." style="margin-right: 10px;  width:22%;">
+                                           
+
+                                        </form>
                                     </div>
+                                    <!-- Filter End -->
 
-                                    <div class="">
-                                        <div class="tab-content" id="welcomemessage">
-                                            <?php if (session()->getFlashdata('success')): ?>
-                                                <div class="alert alert-success">
-                                                    <?= session()->getFlashdata('success'); ?>
-                                                </div>
-                                            <?php endif; ?>
+                                    <!-- Script Filter -->
+                                    <script>
+                                        // SCRIPT SEARCH AUTO DELETE
+                                        function removeEmptyInputs() {
+                                            const form = document.getElementById('searchForm');
+                                            const inputs = form.querySelectorAll('input, select');
 
-                                            <?php if (session()->getFlashdata('error')): ?>
-                                                <div class="alert alert-danger">
-                                                    <?= session()->getFlashdata('error'); ?>
-                                                </div>
-                                            <?php endif; ?>
-                                            <form action="<?= base_url('/welcomepage/submitMessage') ?>" method="post">
-                                                <label for="content">Welcome Message:</label>
-                                                <div class="form-group">
-                                                    <textarea name="content" id="content">
-                                                    <?= isset($datamessage[0]['message']) ? $datamessage[0]['message'] : ''; ?>
-                                                    </textarea>
-                                                </div>
-                                                <br>
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                                <a href="<?= base_url('/welcomepage') ?>" class="btn btn-danger">Batal</a>
-                                            </form>
+                                            inputs.forEach(input => {
+                                                if (!input.value) {
+                                                    input.removeAttribute('name');
+                                                }
+                                            });
+                                        }
+                                    </script>
+                                    <!-- Script Filter End -->
 
-                                        </div>
+                                    <!-- Table Data Users START -->
 
-                                        <div class="tab-content" id="tentang" style="display:none;">
-                                            <?php if (session()->getFlashdata('success')): ?>
-                                                <div class="alert alert-success">
-                                                    <?= session()->getFlashdata('success'); ?>
-                                                </div>
-                                            <?php endif; ?>
+                                    <hr>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered text-center table-striped table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>NO</th>
+                                                    <th>Tahun</th>
+                                                    <th>Deskripsi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php if (!empty($datamessage)) : ?>
+                                                    <?php $no = 1; ?>
+                                                    <?php foreach ($datamessage as $row) : ?>
+                                                        <tr>
+                                                            <td><?= $no++; ?></td>
+                                                            <td><?= $row['tahun']; ?></td>
+                                                            <td><?= $row['deskripsi']; ?></td>
+                                                            <td>
+                                                                <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
+                                                                <button  class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;' action="<?= base_url(relativePath: '/suntingWelcomePage') ?>">Edit</button>
 
-                                            <?php if (session()->getFlashdata('error')): ?>
-                                                <div class="alert alert-danger">
-                                                    <?= session()->getFlashdata('error'); ?>
-                                                </div>
-                                            <?php endif; ?>
-                                            <form action="<?= base_url('/welcomepage/submitTentang') ?>" method="post">
-                                                <label for="tentangarea">Tentang:</label>
-                                                <div class="form-group">
-                                                    <textarea name="tentangarea" id="tentangarea"><?= session()->get('tentang') ?? 'ADSDAWDADSAWD' ?></textarea>
-                                                </div>
-                                                <br>
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                                <a href="<?= base_url('/welcomepage') ?>" class="btn btn-danger">Batal</a>
-                                            </form>
+                                                            </td>
 
-                                        </div>
-
-                                        <div class="tab-content" id="kontak" style="display:none;">
-                                            <?php if (session()->getFlashdata('success')): ?>
-                                                <div class="alert alert-success">
-                                                    <?= session()->getFlashdata('success'); ?>
-                                                </div>
-                                            <?php endif; ?>
-
-                                            <?php if (session()->getFlashdata('error')): ?>
-                                                <div class="alert alert-danger">
-                                                    <?= session()->getFlashdata('error'); ?>
-                                                </div>
-                                            <?php endif; ?>
-                                            <form action="<?= base_url('/welcomepage/submitKontak') ?>" method="post">
-                                                <label for="kontakarea">Kontak:</label>
-                                                <div class="form-group">
-                                                    <textarea name="kontakarea" id="kontakarea"><?= session()->get('kontak') ?? 'aaaayaaaaaaa' ?></textarea>
-                                                </div>
-                                                <br>
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                                <a href="<?= base_url('/welcomepage') ?>" class="btn btn-danger">Batal</a>
-                                            </form>
-                                        </div>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                <?php else : ?>
+                                                    <tr>
+                                                        <td colspan="5" class="text-center">No data found</td>
+                                                    </tr>
+                                                <?php endif; ?>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
-
-                                <!-- Import CKEditor Script -->
-                                <script src="//cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
-                                <script>
-                                    CKEDITOR.replace('content');
-                                    CKEDITOR.replace('tentangarea');
-                                    CKEDITOR.replace('kontakarea');
-                                </script>
-                                <script>
-                                    function openTab(evt, tabId) {
-                                        // Sembunyikan semua tab content
-                                        var tabcontent = document.getElementsByClassName("tab-content");
-                                        for (var i = 0; i < tabcontent.length; i++) {
-                                            tabcontent[i].style.display = "none"; // Sembunyikan semua tab
-                                        }
-
-                                        // Tampilkan tab yang dipilih
-                                        document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
-
-                                        // Menandai tombol tab yang aktif
-                                        var tablinks = document.getElementsByClassName("nav-link");
-                                        for (var i = 0; i < tablinks.length; i++) {
-                                            tablinks[i].className = tablinks[i].className.replace(" active", ""); // Hilangkan kelas active dari semua tab
-                                        }
-
-                                        // Tambahkan kelas active pada tombol yang ditekan
-                                        evt.currentTarget.className += " active";
-                                    }
-                                </script>
                             </div>
+
+
                         </div>
                     </div>
-                    <!-- END: Content-->
+                </div>
 
-                    <!-- BEGIN: Vendor JS-->
-                    <script src="assets/js/vendors.min.js" type="text/javascript"></script>
-                    <script src="assets/js/switchery.min.js" type="text/javascript"></script>
-                    <script src="assets/js/switch.min.js" type="text/javascript"></script>
-                    <!-- BEGIN Vendor JS-->
+                <!-- END: Content-->
 
-                    <!-- BEGIN: Page Vendor JS-->
-                    <script src="assets/js/chartist.min.js" type="text/javascript"></script>
-                    <script src="assets/js/chartist-plugin-tooltip.min.js" type="text/javascript"></script>
-                    <!-- END: Page Vendor JS-->
+                <!-- BEGIN: Vendor JS-->
+                <script src="assets/js/vendors.min.js" type="text/javascript"></script>
+                <script src="assets/js/switchery.min.js" type="text/javascript"></script>
+                <script src="assets/js/switch.min.js" type="text/javascript"></script>
+                <!-- BEGIN Vendor JS-->
 
-                    <!-- BEGIN: Theme JS-->
-                    <script src="assets/js/app-menu.min.js" type="text/javascript"></script>
-                    <script src="assets/js/app.min.js" type="text/javascript"></script>
-                    <script src="assets/js/customizer.min.js" type="text/javascript"></script>
-                    <script src="assets/js/jquery.sharrre.js" type="text/javascript"></script>
-                    <!-- END: Theme JS-->
+                <!-- BEGIN: Page Vendor JS-->
+                <script src="assets/js/chartist.min.js" type="text/javascript"></script>
+                <script src="assets/js/chartist-plugin-tooltip.min.js" type="text/javascript"></script>
+                <!-- END: Page Vendor JS-->
 
-                    <!-- BEGIN: Page JS-->
-                    <script src="assets/js/dashboard-analytics.min.js" type="text/javascript"></script>
-                    <!-- END: Page JS-->
+                <!-- BEGIN: Theme JS-->
+                <script src="assets/js/app-menu.min.js" type="text/javascript"></script>
+                <script src="assets/js/app.min.js" type="text/javascript"></script>
+                <script src="assets/js/customizer.min.js" type="text/javascript"></script>
+                <script src="assets/js/jquery.sharrre.js" type="text/javascript"></script>
+                <!-- END: Theme JS-->
+
+                <!-- BEGIN: Page JS-->
+                <script src="assets/js/dashboard-analytics.min.js" type="text/javascript"></script>
+                <!-- END: Page JS-->
 
 
 </body>
