@@ -318,7 +318,7 @@
                 <li class="menu-item">
                     <a href="<?= base_url('/welcomepage') ?>">
                         <i class="ft-edit"></i>
-                        <span class="menu-title">Welcome</span>
+                        <span class="menu-title">Welcome Page</span>
                     </a>
                 </li>
 
@@ -414,23 +414,16 @@
 
                                                 <td><?= $row['active_status']; ?></td>
                                                 <td>
-                                                    <form method="get" action="/conditionalkuesioner" id="searchForm"
+                                                    <form method="get" action="/conditionalkuesioner" id="conditionalkuesioner"
                                                         onsubmit="removeEmptyInputs()">
                                                         <button type="submit" class="btn btn-primary"
                                                             style="font-size:12px; padding:5px 6px; height:25px; color: white;">Filter</button>
 
                                                 </td>
                                                 <td>
-                                                    <?= $row['conditional_logic']; ?></td>
+                                                <input type="text" name="conditionalkuesioner" value=<?= $row['conditional_logic']; ?>> </td>
                                                 <?php
-                                            $request = \config\Services::request();
-                                            $cari = $request->getGet('conditionalkuesioner');
-                                            if ($cari != '') {
-                                                $param = "?conditionalkuesioner=" . $cari;
-                                            } else {
-                                                $param = "";
-                                            }
-                                            ?>
+                                           ?>
                                                 </form>
                                                 <td>
 
