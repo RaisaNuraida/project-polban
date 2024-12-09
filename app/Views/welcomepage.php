@@ -196,7 +196,7 @@
                                                     <?php foreach ($datamessage as $row) : ?>
                                                         <tr>
                                                             <td><?= $no++; ?></td>
-                                                            <td><?= $row['tahun']; ?></td>
+                                                            <td><?= $row['academic_graduate_year']; ?></td>
                                                             <td><?= $row['deskripsi']; ?></td>
                                                             <td>
                                                                 <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
