@@ -11,7 +11,7 @@ class welcome extends Model
     protected $allowedFields = ['id', 'message', 'tentang', 'kontak', 'academic_graduate_year', 'deskripsi'];
 
     public function getmessage()
-    {
+    { 
         // Contoh pengambilan pesan terakhir
         $db = \Config\Database::connect();
         $query = $db->query('SELECT id, message, tentang, kontak, academic_graduate_year, deskripsi FROM welcome_message');

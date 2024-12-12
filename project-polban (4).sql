@@ -31,14 +31,14 @@ CREATE TABLE `kuesioner_answer` (
   `kuesioner_id` int NOT NULL,
   `id` bigint NOT NULL,
   `username` varchar(255) NOT NULL,
-  `answers` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `answers` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` varchar(12) NOT NULL,
   `created_on` datetime DEFAULT NULL,
   `created_by` int DEFAULT NULL,
   `updated_on` datetime DEFAULT NULL,
   `updated_by` int DEFAULT NULL,
   `ordering_count` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -61,7 +61,7 @@ CREATE TABLE `kuesioner_field` (
   `updated_on` datetime DEFAULT NULL,
   `updated_by` int DEFAULT NULL,
   `ordering_count` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -82,7 +82,7 @@ CREATE TABLE `kuesioner_kuesioner` (
   `updated_by` int DEFAULT NULL,
   `ordering_count` int DEFAULT NULL,
   `conditional_logic` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `kuesioner_kuesioner`
@@ -132,7 +132,7 @@ CREATE TABLE `kuesioner_page` (
   `updated_on` datetime DEFAULT NULL,
   `updated_by` int DEFAULT NULL,
   `ordering_count` int DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `kuesioner_page`
@@ -154,7 +154,7 @@ CREATE TABLE `organisasi` (
   `academic_faculty` varchar(255) NOT NULL,
   `academic_program` varchar(255) NOT NULL,
   `academic_group` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `organisasi`
@@ -173,7 +173,7 @@ CREATE TABLE `pengaturan` (
   `id` int NOT NULL,
   `nama` varchar(255) NOT NULL,
   `slogan` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `pengaturan`
@@ -190,7 +190,7 @@ INSERT INTO `pengaturan` (`id`, `nama`, `slogan`) VALUES
 
 CREATE TABLE `users` (
   `id` int NOT NULL,
-  `username` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `username` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `group` varchar(15) NOT NULL,
@@ -210,7 +210,7 @@ CREATE TABLE `users` (
   `no_telp` varchar(20) DEFAULT NULL,
   `nik` varchar(50) DEFAULT NULL,
   `npwp` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `users`
@@ -231,12 +231,12 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `group`, `created_at
 
 CREATE TABLE `welcome_message` (
   `id` int NOT NULL,
-  `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `message` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `tentang` text NOT NULL,
   `kontak` text NOT NULL,
   `academic_graduate_year` int NOT NULL,
   `deskripsi` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `welcome_message`

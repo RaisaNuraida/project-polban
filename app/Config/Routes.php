@@ -36,10 +36,9 @@ $routes->get('/page', 'kuesioner_page::index');
 $routes->get('/dataisiann', 'dataisian::index');
 $routes->get('/deskripsi', 'c_kuesioner::show');
 $routes->get('/downloadCSV', 'cKuesioner::downloadCSV');
-$routes->get('/welcomepageee', 'Home::welcome');
 $routes->get('/welcomepage', 'welcomepage::dataWelcome');
+$routes->get('/welcomepageee', 'Home::welcome');
 $routes->get('/suntingWelcomePage', 'Home::SuntingWelcomePage');
-
 $routes->get('/tracer', 'welcomepage::data');
 $routes->get('/organisasiindex', 'Home::organisasi');
 $routes->get('/organisasi', 'c_organisasi::tabelorganisasi');
@@ -65,7 +64,7 @@ $routes->post('/deleteprogram', 'c_organisasi::deleteUser');
 $routes->post('/deleteUser', 'c_organisasi::deleteUser');
 $routes->post('/deleteFaculty', 'c_organisasi::deleteFaculty');
 $routes->post('/deletekuesioner', 'c_kuesioner::deleteUser');
-$routes->post('/deletekuesioner', 'c_kuesioner::deleteUser');
+$routes->post('/deletewelcome', 'welcomepage::deleteWelcome');
 $routes->post('/halamanlogin', 'login::halamanlogin');
 $routes->post('/loginuser', 'login::loginuser');
 $routes->group('welcomepage', function ($routes) {
@@ -73,6 +72,7 @@ $routes->group('welcomepage', function ($routes) {
     $routes->post('submitMessage', 'welcomepage::submitMessage'); // Rute untuk submit Welcome Message
     $routes->post('submitTentang', 'welcomepage::submitTentang'); // Rute untuk submit Tentang
     $routes->post('submitKontak', 'welcomepage::submitKontak'); // Rute untuk submit Kontak
+    $routes->post('tambahHalaman', 'welcomepage::tambahHalaman'); // Rute untuk submit Halaman Baru
 });
 $routes->post('/kuesionerpage', 'kuesioner_page::submitPengaturan');
 $routes->post('/login', 'login::login');
