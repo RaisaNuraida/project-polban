@@ -266,7 +266,7 @@
                                                         <td><?= $row['display_name']; ?></td>
                                                         <td><?= $row['academic_faculty']; ?></td>
                                                         <td><?= $row['academic_program']; ?></td>
-                                                        <td><?= $row['academic_year']; ?></td>
+                                                        <td><?= $row['academic_graduate_year']; ?></td>
                                                         <td><?= $row['created_at']; ?></td>
                                                         <td><?= $row['updated_at']; ?></td>
                                                         <td>
