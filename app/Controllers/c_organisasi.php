@@ -21,41 +21,41 @@ class c_organisasi extends BaseController
             ->orderBy('academic_faculty')
             ->orderBy('academic_program')
             ->get();
-    
+
         $result = $query->getResultArray();
-    
+
         // Mengelompokkan data berdasarkan academic_faculty
         $organisasi = [];
         foreach ($result as $row) {
             if (isset($row['academic_faculty'])) { // Pastikan academic_faculty ada
                 $faculty = $row['academic_faculty'];
-                
+
                 // Memasukkan program sebagai array dengan 'id' dan 'name'
                 $program = [
                     'id' => $row['id'],
                     'name' => $row['academic_program'],
                     'faculty' => $row['academic_faculty'],
                 ];
-                
+
                 $organisasi[$faculty][] = $program;
             }
         }
-        
-    
+
+
         $data = [
             'organisasi' => $organisasi,
         ];
-    
+
         return view('organisasi', $data);
     }
-    
-        public function submitMessage()
+
+    public function submitMessage()
     {
         session();
         $fakultas = $this->request->getPost('fakultas');
         $program = $this->request->getPost('program');
 
-    
+
         // Simpan ke database
         $org = new m_organisasi();
 
@@ -69,7 +69,6 @@ class c_organisasi extends BaseController
         } else {
             return redirect()->back()->with('error', 'Gagal menyimpan pesan.');
         }
-       
     }
     public function deleteUser()
     {
@@ -92,22 +91,18 @@ class c_organisasi extends BaseController
     }
 
     public function deleteFaculty()
-{
-    $faculty = $this->request->getPost('academic_faculty');
-    $db = \Config\Database::connect();
+    {
+        $faculty = $this->request->getPost('academic_faculty');
+        $db = \Config\Database::connect();
 
-    // Menjalankan query delete langsung
-    $query = $db->query("DELETE FROM organisasi WHERE academic_faculty = ?", [$faculty]);
+        // Menjalankan query delete langsung
+        $query = $db->query("DELETE FROM organisasi WHERE academic_faculty = ?", [$faculty]);
 
-    // Mengecek apakah ada baris yang terhapus
-    if ($db->affectedRows() > 0) {
-        return redirect()->to('/organisasi')->with('message', 'Fakultas dan program studi terkait berhasil dihapus.');
-    } else {
-        return redirect()->to('/organisasi')->with('message', 'Fakultas tidak ditemukan atau tidak ada data yang dihapus.');
+        // Mengecek apakah ada baris yang terhapus
+        if ($db->affectedRows() > 0) {
+            return redirect()->to('/organisasi')->with('message', 'Fakultas dan program studi terkait berhasil dihapus.');
+        } else {
+            return redirect()->to('/organisasi')->with('message', 'Fakultas tidak ditemukan atau tidak ada data yang dihapus.');
+        }
     }
-}
-
-
-
-   
 }

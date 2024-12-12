@@ -103,7 +103,7 @@
                 </li>
 
                 <li class="menu-item">
-                    <a href="<?= base_url('/welcomepageee') ?>">
+                    <a href="<?= base_url('/welcomepage') ?>">
                         <i class="ft-edit"></i>
                         <span class="menu-title">Welcome Page</span>
                     </a>
@@ -146,9 +146,7 @@
                                         <h2 class="">Data Halaman Welcome</h2>
 
                                         <div class="align-items-end">
-                                            <a class="btn btn-primary kuesioner"
-                                                style="font-size:14px;padding:2px 5px;color:white; height:25px;"
-                                                onclick="openTab(event, 'tambahwelcome')">
+                                            <a class="btn btn-primary kuesioner" style="font-size:14px;padding:2px 5px;color:white; height:25px;" onclick="openTab(event, 'tambahwelcome')">
                                                 Tambah Halaman
                                             </a>
                                         </div>
@@ -156,14 +154,19 @@
                                     <!-- Header END-->
 
 
-                                    <!-- Filter -->
+                                    <!-- Filter START -->
                                     <hr>
                                     <div>
-                                        <form method="get" action="<?= base_url(relativePath: '/cariuser') ?>" onsubmit="removeEmptyInputs()">
-                                            <input type="text" class="form-control" name="cariuser" id="cariuser" placeholder="Cari..." style="margin-right: 10px;  width:22%;">
+                                        <form method="get" action="<?= base_url(relativePath: '/cariwelcome') ?>">
+                                            <div class="d-flex align-items-center">
+                                                <input type="text" name="cari" id="cari" class="form-control" placeholder="Cari..." style="margin-right: 10px; width:22%;">
+                                                <button href="<?= base_url('/cariwelcome') ?>" type="submit" class="btn btn-primary" style="font-size:12px; padding:5px 6px; height: 36px; width: 65px; color: white;">
+                                                    Filter
+                                                </button>
+                                            </div>
                                         </form>
                                     </div>
-                                    <!-- Filter End -->
+                                    <!-- Filter END -->
 
                                     <!-- Script Filter -->
                                     <script>
@@ -202,8 +205,8 @@
                                                             <td><?= $row['academic_graduate_year']; ?></td>
                                                             <td><?= $row['deskripsi']; ?></td>
                                                             <td>
-                                                                <a class='btn btn-primary deleteModal' style='font-size:10px;padding:2px 5px;color:white;' href="<?= base_url(relativePath: '/suntingWelcomePage') ?>">Edit</a>
-                                                                <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
+                                                                <a class='btn btn-primary' style='font-size:10px;padding:2px 5px;color:white;' href="<?= base_url('/suntingWelcomePage') ?>">Edit</a>
+                                                                <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" data-deskripsi="<?= $row['deskripsi']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
                                                             </td>
                                                         </tr>
                                                     <?php endforeach; ?>
@@ -215,49 +218,91 @@
                                             </tbody>
                                         </table>
                                     </div>
+
+                                    <!-- Delete Confirmation Modal -->
+                                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content text-center">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>Apakah Anda yakin ingin menghapus data <strong id="deskripsiText"></strong>?</p>
+                                                    <form id="deleteForm" method="post" action="<?= base_url('deletewelcome') ?>">
+                                                        <input type="hidden" id="delete_id" name="id">
+                                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- JavaScript for handling delete -->
+                                    <script>
+                                        $(document).ready(function() {
+                                            // Open delete modal and set delete ID and description
+                                            $('.deleteModal').on('click', function() {
+                                                var deleteId = $(this).data('id'); // Get the ID of the item to delete
+                                                var deskripsi = $(this).data('deskripsi'); // Get the deskripsi of the item
+
+                                                // Set the ID in the hidden input field
+                                                $('#delete_id').val(deleteId);
+
+                                                // Display the description in the modal
+                                                $('#deskripsiText').text(deskripsi);
+                                            });
+                                        });
+                                    </script>
                                     <!-- Tabel Data Welcome END -->
                                 </div>
                             </div>
+
                             <div class="card-header tab-content" id="tambahwelcome" style="display:none;">
                                 <h2>Tambah Welcome Page</h2>
                                 <hr>
 
                                 <div class="">
                                     <div class="" id="welcomemessage">
-                                        <?php if (session()->getFlashdata('success')): ?>
+                                        <?php if (session()->getFlashdata('success')) : ?>
                                             <div class="alert alert-success">
                                                 <?= session()->getFlashdata('success'); ?>
                                             </div>
                                         <?php endif; ?>
 
-                                        <?php if (session()->getFlashdata('error')): ?>
+                                        <?php if (session()->getFlashdata('error')) : ?>
                                             <div class="alert alert-danger">
                                                 <?= session()->getFlashdata('error'); ?>
                                             </div>
                                         <?php endif; ?>
-                                        <form action="<?= base_url('/welcomepage/submitMessage') ?>" method="post">
-                                            <label for="content">Welcome Message:</label>
+                                        <form action="<?= base_url('/welcomepage/tambahHalaman') ?>" method="post">
                                             <div class="form-group">
+                                                <label for="tahun">Tahun:</label>
+                                                <input type="text" class="form-control" style="width: 25%;" placeholder="Tahun">
+                                                <hr>
+                                                <label for="tahun">Deskripsi:</label>
+                                                <input type="text" class="form-control" style="width: 25%;" placeholder="Deskripsi">
+                                                <hr>
+                                                <label for="content">Welcome Message:</label>
                                                 <textarea name="content" id="content"></textarea>
-                                            </div>
-                                            <br>
-                                            <label for="tentangarea">Tentang:</label>
-                                            <div class="form-group">
+                                                <hr>
+                                                <label for="tentangarea">Tentang:</label>
                                                 <textarea name="tentangarea" id="tentangarea"></textarea>
-                                            </div>
-                                            <br>
-                                            <label for="tentangarea">Kontak:</label>
-                                            <div class="form-group">
+                                                <hr>
+                                                <label for="kontakarea">Kontak:</label>
                                                 <textarea name="kontakarea" id="kontakarea"></textarea>
                                             </div>
-                                            <br>
-                                            <br> <button type="submit" class="btn btn-primary">Submit</button>
+
+                                            <button type="submit" class="btn btn-primary">Submit</button>
                                             <a href="<?= base_url('/welcomepage') ?>" class="btn btn-danger">Batal</a>
                                         </form>
-
                                     </div>
                                 </div>
                             </div>
+
 
                         </div>
                     </div>

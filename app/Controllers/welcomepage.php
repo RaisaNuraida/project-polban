@@ -51,6 +51,50 @@ class welcomepage extends BaseController
         return redirect()->to('/welcomepage')->with('success', 'Kontak updated successfully.');
     }
 
+    public function deleteWelcome()
+    {
+        $userModel = new welcome();
+        $id = $this->request->getPost('id'); // Ambil id dari POST
+        $db = \Config\Database::connect(); // Koneksi ke database
+        $builder = $db->table('welcome_message'); // Menentukan tabel
+
+        // Menghapus data berdasarkan ID
+        $builder->delete(['id' => $id]); // Hapus data dengan ID tertentu
+
+        // echo $id;
+        //exit();
+        //echo $userModel->find($id); exit();
+        if ($db->affectedRows() > 0) {
+            return redirect()->to('welcomepage')->with('message', 'User berhasil dihapus.');
+        } else {
+            return redirect()->to('welcomepage')->with('message', 'User tidak ditemukan.');
+        }
+    }
+
+    public function tambahHalaman()
+    {
+        session();
+        // Get input values
+        $content = $this->request->getPost('content');
+        $tentangarea = $this->request->getPost('tentangarea');
+        $kontakarea = $this->request->getPost('kontakarea');
+
+        // Load the model and insert data into the database
+        $input = new welcome();
+
+        $data = [
+            'content' => $content,
+            'tentangarea' => $tentangarea,
+            'kontakarea' => $kontakarea
+        ];
+
+        if ($input->insert($data)) {
+            return redirect()->to('/welcomepage')->with('success', 'Pesan berhasil disimpan.');
+        } else {
+            return redirect()->back()->with('error', 'Gagal menyimpan pesan.');
+        }
+    }
+
     public function data(): string
     {
         $model = new welcome();
@@ -108,6 +152,4 @@ class welcomepage extends BaseController
         $data = ['datamessage' => $datamessage];
         return view('/welcomepage', $data);
     }
-
-  
 }
