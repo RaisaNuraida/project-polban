@@ -421,7 +421,7 @@
 
                                                 </td>
                                                 <td>
-                                                <input type="text" name="conditionalkuesioner" value=<?= $row['conditional_logic']; ?>> </td>
+                                                <input type="hidden" name="conditionalkuesioner" value=<?= $row['conditional_logic']; ?>><?= $row['conditional_logic']; ?> </td>
                                                 <?php
                                            ?>
                                                 </form>
@@ -956,7 +956,7 @@
                                         <button class="quest_butt btn btn-primary" onclick="add_radio();">Radio
                                             Buttons</button>
                                         <button class="quest_butt btn btn-primary" onclick="add_phone();">Phone</button>
-                                        <button class="quest_butt btn btn-primary" onclick="add_scale();">Scale</button>
+                                        <button class="quest_butt btn btn-primary" onclick="add_scale();">Scale</button>ah
                                         <button class="quest_butt btn btn-primary" onclick="add_readonly();">User
                                             Field</button>
                                         <button class="quest_butt btn btn-primary" onclick="add_grid();">Grid</button>

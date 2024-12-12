@@ -236,6 +236,11 @@ class Home extends BaseController
         return view('welcomepage');
     }
 
+    public function suntingWelcomePage(): string
+    {
+        return view('suntingWelcomePage');
+    }
+
     public function setting(): string
     {
         return view('pengaturan');

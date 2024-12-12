@@ -3,8 +3,11 @@
  * For licensing, see https://ckeditor.com/legal/ckeditor-oss-license
  */
 
-CKEDITOR.editorConfig = function( config ) {
-	// Define changes to default configuration here. For example:
-	// config.language = 'fr';
-	// config.uiColor = '#AADC6E';
+CKEDITOR.editorConfig = function (config) {
+    // Nonaktifkan notifikasi keamanan
+    config.removePlugins = 'a11ychecker,notificationupdate';
 };
+
+CKEDITOR.replace('editor', {
+    removePlugins: 'a11ychecker,notificationupdate'
+});

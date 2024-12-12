@@ -140,13 +140,18 @@
                         <!-- Import Data Start -->
                         <div class="card">
                             <div class="mr-2 ml-2">
-                                <div class="container mt-2 tab-content" id="user" style="display:block">
+                                <div class="container mt-2 tab-content" id="welcomepage" style="display:block;">
                                     <!-- Header -->
-                                    <div class="d-flex justify-content-between ">
-                                        <h2 class="">Data Pengguna</h2>
-                                        <a class="btn btn-primary" style="font-size:14px;padding:2px 5px;color:white; height:25px;" href="<?= base_url('importdata') ?>">
-                                            Import Data
-                                        </a>
+                                    <div class="d-flex justify-content-between">
+                                        <h2 class="">Data Halaman Welcome</h2>
+
+                                        <div class="align-items-end">
+                                            <a class="btn btn-primary kuesioner"
+                                                style="font-size:14px;padding:2px 5px;color:white; height:25px;"
+                                                onclick="openTab(event, 'tambahwelcome')">
+                                                Tambah Halaman
+                                            </a>
+                                        </div>
                                     </div>
                                     <!-- Header END-->
 
@@ -156,8 +161,6 @@
                                     <div>
                                         <form method="get" action="<?= base_url(relativePath: '/cariuser') ?>" onsubmit="removeEmptyInputs()">
                                             <input type="text" class="form-control" name="cariuser" id="cariuser" placeholder="Cari..." style="margin-right: 10px;  width:22%;">
-                                           
-
                                         </form>
                                     </div>
                                     <!-- Filter End -->
@@ -178,8 +181,7 @@
                                     </script>
                                     <!-- Script Filter End -->
 
-                                    <!-- Table Data Users START -->
-
+                                    <!-- Table Data Welcome START -->
                                     <hr>
                                     <div class="table-responsive">
                                         <table class="table table-bordered text-center table-striped table-hover">
@@ -200,11 +202,9 @@
                                                             <td><?= $row['academic_graduate_year']; ?></td>
                                                             <td><?= $row['deskripsi']; ?></td>
                                                             <td>
+                                                                <a class='btn btn-primary deleteModal' style='font-size:10px;padding:2px 5px;color:white;' href="<?= base_url(relativePath: '/suntingWelcomePage') ?>">Edit</a>
                                                                 <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
-                                                                <button  class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;' action="<?= base_url(relativePath: '/suntingWelcomePage') ?>">Edit</button>
-
                                                             </td>
-
                                                         </tr>
                                                     <?php endforeach; ?>
                                                 <?php else : ?>
@@ -215,14 +215,89 @@
                                             </tbody>
                                         </table>
                                     </div>
+                                    <!-- Tabel Data Welcome END -->
                                 </div>
                             </div>
+                            <div class="card-header tab-content" id="tambahwelcome" style="display:none;">
+                                <h2>Tambah Welcome Page</h2>
+                                <hr>
 
+                                <div class="">
+                                    <div class="" id="welcomemessage">
+                                        <?php if (session()->getFlashdata('success')): ?>
+                                            <div class="alert alert-success">
+                                                <?= session()->getFlashdata('success'); ?>
+                                            </div>
+                                        <?php endif; ?>
+
+                                        <?php if (session()->getFlashdata('error')): ?>
+                                            <div class="alert alert-danger">
+                                                <?= session()->getFlashdata('error'); ?>
+                                            </div>
+                                        <?php endif; ?>
+                                        <form action="<?= base_url('/welcomepage/submitMessage') ?>" method="post">
+                                            <label for="content">Welcome Message:</label>
+                                            <div class="form-group">
+                                                <textarea name="content" id="content"></textarea>
+                                            </div>
+                                            <br>
+                                            <label for="tentangarea">Tentang:</label>
+                                            <div class="form-group">
+                                                <textarea name="tentangarea" id="tentangarea"></textarea>
+                                            </div>
+                                            <br>
+                                            <label for="tentangarea">Kontak:</label>
+                                            <div class="form-group">
+                                                <textarea name="kontakarea" id="kontakarea"></textarea>
+                                            </div>
+                                            <br>
+                                            <br> <button type="submit" class="btn btn-primary">Submit</button>
+                                            <a href="<?= base_url('/welcomepage') ?>" class="btn btn-danger">Batal</a>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
                 </div>
 
+                <script src="//cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
+                <script>
+                    // Inisialisasi editor dengan konfigurasi khusus
+                    CKEDITOR.replace('content', {
+                        removePlugins: 'a11ychecker,notificationupdate'
+                    });
+                    CKEDITOR.replace('tentangarea', {
+                        removePlugins: 'a11ychecker,notificationupdate'
+                    });
+                    CKEDITOR.replace('kontakarea', {
+                        removePlugins: 'a11ychecker,notificationupdate'
+                    });
+                </script>
+
+                <script>
+                    function openTab(evt, tabId) {
+                        // Sembunyikan semua tab content
+                        var tabcontent = document.getElementsByClassName("tab-content");
+                        for (var i = 0; i < tabcontent.length; i++) {
+                            tabcontent[i].style.display = "none"; // Sembunyikan semua tab
+                        }
+
+                        // Tampilkan tab yang dipilih
+                        document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
+
+                        // Menandai tombol tab yang aktif
+                        var tablinks = document.getElementsByClassName("nav-link");
+                        for (var i = 0; i < tablinks.length; i++) {
+                            tablinks[i].className = tablinks[i].className.replace(" active", ""); // Hilangkan kelas active dari semua tab
+                        }
+
+                        // Tambahkan kelas active pada tombol yang ditekan
+                        evt.currentTarget.className += " active";
+                    }
+                </script>
                 <!-- END: Content-->
 
                 <!-- BEGIN: Vendor JS-->

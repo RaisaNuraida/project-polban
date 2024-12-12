@@ -205,7 +205,7 @@
                             <div class="card tab-content" id="tambahorganisasi" style="display:none;">
                                 <div class="card-header ml-2 mr-2">
                                     <div class="d-flex justify-content-between">
-                                        <h2>tambah organisasi</h2>
+                                        <h2>Tambah Organisasi</h2>
                                     </div>
                                     <hr>
 
