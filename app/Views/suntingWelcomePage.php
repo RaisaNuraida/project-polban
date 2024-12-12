@@ -105,7 +105,7 @@
                 <li class="menu-item">
                     <a href="<?= base_url('/welcomepage') ?>">
                         <i class="ft-edit"></i>
-                        <span class="menu-title">Welcome</span>
+                        <span class="menu-title">Welcome Page</span>
                     </a>
                 </li>
 
@@ -142,22 +142,6 @@
                             <div class="mr-2 ml-2">
                                 <div class="card-header">
                                     <h2>Sunting Welcome</h2>
-                                    <hr>
-                                    <div class="d-flex">
-                                        <select name="academic_graduate_year" id="academic_graduate_year" class="form-control mr-1" style="width: auto; height:auto">
-                                            <option value="">Pilih Tahun</option>
-                                            <?php if (!empty($academic_graduate_year)): ?>
-                                                <?php foreach ($academic_graduate_year as $year): ?>
-                                                    <option value="<?= htmlspecialchars($year['academic_graduate_year']); ?>">
-                                                        <?= htmlspecialchars($year['academic_graduate_year']); ?>
-                                                    </option>
-                                                <?php endforeach; ?>
-                                            <?php else: ?>
-                                                <option value="">Tidak ada data</option>
-                                            <?php endif; ?>
-                                        </select>
-                                        <button type="submit" class="btn btn-primary">GO</button>
-                                    </div>
                                     <hr>
                                     <div>
                                         <nav class="nav mb-1">
