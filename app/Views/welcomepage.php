@@ -188,6 +188,7 @@
                                                     <th>NO</th>
                                                     <th>Tahun</th>
                                                     <th>Deskripsi</th>
+                                                    <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
