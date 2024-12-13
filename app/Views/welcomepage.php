@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, minimal-ui">
     <meta name="author" content="ThemeSelect">
-    <title>Dashboard Admin -  Welcome Page</title>
+    <title>Dashboard Admin - Welcome Page</title>
     <link rel="apple-touch-icon" href="assets/images/apple-icon-120.png">
     <link rel="shortcut icon" type="assets/image/x-icon" href="images/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700" rel="stylesheet">
@@ -50,8 +50,8 @@
 
 <body class="vertical-layout vertical-menu 2-columns fixed-navbar" data-open="click" data-menu="vertical-menu" data-color="bg-gradient-x-purple-blue" data-col="2-columns">
 
-  <!-- BEGIN: Header-->
-  <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light">
+    <!-- BEGIN: Header-->
+    <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light">
         <div class="navbar-wrapper">
             <div class="navbar-container content">
                 <div class="collapse navbar-collapse show" id="navbar-mobile">
@@ -63,7 +63,7 @@
                     <ul class="nav navbar-nav float-right">
                         <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"> <span class="avatar avatar-online"><img src="assets/images/avatar-s-19.png" alt="avatar"></span></a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <div class="arrow_box_right"> <a class="dropdown-item" href="#"><span class="avatar avatar-online"><img src="assets/images/avatar-s-19.png" alt="avatar"><span class="user-name text-bold-500 ml-1 "><?= session()->get('username') ?></span></span></a>
+                                <div class="arrow_box_right"> <a class="dropdown-item" href="#"><span class="avatar avatar-online"><img src="assets/images/avatar-s-19.png" alt="avatar"><span class="user-name text-bold-500 ml-1 text-capitalize"><?= session()->get('username') ?></span></span></a>
                                     <div class="dropdown-divider"></div><a class="dropdown-item" href="<?= base_url('halamaneditprofile') ?>"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My Inbox</a>
                                     <div class="dropdown-divider"></div><a class="dropdown-item" href="<?= base_url('tracer') ?>"><i class="ft-power"></i> Logout</a>
                                 </div>
@@ -143,8 +143,18 @@
                                 <div class="card-header">
                                     <h2>Sunting Welcome</h2>
                                     <hr>
-                                    <div class="card-content">
-                                        <div class="card-body">
+                                    <div>
+                                        <nav class="nav mb-1">
+                                            <a class="nav-link btn-outline-primary active" onclick="openTab(event, 'welcomemessage')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Welcome Message</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'tentang')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Tentang</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'kontak')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Kontak</a>
+                                            <!-- <a class="nav-link btn-outline-primary" onclick="openTab(event, 'alumni')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Alumni</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'perusahaan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Perusahaan</a> -->
+                                        </nav>
+                                    </div>
+
+                                    <div class="">
+                                        <div class="tab-content" id="welcomemessage">
                                             <?php if (session()->getFlashdata('success')): ?>
                                                 <div class="alert alert-success">
                                                     <?= session()->getFlashdata('success'); ?>
@@ -156,18 +166,61 @@
                                                     <?= session()->getFlashdata('error'); ?>
                                                 </div>
                                             <?php endif; ?>
-                                            <div class="container mb-1">
-                                                <form action="<?= base_url('/welcomepage') ?>" method="post">
-                                                    <label for="content">Welcome Message:</label>
-                                                    <div class="form-group">
-                                                        <textarea name="content" id="content" value="<?= session()->get('message')  ?? '' ?>"></textarea>
-                                                    </div>
-                                                    <br>
-                                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                                    <button href="<?= base_url('/welcomepage') ?>" class="btn btn-danger">Batal</button>
-                                                    <a href="" class="btn btn-secondary">Detail</a>
-                                                </form>
-                                            </div>
+                                            <form action="<?= base_url('/welcomepage/submitMessage') ?>" method="post">
+                                                <div class="form-group">
+                                                    <textarea name="content" id="content"><?= session()->get('message') ?? '' ?></textarea>
+                                                </div>
+                                                <br>
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                                <a href="<?= base_url('/welcomepage') ?>" class="btn btn-danger">Batal</a>
+                                            </form>
+
+                                        </div>
+
+                                        <div class="tab-content" id="tentang" style="display:none;">
+                                            <?php if (session()->getFlashdata('success')): ?>
+                                                <div class="alert alert-success">
+                                                    <?= session()->getFlashdata('success'); ?>
+                                                </div>
+                                            <?php endif; ?>
+
+                                            <?php if (session()->getFlashdata('error')): ?>
+                                                <div class="alert alert-danger">
+                                                    <?= session()->getFlashdata('error'); ?>
+                                                </div>
+                                            <?php endif; ?>
+                                            <form action="<?= base_url('/welcomepage/submitTentang') ?>" method="post">
+                                                <div class="form-group">
+                                                    <textarea name="tentangarea" id="tentangarea"><?= session()->get('tentang') ?? '' ?></textarea>
+                                                </div>
+                                                <br>
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                                <a href="<?= base_url('/welcomepage') ?>" class="btn btn-danger">Batal</a>
+                                            </form>
+
+                                        </div>
+
+                                        <div class="tab-content" id="kontak" style="display:none;">
+                                            <?php if (session()->getFlashdata('success')): ?>
+                                                <div class="alert alert-success">
+                                                    <?= session()->getFlashdata('success'); ?>
+                                                </div>
+                                            <?php endif; ?>
+
+                                            <?php if (session()->getFlashdata('error')): ?>
+                                                <div class="alert alert-danger">
+                                                    <?= session()->getFlashdata('error'); ?>
+                                                </div>
+                                            <?php endif; ?>
+                                            <form action="<?= base_url('/welcomepage/submitKontak') ?>" method="post">
+                                                
+                                                <div class="form-group">
+                                                    <textarea name="kontakarea" id="kontakarea"><?= session()->get('kontak') ?? '' ?></textarea>
+                                                </div>
+                                                <br>
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                                <a href="<?= base_url('/welcomepage') ?>" class="btn btn-danger">Batal</a>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -176,8 +229,30 @@
                                 <script src="//cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
                                 <script>
                                     CKEDITOR.replace('content');
+                                    CKEDITOR.replace('tentangarea');
+                                    CKEDITOR.replace('kontakarea');
                                 </script>
+                                <script>
+                                    function openTab(evt, tabId) {
+                                        // Sembunyikan semua tab content
+                                        var tabcontent = document.getElementsByClassName("tab-content");
+                                        for (var i = 0; i < tabcontent.length; i++) {
+                                            tabcontent[i].style.display = "none"; // Sembunyikan semua tab
+                                        }
 
+                                        // Tampilkan tab yang dipilih
+                                        document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
+
+                                        // Menandai tombol tab yang aktif
+                                        var tablinks = document.getElementsByClassName("nav-link");
+                                        for (var i = 0; i < tablinks.length; i++) {
+                                            tablinks[i].className = tablinks[i].className.replace(" active", ""); // Hilangkan kelas active dari semua tab
+                                        }
+
+                                        // Tambahkan kelas active pada tombol yang ditekan
+                                        evt.currentTarget.className += " active";
+                                    }
+                                </script>
                             </div>
                         </div>
                     </div>

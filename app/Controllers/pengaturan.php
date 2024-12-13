@@ -7,7 +7,7 @@ use App\Models\PengaturanModel;
 
 class pengaturan extends BaseController
 {
-    public function submitPengaturan ()
+    public function submitPengaturan()
     {
         $nama = $this->request->getPost('nama');
         $slogan = $this->request->getPost('slogan');
@@ -16,7 +16,7 @@ class pengaturan extends BaseController
         $pengaturanModel->truncate();
 
         session()->set('nama', $nama);
-        session()->set('slogan', $slogan);        
+        session()->set('slogan', $slogan);
 
         $data = [
             'nama' => $nama,
@@ -43,10 +43,22 @@ class pengaturan extends BaseController
             'my_data' => $my_data,
         ];
 
-
         // Render view dan kirim data
         return view('halamanlogin', $data);  // Pastikan 'index' adalah nama view yang benar
         // echo"ddd"; exit();
     }
 
+    public function indexpengaturan(): string
+    {
+        $model = new PengaturanModel();
+
+        $my_data = $model->getPengaturan();
+        
+        $data = [
+            'my_data' => $my_data,
+        ];
+
+        return view('pengaturan', $data);  // Pastikan 'index' adalah nama view yang benar
+        // echo"ddd"; exit();
+    }
 }

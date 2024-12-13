@@ -77,39 +77,65 @@
   <!-- BEGIN: Header-->
   <nav
     class="header-navbar navbar-expand navbar navbar-without-dd-arrow fixed-top navbar-semi-light">
-    <div class="navbar-wrapper">
-      <div class="navbar-container content">
-        <div class="navbar-collapse show" id="navbar-mobile">
-          <div class="d-flex justify-content-center flex-row">
-            <ul>
-              <li>Tentang</li>
-              <li>Kontak</li>
-              <li>Respon TS</li>
-              <li>Laporan TS</li>
-            </ul>
-          </div>
+    <div class="navbar-wrapper" style="background-color: #f4f5fa;">
+      <div class="justify-content-end">
+        <img src="assets/images/layanankealumnian.png" class="d-block mx-auto m-1 " style="width: 320px;" alt="layanankealumnian.png">
+      </div>
+      <div class="container-fluid navbar-container py-1">
+        <nav class="navbar navbar-expand-lg">
+          <div class="container justify-content-center">
+            <!-- Nama dari PHP -->
 
-        </div>
+            <!-- Menu navigasi -->
+            <div class="collapse navbar-collapse d-flex justify-content-between align-items-center">
+              <!-- Kiri -->
+              <ul class="navbar-nav">
+                <li class="mx-2 h1">
+                  <a style="color:#f4f5fa" href="<?= base_url('tracer') ?>"><strong>Tracer Study</strong></a>
+                </li>
+              </ul>
+
+              <!-- Kanan -->
+              <ul class="navbar-nav">
+                <li class="nav-item mx-2">
+                  <a class="nav-link" href="<?= base_url('tentang') ?>">Tentang</a>
+                </li>
+                <li class="nav-item mx-2">
+                  <a class="nav-link" href="<?= base_url('kontak') ?>">Kontak</a>
+                </li>
+                <li class="nav-item mx-2">
+                  <a class="nav-link" href="https://penelusuranalumni.polban.ac.id/kuesioner/kuesioner/hasil">Respon TS</a>
+                </li>
+                <li class="nav-item mx-2">
+                  <a class="nav-link" href="https://penelusuranalumni.polban.ac.id/kuesioner/kuesioner/laporan">Laporan TS</a>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        </nav>
       </div>
     </div>
   </nav>
   <!-- END: Header-->
 
   <!-- BEGIN: Content-->
+  <br><br><br>
+  <br>
   <div class="app-content content">
     <div class="content-wrapper">
       <div class="content-wrapper-before"></div>
       <div class="content-header row"></div>
       <div class="content-body">
         <div class="row justify-content-center">
-          <div class="col-lg-8 col-md-8">
+          <div class="col-lg-9 col-md-9">
             <div class="card">
               <div class="card-header container p-1 m-0">
                 <div class="d-flex justify-content-center">
                   <iframe
-                    class="mt-4 mb-1"
-                    width="560"
-                    height="315"
+                    class="mt-4 mb-4"
+                    width="550"
+                    height="309"
                     src="https://www.youtube.com/embed/dZsTR26OP84?si=QHZDbCOYucjnUQHL"
                     title="YouTube video player"
                     frameborder="0"
@@ -118,21 +144,19 @@
                     allowfullscreen>
                     <a
                       href="https://www.youtube.com/embed/dZsTR26OP84?si=QHZDbCOYucjnUQHL">
-                      Alumni....Yuuu Join TRACER STUDY Polban Sekarang!!
                     </a>
                   </iframe>
                 </div>
 
-                <div class="m-5 text-justify">
+                <div class="mr-3 ml-3 text-justify">
                   <?= $message; ?>
                   <div class="d-flex justify-content-center m-4">
                     <a
                       type="button"
                       class="btn btn-glow btn-round btn-bg-gradient-x-red-pink"
                       href="<?= base_url('halamanlogin') ?>">
-                      Masuk Situs >>
+                      Masuk Situs ≫
                     </a>
-
                   </div>
                 </div>
               </div>

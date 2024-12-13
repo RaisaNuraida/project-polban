@@ -211,6 +211,15 @@ class Home extends BaseController
     {
         return view('tracer');
     }
+    public function kontak()
+    {
+        return view('kontak');
+    }
+
+    public function tentang()
+    {
+        return view('tentang');
+    }
 
     public function kuesioner()
     {

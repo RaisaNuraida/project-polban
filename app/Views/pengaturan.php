@@ -50,8 +50,8 @@
 
 <body class="vertical-layout vertical-menu 2-columns fixed-navbar" data-open="click" data-menu="vertical-menu" data-color="bg-gradient-x-purple-blue" data-col="2-columns">
 
-  <!-- BEGIN: Header-->
-  <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light">
+    <!-- BEGIN: Header-->
+    <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light">
         <div class="navbar-wrapper">
             <div class="navbar-container content">
                 <div class="collapse navbar-collapse show" id="navbar-mobile">
@@ -59,17 +59,17 @@
                         <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
                         <li class="nav-item d-none d-md-block"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu"></i></a></li>
                         <li class="nav-item d-none d-md-block"><a class="nav-link nav-link-expand" href="#"><i class="ficon ft-maximize"></i></a></li>
-                    </ul>   
+                    </ul>
                     <ul class="nav navbar-nav float-right">
                         <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"> <span class="avatar avatar-online"><img src="assets/images/avatar-s-19.png" alt="avatar"></span></a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <div class="arrow_box_right"> <a class="dropdown-item" href="#"><span class="avatar avatar-online"><img src="assets/images/avatar-s-19.png" alt="avatar"><span class="user-name text-bold-500 ml-1 "><?= session()->get('username') ?></span></span></a>
+                                <div class="arrow_box_right"> <a class="dropdown-item" href="#"><span class="avatar avatar-online"><img src="assets/images/avatar-s-19.png" alt="avatar"><span class="user-name text-bold-500 ml-1 text-capitalize"><?= session()->get('username') ?></span></span></a>
                                     <div class="dropdown-divider"></div><a class="dropdown-item" href="<?= base_url('halamaneditprofile') ?>"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My Inbox</a>
                                     <div class="dropdown-divider"></div><a class="dropdown-item" href="<?= base_url('tracer') ?>"><i class="ft-power"></i> Logout</a>
                                 </div>
                             </div>
                         </li>
-                    </ul>   
+                    </ul>
                 </div>
             </div>
         </div>
@@ -145,7 +145,7 @@
                                     <h2>Pengaturan Situs</h2>
                                     <hr>
                                     <div class="card-content">
-                                        <div class="card-body"> 
+                                        <div class="card-body">
                                             <?php if (session()->getFlashdata('success')): ?>
                                                 <div class="alert alert-success">
                                                     <?= session()->getFlashdata('success'); ?>
@@ -159,31 +159,34 @@
                                             <?php endif; ?>
                                             <div class="container mb-1 border border-primary">
 
-                                                <!-- Form untuk pengaturan -->
-                                                <form action="<?= base_url('/pengaturan') ?>" method="post" class="m-1">
-                                                    <div class="d-flex">
-                                                        <label for="nama-situs" class="m-1" style="width: 10%;">Nama Situs</label>
-                                                        <div class="form-group">
-                                                            <input type="text" style="width: 45%;" name="nama" id="nama" class="form-control" value="<?= session()->get('nama') ?? 'Tracer Study' ?>" required>
-                                                            <p>Nama situs untuk judul halaman dan penggunaan lain di dalam situs.</p>
+                                                <?php foreach ($my_data as $row) : ?>
+                                                    <!-- Form untuk pengaturan -->
+                                                    <form action="<?= base_url('/pengaturan') ?>" method="post" class="m-1">
+                                                        <div class="d-flex">
+                                                            <label for="nama-situs" class="m-1" style="width: 10%;">Nama Situs</label>
+                                                            <div class="form-group">
+                                                                <input type="text" style="width: 45%;" name="nama" id="nama" class="form-control" value="<?= $row['nama']; ?>" required>
+                                                                <p>Nama situs untuk judul halaman dan penggunaan lain di dalam situs.</p>
 
+                                                            </div>
                                                         </div>
-                                                    </div>
-
+                                                  
                                                     <div class="d-flex">
                                                         <label for="slogan" class="m-1" style="width: 10%;">Slogan Situs</label>
                                                         <div class="form-group">
-                                                            <input type="text" style="width: 45%;" name="slogan" id="slogan" class="form-control" value="<?= session()->get('slogan') ?? ''  ?>" required>
+                                                            <input type="text" style="width: 45%;" name="slogan" id="slogan" class="form-control" value="<?= $row['slogan']; ?>" required>
                                                             <p>Slogan situs untuk judul halaman dan penggunaan lain di dalam situs.</p>
 
                                                         </div>
                                                     </div>
 
+                                                    <?php endforeach; ?>
+                                                
                                                     <div class="d-flex justify-content-start">
                                                         <button type="submit" class="btn btn-primary mr-2">Simpan</button>
                                                         <a href="<?= base_url('/pengaturan') ?>" class="btn btn-danger">Batal</a>
                                                     </div>
-                                                </form>
+                                                    </form>
                                             </div>
                                         </div>
                                     </div>

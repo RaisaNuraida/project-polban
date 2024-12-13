@@ -51,4 +51,10 @@ class UserModel extends Model
     {
         return $this->update($id, $data); // Update berdasarkan ID
     }
+    public function getAlumniDistinc()
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query('SELECT DISTINCT academic_faculty, academic_program, academic_year FROM users WHERE `group` = "alumni"');
+        return $query->getResultArray();  
+    }
 }

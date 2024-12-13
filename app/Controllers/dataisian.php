@@ -15,26 +15,47 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard as HtmlDashboard;
 
 class dataisian extends BaseController
 {
-    use ResponseTrait; 
-    public function dataisian() {
+   
+    public function dataisian(): string {
         $model = new UserModel();
-        $dataalumni = $model->findAll();  // Mengambil semua data dari tabel 'students'
+        $dataalumni = $model->getAlumni();  // Mengambil semua data dari tabel 'students'
 
         // Menyusun data agar sesuai dengan format yang dibutuhkan di frontend
-        $data = [];
-        foreach ($dataalumni as $row) {
-            $data[] = [
-                'academic_nim' => $row['academic_nim'],
-                'display_name' => $row['display_name'],
-                'academic_faculty' => $row['department'],
-                'academic_program' => $row['academic_program'],
-                'academic_year' => $row['academic_year'],
-                'created_on' => $row['created_on'],
-                'updated_on' => $row['updated_on'],
+            $data = [
+                'dataalumni' => $dataalumni,
             ];
-        }
 
         // Mengembalikan response dalam format JSON
-      return $this->response->setJSON($data);
+        return view('/dataisian', $data);  // Pastikan 'index' adalah nama view yang benar
     }
+    public function index(){
+        return view('/dataisian');
+    }
+    public function AlumniDistinct(): string {
+        $model = new UserModel();
+        $distinct = $model->getAlumniDistinc();  // Mengambil semua data dari tabel 'students'
+
+        // Menyusun data agar sesuai dengan format yang dibutuhkan di frontend
+            $data = [
+                'distinct' => $distinct,
+            ];
+
+        // Mengembalikan response dalam format JSON
+        return view('/dataisian', $data);  // Pastikan 'index' adalah nama view yang benar
+    }
+
+    public function handleRequest()
+{
+    $function = $this->request->getGet('function');
+
+    switch ($function) {
+        case 'dataisian':
+            return $this->dataisian();
+        case 'AlumniDistinct':
+            return $this->AlumniDistinct();
+        default:
+            throw new \CodeIgniter\Exceptions\PageNotFoundException();
+    }
+}
+
 }

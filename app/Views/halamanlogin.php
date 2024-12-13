@@ -79,7 +79,11 @@
     class="header-navbar navbar-expand navbar navbar-without-dd-arrow fixed-top navbar-semi-light">
     <div class="navbar-wrapper">
       <div class="navbar-container content">
-        <div class="navbar-collapse show" id="navbar-mobile"></div>
+        <div class="" id="navbar-mobile"><a href="#">
+            <br>
+            <img src="assets/images/layanankealumnian.png" class="d-block mx-auto" style="width: 320px;" alt="layanankealumnian.png">
+          </a>
+        </div>
       </div>
     </div>
   </nav>
@@ -91,46 +95,44 @@
       <div class="content-wrapper-before"></div>
       <div class="content-header row"></div>
       <div class="content-body">
-        <div class="row justify-content-center">
-          <div class="col-lg-6 col-md-6">
-            <h1 class="text-center">Tracer Study</h1>
+        <br><br><br><br><br><br>
+        <div class="row justify-content-center align-content-center">
+          <div class="col-lg-5 col-md-5">
+            <div class="header text-center mb-2">
+              <?php if (!empty($my_data)) : ?>
+                <?php foreach ($my_data as $row) : ?>
+                  <span class="h1"><strong><?= $row['nama']; ?></strong></span>
+                  <p class="text-primary"><?= $row['slogan']; ?></p>
+                <?php endforeach; ?>
+              <?php endif; ?>
+            </div>
             <div class="card">
-              <div class="card-header container p-1 m-0">
-                <h3><strong>Login</strong></h3>
-                <hr>
-
+              <div class="card-header container p-2 m-0">
+                <div class="ml-3 mt-1 mr-3">
+                  <h3>Masuk</h3>
+                  <hr>
+                </div>
                 <form action="<?= base_url('/login'); ?>" method="post">
                   <?= csrf_field(); ?>
                   <?php if (session()->getFlashdata('error')) {
                   ?><div class="alert alert-danger"><?php echo session()->getFlashdata('error') ?>
                     </div><?php
                         } ?>
-
                   <div class="d-flex flex-row justify-content-center align-items-center text-center">
-                    <div class="flex-row m-4">
-                      <div class="header mb-1">
-                        <?php if (!empty($my_data)) : ?>
-                          <?php foreach ($my_data as $row) : ?>
-                            
-                          <span class="font-size-large"><?= $row['nama']; ?></span>    
-                              <br>
-                              <?= $row['slogan']; ?>
-
-                            <?php endforeach; ?>
-                          <?php endif; ?>
-                      </div>
-                      <div class="form-group">
-                        <input type="text" name="username" placeholder="Username" class="form-control" value="<?php echo session()->getFlashdata('username') ?>" id="username" required>
+                    <div class="flex-row m-2">
+                      <div class="form-group" style="width: 300px;">
+                        <input type="text"  name="username" placeholder="Username" class="form-control" value="<?php echo session()->getFlashdata('username') ?>" id="username" required>
                       </div>
                       <div class="form-group">
                         <input type="password" class="form-control" placeholder="Password" name="password" id="password" required>
                       </div>
-                      <div class="mb-3">
-                        <input type="submit" name="login" id="login" class="btn btn-glow btn-round btn-bg-gradient-x-red-pink" value="Masuk" style="width: 55%;" />
+                      <div>
+                        <input type="submit" name="login" id="login" class="btn btn-glow btn-round btn-bg-gradient-x-red-pink m-2" value="Masuk" style="width: 55%;" />
                       </div>
+                    </div>
+                  </div>
                 </form>
               </div>
-
             </div>
           </div>
         </div>
