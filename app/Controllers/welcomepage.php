@@ -75,6 +75,8 @@ class welcomepage extends BaseController
     {
         session();
         // Get input values
+        $academic_graduate_year = $this->request->getPost('academic_graduate_year');
+        $deskripsi = $this->request->getPost('deskripsi');
         $content = $this->request->getPost('content');
         $tentangarea = $this->request->getPost('tentangarea');
         $kontakarea = $this->request->getPost('kontakarea');
@@ -83,9 +85,11 @@ class welcomepage extends BaseController
         $input = new welcome();
 
         $data = [
-            'content' => $content,
-            'tentangarea' => $tentangarea,
-            'kontakarea' => $kontakarea
+            'academic_graduate_year' => $academic_graduate_year,
+            'deskripsi' => $deskripsi,
+            'message' => $content,
+            'tentang' => $tentangarea,
+            'kontak' => $kontakarea
         ];
 
         if ($input->insert($data)) {
