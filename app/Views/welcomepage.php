@@ -186,6 +186,17 @@
 
                                     <!-- Table Data Welcome START -->
                                     <hr>
+                                    <?php if (session()->getFlashdata('success')) : ?>
+                                        <div class="alert alert-success">
+                                            <?= session()->getFlashdata('success'); ?>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <?php if (session()->getFlashdata('error')) : ?>
+                                        <div class="alert alert-danger">
+                                            <?= session()->getFlashdata('error'); ?>
+                                        </div>
+                                    <?php endif; ?>
                                     <div class="table-responsive">
                                         <table class="table table-bordered text-center table-striped table-hover">
                                             <thead>
@@ -261,50 +272,55 @@
                                 </div>
                             </div>
 
-                            <div class="mt-2">
-                                
-                            </div>
-                            <div class="card-header tab-content" id="tambahwelcome" style="display:none;">
-                                <h2>Tambah Welcome Page</h2>
-                                <hr>
+                            <div class="card">
+                                <div class="card-header tab-content" id="tambahwelcome" style="display:none;">
+                                    <h2>Tambah Welcome Page</h2>
+                                    <nav class="nav mb-1">
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'welcomemessage')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Welcome Message</a>
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'tentang')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Tentang</a>
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'kontak')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Kontak</a>
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'deskSurveyor')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Deskripsi Surveyor</a>
+                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'perusahaan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Perusahaan</a>
+                                    </nav>
+                                    <hr>
+                                    <div class="">
+                                        <div class="" id="welcomemessage">
+                                            <form action="<?= base_url('/welcomepage/tambahHalaman') ?>" method="post">
+                                                <div class="form-group" id="addwelcome">
+                                                    <div class="d-flex align-items-center justify-content-around" style="width: 50%;">
+                                                        <div>
+                                                            <label for="academic_graduate_year">Tahun Lulus:</label>
+                                                            <input type="text" name="academic_graduate_year" class="form-control" placeholder="Tahun Lulus" required>
+                                                        </div>
+                                                        <div>
+                                                            <label for="deskripsi">Deskripsi:</label>
+                                                            <input type="text" name="deskripsi" class="form-control" placeholder="Deskripsi" required>
+                                                        </div>
 
-                                <div class="">
-                                    <div class="" id="welcomemessage">
-                                        <?php if (session()->getFlashdata('success')) : ?>
-                                            <div class="alert alert-success">
-                                                <?= session()->getFlashdata('success'); ?>
-                                            </div>
-                                        <?php endif; ?>
+                                                    </div>
 
-                                        <?php if (session()->getFlashdata('error')) : ?>
-                                            <div class="alert alert-danger">
-                                                <?= session()->getFlashdata('error'); ?>
-                                            </div>
-                                        <?php endif; ?>
-                                        <form action="<?= base_url('/welcomepage/tambahHalaman') ?>" method="post">
-                                            <div class="form-group">
-                                                <label for="academic_graduate_year">Tahun Lulus:</label>
-                                                <input type="text" name="academic_graduate_year" class="form-control" style="width: 25%;" placeholder="Tahun Lulus" required>
-                                                <hr>
-                                                <label for="deskripsi">Deskripsi:</label>
-                                                <input type="text" name="deskripsi" class="form-control" style="width: 25%;" placeholder="Deskripsi" required>
-                                                <hr>
-                                                <label for="content">Welcome Message:</label>
-                                                <textarea name="content" id="content" required></textarea>
-                                                <hr>
-                                                <label for="tentangarea">Tentang:</label>
-                                                <textarea name="tentangarea" id="tentangarea" required></textarea>
-                                                <hr>
-                                                <label for="kontakarea">Kontak:</label>
-                                                <textarea name="kontakarea" id="kontakarea" required></textarea>
-                                            </div>
+                                                    <hr>
+                                                    <label for="content">Welcome Message:</label>
+                                                    <textarea name="content" id="content" required></textarea>
+                                                    <hr>
+                                                    <label for="tentangarea">Tentang:</label>
+                                                    <textarea name="tentangarea" id="tentangarea" required></textarea>
+                                                    <hr>
+                                                    <label for="kontakarea">Kontak:</label>
+                                                    <textarea name="kontakarea" id="kontakarea" required></textarea>
+                                                    <hr>
+                                                    <label for="deskSurveyor">Deksripsi Surveyor:</label>
+                                                    <textarea name="deskSurveyor" id="deskSurveyor"></textarea>
+                                                </div>
 
-                                            <button type="submit" class="btn btn-primary">Submit</button>
-                                            <a href="<?= base_url('/welcomepage') ?>" class="btn btn-danger">Batal</a>
-                                        </form>
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                                <a href="<?= base_url('/welcomepage') ?>" class="btn btn-danger">Batal</a>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
+
 
 
                         </div>
@@ -321,6 +337,9 @@
                         removePlugins: 'a11ychecker,notificationupdate'
                     });
                     CKEDITOR.replace('kontakarea', {
+                        removePlugins: 'a11ychecker,notificationupdate'
+                    });
+                    CKEDITOR.replace('deskSurveyor', {
                         removePlugins: 'a11ychecker,notificationupdate'
                     });
                 </script>

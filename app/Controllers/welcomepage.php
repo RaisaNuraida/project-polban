@@ -65,9 +65,9 @@ class welcomepage extends BaseController
         //exit();
         //echo $userModel->find($id); exit();
         if ($db->affectedRows() > 0) {
-            return redirect()->to('welcomepage')->with('message', 'User berhasil dihapus.');
+            return redirect()->to('welcomepage')->with('message', 'Data berhasil dihapus.');
         } else {
-            return redirect()->to('welcomepage')->with('message', 'User tidak ditemukan.');
+            return redirect()->to('welcomepage')->with('message', 'Data tidak ditemukan.');
         }
     }
 
@@ -80,6 +80,7 @@ class welcomepage extends BaseController
         $content = $this->request->getPost('content');
         $tentangarea = $this->request->getPost('tentangarea');
         $kontakarea = $this->request->getPost('kontakarea');
+        $deskSurveyor = $this->request->getPost('deskSurveyor');
 
         // Load the model and insert data into the database
         $input = new welcome();
@@ -89,7 +90,8 @@ class welcomepage extends BaseController
             'deskripsi' => $deskripsi,
             'message' => $content,
             'tentang' => $tentangarea,
-            'kontak' => $kontakarea
+            'kontak' => $kontakarea,
+            'desk_surveyor' => $deskSurveyor
         ];
 
         if ($input->insert($data)) {
