@@ -246,6 +246,10 @@ class Home extends BaseController
         return view('pengaturan');
     }
 
+    public function tambahkuesioner(): string
+    {
+        return view('tambahkuesioner');
+    }
 
     public function logout()
     {

@@ -29,6 +29,7 @@ $routes->get('/indexuser', 'c_kuesioner::indexuser');
 $routes->get('/index', 'login::index');
 $routes->get('/tabeluser', 'c_kuesioner::indexuser');
 $routes->get('/kuesionerkuesioner', 'Home::kuesioner');
+$routes->get('/tambahkuesioner', 'Home::tambahkuesioner');
 $routes->get('/filteruser', 'Home::filteruser');
 $routes->get('/kuesionerkuesioner', 'cKuesioner::countTables');
 $routes->get('/kuesionerpage', 'kuesioner_page::tabel');
@@ -75,6 +76,8 @@ $routes->group('welcomepage', function ($routes) {
     $routes->post('tambahHalaman', 'welcomepage::tambahHalaman'); // Rute untuk submit Halaman Baru
 });
 $routes->post('/kuesionerpage', 'kuesioner_page::submitPengaturan');
+
+$routes->post('/tambahkuesioner', 'c_kuesioner::tambahkuesioner');
 $routes->post('/login', 'login::login');
 $routes->post('/update', 'Home::update');
 $routes->post('/kuesionerkuesioner', 'c_kuesioner::index');

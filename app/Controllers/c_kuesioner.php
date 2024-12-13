@@ -121,7 +121,37 @@ class c_kuesioner extends BaseController
         // Mengirim data ke view
         return view('dataisian', $deskripsi);
     }
-    
-    
-    
+    public function tambahkuesioner()
+    {
+        $title = $this->request->getPost('title');
+        $deskripsi = $this->request->getPost('deskripsi');
+        $conditional = $this->request->getPost('conditionallogic');
+
+
+        $pengaturanModel = new m_kuesioner();
+
+        session()->set('title', $title);
+        session()->set('deskripsi',  $deskripsi);        
+        session()->set('conditionallogic', $conditional);        
+
+
+        $data = [
+            'title' => $title,
+            'deskripsi' => $deskripsi,
+            'conditional_logic' => $conditional,
+
+        ];
+
+        if ($pengaturanModel->insert($data)) {
+            return redirect()->to('/kuesionerkuesioner')->with('success', 'Pesan berhasil disimpan.');
+        } else {
+            return redirect()->back()->with('error', 'Gagal menyimpan pesan.');
+        }
+    }
+
+       
 }
+    
+    
+    
+
