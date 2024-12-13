@@ -51,6 +51,50 @@ class welcomepage extends BaseController
         return redirect()->to('/welcomepage')->with('success', 'Kontak updated successfully.');
     }
 
+    public function deleteWelcome()
+    {
+        $userModel = new welcome();
+        $id = $this->request->getPost('id'); // Ambil id dari POST
+        $db = \Config\Database::connect(); // Koneksi ke database
+        $builder = $db->table('welcome_message'); // Menentukan tabel
+
+        // Menghapus data berdasarkan ID
+        $builder->delete(['id' => $id]); // Hapus data dengan ID tertentu
+
+        // echo $id;
+        //exit();
+        //echo $userModel->find($id); exit();
+        if ($db->affectedRows() > 0) {
+            return redirect()->to('welcomepage')->with('message', 'User berhasil dihapus.');
+        } else {
+            return redirect()->to('welcomepage')->with('message', 'User tidak ditemukan.');
+        }
+    }
+
+    public function tambahHalaman()
+    {
+        session();
+        // Get input values
+        $content = $this->request->getPost('content');
+        $tentangarea = $this->request->getPost('tentangarea');
+        $kontakarea = $this->request->getPost('kontakarea');
+
+        // Load the model and insert data into the database
+        $input = new welcome();
+
+        $data = [
+            'content' => $content,
+            'tentangarea' => $tentangarea,
+            'kontakarea' => $kontakarea
+        ];
+
+        if ($input->insert($data)) {
+            return redirect()->to('/welcomepage')->with('success', 'Pesan berhasil disimpan.');
+        } else {
+            return redirect()->back()->with('error', 'Gagal menyimpan pesan.');
+        }
+    }
+
     public function data(): string
     {
         $model = new welcome();
@@ -67,6 +111,7 @@ class welcomepage extends BaseController
 {
     $model = new Welcome();  // Pastikan model ini benar
 
+<<<<<<< HEAD
     // Mengambil data pertama dari tabel welcome
     $tentangData = $model->first();
 
@@ -79,4 +124,47 @@ class welcomepage extends BaseController
 }
 
     
+=======
+        // Mengambil data pertama dan hanya field 'tentang'
+        $tentangData = $model->first();
+        $tentang = $tentangData['tentang'];
+
+        $data = ['tentang' => $tentang];
+        return view('/tentang', $data);
+    }
+
+    public function returnMessage(): string
+    {
+        $model = new welcome();
+
+        // Mengambil data pertama dan hanya field 'tentang'
+        $messageData = $model->first();
+        $message = $messageData['message'];
+
+        $data = ['message' => $message];
+        return view('/welcomepage', $data);
+    }
+
+
+    public function dataKontak(): string
+    {
+        $model = new welcome();
+
+        // Mengambil data pertama dan hanya field 'tentang'
+        $kontakData = $model->first();
+        $kontak = $kontakData['kontak'];
+
+        $data = ['kontak' => $kontak];
+        return view('/kontak', $data);
+    }
+
+    public function dataWelcome(): string
+    {
+        $model = new welcome();
+        $datamessage = $model->getmessage();
+
+        $data = ['datamessage' => $datamessage];
+        return view('/welcomepage', $data);
+    }
+>>>>>>> e6f8bcc5a15ec46713eddb7f1b5f93174e56289c
 }

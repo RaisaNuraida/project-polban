@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, minimal-ui">
     <meta name="author" content="ThemeSelect">
-    <title>Dashboard Admin - Pengaturan Situs</title>
+    <title>Dashboard Admin - Welcome Page</title>
     <link rel="apple-touch-icon" href="assets/images/apple-icon-120.png">
     <link rel="shortcut icon" type="assets/image/x-icon" href="images/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700" rel="stylesheet">
@@ -81,7 +81,7 @@
     <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow " data-scroll-to-active="true" data-img="images/backgrounds/02.jpg">
         <div class="navbar-header">
             <ul class="nav navbar-nav flex-row">
-                <li class="nav-item mr-auto"><a class="navbar-brand" href="index.php"><img class="brand-logo" alt="Chameleon admin logo" src="assets/images/apple-icon-120.png" />
+                <li class="nav-item mr-auto"><a class="navbar-brand" href="index.php"><img class="brand-logo" alt="polban" src="assets/images/apple-icon-120.png" />
                 <li class="nav-item d-md-none"><a class="nav-link close-navbar"><i class="ft-x"></i></a></li>
             </ul>
         </div>
@@ -127,7 +127,6 @@
         </div>
     </div>
     <!-- END: Main Menu-->
-
     <!-- BEGIN: Content-->
     <div class="app-content content">
         <div class="content-wrapper">
@@ -142,10 +141,20 @@
                         <div class="card">
                             <div class="mr-2 ml-2">
                                 <div class="card-header">
-                                    <h2>Pengaturan Situs</h2>
+                                    <h2>Sunting Welcome</h2>
                                     <hr>
-                                    <div class="card-content">
-                                        <div class="card-body">
+                                    <div>
+                                        <nav class="nav mb-1">
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'welcomemessage')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Welcome Message</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'tentang')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Tentang</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'kontak')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Kontak</a>
+                                            <!-- <a class="nav-link btn-outline-primary" onclick="openTab(event, 'alumni')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Alumni</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'perusahaan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Perusahaan</a> -->
+                                        </nav>
+                                    </div>
+
+                                    <div class="">
+                                        <div class="tab-content" id="welcomemessage">
                                             <?php if (session()->getFlashdata('success')): ?>
                                                 <div class="alert alert-success">
                                                     <?= session()->getFlashdata('success'); ?>
@@ -157,40 +166,97 @@
                                                     <?= session()->getFlashdata('error'); ?>
                                                 </div>
                                             <?php endif; ?>
-                                            <div class="container mb-1 border border-primary">
+                                            <form action="<?= base_url('/welcomepage/submitMessage') ?>" method="post">
+                                                <label for="content">Welcome Message:</label>
+                                                <div class="form-group">
+                                                    <textarea name="content" id="content">
+                                                    <?= isset($datamessage[0]['message']) ? $datamessage[0]['message'] : ''; ?>
+                                                    </textarea>
+                                                </div>
+                                                <br>
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                                <a href="<?= base_url('/welcomepage') ?>" class="btn btn-danger">Batal</a>
+                                            </form>
 
-                                                <?php foreach ($my_data as $row) : ?>
-                                                    <!-- Form untuk pengaturan -->
-                                                    <form action="<?= base_url('/pengaturan') ?>" method="post" class="m-1">
-                                                        <div class="d-flex">
-                                                            <label for="nama-situs" class="m-1" style="width: 10%;">Nama Situs</label>
-                                                            <div class="form-group">
-                                                                <input type="text" style="width: 45%;" name="nama" id="nama" class="form-control" value="<?= $row['nama']; ?>" required>
-                                                                <p>Nama situs untuk judul halaman dan penggunaan lain di dalam situs.</p>
+                                        </div>
 
-                                                            </div>
-                                                        </div>
-                                                  
-                                                    <div class="d-flex">
-                                                        <label for="slogan" class="m-1" style="width: 10%;">Slogan Situs</label>
-                                                        <div class="form-group">
-                                                            <input type="text" style="width: 45%;" name="slogan" id="slogan" class="form-control" value="<?= $row['slogan']; ?>" required>
-                                                            <p>Slogan situs untuk judul halaman dan penggunaan lain di dalam situs.</p>
+                                        <div class="tab-content" id="tentang" style="display:none;">
+                                            <?php if (session()->getFlashdata('success')): ?>
+                                                <div class="alert alert-success">
+                                                    <?= session()->getFlashdata('success'); ?>
+                                                </div>
+                                            <?php endif; ?>
 
-                                                        </div>
-                                                    </div>
+                                            <?php if (session()->getFlashdata('error')): ?>
+                                                <div class="alert alert-danger">
+                                                    <?= session()->getFlashdata('error'); ?>
+                                                </div>
+                                            <?php endif; ?>
+                                            <form action="<?= base_url('/welcomepage/submitTentang') ?>" method="post">
+                                                <label for="tentangarea">Tentang:</label>
+                                                <div class="form-group">
+                                                    <textarea name="tentangarea" id="tentangarea"><?= session()->get('tentang') ?? 'ADSDAWDADSAWD' ?></textarea>
+                                                </div>
+                                                <br>
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                                <a href="<?= base_url('/welcomepage') ?>" class="btn btn-danger">Batal</a>
+                                            </form>
 
-                                                    <?php endforeach; ?>
-                                                
-                                                    <div class="d-flex justify-content-start">
-                                                        <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-                                                        <a href="<?= base_url('/pengaturan') ?>" class="btn btn-danger">Batal</a>
-                                                    </div>
-                                                    </form>
-                                            </div>
+                                        </div>
+
+                                        <div class="tab-content" id="kontak" style="display:none;">
+                                            <?php if (session()->getFlashdata('success')): ?>
+                                                <div class="alert alert-success">
+                                                    <?= session()->getFlashdata('success'); ?>
+                                                </div>
+                                            <?php endif; ?>
+
+                                            <?php if (session()->getFlashdata('error')): ?>
+                                                <div class="alert alert-danger">
+                                                    <?= session()->getFlashdata('error'); ?>
+                                                </div>
+                                            <?php endif; ?>
+                                            <form action="<?= base_url('/welcomepage/submitKontak') ?>" method="post">
+                                                <label for="kontakarea">Kontak:</label>
+                                                <div class="form-group">
+                                                    <textarea name="kontakarea" id="kontakarea"><?= session()->get('kontak') ?? 'aaaayaaaaaaa' ?></textarea>
+                                                </div>
+                                                <br>
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                                <a href="<?= base_url('/welcomepage') ?>" class="btn btn-danger">Batal</a>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- Import CKEditor Script -->
+                                <script src="//cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
+                                <script>
+                                    CKEDITOR.replace('content');
+                                    CKEDITOR.replace('tentangarea');
+                                    CKEDITOR.replace('kontakarea');
+                                </script>
+                                <script>
+                                    function openTab(evt, tabId) {
+                                        // Sembunyikan semua tab content
+                                        var tabcontent = document.getElementsByClassName("tab-content");
+                                        for (var i = 0; i < tabcontent.length; i++) {
+                                            tabcontent[i].style.display = "none"; // Sembunyikan semua tab
+                                        }
+
+                                        // Tampilkan tab yang dipilih
+                                        document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
+
+                                        // Menandai tombol tab yang aktif
+                                        var tablinks = document.getElementsByClassName("nav-link");
+                                        for (var i = 0; i < tablinks.length; i++) {
+                                            tablinks[i].className = tablinks[i].className.replace(" active", ""); // Hilangkan kelas active dari semua tab
+                                        }
+
+                                        // Tambahkan kelas active pada tombol yang ditekan
+                                        evt.currentTarget.className += " active";
+                                    }
+                                </script>
                             </div>
                         </div>
                     </div>
@@ -217,6 +283,7 @@
                     <!-- BEGIN: Page JS-->
                     <script src="assets/js/dashboard-analytics.min.js" type="text/javascript"></script>
                     <!-- END: Page JS-->
+
 
 </body>
 <!-- END: Body-->

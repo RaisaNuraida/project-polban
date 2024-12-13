@@ -105,7 +105,7 @@
                 <li class="menu-item">
                     <a href="<?= base_url('/welcomepage') ?>">
                         <i class="ft-edit"></i>
-                        <span class="menu-title">Welcome</span>
+                        <span class="menu-title">Welcome Page</span>
                     </a>
                 </li>
 
@@ -596,42 +596,16 @@
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <?php if (!empty($perusahaan)) : ?>
-                                                    <?php $no = 1; ?>
-                                                    <?php foreach ($perusahaan as $row) : ?>
-                                                        <tr>
-                                                            <td><?= $no++; ?></td>
-                                                            <td><?= $row['display_name']; ?></td>
-                                                            <td><?= $row['username']; ?></td>
-                                                            <td><?= $row['password']; ?></td>
-                                                            <td><?= $row['email']; ?></td>
-                                                            <td><?= $row['created_at']; ?></td>
-                                                            <td><?= $row['updated_at']; ?></td>
-                                                            <td>
-                                                                <button
-                                                                    data-target="#updateModal"
-                                                                    id="update"
-                                                                    data-toggle="modal"
-                                                                    data-id="<?= $row['id']; ?>"
-                                                                    data-username="<?= $row['username']; ?>"
-                                                                    data-email="<?= $row['email']; ?>"
-                                                                    data-group="<?= $row['group']; ?>"
-                                                                    data-password="<?= $row['password']; ?>"
-                                                                    class="btn btn-warning updateModal"
-                                                                    style="font-size:10px;padding:2px 5px;color:white;">
-                                                                    Ubah
-                                                                </button>
-                                                                <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
-                                                            </td>
-                                                        </tr>
-                                                    <?php endforeach; ?>
-                                                <?php else : ?>
-                                                    <tr>
-                                                        <td colspan="8" class="text-center">No data found</td>
-                                                    </tr>
+                                           <?php if (!empty ($perusahaan)) : ?>
+                                            <?php $no = 1; ?>
+                                            <?php foreach ($perusahaan as $row) : ?>
+                                                <!--tampilkan data-->
+                                            <?php endforeach; ?>
+                                            <?php else : ?>
+                                                <tr>
+                                                    <td colspan="8" class="text-center">No data found</td>
+                                                </tr>
                                                 <?php endif; ?>
-                                            </tbody>
                                         </table>
                                     </div>
                                 </div>

@@ -105,7 +105,7 @@
                 <li class="menu-item">
                     <a href="<?= base_url('/welcomepage') ?>">
                         <i class="ft-edit"></i>
-                        <span class="menu-title">Welcome</span>
+                        <span class="menu-title">Welcome Page</span>
                     </a>
                 </li>
 
@@ -140,145 +140,232 @@
                         <!-- Import Data Start -->
                         <div class="card">
                             <div class="mr-2 ml-2">
-                                <div class="card-header">
-                                    <h2>Sunting Welcome</h2>
+                                <div class="container mt-2 tab-content" id="welcomepage" style="display:block;">
+                                    <!-- Header -->
+                                    <div class="d-flex justify-content-between">
+                                        <h2 class="">Data Halaman Welcome</h2>
+
+                                        <div class="align-items-end">
+                                            <a class="btn btn-primary kuesioner" style="font-size:14px;padding:2px 5px;color:white; height:25px;" onclick="openTab(event, 'tambahwelcome')">
+                                                Tambah Halaman
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <!-- Header END-->
+
+
+                                    <!-- Filter START -->
                                     <hr>
                                     <div>
-                                        <nav class="nav mb-1">
-                                            <a class="nav-link btn-outline-primary active" onclick="openTab(event, 'welcomemessage')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Welcome Message</a>
-                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'tentang')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Tentang</a>
-                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'kontak')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Kontak</a>
-                                            <!-- <a class="nav-link btn-outline-primary" onclick="openTab(event, 'alumni')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Alumni</a>
-                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'perusahaan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Perusahaan</a> -->
-                                        </nav>
+                                        <form method="get" action="<?= base_url(relativePath: '/cariwelcome') ?>">
+                                            <div class="d-flex align-items-center">
+                                                <input type="text" name="cari" id="cari" class="form-control" placeholder="Cari..." style="margin-right: 10px; width:22%;">
+                                                <button href="<?= base_url('/cariwelcome') ?>" type="submit" class="btn btn-primary" style="font-size:12px; padding:5px 6px; height: 36px; width: 65px; color: white;">
+                                                    Filter
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- Filter END -->
+
+                                    <!-- Script Filter -->
+                                    <script>
+                                        // SCRIPT SEARCH AUTO DELETE
+                                        function removeEmptyInputs() {
+                                            const form = document.getElementById('searchForm');
+                                            const inputs = form.querySelectorAll('input, select');
+
+                                            inputs.forEach(input => {
+                                                if (!input.value) {
+                                                    input.removeAttribute('name');
+                                                }
+                                            });
+                                        }
+                                    </script>
+                                    <!-- Script Filter End -->
+
+                                    <!-- Table Data Welcome START -->
+                                    <hr>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered text-center table-striped table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>NO</th>
+                                                    <th>Tahun</th>
+                                                    <th>Deskripsi</th>
+                                                    <th>Aksi</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php if (!empty($datamessage)) : ?>
+                                                    <?php $no = 1; ?>
+                                                    <?php foreach ($datamessage as $row) : ?>
+                                                        <tr>
+                                                            <td><?= $no++; ?></td>
+                                                            <td><?= $row['academic_graduate_year']; ?></td>
+                                                            <td><?= $row['deskripsi']; ?></td>
+                                                            <td>
+                                                                <a class='btn btn-primary' style='font-size:10px;padding:2px 5px;color:white;' href="<?= base_url('/suntingWelcomePage') ?>">Edit</a>
+                                                                <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" data-deskripsi="<?= $row['deskripsi']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                <?php else : ?>
+                                                    <tr>
+                                                        <td colspan="5" class="text-center">No data found</td>
+                                                    </tr>
+                                                <?php endif; ?>
+                                            </tbody>
+                                        </table>
                                     </div>
 
-                                    <div class="">
-                                        <div class="tab-content" id="welcomemessage">
-                                            <?php if (session()->getFlashdata('success')): ?>
-                                                <div class="alert alert-success">
-                                                    <?= session()->getFlashdata('success'); ?>
+                                    <!-- Delete Confirmation Modal -->
+                                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content text-center">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
                                                 </div>
-                                            <?php endif; ?>
-
-                                            <?php if (session()->getFlashdata('error')): ?>
-                                                <div class="alert alert-danger">
-                                                    <?= session()->getFlashdata('error'); ?>
+                                                <div class="modal-body">
+                                                    <p>Apakah Anda yakin ingin menghapus data <strong id="deskripsiText"></strong>?</p>
+                                                    <form id="deleteForm" method="post" action="<?= base_url('deletewelcome') ?>">
+                                                        <input type="hidden" id="delete_id" name="id">
+                                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                                                    </form>
                                                 </div>
-                                            <?php endif; ?>
-                                            <form action="<?= base_url('/welcomepage/submitMessage') ?>" method="post">
-                                                <div class="form-group">
-                                                    <textarea name="content" id="content"><?= session()->get('message') ?? '' ?></textarea>
-                                                </div>
-                                                <br>
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                                <a href="<?= base_url('/welcomepage') ?>" class="btn btn-danger">Batal</a>
-                                            </form>
-
+                                            </div>
                                         </div>
+                                    </div>
 
-                                        <div class="tab-content" id="tentang" style="display:none;">
-                                            <?php if (session()->getFlashdata('success')): ?>
-                                                <div class="alert alert-success">
-                                                    <?= session()->getFlashdata('success'); ?>
-                                                </div>
-                                            <?php endif; ?>
+                                    <!-- JavaScript for handling delete -->
+                                    <script>
+                                        $(document).ready(function() {
+                                            // Open delete modal and set delete ID and description
+                                            $('.deleteModal').on('click', function() {
+                                                var deleteId = $(this).data('id'); // Get the ID of the item to delete
+                                                var deskripsi = $(this).data('deskripsi'); // Get the deskripsi of the item
 
-                                            <?php if (session()->getFlashdata('error')): ?>
-                                                <div class="alert alert-danger">
-                                                    <?= session()->getFlashdata('error'); ?>
-                                                </div>
-                                            <?php endif; ?>
-                                            <form action="<?= base_url('/welcomepage/submitTentang') ?>" method="post">
-                                                <div class="form-group">
-                                                    <textarea name="tentangarea" id="tentangarea"><?= session()->get('tentang') ?? '' ?></textarea>
-                                                </div>
-                                                <br>
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                                <a href="<?= base_url('/welcomepage') ?>" class="btn btn-danger">Batal</a>
-                                            </form>
+                                                // Set the ID in the hidden input field
+                                                $('#delete_id').val(deleteId);
 
-                                        </div>
+                                                // Display the description in the modal
+                                                $('#deskripsiText').text(deskripsi);
+                                            });
+                                        });
+                                    </script>
+                                    <!-- Tabel Data Welcome END -->
+                                </div>
+                            </div>
 
-                                        <div class="tab-content" id="kontak" style="display:none;">
-                                            <?php if (session()->getFlashdata('success')): ?>
-                                                <div class="alert alert-success">
-                                                    <?= session()->getFlashdata('success'); ?>
-                                                </div>
-                                            <?php endif; ?>
+                            <div class="card-header tab-content" id="tambahwelcome" style="display:none;">
+                                <h2>Tambah Welcome Page</h2>
+                                <hr>
 
-                                            <?php if (session()->getFlashdata('error')): ?>
-                                                <div class="alert alert-danger">
-                                                    <?= session()->getFlashdata('error'); ?>
-                                                </div>
-                                            <?php endif; ?>
-                                            <form action="<?= base_url('/welcomepage/submitKontak') ?>" method="post">
-                                                
-                                                <div class="form-group">
-                                                    <textarea name="kontakarea" id="kontakarea"><?= session()->get('kontak') ?? '' ?></textarea>
-                                                </div>
-                                                <br>
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                                <a href="<?= base_url('/welcomepage') ?>" class="btn btn-danger">Batal</a>
-                                            </form>
-                                        </div>
+                                <div class="">
+                                    <div class="" id="welcomemessage">
+                                        <?php if (session()->getFlashdata('success')) : ?>
+                                            <div class="alert alert-success">
+                                                <?= session()->getFlashdata('success'); ?>
+                                            </div>
+                                        <?php endif; ?>
+
+                                        <?php if (session()->getFlashdata('error')) : ?>
+                                            <div class="alert alert-danger">
+                                                <?= session()->getFlashdata('error'); ?>
+                                            </div>
+                                        <?php endif; ?>
+                                        <form action="<?= base_url('/welcomepage/tambahHalaman') ?>" method="post">
+                                            <div class="form-group">
+                                                <label for="tahun">Tahun:</label>
+                                                <input type="text" class="form-control" style="width: 25%;" placeholder="Tahun">
+                                                <hr>
+                                                <label for="tahun">Deskripsi:</label>
+                                                <input type="text" class="form-control" style="width: 25%;" placeholder="Deskripsi">
+                                                <hr>
+                                                <label for="content">Welcome Message:</label>
+                                                <textarea name="content" id="content"></textarea>
+                                                <hr>
+                                                <label for="tentangarea">Tentang:</label>
+                                                <textarea name="tentangarea" id="tentangarea"></textarea>
+                                                <hr>
+                                                <label for="kontakarea">Kontak:</label>
+                                                <textarea name="kontakarea" id="kontakarea"></textarea>
+                                            </div>
+
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            <a href="<?= base_url('/welcomepage') ?>" class="btn btn-danger">Batal</a>
+                                        </form>
                                     </div>
                                 </div>
-
-                                <!-- Import CKEditor Script -->
-                                <script src="//cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
-                                <script>
-                                    CKEDITOR.replace('content');
-                                    CKEDITOR.replace('tentangarea');
-                                    CKEDITOR.replace('kontakarea');
-                                </script>
-                                <script>
-                                    function openTab(evt, tabId) {
-                                        // Sembunyikan semua tab content
-                                        var tabcontent = document.getElementsByClassName("tab-content");
-                                        for (var i = 0; i < tabcontent.length; i++) {
-                                            tabcontent[i].style.display = "none"; // Sembunyikan semua tab
-                                        }
-
-                                        // Tampilkan tab yang dipilih
-                                        document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
-
-                                        // Menandai tombol tab yang aktif
-                                        var tablinks = document.getElementsByClassName("nav-link");
-                                        for (var i = 0; i < tablinks.length; i++) {
-                                            tablinks[i].className = tablinks[i].className.replace(" active", ""); // Hilangkan kelas active dari semua tab
-                                        }
-
-                                        // Tambahkan kelas active pada tombol yang ditekan
-                                        evt.currentTarget.className += " active";
-                                    }
-                                </script>
                             </div>
+
+
                         </div>
                     </div>
-                    <!-- END: Content-->
+                </div>
 
-                    <!-- BEGIN: Vendor JS-->
-                    <script src="assets/js/vendors.min.js" type="text/javascript"></script>
-                    <script src="assets/js/switchery.min.js" type="text/javascript"></script>
-                    <script src="assets/js/switch.min.js" type="text/javascript"></script>
-                    <!-- BEGIN Vendor JS-->
+                <script src="//cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
+                <script>
+                    // Inisialisasi editor dengan konfigurasi khusus
+                    CKEDITOR.replace('content', {
+                        removePlugins: 'a11ychecker,notificationupdate'
+                    });
+                    CKEDITOR.replace('tentangarea', {
+                        removePlugins: 'a11ychecker,notificationupdate'
+                    });
+                    CKEDITOR.replace('kontakarea', {
+                        removePlugins: 'a11ychecker,notificationupdate'
+                    });
+                </script>
 
-                    <!-- BEGIN: Page Vendor JS-->
-                    <script src="assets/js/chartist.min.js" type="text/javascript"></script>
-                    <script src="assets/js/chartist-plugin-tooltip.min.js" type="text/javascript"></script>
-                    <!-- END: Page Vendor JS-->
+                <script>
+                    function openTab(evt, tabId) {
+                        // Sembunyikan semua tab content
+                        var tabcontent = document.getElementsByClassName("tab-content");
+                        for (var i = 0; i < tabcontent.length; i++) {
+                            tabcontent[i].style.display = "none"; // Sembunyikan semua tab
+                        }
 
-                    <!-- BEGIN: Theme JS-->
-                    <script src="assets/js/app-menu.min.js" type="text/javascript"></script>
-                    <script src="assets/js/app.min.js" type="text/javascript"></script>
-                    <script src="assets/js/customizer.min.js" type="text/javascript"></script>
-                    <script src="assets/js/jquery.sharrre.js" type="text/javascript"></script>
-                    <!-- END: Theme JS-->
+                        // Tampilkan tab yang dipilih
+                        document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
 
-                    <!-- BEGIN: Page JS-->
-                    <script src="assets/js/dashboard-analytics.min.js" type="text/javascript"></script>
-                    <!-- END: Page JS-->
+                        // Menandai tombol tab yang aktif
+                        var tablinks = document.getElementsByClassName("nav-link");
+                        for (var i = 0; i < tablinks.length; i++) {
+                            tablinks[i].className = tablinks[i].className.replace(" active", ""); // Hilangkan kelas active dari semua tab
+                        }
+
+                        // Tambahkan kelas active pada tombol yang ditekan
+                        evt.currentTarget.className += " active";
+                    }
+                </script>
+                <!-- END: Content-->
+
+                <!-- BEGIN: Vendor JS-->
+                <script src="assets/js/vendors.min.js" type="text/javascript"></script>
+                <script src="assets/js/switchery.min.js" type="text/javascript"></script>
+                <script src="assets/js/switch.min.js" type="text/javascript"></script>
+                <!-- BEGIN Vendor JS-->
+
+                <!-- BEGIN: Page Vendor JS-->
+                <script src="assets/js/chartist.min.js" type="text/javascript"></script>
+                <script src="assets/js/chartist-plugin-tooltip.min.js" type="text/javascript"></script>
+                <!-- END: Page Vendor JS-->
+
+                <!-- BEGIN: Theme JS-->
+                <script src="assets/js/app-menu.min.js" type="text/javascript"></script>
+                <script src="assets/js/app.min.js" type="text/javascript"></script>
+                <script src="assets/js/customizer.min.js" type="text/javascript"></script>
+                <script src="assets/js/jquery.sharrre.js" type="text/javascript"></script>
+                <!-- END: Theme JS-->
+
+                <!-- BEGIN: Page JS-->
+                <script src="assets/js/dashboard-analytics.min.js" type="text/javascript"></script>
+                <!-- END: Page JS-->
 
 
 </body>

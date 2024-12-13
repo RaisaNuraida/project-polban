@@ -44,7 +44,7 @@ class pengaturan extends BaseController
         ];
 
         // Render view dan kirim data
-        return view('halamanlogin', $data);  // Pastikan 'index' adalah nama view yang benar
+        return view('halamanlogin', $data); 
         // echo"ddd"; exit();
     }
 
@@ -58,7 +58,7 @@ class pengaturan extends BaseController
             'my_data' => $my_data,
         ];
 
-        return view('pengaturan', $data);  // Pastikan 'index' adalah nama view yang benar
+        return view('pengaturan', $data);  
         // echo"ddd"; exit();
-    }
+    } 
 }

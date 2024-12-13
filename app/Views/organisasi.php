@@ -105,7 +105,7 @@
                 <li class="menu-item">
                     <a href="<?= base_url('/welcomepage') ?>">
                         <i class="ft-edit"></i>
-                        <span class="menu-title">Welcome</span>
+                        <span class="menu-title">Welcome Page</span>
                     </a>
                 </li>
 
@@ -205,7 +205,7 @@
                             <div class="card tab-content" id="tambahorganisasi" style="display:none;">
                                 <div class="card-header ml-2 mr-2">
                                     <div class="d-flex justify-content-between">
-                                        <h2>tambah organisasi</h2>
+                                        <h2>Tambah Organisasi</h2>
                                     </div>
                                     <hr>
 
