@@ -261,6 +261,9 @@
                                 </div>
                             </div>
 
+                            <div class="mt-2">
+                                
+                            </div>
                             <div class="card-header tab-content" id="tambahwelcome" style="display:none;">
                                 <h2>Tambah Welcome Page</h2>
                                 <hr>
@@ -280,20 +283,20 @@
                                         <?php endif; ?>
                                         <form action="<?= base_url('/welcomepage/tambahHalaman') ?>" method="post">
                                             <div class="form-group">
-                                                <label for="tahun">Tahun:</label>
-                                                <input type="text" class="form-control" style="width: 25%;" placeholder="Tahun">
+                                                <label for="academic_graduate_year">Tahun Lulus:</label>
+                                                <input type="text" name="academic_graduate_year" class="form-control" style="width: 25%;" placeholder="Tahun Lulus" required>
                                                 <hr>
-                                                <label for="tahun">Deskripsi:</label>
-                                                <input type="text" class="form-control" style="width: 25%;" placeholder="Deskripsi">
+                                                <label for="deskripsi">Deskripsi:</label>
+                                                <input type="text" name="deskripsi" class="form-control" style="width: 25%;" placeholder="Deskripsi" required>
                                                 <hr>
                                                 <label for="content">Welcome Message:</label>
-                                                <textarea name="content" id="content"></textarea>
+                                                <textarea name="content" id="content" required></textarea>
                                                 <hr>
                                                 <label for="tentangarea">Tentang:</label>
-                                                <textarea name="tentangarea" id="tentangarea"></textarea>
+                                                <textarea name="tentangarea" id="tentangarea" required></textarea>
                                                 <hr>
                                                 <label for="kontakarea">Kontak:</label>
-                                                <textarea name="kontakarea" id="kontakarea"></textarea>
+                                                <textarea name="kontakarea" id="kontakarea" required></textarea>
                                             </div>
 
                                             <button type="submit" class="btn btn-primary">Submit</button>

@@ -31,8 +31,8 @@ $routes->get('/tabeluser', 'c_kuesioner::indexuser');
 $routes->get('/kuesionerkuesioner', 'Home::kuesioner');
 $routes->get('/filteruser', 'Home::filteruser');
 $routes->get('/kuesionerkuesioner', 'cKuesioner::countTables');
-$routes->get('/page', 'kuesioner_page::tabel');
-$routes->get('/page', 'kuesioner_page::index');
+$routes->get('/kuesionerpage', 'kuesioner_page::tabel');
+$routes->get('/kuesionerpage', 'kuesioner_page::index');
 $routes->get('/dataisiann', 'dataisian::index');
 $routes->get('/deskripsi', 'c_kuesioner::show');
 $routes->get('/downloadCSV', 'cKuesioner::downloadCSV');
@@ -54,6 +54,8 @@ $routes->get('/data', 'welcomepage::data');
 $routes->get('/pengaturan', 'Home::setting');
 $routes->get('/halamaneditprofile', 'editprofile::index');
 $routes->get('/tentang', 'welcomepage::dataTentang');
+$routes->get('/halamanperusahaan', 'Home::indexperusahaan');
+
 
 //routes post
 $routes->post('/import', 'Home::import');

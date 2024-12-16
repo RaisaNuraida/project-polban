@@ -47,7 +47,7 @@ class carianswer extends BaseController
                 ->orlike('academic_nim', $cari)
                 ->orlike('academic_faculty', $cari)
                 ->orlike('academic_program', $cari)
-                ->orlike('academic_year', $cari)
+                ->orlike('academic_graduate_year', $cari)
                 ->findAll(); // Menggunakan like untuk pencarian
         } else {
             $data['dataalumni'] = []; // Jika tidak ada input, set hasil kosong

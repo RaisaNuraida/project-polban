@@ -75,6 +75,8 @@ class welcomepage extends BaseController
     {
         session();
         // Get input values
+        $academic_graduate_year = $this->request->getPost('academic_graduate_year');
+        $deskripsi = $this->request->getPost('deskripsi');
         $content = $this->request->getPost('content');
         $tentangarea = $this->request->getPost('tentangarea');
         $kontakarea = $this->request->getPost('kontakarea');
@@ -83,9 +85,11 @@ class welcomepage extends BaseController
         $input = new welcome();
 
         $data = [
-            'content' => $content,
-            'tentangarea' => $tentangarea,
-            'kontakarea' => $kontakarea
+            'academic_graduate_year' => $academic_graduate_year,
+            'deskripsi' => $deskripsi,
+            'message' => $content,
+            'tentang' => $tentangarea,
+            'kontak' => $kontakarea
         ];
 
         if ($input->insert($data)) {
@@ -111,20 +115,6 @@ class welcomepage extends BaseController
 {
     $model = new Welcome();  // Pastikan model ini benar
 
-<<<<<<< HEAD
-    // Mengambil data pertama dari tabel welcome
-    $tentangData = $model->first();
-
-    // Pastikan field 'welcome_message' ada dan tidak kosong
-    $tentang = !empty($tentangData['welcome_message']) ? $tentangData['welcome_message'] : 'Data tidak tersedia';
-
-    // Kirimkan data ke view
-    $data = ['tentang' => $tentang];
-    return view('tentang', $data);
-}
-
-    
-=======
         // Mengambil data pertama dan hanya field 'tentang'
         $tentangData = $model->first();
         $tentang = $tentangData['tentang'];
@@ -166,5 +156,4 @@ class welcomepage extends BaseController
         $data = ['datamessage' => $datamessage];
         return view('/welcomepage', $data);
     }
->>>>>>> e6f8bcc5a15ec46713eddb7f1b5f93174e56289c
 }

@@ -428,7 +428,7 @@
                                                 <td>
 
                                                     <a class="btn btn-primary btn-sm" class="nav-link active"
-                                                        href="<?= base_url('/page') ?>"
+                                                        href="<?= base_url('/kuesionerpage') ?>"
                                                         style='font-size:10px;padding:2px 5px;color:white;'>Edit</a>
                                                     <a class="btn btn-primary btn-sm"
                                                         style='font-size:10px;padding:2px 5px;color:white;'>Active</a>

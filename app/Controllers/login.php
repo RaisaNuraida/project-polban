@@ -61,9 +61,11 @@ class login extends BaseController
                         ];
                         session()->set($datasesi);
                         if ($data['group'] === 'administrator') {
-                            return redirect()->to('/'); // Ganti dengan URL halaman admin
+                            return redirect()->to('/'); // Halaman admin
+                        } elseif ($data['group'] === 'perusahaan') {
+                            return redirect()->to('/perusahaan'); // Halaman perusahaan
                         } else {
-                            return redirect()->to('/indexuser'); // Ganti dengan URL halaman user
+                            return redirect()->to('/indexuser'); // Halaman user
                         }
                     }
                 }
