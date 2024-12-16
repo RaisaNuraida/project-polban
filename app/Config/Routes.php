@@ -51,6 +51,7 @@ $routes->get('/halamankontak', 'Home::kontak');
 $routes->get('/kontak', 'welcomepage::dataKontak');
 $routes->get('/kuesionersection', 'Home::kuesionersection');
 
+$routes->get('/tambahhalaman', to: 'welcomepage::tambahwelcome');
 
 $routes->get('/dataisian', 'dataisian::dataisian');
 $routes->get('/data', 'welcomepage::data');

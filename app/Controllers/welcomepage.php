@@ -71,6 +71,11 @@ class welcomepage extends BaseController
         }
     }
 
+    public function tambahwelcome(): string
+    {
+        return view('tambahhalaman');
+    }
+
     public function tambahHalaman()
     {
         session();
