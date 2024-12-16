@@ -693,7 +693,8 @@
                                                     <td>
                                                         <a class="btn btn-secondary btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Up</a>
                                                         <a class="btn btn-secondary btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Down</a>
-                                                        <a class="btn btn-info btn-sm" style='font-size:10px;padding:2px 5px;color:white;' onclick="openTab(event, 'SuntingEditKuesioner')">Edit</a>
+                                                        <a class="btn btn-primary btn-sm" href="<?= base_url('/kuesionerkuesioner') ?>" 
+                                                        style='font-size:10px;padding:2px 5px;color:white;'>Edit</a>
                                                         <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
                                                         </td>
                                                 </tr>
