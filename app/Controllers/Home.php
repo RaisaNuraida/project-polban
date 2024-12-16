@@ -230,6 +230,11 @@ class Home extends BaseController
         return view('kuesionerkuesioner');
     }
 
+    public function kuesionersection()
+    {
+        return view('kuesionersection');
+    }
+
     public function organisasi()
     {
         return view('organisasi');
@@ -250,6 +255,10 @@ class Home extends BaseController
         return view('pengaturan');
     }
 
+    public function tambahkuesioner(): string
+    {
+        return view('tambahkuesioner');
+    }
 
     public function logout()
     {

@@ -20,14 +20,11 @@ class c_kuesioner extends BaseController
         $model = new m_kuesioner();  
 
         $user = $model->getKuesionerWithUsers();
-
-        // Debugging untuk melihat data yang diambil
-        // echo '<pre>';
-        //print_r($my_data);
-        //echo '</pre>';
-        //exit;
-
-        $data = ['user' => $user];
+        $data = [
+        'user' => $user,
+      
+    ];
+        
 
         // Kirim data ke view
         return view('kuesionerkuesioner', $data);
@@ -38,18 +35,12 @@ class c_kuesioner extends BaseController
         $model = new m_kuesioner();
 
         $user = $model->getUsers();
-
-        // Debugging untuk melihat data yang diambil
-        // echo '<pre>';
-        //print_r($my_data);
-        //echo '</pre>';
-        //exit;
-
         $data = ['user' => $user];
 
         // Kirim data ke view
         return view('indexuser', $data);
     }
+
     public function deleteUser()
     {
         $userModel = new m_kuesioner();
@@ -119,30 +110,41 @@ class c_kuesioner extends BaseController
         // Mengirim data ke view
         return view('dataisian', $deskripsi);
     }
-    
-    public function simpan()
-{
-    $model = new m_kuesioner();
+    public function tambahkuesioner()
+    {
+        // Ambil data dari request
+         // Ambil data dari request tanpa validasi
+         $mainOption = $this->request->getPost('mainOption');
+         $conditionalOperator = $this->request->getPost('is')?: $this->request->getPost('isNot');
+         $subOption = $this->request->getPost('displayNameInput') ?: $this->request->getPost('emailInput') ?: $this->request->getPost('group') ?: $this->request->getPost('academic_nim') ?: $this->request->getPost('academic_faculty') ?: $this->request->getPost('academic_program');
+ 
+         // Format conditional_logic field
+         $conditionalLogicData = [
+             'Option ' => $mainOption,
+             'is not ' => $conditionalOperator,
+             'value ' => $subOption,
+         ];
+ 
+         $data = [
+             'title' => $this->request->getPost('title'),
+             'deskripsi' => $this->request->getPost('deskripsi'),
+             'conditional_logic' => json_encode($conditionalLogicData), // Simpan sebagai JSON string
+         ];
+ 
+         // Simpan ke database
+         $model = new m_kuesioner();
+         if (!$model->insert($data)) {
+             return redirect()->back()->withInput()->with('error', 'Data gagal disimpan.');
+         }
+ 
+        
 
-    // Ambil data dari request POST
-    $data = [
-        'title' => $this->request->getPost('title'),
-        'deskripsi' => $this->request->getPost('deskripsi'),
-        'created_on' => date('Y-m-d H:i:s'), // Misalnya, untuk menyimpan waktu pembuatan
-        'created_by' => session()->get('user_id'), // Jika Anda menyimpan ID pengguna yang membuat
-        // Tambahkan field lain sesuai kebutuhan
-    ];
+         return redirect()->to('/kuesionerkuesioner')->with('success', 'Data berhasil disimpan.');
+     }
 
-    // Debugging: Cek data yang akan disimpan
-    log_message('debug', 'Data yang akan disimpan: ' . json_encode($data));
-
-    // Simpan data ke database
-    if ($model->save($data)) {
-        return $this->response->setJSON(['status' => 'success']);
-    } else {
-        // Jika gagal, tampilkan kesalahan
-        return $this->response->setJSON(['status' => 'error', 'errors' => $model->errors()]);
-    }
+     
 }
     
-}
+    
+    
+

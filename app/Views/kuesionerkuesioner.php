@@ -417,7 +417,7 @@
                                                     <form method="get" action="/conditionalkuesioner" id="conditionalkuesioner"
                                                         onsubmit="removeEmptyInputs()">
                                                         <button type="submit" class="btn btn-primary"
-                                                            style="font-size:12px; padding:5px 6px; height:25px; color: white;">Filter</button>
+                                                            style="font-size:12px; padding:5px 6px; height:25px; color: white;">Masuk</button>
 
                                                 </td>
                                                 <td>
