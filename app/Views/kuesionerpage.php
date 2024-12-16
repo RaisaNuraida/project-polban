@@ -669,7 +669,7 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered text-center ">
                                     <thead>
-                                        <tr>
+                                        <tr> 
                                             <td>ID Halaman</td>
                                             <td>Nama Halaman</td>
                                             <td>Deskripsi</td>
@@ -693,9 +693,9 @@
                                                     <td>
                                                         <a class="btn btn-secondary btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Up</a>
                                                         <a class="btn btn-secondary btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Down</a>
-                                                        <a class="btn btn-primary btn-sm" href="<?= base_url('/kuesionerkuesioner') ?>" 
-                                                        style='font-size:10px;padding:2px 5px;color:white;'>Edit</a>
-                                                        <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
+                                                        <a class="btn btn-primary btn-sm" class="nav-link active"
+                                                        href="<?= base_url('/kuesionersection') ?>"
+                                                        style='font-size:10px;padding:2px 5px;color:white;'>Edit</a>                                                        <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
                                                         </td>
                                                 </tr>
                                             <?php endforeach; ?>
