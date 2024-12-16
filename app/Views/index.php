@@ -596,10 +596,9 @@
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
-                                                <?php if (!empty($perusahaan)) : ?>
+                                            <?php if (!empty($perusahaan)) : ?>
                                                     <?php $no = 1; ?>
-                                                    <?php foreach ($perusahaan as $row) : ?>
+                                                    <?php foreach ($perusahaan   as $row) : ?>
                                                         <tr>
                                                             <td><?= $no++; ?></td>
                                                             <td><?= $row['display_name']; ?></td>
@@ -616,13 +615,11 @@
                                                                     data-id="<?= $row['id']; ?>"
                                                                     data-username="<?= $row['username']; ?>"
                                                                     data-email="<?= $row['email']; ?>"
-                                                                    data-group="<?= $row['group']; ?>"
                                                                     data-password="<?= $row['password']; ?>"
                                                                     class="btn btn-warning updateModal"
                                                                     style="font-size:10px;padding:2px 5px;color:white;">
                                                                     Ubah
-                                                                </button>
-                                                                <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
+                                                                </button> <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
                                                             </td>
                                                         </tr>
                                                     <?php endforeach; ?>

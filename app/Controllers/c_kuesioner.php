@@ -17,7 +17,7 @@ class c_kuesioner extends BaseController
 {
     public function index(): string
     {
-        $model = new m_kuesioner();
+        $model = new m_kuesioner();  
 
         $user = $model->getKuesionerWithUsers();
         $data = [
@@ -29,8 +29,6 @@ class c_kuesioner extends BaseController
         // Kirim data ke view
         return view('kuesionerkuesioner', $data);
     }
-
-    
 
     public function indexuser(): string
     {

@@ -57,6 +57,8 @@ $routes->get('/data', 'welcomepage::data');
 $routes->get('/pengaturan', 'Home::setting');
 $routes->get('/halamaneditprofile', 'editprofile::index');
 $routes->get('/tentang', 'welcomepage::dataTentang');
+$routes->get('/halamanperusahaan', 'Home::indexperusahaan');
+
 
 //routes post
 $routes->post('/import', 'Home::import');
@@ -80,8 +82,11 @@ $routes->group('welcomepage', function ($routes) {
 $routes->post('/kuesionerpage', 'kuesioner_page::submitPengaturan');
 
 $routes->post('/tambahkuesioner', 'c_kuesioner::tambahkuesioner');
+$routes->post('/tambahkuesionerpage', 'kuesioner_page::tambahkuesionerpage');
+
 $routes->post('/login', 'login::login');
 $routes->post('/update', 'Home::update');
 $routes->post('/kuesionerkuesioner', 'c_kuesioner::index');
 $routes->post('/organisasi', 'c_organisasi::submitMessage');
 $routes->post('/pengaturan', 'pengaturan::submitPengaturan');
+$routes->post('/simpan-kuesioner', 'c_kuesioner::simpan');
