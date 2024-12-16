@@ -368,7 +368,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputDeskripsi">Deskripsi</label>
-                                                <input type="password" class="form-control" id="exampleInputDeskripsi"
+                                                <input type="text" class="form-control" id="exampleInputDeskripsi"
                                                     placeholder="Bagian ini berisi pertanyaan tentang data pribadi responden.">
                                             </div>
                                             <div class="form-check d-flex">

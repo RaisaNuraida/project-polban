@@ -82,6 +82,8 @@ $routes->group('welcomepage', function ($routes) {
 $routes->post('/kuesionerpage', 'kuesioner_page::submitPengaturan');
 
 $routes->post('/tambahkuesioner', 'c_kuesioner::tambahkuesioner');
+$routes->post('/tambahkuesionerpage', 'kuesioner_page::tambahkuesionerpage');
+
 $routes->post('/login', 'login::login');
 $routes->post('/update', 'Home::update');
 $routes->post('/kuesionerkuesioner', 'c_kuesioner::index');
