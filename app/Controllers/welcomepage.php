@@ -118,9 +118,9 @@ class welcomepage extends BaseController
         return view('/tracer', $data);
     }
 
-    public function dataTentang(): string
-    {
-        $model = new welcome();
+   public function dataTentang(): string
+{
+    $model = new Welcome();  // Pastikan model ini benar
 
         // Mengambil data pertama dan hanya field 'tentang'
         $tentangData = $model->first();

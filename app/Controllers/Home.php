@@ -211,6 +211,10 @@ class Home extends BaseController
     {
         return view('tracer');
     }
+    public function indexperusahaan()
+    {
+        return view('perusahaan');
+    }
     public function kontak()
     {
         return view('kontak');
@@ -224,6 +228,11 @@ class Home extends BaseController
     public function kuesioner()
     {
         return view('kuesionerkuesioner');
+    }
+
+    public function kuesionersection()
+    {
+        return view('kuesionersection');
     }
 
     public function organisasi()

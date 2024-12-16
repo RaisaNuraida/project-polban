@@ -341,335 +341,410 @@
                             <hr>
 
                             <div class="m-2">
-                                <form action="<?= base_url('/kuesionerpage') ?>" method="post">
-                                    <div class="form-group">
-                                        <label for="title">Title</label>
-                                        <input type="text" class="form-control" id="title" name="title" placeholder="Kuesioner Sample">
+                                        <form action="<?= base_url('/tambahkuesionerpage') ?>" method="post">
+                                            <div class="form-group">
+                                                <label for="title">Title</label>
+                                                <input type="text" class="form-control" id="title" name="title"
+                                                    placeholder="Kuesioner Sample">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputDeskripsi">Deskripsi</label>
+                                                <input type="text" class="form-control" id="deskripsi" name="deskripsi"
+                                                    placeholder="Kuesioner Sample">
+                                            </div>
+                                            <div class="form-check d-flex">
+                                                <label class="form-check-label" for="conditional_logic">Conditional
+                                                    Logic</label>
+                                                <input type="checkbox" class="form-check-input" id="conditional_logic"
+                                                    name="conditional_logic" onclick="toggleOptions()">
+                                            </div>
+
+                                            <br>
+
+                                            <div class="form-row m-0" id="conditionalOptions"
+                                                style="width: 22%; display: none;" id="conditional_logic">
+                                                <div class="mr-1 d-flex" id="optionContainer" class="">
+                                                    <select class="custom-select" id="mainOption" name="mainOption"
+                                                        onchange="toggleSubOptions()">
+                                                        <option selected> </option>
+                                                        <option value="display_name">display_name</option>
+                                                        <option value="email">email</option>
+                                                        <option value="group">group</option>
+                                                        <option value="academic_nim">academic_nim</option>
+                                                        <option value="academic_faculty">academic_faculty</option>
+                                                        <option value="academic_program">academic_program</option>
+                                                        <option value="academic_year">academic_year</option>
+                                                        <option value="street">street</option>
+                                                        <option value="city">city</option>
+                                                        <option value="state_code">state_code</option>
+                                                        <option value="zip_code">zip_code</option>
+                                                        <option value="academic_graduate_year">academic_graduate_year
+                                                        </option>
+                                                        <option value="jenis_kelamin">jenis_kelamin</option>
+                                                        <option value="no_telp">no_telp</option>
+                                                        <option value="nik">nik</option>
+                                                        <option value="npwp">npwp</option>
+                                                    </select>
+                                               
+
+                                                    <select id="conditionalOperator" class="custom-select ml-1" name="conditionalOperator">
+                                                        <option value="is">is</option>
+                                                        <option value="is not">is not</option>
+                                                    </select>
+                                                    </div>
+
+                                                <div class="mr-1 mt-1" id="displayNameField"
+                                                    style="width: 94%; display: none;" id="conditional_logic">
+                                                    <input type="text" class="form-control" id="displayNameInput"
+                                                        placeholder="enter display_name">
+                                                </div>
+
+                                                <div class="mr-1 mt-1" id="emailField"
+                                                    style="width: 94%; display: none;">
+                                                    <input type="email" class="form-control" id="emailInput"
+                                                        placeholder="enter email">
+                                                </div>
+
+                                                <div class="mr-1 mt-1" id="groupField"
+                                                    style="width: 94%; display: none;">
+                                                    <select name="group" id="groupField" class="custom-select">
+                                                        <option value=""></option>
+                                                        <option value="administrator">administrator</option>
+                                                        <option value="alumni">alumni</option>
+                                                        <option value="perusahaan">perusahaan</option>
+                                                        <option value="atasan">atasan</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="mr-1 mt-1" id="academicNimField"
+                                                    style="width: 94%; display: none;">
+                                                    <input type="text" class="form-control" id="academicNimField"
+                                                        placeholder="enter academic_nim">
+                                                </div>
+
+                                                <div class="mr-1 mt-1" id="academicFacultyField"
+                                                    style="width: 94%; display: none;" id="conditional_logic">
+                                                    <select name="academic_faculty" id="academicFacultyField"
+                                                        class="custom-select">
+                                                        <option value=""></option>
+                                                        <option value="Teknik Sipil">Teknik Sipil</option>
+                                                        <option value="Teknik Mesin">Teknik Mesin</option>
+                                                        <option value="Teknik Refrigasi dan Tata Udara">Teknik Refrigasi
+                                                            dan Tata Udara</option>
+                                                        <option value="Teknik Konversi Energi">Teknik Konversi Energi
+                                                        </option>
+                                                        <option value="Teknik Elektro">Teknik Elektro</option>
+                                                        <option value="Teknik Kimia">Teknik Kimia</option>
+                                                        <option value="Teknik Komputer dan Informatika">Teknik Komputer
+                                                            dan Informatika</option>
+                                                        <option value="Akuntansi">Akuntansi</option>
+                                                        <option value="Administrasi Niaga">Administrasi Niaga</option>
+                                                        <option value="Bahasa Inggris">Bahasa Inggris</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="mr-1 mt-1" id="academicProgramField"
+                                                    style="width: 94%; display: none;">
+                                                    <select name="academic_program" id="academicProgramField"
+                                                        class="custom-select">
+                                                        <option value=""> </option>
+                                                        <!-- Teknik Sipil -->
+                                                        <option value="D-3 Teknik Konstruksi Sipil">D-3 Teknik
+                                                            Konstruksi Sipil</option>
+                                                        <option value="D-3 Teknik Konstruksi Gedung">D-3 Teknik
+                                                            Konstruksi Gedung</option>
+                                                        <option value="D-4 Teknik Perancangan Jalan dan Jembatan">D-4
+                                                            Teknik Perancangan Jalan dan Jembatan</option>
+                                                        <option value="D-4 Teknik Perawatan dan Perbaikan Gedung">D-4
+                                                            Teknik Perawatan dan Perbaikan Gedung</option>
+                                                        <option value="S-2 Rekayasa Infrastruktur">S-2 Rekayasa
+                                                            Infrastruktur</option>
+
+                                                        <!-- Teknik Mesin -->
+                                                        <option value="D-3 Teknik Mesin">D-3 Teknik Mesin</option>
+                                                        <option value="D-3 Teknik Aeronautika">D-3 Teknik Aeronautika
+                                                        </option>
+                                                        <option value="D-4 Teknik Perancangan dan Konstruksi Mesin">D-4
+                                                            Teknik Perancangan dan Konstruksi Mesin</option>
+                                                        <option value="D-4 Proses Manufaktur">D-4 Proses Manufaktur
+                                                        </option>
+
+                                                        <!-- Teknik Refrigasi dan Tata Udara -->
+                                                        <option value="D-3 Teknik Pendingin dan Tata Udara">D-3 Teknik
+                                                            Pendingin dan Tata Udara</option>
+                                                        <option value="D-4 Teknik Pendingin dan Tata Udara">D-4 Teknik
+                                                            Pendingin dan Tata Udara</option>
+
+                                                        <!-- Teknik Konversi Energi -->
+                                                        <option value="D-3 Teknik Konversi Energi">D-3 Teknik Konversi
+                                                            Energi</option>
+                                                        <option value="D-4 Teknik Pembangkit Tenaga Listrik">D-4 Teknik
+                                                            Pembangkit Tenaga Listrik</option>
+                                                        <option value="D-4 Teknik Konservasi Energi">D-4 Teknik
+                                                            Konservasi Energi</option>
+
+                                                        <!-- Teknik Elektro -->
+                                                        <option value="D-3 Teknik Elektronika">D-3 Teknik Elektronika
+                                                        </option>
+                                                        <option value="D-3 Teknik Listrik">D-3 Teknik Listrik</option>
+                                                        <option value="D-3 Teknik Telekomunikasi">D-3 Teknik
+                                                            Telekomunikasi</option>
+                                                        <option value="D-4 Teknik Elektronika">D-4 Teknik Elektronika
+                                                        </option>
+                                                        <option value="D-4 Teknik Telekomunikasi">D-4 Teknik
+                                                            Telekomunikasi</option>
+                                                        <option value="D-4 Teknik Otomasi Industri">D-4 Teknik Otomasi
+                                                            Industri</option>
+
+                                                        <!-- Teknik Kimia -->
+                                                        <option value="D-3 Teknik Kimia">D-3 Teknik Kimia</option>
+                                                        <option value="D-3 Analis Kimia">D-3 Analis Kimia</option>
+                                                        <option value="D-4 Teknik Kimia Produksi Bersih">D-4 Teknik
+                                                            Kimia Produksi Bersih</option>
+
+                                                        <!-- Teknik Komputer dan Informatika -->
+                                                        <option value="D-3 Teknik Informatika">D-3 Teknik Informatika
+                                                        </option>
+                                                        <option value="D-4 Teknik Informatika">D-4 Teknik Informatika
+                                                        </option>
+
+                                                        <!-- Akuntansi -->
+                                                        <option value="D-3 Akuntansi">D-3 Akuntansi</option>
+                                                        <option value="D-3 Keuangan dan Perbankan">D-3 Keuangan dan
+                                                            Perbankan</option>
+                                                        <option value="D-4 Akutansi Manajemen Pemerintahan">D-4 Akutansi
+                                                            Manajemen Pemerintahan</option>
+                                                        <option value="D-4 Akutansi">D-4 Akutansi</option>
+                                                        <option value="D-4 Keuangan Syariah">D-4 Keuangan Syariah
+                                                        </option>
+                                                        <option value="S-2 Keuangan dan Perbankan Syariah">D-4 Keuangan
+                                                            dan Perbankan Syariah</option>
+
+                                                        <!-- Administrasi Niaga -->
+                                                        <option value="D-3 Administrasi Bisnis">D-3 Administrasi Bisnis
+                                                        </option>
+                                                        <option value="D-3 Manajemen Pemasaran">D-3 Manajemen Pemasaran
+                                                        </option>
+                                                        <option value="D-3 Usaha Perjalanan Wisata">D-3 Usaha Perjalanan
+                                                            Wisata</option>
+                                                        <option value="D-4 Manajemen Aset">D-4 Manajemen Aset</option>
+                                                        <option value="D-4 Manajemen Bisnis">D-4 Manajemen Bisnis
+                                                        </option>
+                                                        <option value="D-4 Manajemen Pemasaran">D-4 Manajemen Pemasaran
+                                                        </option>
+                                                        <option value="D-4 Destinasi Pariwisata">D-4 Destinasi
+                                                            Pariwisata</option>
+
+                                                        <!-- Bahasa Inggris -->
+                                                        <option value="D-3 Bahasa Inggris">D-3 Bahasa Inggris</option>
+                                                    </select>
+                                                </div>
+
+                                                <div class="mr-1 mt-1" id="academicYearField"
+                                                    style="width: 94%; display: none;">
+                                                    <select name="academic_year" id="academicYearField"
+                                                        class="custom-select">
+                                                        <option value=""></option>
+                                                        <option value="2015">2015</option>
+                                                        <option value="2016">2016</option>
+                                                        <option value="2017">2017</option>
+                                                        <option value="2018">2018</option>
+                                                        <option value="2019">2019</option>
+                                                        <option value="2020">2020</option>
+                                                        <option value="2021">2021</option>
+                                                        <option value="2022">2022</option>
+                                                        <option value="2023">2023</option>
+                                                        <option value="2024">2024</option>
+                                                        <option value="2025">2025</option>
+                                                        <option value="2026">2026</option>
+                                                        <!-- Tambahkan tahun sesuai kebutuhan -->
+                                                    </select>
+                                                </div>
+
+                                                <div class="mr-1 mt-1" id="streetField"
+                                                    style="width: 94%; display: none;">
+                                                    <input type="text" class="form-control" id="streetField"
+                                                        placeholder="enter street">
+                                                </div>
+
+                                                <div class="mr-1 mt-1" id="cityField"
+                                                    style="width: 94%; display: none;">
+                                                    <input type="text" class="form-control" id="cityField"
+                                                        placeholder="enter city">
+                                                </div>
+
+                                                <div class="mr-1 mt-1" id="stateCodeField"
+                                                    style="width: 94%; display: none;">
+                                                    <input type="text" class="form-control" id="stateCodeField"
+                                                        placeholder="enter state_code">
+                                                </div>
+
+                                                <div class="mr-1 mt-1" id="zipCodeField"
+                                                    style="width: 94%; display: none;">
+                                                    <input type="text" class="form-control" id="zipCodeField"
+                                                        placeholder="enter zip_code">
+                                                </div>
+
+                                                <div class="mr-1 mt-1" id="academicGraduateYearField"
+                                                    style="width: 94%; display: none;">
+                                                    <select name="academic_graduate_year" id="academicGraduateYearField"
+                                                        class="custom-select">
+                                                        <option value=""></option>
+                                                        <option value="2015">2015</option>
+                                                        <option value="2016">2016</option>
+                                                        <option value="2017">2017</option>
+                                                        <option value="2018">2018</option>
+                                                        <option value="2019">2019</option>
+                                                        <option value="2020">2020</option>
+                                                        <option value="2021">2021</option>
+                                                        <option value="2022">2022</option>
+                                                        <option value="2023">2023</option>
+                                                        <option value="2024">2024</option>
+                                                        <option value="2025">2025</option>
+                                                        <option value="2026">2026</option>
+                                                        <!-- Tambahkan tahun sesuai kebutuhan -->
+                                                    </select>
+                                                </div>
+
+                                                <div class="mr-1 mt-1" id="academicGraduateYearField"
+                                                    style="width: 94%; display: none;" id="conditional_logic">
+                                                    <select name="academic_graduate_year" id="academicGraduateYearField"
+                                                        class="custom-select">
+                                                        <option value=""></option>
+                                                        <option value="2015">2015</option>
+                                                        <option value="2016">2016</option>
+                                                        <option value="2017">2017</option>
+                                                        <option value="2018">2018</option>
+                                                        <option value="2019">2019</option>
+                                                        <option value="2020">2020</option>
+                                                        <option value="2021">2021</option>
+                                                        <option value="2022">2022</option>
+                                                        <option value="2023">2023</option>
+                                                        <option value="2024">2024</option>
+                                                        <option value="2025">2025</option>
+                                                        <option value="2026">2026</option>
+                                                        <!-- Tambahkan tahun sesuai kebutuhan -->
+                                                    </select>
+                                                </div>
+
+                                                <div class="mr-1 mt-1" id="jenisKelaminField"
+                                                    style="width: 94%; display: none;">
+                                                    <select name="jenis_kelamin" id="jenisKelaminField"
+                                                        class="custom-select">
+                                                        <option value=""></option>
+                                                        <option value="wanita">wanita</option>
+                                                        <option value="pria">pria</option>
+                                                        <!-- Tambahkan tahun sesuai kebutuhan -->
+                                                    </select>
+                                                </div>
+
+                                                <div class="mr-1 mt-1" id="noTelpField"
+                                                    style="width: 94%; display: none;">
+                                                    <input type="text" class="form-control" id="noTelpField"
+                                                        placeholder="enter no_telp">
+                                                </div>
+
+                                                <div class="mr-1 mt-1" id="nikField" style="width: 94%; display: none;">
+                                                    <input type="text" class="form-control" id="nikField"
+                                                        placeholder="enter nik">
+                                                </div>
+
+                                                <div class="mr-1 mt-1" id="npwpField"
+                                                    style="width: 94%; display: none;">
+                                                    <input type="text" class="form-control" id="npwpField"
+                                                        placeholder="enter npwp">
+                                                </div>
+
+                                                <!-- Tambahkan div lain untuk sub-opsi spesifik lainnya sesuai kebutuhan -->
+
+                                                <button type="button" class="btn btn-primary mt-2" onclick="addConditionalOption()">Add</button>
+
+
+                                            </div>
+
+
+
+                                            <script>
+                                                function toggleOptions() {
+                                                    var checkbox = document.getElementById("conditional_logic");
+                                                    var options = document.getElementById("conditionalOptions");
+                                                    options.style.display = checkbox.checked ? "block" : "none";
+                                                }
+
+                                                function toggleSubOptions() {
+                                                    var mainOption = document.getElementById("mainOption").value;
+
+                                                    // Sembunyikan semua sub-opsi terlebih dahulu
+                                                    document.getElementById("displayNameField").style.display = "none";
+                                                    document.getElementById("emailField").style.display = "none";
+                                                    document.getElementById("groupField").style.display = "none";
+                                                    document.getElementById("academicNimField").style.display = "none";
+                                                    document.getElementById("academicFacultyField").style.display = "none";
+                                                    document.getElementById("academicProgramField").style.display = "none";
+                                                    document.getElementById("academicYearField").style.display = "none";
+                                                    document.getElementById("streetField").style.display = "none";
+                                                    document.getElementById("cityField").style.display = "none";
+                                                    document.getElementById("stateCodeField").style.display = "none";
+                                                    document.getElementById("zipCodeField").style.display = "none";
+                                                    document.getElementById("academicGraduateYearField").style.display = "none";
+                                                    document.getElementById("jenisKelaminField").style.display = "none";
+                                                    document.getElementById("noTelpField").style.display = "none";
+                                                    document.getElementById("nikField").style.display = "none";
+                                                    document.getElementById("npwpField").style.display = "none";
+                                                    // Tambahkan ID div lain yang ingin disembunyikan di sini
+
+                                                    // Tampilkan sub-opsi sesuai nilai yang dipilih di mainOption
+                                                    if (mainOption === "display_name") {
+                                                        document.getElementById("displayNameField").style.display = "block";
+                                                    } else if (mainOption === "email") {
+                                                        document.getElementById("emailField").style.display = "block";
+                                                    } else if (mainOption === "group") {
+                                                        document.getElementById("groupField").style.display = "block";
+                                                    } else if (mainOption === "academic_nim") {
+                                                        document.getElementById("academicNimField").style.display = "block";
+                                                    } else if (mainOption === "academic_faculty") {
+                                                        document.getElementById("academicFacultyField").style.display = "block";
+                                                    } else if (mainOption === "academic_program") {
+                                                        document.getElementById("academicProgramField").style.display = "block";
+                                                    } else if (mainOption === "academic_year") {
+                                                        document.getElementById("academicYearField").style.display = "block";
+                                                    } else if (mainOption === "street") {
+                                                        document.getElementById("streetField").style.display = "block";
+                                                    } else if (mainOption === "city") {
+                                                        document.getElementById("cityField").style.display = "block";
+                                                    } else if (mainOption === "state_code") {
+                                                        document.getElementById("stateCodeField").style.display = "block";
+                                                    } else if (mainOption === "zip_code") {
+                                                        document.getElementById("zipCodeField").style.display = "block";
+                                                    } else if (mainOption === "academic_graduate_year") {
+                                                        document.getElementById("academicGraduateYearField").style.display = "block";
+                                                    } else if (mainOption === "jenis_kelamin") {
+                                                        document.getElementById("jenisKelaminField").style.display = "block";
+                                                    } else if (mainOption === "no_telp") {
+                                                        document.getElementById("noTelpField").style.display = "block";
+                                                    } else if (mainOption === "nik") {
+                                                        document.getElementById("nikField").style.display = "block";
+                                                    } else if (mainOption === "npwp") {
+                                                        document.getElementById("npwpField").style.display = "block";
+                                                    }
+                                                    // Tambahkan kondisi lainnya sesuai kebutuhan
+                                                }
+                                            </script>
+
+                                            <div class="mt-1">
+                                                <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+                                                <a class="btn btn-danger"
+                                                    style="font-size:14px;padding:8px 10px;color:white;"
+                                                    href="<?= base_url('/kuesionerkuesioner') ?>">Batal</a>
+                                            </div>
+                                        </form>
                                     </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputDeskripsi">Deskripsi</label>
-                                        <input type="text" class="form-control" id="deskripsi" name="deskripsi" placeholder="Kuesioner Sample">
-                                    </div>
-                                    <div class="form-check d-flex">
-                                        <label class="form-check-label" for="conditionallogic">Conditional Logic</label>
-                                        <input type="checkbox" class="form-check-input" id="conditionallogic" name="conditionallogic" onclick="toggleOptions()">
-                                    </div>
 
-                                    <br>
-
-                                    <div class="form-row m-0" id="conditionalOptions" style="width: 22%; display: none;" id="conditionalOptionsContainer" name="conditionallogic">
-                                        <div class="mr-1 d-flex" id="optionContainer" class="">
-                                            <select class="custom-select" id="mainOption" onchange="toggleSubOptions()">
-                                                <option selected> </option>
-                                                <option value="display_name">display_name</option>
-                                                <option value="email">email</option>
-                                                <option value="group">group</option>
-                                                <option value="academic_nim">academic_nim</option>
-                                                <option value="academic_faculty">academic_faculty</option>
-                                                <option value="academic_program">academic_program</option>
-                                                <option value="academic_year">academic_year</option>
-                                                <option value="street">street</option>
-                                                <option value="city">city</option>
-                                                <option value="state_code">state_code</option>
-                                                <option value="zip_code">zip_code</option>
-                                                <option value="academic_graduate_year">academic_graduate_year</option>
-                                                <option value="jenis_kelamin">jenis_kelamin</option>
-                                                <option value="no_telp">no_telp</option>
-                                                <option value="nik">nik</option>
-                                                <option value="npwp">npwp</option>
-                                            </select>
-
-                                            <select name="" id="" class="custom-select ml-1">
-                                                <option value="is">is</option>
-                                                <option value="is not">is not</option>
-                                            </select>
-                                        </div>
-
-                                        <!-- SUB-OPTION -->
-                                        <div class="mr-1 mt-1" id="displayNameField" style="width: 94%; display: none;">
-                                            <input type="text" class="form-control" id="displayNameInput" placeholder="enter display_name">
-                                        </div>
-
-                                        <div class="mr-1 mt-1" id="emailField" style="width: 94%; display: none;">
-                                            <input type="email" class="form-control" id="emailInput" placeholder="enter email">
-                                        </div>
-
-                                        <div class="mr-1 mt-1" id="groupField" style="width: 94%; display: none;">
-                                            <select name="group" id="groupField" class="custom-select">
-                                                <option value=""></option>
-                                                <option value="administrator">administrator</option>
-                                                <option value="alumni">alumni</option>
-                                                <option value="perusahaan">perusahaan</option>
-                                                <option value="atasan">atasan</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="mr-1 mt-1" id="academicNimField" style="width: 94%; display: none;">
-                                            <input type="text" class="form-control" id="academicNimField" placeholder="enter academic_nim">
-                                        </div>
-
-                                        <div class="mr-1 mt-1" id="academicFacultyField" style="width: 94%; display: none;">
-                                            <select name="academic_faculty" id="academicFacultyField" class="custom-select">
-                                                <option value=""></option>
-                                                <option value="Teknik Sipil">Teknik Sipil</option>
-                                                <option value="Teknik Mesin">Teknik Mesin</option>
-                                                <option value="Teknik Refrigasi dan Tata Udara">Teknik Refrigasi dan Tata Udara</option>
-                                                <option value="Teknik Konversi Energi">Teknik Konversi Energi</option>
-                                                <option value="Teknik Elektro">Teknik Elektro</option>
-                                                <option value="Teknik Kimia">Teknik Kimia</option>
-                                                <option value="Teknik Komputer dan Informatika">Teknik Komputer dan Informatika</option>
-                                                <option value="Akuntansi">Akuntansi</option>
-                                                <option value="Administrasi Niaga">Administrasi Niaga</option>
-                                                <option value="Bahasa Inggris">Bahasa Inggris</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="mr-1 mt-1" id="academicProgramField" style="width: 94%; display: none;">
-                                            <select name="academic_program" id="academicProgramField" class="custom-select">
-                                                <option value=""> </option>
-                                                <!-- Teknik Sipil -->
-                                                <option value="D-3 Teknik Konstruksi Sipil">D-3 Teknik Konstruksi Sipil</option>
-                                                <option value="D-3 Teknik Konstruksi Gedung">D-3 Teknik Konstruksi Gedung</option>
-                                                <option value="D-4 Teknik Perancangan Jalan dan Jembatan">D-4 Teknik Perancangan Jalan dan Jembatan</option>
-                                                <option value="D-4 Teknik Perawatan dan Perbaikan Gedung">D-4 Teknik Perawatan dan Perbaikan Gedung</option>
-                                                <option value="S-2 Rekayasa Infrastruktur">S-2 Rekayasa Infrastruktur</option>
-
-                                                <!-- Teknik Mesin -->
-                                                <option value="D-3 Teknik Mesin">D-3 Teknik Mesin</option>
-                                                <option value="D-3 Teknik Aeronautika">D-3 Teknik Aeronautika</option>
-                                                <option value="D-4 Teknik Perancangan dan Konstruksi Mesin">D-4 Teknik Perancangan dan Konstruksi Mesin</option>
-                                                <option value="D-4 Proses Manufaktur">D-4 Proses Manufaktur</option>
-
-                                                <!-- Teknik Refrigasi dan Tata Udara -->
-                                                <option value="D-3 Teknik Pendingin dan Tata Udara">D-3 Teknik Pendingin dan Tata Udara</option>
-                                                <option value="D-4 Teknik Pendingin dan Tata Udara">D-4 Teknik Pendingin dan Tata Udara</option>
-
-                                                <!-- Teknik Konversi Energi -->
-                                                <option value="D-3 Teknik Konversi Energi">D-3 Teknik Konversi Energi</option>
-                                                <option value="D-4 Teknik Pembangkit Tenaga Listrik">D-4 Teknik Pembangkit Tenaga Listrik</option>
-                                                <option value="D-4 Teknik Konservasi Energi">D-4 Teknik Konservasi Energi</option>
-
-                                                <!-- Teknik Elektro -->
-                                                <option value="D-3 Teknik Elektronika">D-3 Teknik Elektronika</option>
-                                                <option value="D-3 Teknik Listrik">D-3 Teknik Listrik</option>
-                                                <option value="D-3 Teknik Telekomunikasi">D-3 Teknik Telekomunikasi</option>
-                                                <option value="D-4 Teknik Elektronika">D-4 Teknik Elektronika</option>
-                                                <option value="D-4 Teknik Telekomunikasi">D-4 Teknik Telekomunikasi</option>
-                                                <option value="D-4 Teknik Otomasi Industri">D-4 Teknik Otomasi Industri</option>
-
-                                                <!-- Teknik Kimia -->
-                                                <option value="D-3 Teknik Kimia">D-3 Teknik Kimia</option>
-                                                <option value="D-3 Analis Kimia">D-3 Analis Kimia</option>
-                                                <option value="D-4 Teknik Kimia Produksi Bersih">D-4 Teknik Kimia Produksi Bersih</option>
-
-                                                <!-- Teknik Komputer dan Informatika -->
-                                                <option value="D-3 Teknik Informatika">D-3 Teknik Informatika</option>
-                                                <option value="D-4 Teknik Informatika">D-4 Teknik Informatika</option>
-
-                                                <!-- Akuntansi -->
-                                                <option value="D-3 Akuntansi">D-3 Akuntansi</option>
-                                                <option value="D-3 Keuangan dan Perbankan">D-3 Keuangan dan Perbankan</option>
-                                                <option value="D-4 Akutansi Manajemen Pemerintahan">D-4 Akutansi Manajemen Pemerintahan</option>
-                                                <option value="D-4 Akutansi">D-4 Akutansi</option>
-                                                <option value="D-4 Keuangan Syariah">D-4 Keuangan Syariah</option>
-                                                <option value="S-2 Keuangan dan Perbankan Syariah">D-4 Keuangan dan Perbankan Syariah</option>
-
-                                                <!-- Administrasi Niaga -->
-                                                <option value="D-3 Administrasi Bisnis">D-3 Administrasi Bisnis</option>
-                                                <option value="D-3 Manajemen Pemasaran">D-3 Manajemen Pemasaran</option>
-                                                <option value="D-3 Usaha Perjalanan Wisata">D-3 Usaha Perjalanan Wisata</option>
-                                                <option value="D-4 Manajemen Aset">D-4 Manajemen Aset</option>
-                                                <option value="D-4 Manajemen Bisnis">D-4 Manajemen Bisnis</option>
-                                                <option value="D-4 Manajemen Pemasaran">D-4 Manajemen Pemasaran</option>
-                                                <option value="D-4 Destinasi Pariwisata">D-4 Destinasi Pariwisata</option>
-
-                                                <!-- Bahasa Inggris -->
-                                                <option value="D-3 Bahasa Inggris">D-3 Bahasa Inggris</option>
-                                            </select>
-                                        </div>
-
-                                        <div class="mr-1 mt-1" id="academicYearField" style="width: 94%; display: none;">
-                                            <select name="academic_year" id="academicYearField" class="custom-select">
-                                                <option value=""></option>
-                                                <option value="2015">2015</option>
-                                                <option value="2016">2016</option>
-                                                <option value="2017">2017</option>
-                                                <option value="2018">2018</option>
-                                                <option value="2019">2019</option>
-                                                <option value="2020">2020</option>
-                                                <option value="2021">2021</option>
-                                                <option value="2022">2022</option>
-                                                <option value="2023">2023</option>
-                                                <option value="2024">2024</option>
-                                                <option value="2025">2025</option>
-                                                <option value="2026">2026</option>
-                                                <!-- Tambahkan tahun sesuai kebutuhan -->
-                                            </select>
-                                        </div>
-
-                                        <div class="mr-1 mt-1" id="streetField" style="width: 94%; display: none;">
-                                            <input type="text" class="form-control" id="streetField" placeholder="enter street">
-                                        </div>
-
-                                        <div class="mr-1 mt-1" id="cityField" style="width: 94%; display: none;">
-                                            <input type="text" class="form-control" id="cityField" placeholder="enter city">
-                                        </div>
-
-                                        <div class="mr-1 mt-1" id="stateCodeField" style="width: 94%; display: none;">
-                                            <input type="text" class="form-control" id="stateCodeField" placeholder="enter state_code">
-                                        </div>
-
-                                        <div class="mr-1 mt-1" id="zipCodeField" style="width: 94%; display: none;">
-                                            <input type="text" class="form-control" id="zipCodeField" placeholder="enter zip_code">
-                                        </div>
-
-                                        <div class="mr-1 mt-1" id="academicGraduateYearField" style="width: 94%; display: none;">
-                                            <select name="academic_graduate_year" id="academicGraduateYearField" class="custom-select">
-                                                <option value=""></option>
-                                                <option value="2015">2015</option>
-                                                <option value="2016">2016</option>
-                                                <option value="2017">2017</option>
-                                                <option value="2018">2018</option>
-                                                <option value="2019">2019</option>
-                                                <option value="2020">2020</option>
-                                                <option value="2021">2021</option>
-                                                <option value="2022">2022</option>
-                                                <option value="2023">2023</option>
-                                                <option value="2024">2024</option>
-                                                <option value="2025">2025</option>
-                                                <option value="2026">2026</option>
-                                                <!-- Tambahkan tahun sesuai kebutuhan -->
-                                            </select>
-                                        </div>
-
-                                        <div class="mr-1 mt-1" id="academicGraduateYearField" style="width: 94%; display: none;">
-                                            <select name="academic_graduate_year" id="academicGraduateYearField" class="custom-select">
-                                                <option value=""></option>
-                                                <option value="2015">2015</option>
-                                                <option value="2016">2016</option>
-                                                <option value="2017">2017</option>
-                                                <option value="2018">2018</option>
-                                                <option value="2019">2019</option>
-                                                <option value="2020">2020</option>
-                                                <option value="2021">2021</option>
-                                                <option value="2022">2022</option>
-                                                <option value="2023">2023</option>
-                                                <option value="2024">2024</option>
-                                                <option value="2025">2025</option>
-                                                <option value="2026">2026</option>
-                                                <!-- Tambahkan tahun sesuai kebutuhan -->
-                                            </select>
-                                        </div>
-
-                                        <div class="mr-1 mt-1" id="jenisKelaminField" style="width: 94%; display: none;">
-                                            <select name="jenis_kelamin" id="jenisKelaminField" class="custom-select">
-                                                <option value=""></option>
-                                                <option value="wanita">wanita</option>
-                                                <option value="pria">pria</option>
-                                                <!-- Tambahkan tahun sesuai kebutuhan -->
-                                            </select>
-                                        </div>
-
-                                        <div class="mr-1 mt-1" id="noTelpField" style="width: 94%; display: none;">
-                                            <input type="text" class="form-control" id="noTelpField" placeholder="enter no_telp">
-                                        </div>
-
-                                        <div class="mr-1 mt-1" id="nikField" style="width: 94%; display: none;">
-                                            <input type="text" class="form-control" id="nikField" placeholder="enter nik">
-                                        </div>
-
-                                        <div class="mr-1 mt-1" id="npwpField" style="width: 94%; display: none;">
-                                            <input type="text" class="form-control" id="npwpField" placeholder="enter npwp">
-                                        </div>
-
-                                        <!-- Tambahkan div lain untuk sub-opsi spesifik lainnya sesuai kebutuhan -->
-
-                                        <button type="button" class="btn btn-primary mt-2" onclick="addConditionalOption()">Add</button>
-
-                                    </div>
-
-                                    <script>
-                                        function toggleOptions() {
-                                            var checkbox = document.getElementById("conditionallogic");
-                                            var options = document.getElementById("conditionalOptions");
-                                            options.style.display = checkbox.checked ? "block" : "none";
-                                        }
-
-                                        function toggleSubOptions() {
-                                            var mainOption = document.getElementById("mainOption").value;
-
-                                            // Sembunyikan semua sub-opsi terlebih dahulu
-                                            document.getElementById("displayNameField").style.display = "none";
-                                            document.getElementById("emailField").style.display = "none";
-                                            document.getElementById("groupField").style.display = "none";
-                                            document.getElementById("academicNimField").style.display = "none";
-                                            document.getElementById("academicFacultyField").style.display = "none";
-                                            document.getElementById("academicProgramField").style.display = "none";
-                                            document.getElementById("academicYearField").style.display = "none";
-                                            document.getElementById("streetField").style.display = "none";
-                                            document.getElementById("cityField").style.display = "none";
-                                            document.getElementById("stateCodeField").style.display = "none";
-                                            document.getElementById("zipCodeField").style.display = "none";
-                                            document.getElementById("academicGraduateYearField").style.display = "none";
-                                            document.getElementById("jenisKelaminField").style.display = "none";
-                                            document.getElementById("noTelpField").style.display = "none";
-                                            document.getElementById("nikField").style.display = "none";
-                                            document.getElementById("npwpField").style.display = "none";
-                                            // Tambahkan ID div lain yang ingin disembunyikan di sini
-
-                                            // Tampilkan sub-opsi sesuai nilai yang dipilih di mainOption
-                                            if (mainOption === "display_name") {
-                                                document.getElementById("displayNameField").style.display = "block";
-                                            } else if (mainOption === "email") {
-                                                document.getElementById("emailField").style.display = "block";
-                                            } else if (mainOption === "group") {
-                                                document.getElementById("groupField").style.display = "block";
-                                            } else if (mainOption === "academic_nim") {
-                                                document.getElementById("academicNimField").style.display = "block";
-                                            } else if (mainOption === "academic_faculty") {
-                                                document.getElementById("academicFacultyField").style.display = "block";
-                                            } else if (mainOption === "academic_program") {
-                                                document.getElementById("academicProgramField").style.display = "block";
-                                            } else if (mainOption === "academic_year") {
-                                                document.getElementById("academicYearField").style.display = "block";
-                                            } else if (mainOption === "street") {
-                                                document.getElementById("streetField").style.display = "block";
-                                            } else if (mainOption === "city") {
-                                                document.getElementById("cityField").style.display = "block";
-                                            } else if (mainOption === "state_code") {
-                                                document.getElementById("stateCodeField").style.display = "block";
-                                            } else if (mainOption === "zip_code") {
-                                                document.getElementById("zipCodeField").style.display = "block";
-                                            } else if (mainOption === "academic_graduate_year") {
-                                                document.getElementById("academicGraduateYearField").style.display = "block";
-                                            } else if (mainOption === "jenis_kelamin") {
-                                                document.getElementById("jenisKelaminField").style.display = "block";
-                                            } else if (mainOption === "no_telp") {
-                                                document.getElementById("noTelpField").style.display = "block";
-                                            } else if (mainOption === "nik") {
-                                                document.getElementById("nikField").style.display = "block";
-                                            } else if (mainOption === "npwp") {
-                                                document.getElementById("npwpField").style.display = "block";
-                                            }
-                                            // Tambahkan kondisi lainnya sesuai kebutuhan
-                                        }
-                                    </script>
-
-                                    <hr>
-
-                                    <div class="mt-1">
-                                        <button type="submit" class="btn btn-primary mr-2">Simpan</button>
-                                        <a class="btn btn-danger" style="font-size:14px;padding:8px 10px;color:white;" href="<?= base_url('/kuesionerkuesioner') ?>">Batal</a>
-                                    </div>
-
-                                    <hr>
-                                </form>
-                            </div>
 
                             <div class="table-responsive">
                                 <table class="table table-bordered text-center ">
                                     <thead>
-                                        <tr>
+                                        <tr> 
                                             <td>ID Halaman</td>
                                             <td>Nama Halaman</td>
                                             <td>Deskripsi</td>
@@ -679,30 +754,43 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php if (!empty($page)) : ?>
-                                            <?php $no = 1; ?>
-                                            <?php foreach ($page as $row) : ?>
-                                                <tr>
-                                                
-                                                    <td><?= $row['id']; ?></td>
-                                                    <td><?= $row['title']; ?></td>
-                                                    <td><?= $row['deskripsi']; ?></td>
-                                                    <td><?= $row['conditional_logic']; ?></td>
-                                                    <td><?= $row['sections']; ?></td>
+                                    <?php if (!empty($page)) : ?>
+    <?php $no = 1; ?>
+    <?php foreach ($page as $row) : ?>
+        <tr>
+            <td><?= $row['id']; ?></td>
+            <td><?= $row['title']; ?></td>
+            <td><?= $row['deskripsi']; ?></td>
+            
+            <?php
+                // Menangani kondisi jika conditional_logic adalah JSON yang menyimpan mainOption dan subOption
+                $conditionalLogic = json_decode($row['conditional_logic'], true);
+                
+                // Ambil mainOption dan subOption dari JSON yang didekodekan
+                $mainOption = isset($conditionalLogic['Option ']) ? $conditionalLogic['Option '] : 'No Main Option';
+                $conditionalOperator = isset($conditionalLogic['is not ']) ? $conditionalLogic['is not '] : 'is';
+                $subOption = isset($conditionalLogic['value ']) ? $conditionalLogic['value '] : 'No Sub Option'; // Menangani jika tidak ada subOption
+            ?>
 
-                                                    <td>
-                                                        <a class="btn btn-secondary btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Up</a>
-                                                        <a class="btn btn-secondary btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Down</a>
-                                                        <a class="btn btn-info btn-sm" style='font-size:10px;padding:2px 5px;color:white;' onclick="openTab(event, 'SuntingEditKuesioner')">Edit</a>
-                                                        <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
-                                                        </td>
-                                                </tr>
-                                            <?php endforeach; ?>
-                                        <?php else : ?>
-                                            <tr>
-                                                <td colspan="8" class="text-center">No data found</td>
-                                            </tr>
-                                        <?php endif; ?>
+            <td><?= $mainOption;?> <?= $conditionalOperator;?> <?= $subOption; ?></td> <!-- Menampilkan subOption -->
+            <td><?= $row['sections']; ?></td>
+
+            <td>
+                <a class="btn btn-secondary btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Up</a>
+                <a class="btn btn-secondary btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Down</a>
+                <a class="btn btn-primary btn-sm" class="nav-link active"
+                href="<?= base_url('/kuesionersection') ?>"
+                style='font-size:10px;padding:2px 5px;color:white;'>Edit</a>                                                       
+                <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
+            </td>
+        </tr>
+    <?php endforeach; ?>
+<?php else : ?>
+    <tr>
+        <td colspan="8" class="text-center">No data found</td>
+    </tr>
+<?php endif; ?>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -712,7 +800,55 @@
             </div>
         </div>
     </div>
+
     <!-- Sunting Kuesioner END-->
+
+     <!-- OPEN TAB -->
+     <script>
+            function openTab(evt, tabId) {
+                // Sembunyikan semua tab content
+                var tabcontent = document.getElementsByClassName("tab-content");
+                for (var i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none"; // Sembunyikan semua tab
+                }
+
+                // Tampilkan tab yang dipilih
+                document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
+
+                // Menandai tombol tab yang aktif
+                var tablinks = document.getElementsByClassName("nav-link");
+                for (var i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", ""); // Hilangkan kelas active dari semua tab
+                }
+
+                // Tambahkan kelas active pada tombol yang ditekan
+                evt.currentTarget.className += " active";
+            }
+        </script>
+
+        <script>
+            function openTab(evt, tabId) {
+                // Sembunyikan semua tab content
+                var tabcontent = document.getElementsByClassName("tab-content");
+                for (var i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none"; // Sembunyikan semua tab
+                }
+
+                // Tampilkan tab yang dipilih
+                document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
+
+                // Menandai tombol tab yang aktif
+                var tablinks = document.getElementsByClassName("kuesioner");
+                for (var i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", ""); // Hilangkan kelas active dari semua tab
+                }
+
+                // Tambahkan kelas active pada tombol yang ditekan
+                evt.currentTarget.className += " active";
+            }
+        </script>
+        <!-- OPEN TAB END -->
+
  <!-- Modal Konfirmasi Hapus START -->
  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
