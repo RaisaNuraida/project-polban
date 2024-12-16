@@ -146,7 +146,7 @@
                                         <h2 class="">Data Halaman Welcome</h2>
 
                                         <div class="align-items-end">
-                                            <a class="btn btn-primary kuesioner" style="font-size:14px;padding:2px 5px;color:white; height:25px;" onclick="openTab(event, 'tambahwelcome')">
+                                            <a class="btn btn-primary kuesioner" style="font-size:14px;padding:2px 5px;color:white; height:25px;" href="<?= base_url('/tambahhalaman') ?>">
                                                 Tambah Halaman
                                             </a>
                                         </div>
