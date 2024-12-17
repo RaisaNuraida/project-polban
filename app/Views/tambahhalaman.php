@@ -222,7 +222,7 @@
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
-                                                            <button type="button" class="btn btn-primary" onclick="tambahBaris()">Tambah Baris</button>
+                                                            <button class="btn btn-primary" type="button" onclick="tambahBaris()">Tambah Baris</button>
                                                         </div>
                                                     </div>
 

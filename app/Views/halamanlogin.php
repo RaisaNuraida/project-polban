@@ -106,8 +106,9 @@
                 <?php endforeach; ?>
               <?php endif; ?>
             </div>
+            <br>r
             <div class="card">
-              <div class="card-header container p-2 m-0">
+              <div class="card-header p-2 m-0">
                 <div class="ml-3 mt-1 mr-3">
                   <h3>Masuk</h3>
                   <hr>

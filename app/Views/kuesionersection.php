@@ -389,9 +389,7 @@
 
                                             <br>
                                             <div>
-                                                <a class="btn btn-info"
-                                                    style="font-size:14px;padding:8px 10px;color:white;"
-                                                    onclick="openTab(event, 'SuntingKuesionerSection')">Simpan</a>
+                                            <button id="simpan" class="btn btn-info" style="font-size:14px;padding:8px 10px;color:white;">Simpan</button>
                                                 <a class="btn btn-danger"
                                                     style="font-size:14px;padding:8px 10px;color:white;"
                                                     onclick="openTab(event, 'SuntingEditKuesioner')">Batal</a>

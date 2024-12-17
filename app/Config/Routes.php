@@ -61,6 +61,8 @@ $routes->get('/tentang', 'welcomepage::dataTentang');
 $routes->get('/halamanperusahaan', 'Home::indexperusahaan');
 
 
+
+
 //routes post
 $routes->post('/import', 'Home::import');
 $routes->post('/downloadCSV', 'cKuesioner::downloadCSV');
@@ -91,3 +93,4 @@ $routes->post('/kuesionerkuesioner', 'c_kuesioner::index');
 $routes->post('/organisasi', 'c_organisasi::submitMessage');
 $routes->post('/pengaturan', 'pengaturan::submitPengaturan');
 $routes->post('/simpan-kuesioner', 'c_kuesioner::simpan');
+

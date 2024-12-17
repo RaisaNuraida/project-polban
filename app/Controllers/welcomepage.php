@@ -9,6 +9,15 @@ use CodeIgniter\Model;
 
 class welcomepage extends BaseController
 {
+    public function index()
+    {
+        $welcomeModel = new Welcome();
+
+        // Ambil data yang sudah di-*join*
+        $data['joinedData'] = $welcomeModel->getJoinedData();
+
+        return view('tambahhalaman', $data);
+    }
     public function submitMessage()
     {
         $message = $this->request->getPost('content');
