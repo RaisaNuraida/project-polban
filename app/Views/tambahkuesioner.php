@@ -415,19 +415,19 @@
 
                                                 <div class="mr-1 mt-1" id="displayNameField"
                                                     style="width: 94%; display: none;" id="conditional_logic">
-                                                    <input type="text" class="form-control" id="displayNameInput"
+                                                    <input type="text" class="form-control" id="displayNameInput" name="displayNameInput"
                                                         placeholder="enter display_name">
                                                 </div>
 
                                                 <div class="mr-1 mt-1" id="emailField"
                                                     style="width: 94%; display: none;">
-                                                    <input type="email" class="form-control" id="emailInput"
+                                                    <input type="email" class="form-control" id="emailInput" name="emailInput"
                                                         placeholder="enter email">
                                                 </div>
 
                                                 <div class="mr-1 mt-1" id="groupField"
                                                     style="width: 94%; display: none;">
-                                                    <select name="group" id="groupField" class="custom-select">
+                                                    <select name="group" id="groupField" name="groupField" class="custom-select">
                                                         <option value=""></option>
                                                         <option value="administrator">administrator</option>
                                                         <option value="alumni">alumni</option>
@@ -438,7 +438,7 @@
 
                                                 <div class="mr-1 mt-1" id="academicNimField"
                                                     style="width: 94%; display: none;">
-                                                    <input type="text" class="form-control" id="academicNimField"
+                                                    <input type="text" class="form-control" id="academicNimField" name="academicNimField"
                                                         placeholder="enter academic_nim">
                                                 </div>
 
@@ -583,52 +583,31 @@
 
                                                 <div class="mr-1 mt-1" id="streetField"
                                                     style="width: 94%; display: none;">
-                                                    <input type="text" class="form-control" id="streetField"
+                                                    <input type="text" class="form-control" id="streetField" name="streetField"
                                                         placeholder="enter street">
                                                 </div>
 
                                                 <div class="mr-1 mt-1" id="cityField"
                                                     style="width: 94%; display: none;">
-                                                    <input type="text" class="form-control" id="cityField"
+                                                    <input type="text" class="form-control" id="cityField" name="cityField"
                                                         placeholder="enter city">
                                                 </div>
 
                                                 <div class="mr-1 mt-1" id="stateCodeField"
                                                     style="width: 94%; display: none;">
-                                                    <input type="text" class="form-control" id="stateCodeField"
+                                                    <input type="text" class="form-control" id="stateCodeField" name="stateCodeField"
                                                         placeholder="enter state_code">
                                                 </div>
 
                                                 <div class="mr-1 mt-1" id="zipCodeField"
                                                     style="width: 94%; display: none;">
-                                                    <input type="text" class="form-control" id="zipCodeField"
+                                                    <input type="text" class="form-control" id="zipCodeField" name="zipCodeField"
                                                         placeholder="enter zip_code">
                                                 </div>
 
                                                 <div class="mr-1 mt-1" id="academicGraduateYearField"
                                                     style="width: 94%; display: none;">
-                                                    <select name="academic_graduate_year" id="academicGraduateYearField"
-                                                        class="custom-select">
-                                                        <option value=""></option>
-                                                        <option value="2015">2015</option>
-                                                        <option value="2016">2016</option>
-                                                        <option value="2017">2017</option>
-                                                        <option value="2018">2018</option>
-                                                        <option value="2019">2019</option>
-                                                        <option value="2020">2020</option>
-                                                        <option value="2021">2021</option>
-                                                        <option value="2022">2022</option>
-                                                        <option value="2023">2023</option>
-                                                        <option value="2024">2024</option>
-                                                        <option value="2025">2025</option>
-                                                        <option value="2026">2026</option>
-                                                        <!-- Tambahkan tahun sesuai kebutuhan -->
-                                                    </select>
-                                                </div>
-
-                                                <div class="mr-1 mt-1" id="academicGraduateYearField"
-                                                    style="width: 94%; display: none;" id="conditional_logic">
-                                                    <select name="academic_graduate_year" id="academicGraduateYearField"
+                                                    <select name="academic_graduate_year" id="academicGraduateYearField" 
                                                         class="custom-select">
                                                         <option value=""></option>
                                                         <option value="2015">2015</option>
@@ -649,7 +628,7 @@
 
                                                 <div class="mr-1 mt-1" id="jenisKelaminField"
                                                     style="width: 94%; display: none;">
-                                                    <select name="jenis_kelamin" id="jenisKelaminField"
+                                                    <select name="jenis_kelamin" id="jenisKelaminField" 
                                                         class="custom-select">
                                                         <option value=""></option>
                                                         <option value="wanita">wanita</option>
@@ -660,18 +639,18 @@
 
                                                 <div class="mr-1 mt-1" id="noTelpField"
                                                     style="width: 94%; display: none;">
-                                                    <input type="text" class="form-control" id="noTelpField"
+                                                    <input type="text" class="form-control" id="noTelpField" name="noTelpField"
                                                         placeholder="enter no_telp">
                                                 </div>
 
                                                 <div class="mr-1 mt-1" id="nikField" style="width: 94%; display: none;">
-                                                    <input type="text" class="form-control" id="nikField"
+                                                    <input type="text" class="form-control" id="nikField" name="nikField"
                                                         placeholder="enter nik">
                                                 </div>
 
                                                 <div class="mr-1 mt-1" id="npwpField"
                                                     style="width: 94%; display: none;">
-                                                    <input type="text" class="form-control" id="npwpField"
+                                                    <input type="text" class="form-control" id="npwpField" name="npwpField"
                                                         placeholder="enter npwp">
                                                 </div>
 
