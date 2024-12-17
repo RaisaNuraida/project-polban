@@ -154,62 +154,111 @@
                                             <div class="">
                                                 <form action="<?= base_url('/welcomepage/tambahHalaman') ?>" method="post">
                                                     <div class="form-group">
-                                                        <div class="d-flex align-items-center justify-content-around mb-1" style="width: 50%">
-                                                            <div>
-                                                                <label for="academic_graduate_year">Tahun Lulus:</label>
-                                                                <input type="text" name="academic_graduate_year" class="form-control" placeholder="Tahun Lulus" required>
-                                                            </div>
-                                                            <div>
-                                                                <label for="deskripsi">Deskripsi:</label>
-                                                                <input type="text" name="deskripsi" class="form-control" placeholder="Deskripsi" required>
+                                                        <div class="d-flex align-items-center mb-1" style="width: 50%">
+                                                            <div style="width: 45%;">
+                                                                <label for="tahun">Tahun:</label>
+                                                                <select name="tahun[]" class="form-control tahun-select" onchange="updateProdi(this)" required>
+                                                                    <option value="">Pilih Tahun</option>
+
+                                                                </select>
                                                             </div>
                                                         </div>
-                                                        <hr>
+
+                                                        <br>
+                                                        
                                                         <div class="tab-content" id="welcome" style="display:block;">
-                                                            <label for="content">Welcome Message:</label>
+                                                            <label for="content">Welcome Message</label>
                                                             <textarea name="content" id="content" required></textarea>
                                                         </div>
 
                                                         <div class="tab-content" id="tentang" style="display:none;">
-                                                            <label for="tentangarea">Tentang:</label>
+                                                            <label for="tentangarea">Tentang</label>
                                                             <textarea name="tentangarea" id="tentangarea" required></textarea>
                                                         </div>
 
                                                         <div class="tab-content" id="kontak" style="display:none;">
-                                                            <label for="kontakarea">Kontak:</label>
+                                                            <label for="kontakarea">Kontak</label>
                                                             <textarea name="kontakarea" id="kontakarea" required></textarea>
                                                         </div>
 
                                                         <div class="tab-content" id="surveyor" style="display:none;">
-                                                            <label for="deskSurveyor">Deksripsi Surveyor:</label>
-                                                            <textarea name="deskSurveyor" id="deskSurveyor"></textarea>
-                                                            <hr>
-                                                            <table class="table">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>No</th>
-                                                                        <th>Prodi</th>
-                                                                        <th>Nama</th>
-                                                                        <th>Email</th>
-                                                                        <th>Aksi</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody id="tableBody">
-                                                                    <tr>
-                                                                        <td>1</td>
-                                                                        <td><input type="text" name="Prodi[]" class="form-control" required></td>
-                                                                        <td><input type="text" name="Nama[]" class="form-control" required></td>
-                                                                        <td><input type="email" name="Email[]" class="form-control" required></td>
-                                                                        <td>
-                                                                            <button type="button" class="btn btn-danger" onclick="hapusBaris(this)">Hapus</button>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                            <button class="btn btn-primary" type="button" onclick="tambahBaris()">Tambah Baris</button>
+                                                            <div class="">
+                                                                <label for="datasurveyor">Data Surveyor</label>
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>No</th>
+                                                                            <th>Program Studi</th>
+                                                                            <th>Nama</th>
+                                                                            <th>Email</th>
+                                                                            <th>Aksi</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="tableBody">
+                                                                        <tr>
+                                                                            <td>1</td>
+                                                                            <td>
+                                                                                <select name="prodi[]" class="form-control prodi-select" onchange="updateNama(this)" required>
+                                                                                    <option value="">Pilih Prodi</option>
+                                                                                </select>
+                                                                            </td>
+                                                                            <td>
+                                                                                <select name="nama[]" class="form-control nama-select" onchange="updateEmail(this)" required>
+                                                                                    <option value="">Pilih Nama</option>
+                                                                                </select>
+                                                                            </td>
+                                                                            <td>
+                                                                                <select name="email[]" class="form-control nama-select" onchange="updateEmail(this)" required>
+                                                                                    <option value="">Pilih Email</option>
+                                                                                </select>
+                                                                            </td>
+                                                                            <td>
+                                                                                <button type="button" class="btn btn-danger" onclick="hapusBaris(this)">Hapus</button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <button class="btn btn-primary" type="button" onclick="tambahBaris()">Tambah Baris</button>
+                                                            </div>
+
+                                                            <br>
+                                                            <br>
+
+                                                            <div>
+                                                                <label for="koordinatorsurveyor">Koordinator Surveyor</label>
+                                                                <table class="table">
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>No</th>
+                                                                            <th>Jurusan</th>
+                                                                            <th>Nama Koordinator Surveyor</th>
+                                                                            <th>Aksi</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody id="tableBody">
+                                                                        <tr>
+                                                                            <td>1</td>
+                                                                            <td>
+                                                                                <select name="jurusan[]" class="form-control prodi-select" onchange="updateNama(this)" required>
+                                                                                    <option value="">Pilih Jurusan</option>
+                                                                                </select>
+                                                                            </td>
+                                                                            <td>
+                                                                                <select name="nama[]" class="form-control nama-select" onchange="updateEmail(this)" required>
+                                                                                    <option value="">Pilih Nama</option>
+                                                                                </select>
+                                                                            </td>
+                                                                            <td>
+                                                                                <button type="button" class="btn btn-danger" onclick="hapusBaris(this)">Hapus</button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                                <button class="btn btn-primary" type="button" onclick="tambahBaris()">Tambah Baris</button>
+                                                            </div>
+
                                                         </div>
                                                     </div>
-
                                                     <button type="submit" class="btn btn-primary">Submit</button>
                                                     <a href="<?= base_url('/welcomepage') ?>" class="btn btn-danger">Batal</a>
                                                 </form>
@@ -259,37 +308,92 @@
                                 evt.currentTarget.classList.add("active");
                             }
 
+                            function updateProdi(selectElement) {
+                                const yearId = selectElement.value; // ID Tahun yang dipilih
+                                const row = selectElement.closest('tr'); // Cari baris terkait
+                                const prodiSelect = row.querySelector('.prodi-select'); // Dropdown Program Studi
+                                const namaSelect = row.querySelector('.nama-select'); // Dropdown Nama
+                                const emailInput = row.querySelector('.email-input'); // Input Email
+
+                                // Kosongkan dropdown Prodi, Nama, dan Email
+                                prodiSelect.innerHTML = '<option value="">Pilih Prodi</option>';
+                                namaSelect.innerHTML = '<option value="">Pilih Nama</option>';
+                                emailInput.value = '';
+
+                                // Ambil data Prodi dan Nama dari server
+                                if (yearId) {
+                                    fetch(`<?= base_url('/data/getProdiByYear') ?>/${yearId}`)
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            // Isi dropdown Prodi
+                                            data.prodi.forEach(item => {
+                                                const option = document.createElement('option');
+                                                option.value = item.id; // ID Prodi
+                                                option.textContent = item.nama_prodi; // Nama Prodi
+                                                prodiSelect.appendChild(option);
+                                            });
+
+                                            // Simpan data Nama dan Email untuk referensi
+                                            prodiSelect.dataset.users = JSON.stringify(data.users);
+                                        })
+                                        .catch(error => console.error('Error:', error));
+                                }
+                            }
+
+                            function updateNama(selectElement) {
+                                const prodiId = selectElement.value; // ID Prodi yang dipilih
+                                const row = selectElement.closest('tr'); // Cari baris terkait
+                                const namaSelect = row.querySelector('.nama-select'); // Dropdown Nama
+                                const emailInput = row.querySelector('.email-input'); // Input Email
+                                const users = JSON.parse(selectElement.dataset.users || '[]'); // Data Nama & Email
+
+                                // Kosongkan dropdown Nama dan Email
+                                namaSelect.innerHTML = '<option value="">Pilih Nama</option>';
+                                emailInput.value = '';
+
+                                // Filter Nama berdasarkan Prodi
+                                const filteredUsers = users.filter(user => user.prodi_id == prodiId);
+
+                                // Isi dropdown Nama
+                                filteredUsers.forEach(user => {
+                                    const option = document.createElement('option');
+                                    option.value = user.nama; // Nama
+                                    option.textContent = user.nama; // Nama
+                                    option.dataset.email = user.email; // Simpan email untuk referensi
+                                    namaSelect.appendChild(option);
+                                });
+                            }
+
+                            function updateEmail(selectElement) {
+                                const selectedOption = selectElement.options[selectElement.selectedIndex];
+                                const row = selectElement.closest('tr');
+                                const emailInput = row.querySelector('.email-input');
+
+                                // Isi input Email
+                                emailInput.value = selectedOption.dataset.email || '';
+                            }
+
                             function tambahBaris() {
                                 const tableBody = document.getElementById('tableBody');
-                                const rowCount = tableBody.rows.length + 1;
-                                const row = `
-        <tr>
-            <td>${rowCount}</td>
-            <td><input type="text" name="prodi[]" class="form-control" required></td>
-            <td><input type="text" name="nama[]" class="form-control" required></td>
-            <td><input type="email" name="email[]" class="form-control" required></td>
-            <td>
-                <button type="button" class="btn btn-danger" onclick="hapusBaris(this)">Hapus</button>
-            </td>
-        </tr>
-    `;
-                                tableBody.insertAdjacentHTML('beforeend', row);
+                                const newRow = tableBody.rows[0].cloneNode(true);
+                                newRow.querySelectorAll('input, select').forEach(input => input.value = '');
+                                tableBody.appendChild(newRow);
                             }
 
                             function hapusBaris(button) {
                                 const row = button.closest('tr');
-                                row.remove();
-
-                                // Update nomor urut
-                                const rows = document.querySelectorAll('#tableBody tr');
-                                rows.forEach((tr, index) => {
-                                    tr.cells[0].innerText = index + 1;
-                                });
+                                const tableBody = document.getElementById('tableBody');
+                                if (tableBody.rows.length > 1) {
+                                    row.remove();
+                                } else {
+                                    alert('Minimal satu baris diperlukan.');
+                                }
                             }
                         </script>
                         <!-- END: Content-->
 
                         <!-- BEGIN: Vendor JS-->
+                        <script src="assets/ckeditor/config.js"></script>
                         <script src="assets/js/vendors.min.js" type="text/javascript"></script>
                         <script src="assets/js/switchery.min.js" type="text/javascript"></script>
                         <script src="assets/js/switch.min.js" type="text/javascript"></script>
