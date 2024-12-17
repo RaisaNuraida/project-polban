@@ -11,13 +11,12 @@ class welcomepage extends BaseController
 {
     public function index()
     {
-        $welcomeModel = new Welcome();
+        $prodiModel = new Welcome();
+        $data['prodi'] = $prodiModel->getmessage(); // Mendapatkan daftar program studi
 
-        // Ambil data yang sudah di-*join*
-        $data['joinedData'] = $welcomeModel->getJoinedData();
-
-        return view('tambahhalaman', $data);
+        return view('tambahhalaman', $data); // Menampilkan form dengan data program studi
     }
+
     public function submitMessage()
     {
         $message = $this->request->getPost('content');
@@ -87,8 +86,10 @@ class welcomepage extends BaseController
 
     public function tambahHalaman()
     {
+        // Start session
         session();
-        // Get input values
+
+        // Get input values from the form
         $academic_graduate_year = $this->request->getPost('academic_graduate_year');
         $deskripsi = $this->request->getPost('deskripsi');
         $content = $this->request->getPost('content');
@@ -96,19 +97,48 @@ class welcomepage extends BaseController
         $kontakarea = $this->request->getPost('kontakarea');
         $deskSurveyor = $this->request->getPost('deskSurveyor');
 
-        // Load the model and insert data into the database
-        $input = new welcome();
+        // Handle the surveyor (users) data
+        $surveyor_data = [];
+        $tahun = $this->request->getPost('tahun');  // Get the tahun values (an array)
+        $prodi = $this->request->getPost('prodi');  // Get the prodi values (an array)
+        $nama = $this->request->getPost('nama');    // Get the nama values (an array)
+        $email = $this->request->getPost('email');  // Get the email values (an array)
 
+        // Prepare surveyor data
+        for ($i = 0; $i < count($tahun); $i++) {
+            $surveyor_data[] = [
+                'tahun' => $tahun[$i],
+                'prodi' => $prodi[$i],
+                'nama' => $nama[$i],
+                'email' => $email[$i]
+            ];
+        }
+
+        // Load the model for inserting the welcome message data
+        $input = new \App\Models\Welcome();
+
+        // Prepare the data to be inserted into the welcome_message table
         $data = [
             'academic_graduate_year' => $academic_graduate_year,
             'deskripsi' => $deskripsi,
             'message' => $content,
             'tentang' => $tentangarea,
             'kontak' => $kontakarea,
-            'desk_surveyor' => $deskSurveyor
+            'desk_surveyor' => $deskSurveyor,
+            // You can store serialized surveyor data or insert it into a separate table
+            'surveyor_data' => json_encode($surveyor_data)  // If you decide to store this as a JSON field
         ];
 
+        // Insert into the welcome_message table
         if ($input->insert($data)) {
+            // Optionally, if you're storing surveyor data in another table, insert it here
+
+            // Example of inserting surveyor data into a separate table:
+            // $surveyorModel = new \App\Models\SurveyorModel();
+            // foreach ($surveyor_data as $surveyor) {
+            //     $surveyorModel->insert($surveyor);
+            // }
+
             return redirect()->to('/welcomepage')->with('success', 'Pesan berhasil disimpan.');
         } else {
             return redirect()->back()->with('error', 'Gagal menyimpan pesan.');
@@ -127,9 +157,9 @@ class welcomepage extends BaseController
         return view('/tracer', $data);
     }
 
-   public function dataTentang(): string
-{
-    $model = new Welcome();  // Pastikan model ini benar
+    public function dataTentang(): string
+    {
+        $model = new Welcome();  // Pastikan model ini benar
 
         // Mengambil data pertama dan hanya field 'tentang'
         $tentangData = $model->first();

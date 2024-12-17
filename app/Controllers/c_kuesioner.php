@@ -116,8 +116,7 @@ class c_kuesioner extends BaseController
          // Ambil data dari request tanpa validasi
          $mainOption = $this->request->getPost('mainOption');
          $conditionalOperator = $this->request->getPost('is')?: $this->request->getPost('isNot');
-         $subOption = $this->request->getPost('displayNameInput') ?: $this->request->getPost('emailInput') ?: $this->request->getPost('group') ?: $this->request->getPost('academic_nim') ?: $this->request->getPost('academic_faculty') ?: $this->request->getPost('academic_program');
- 
+         $subOption = $this->request->getPost('displayNameInput') ?: $this->request->getPost('emailInput') ?: $this->request->getPost('group') ?: $this->request->getPost('academic_nim') ?: $this->request->getPost('academic_faculty') ?: $this->request->getPost('academic_program') ?: $this->request->getPost('academic_year')?: $this->request->getPost('street')?: $this->request->getPost('city')?: $this->request->getPost('state_code')?: $this->request->getPost('zip_code')?: $this->request->getPost('academic_graduate_year')?: $this->request->getPost('jenis_kelamin')?: $this->request->getPost('no_telp')?: $this->request->getPost('nik')?: $this->request->getPost('npwp');
          // Format conditional_logic field
          $conditionalLogicData = [
              'Option ' => $mainOption,

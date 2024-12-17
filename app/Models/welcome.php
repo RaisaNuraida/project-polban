@@ -22,11 +22,9 @@ class welcome extends Model
     {
         $db = \Config\Database::connect();
         $builder = $db->table($this->table);
-
-        // Join dengan tabel users berdasarkan academic_graduate_year
-        $builder->select('welcome_message.*, users.display_name, users.email, users.academic_graduate_year AS user_graduate_year');
-        $builder->join('users', 'welcome_message.academic_graduate_year = users.academic_graduate_year');
-
-        return $builder->get()->getResultArray();
+        $builder->select('welcome_message.*, users.display_name, users.email, users.academic_program');
+        $builder->join('users', 'welcome_message.academic_graduate_year = users.academic_graduate_year', 'left');
+        $query = $builder->get();
+        return $query->getResultArray();
     }
 }

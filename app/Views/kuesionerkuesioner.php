@@ -430,7 +430,10 @@
 
                                                         </td>
                                                         <td>
-                                                            <input type="hidden" name="conditionalkuesioner" value=<?= $subOption; ?>> Show if : <?= $mainOption;?> <?= $conditionalOperator;?> <?= $subOption; ?>
+                                                           
+                                                            <input type="hidden" name="conditionalkuesioner" value=<?= $subOption; ?>>
+                                                          
+                                                             Show if : <?= $mainOption;?> <?= $conditionalOperator;?> <?= $subOption; ?>
                                                         </td>
                                                         <?php
                                                         ?>
