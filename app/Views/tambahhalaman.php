@@ -188,7 +188,8 @@
                                                                 <thead>
                                                                     <tr>
                                                                         <th>No</th>
-                                                                        <th>Prodi</th>
+                                                                        <th>Program Studi</th>
+                                                                        <th>Tahun Kelulusan</th>
                                                                         <th>Nama</th>
                                                                         <th>Email</th>
                                                                         <th>Aksi</th>
@@ -197,15 +198,31 @@
                                                                 <tbody id="tableBody">
                                                                     <tr>
                                                                         <td>1</td>
-                                                                        <td><input type="text" name="Prodi[]" class="form-control" required></td>
-                                                                        <td><input type="text" name="Nama[]" class="form-control" required></td>
-                                                                        <td><input type="email" name="Email[]" class="form-control" required></td>
+                                                                        <td>
+                                                                            <select name="prodi[]" class="form-control" required>
+                                                                                <option value="">Pilih Prodi</option>
+                                                                                <?php foreach ($academic_program as $item): ?>
+                                                                                    <option value="<?= $item['id'] ?>"><?= $item['nama_prodi'] ?></option>
+                                                                                <?php endforeach; ?>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <select name="graduate_year[]" class="form-control" required>
+                                                                                <option value="">Pilih Tahun Kelulusan</option>
+                                                                                <?php foreach ($academic_graduate_year as $year): ?>
+                                                                                    <option value="<?= $year['id'] ?>"><?= $year['tahun'] ?></option>
+                                                                                <?php endforeach; ?>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td><input type="text" name="nama[]" class="form-control" required></td>
+                                                                        <td><input type="email" name="email[]" class="form-control" required></td>
                                                                         <td>
                                                                             <button type="button" class="btn btn-danger" onclick="hapusBaris(this)">Hapus</button>
                                                                         </td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
+                                                            <button type="button" class="btn btn-primary" onclick="tambahBaris()">Tambah Baris</button>
                                                         </div>
                                                     </div>
 
