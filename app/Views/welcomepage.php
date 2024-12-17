@@ -239,14 +239,18 @@
                                                             <td><?= $row['academic_graduate_year']; ?></td>
                                                             <td><?= $row['deskripsi']; ?></td>
                                                             <td>
-                                                                <a class='btn btn-primary'
-                                                                    style='font-size:10px;padding:2px 5px;color:white;'
-                                                                    href="<?= base_url('/suntingWelcomePage') ?>">Edit</a>
-                                                                <button data-target='#deleteModal' id='delete'
-                                                                    data-toggle='modal' data-id="<?= $row['id']; ?>"
-                                                                    data-deskripsi="<?= $row['deskripsi']; ?>"
-                                                                    class='btn btn-danger deleteModal'
-                                                                    style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
+                                                                <div class="d-flex">
+                                                                    <a class='btn btn-primary'
+                                                                        style='font-size:10px;padding:2px 5px;color:white;'
+                                                                        href="<?= base_url('/suntingWelcomePage') ?>">Edit</a>
+
+                                                                    <button data-target='#deleteModal' id='delete'
+                                                                        data-toggle='modal' data-id="<?= $row['id']; ?>"
+                                                                        data-deskripsi="<?= $row['deskripsi']; ?>"
+                                                                        class='btn btn-danger deleteModal'
+                                                                        style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
+                                                                </div>
+
                                                             </td>
                                                         </tr>
                                                     <?php endforeach; ?>
@@ -288,9 +292,9 @@
 
                                     <!-- JavaScript for handling delete -->
                                     <script>
-                                        $(document).ready(function () {
+                                        $(document).ready(function() {
                                             // Open delete modal and set delete ID and description
-                                            $('.deleteModal').on('click', function () {
+                                            $('.deleteModal').on('click', function() {
                                                 var deleteId = $(this).data('id'); // Get the ID of the item to delete
                                                 var deskripsi = $(this).data('deskripsi'); // Get the deskripsi of the item
 

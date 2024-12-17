@@ -3,11 +3,6 @@
  * For licensing, see https://ckeditor.com/legal/ckeditor-oss-license
  */
 
-CKEDITOR.editorConfig = function (config) {
-    // Nonaktifkan notifikasi keamanan
-    config.removePlugins = 'a11ychecker,notificationupdate';
+CKEDITOR.editorConfig = function( config ) {
+    config.removePlugins = 'notification,about'; // Menonaktifkan plugin yang memunculkan peringatan
 };
-
-CKEDITOR.replace('editor', {
-    removePlugins: 'a11ychecker,notificationupdate'
-});
