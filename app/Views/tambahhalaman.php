@@ -206,6 +206,7 @@
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
+                                                            <button class="btn btn-primary" type="button" onclick="tambahBaris()">Tambah Baris</button>
                                                         </div>
                                                     </div>
 
