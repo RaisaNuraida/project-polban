@@ -9,6 +9,15 @@ use CodeIgniter\Model;
 
 class welcomepage extends BaseController
 {
+    public function index()
+    {
+        $welcomeModel = new Welcome();
+
+        // Ambil data yang sudah di-*join*
+        $data['joinedData'] = $welcomeModel->getJoinedData();
+
+        return view('tambahhalaman', $data);
+    }
     public function submitMessage()
     {
         $message = $this->request->getPost('content');
@@ -69,6 +78,11 @@ class welcomepage extends BaseController
         } else {
             return redirect()->to('welcomepage')->with('message', 'Data tidak ditemukan.');
         }
+    }
+
+    public function tambahwelcome(): string
+    {
+        return view('tambahhalaman');
     }
 
     public function tambahHalaman()
