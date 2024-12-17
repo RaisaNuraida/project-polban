@@ -383,45 +383,48 @@
 
                                             <div class="form-row m-0" id="conditionalOptions"
                                                 style="width: 22%; display: none;" id="conditional_logic">
-                                                <div class="mr-1 d-flex" id="optionContainer" class="">
-                                                    <select class="custom-select" id="mainOption" name="mainOption"
-                                                        onchange="toggleSubOptions()">
-                                                        <option selected> </option>
-                                                        <option value="display_name">display_name</option>
-                                                        <option value="email">email</option>
-                                                        <option value="group">group</option>
-                                                        <option value="academic_nim">academic_nim</option>
-                                                        <option value="academic_faculty">academic_faculty</option>
-                                                        <option value="academic_program">academic_program</option>
-                                                        <option value="academic_year">academic_year</option>
-                                                        <option value="street">street</option>
-                                                        <option value="city">city</option>
-                                                        <option value="state_code">state_code</option>
-                                                        <option value="zip_code">zip_code</option>
-                                                        <option value="academic_graduate_year">academic_graduate_year
-                                                        </option>
-                                                        <option value="jenis_kelamin">jenis_kelamin</option>
-                                                        <option value="no_telp">no_telp</option>
-                                                        <option value="nik">nik</option>
-                                                        <option value="npwp">npwp</option>
-                                                    </select>
-                                               
-
-                                                    <select id="conditionalOperator" class="custom-select ml-1" name="conditionalOperator">
-                                                        <option value="is">is</option>
-                                                        <option value="is not">is not</option>
-                                                    </select>
+                                                <div class="d-flex">
+                                                    <div class="mr-1 d-flex" id="optionContainer" class="">
+                                                        <select class="custom-select" id="mainOption" name="mainOption"
+                                                            onchange="toggleSubOptions()">
+                                                            <option selected> </option>
+                                                            <option value="display_name">display_name</option>
+                                                            <option value="email">email</option>
+                                                            <option value="group">group</option>
+                                                            <option value="academic_nim">academic_nim</option>
+                                                            <option value="academic_faculty">academic_faculty</option>
+                                                            <option value="academic_program">academic_program</option>
+                                                            <option value="academic_year">academic_year</option>
+                                                            <option value="street">street</option>
+                                                            <option value="city">city</option>
+                                                            <option value="state_code">state_code</option>
+                                                            <option value="zip_code">zip_code</option>
+                                                            <option value="academic_graduate_year">
+                                                                academic_graduate_year
+                                                            </option>
+                                                            <option value="jenis_kelamin">jenis_kelamin</option>
+                                                            <option value="no_telp">no_telp</option>
+                                                            <option value="nik">nik</option>
+                                                            <option value="npwp">npwp</option>
+                                                        </select>
                                                     </div>
-
+                                                    <div>
+                                                        <select id="conditionalOperator" class="custom-select ml-1"
+                                                            name="conditionalOperator">
+                                                            <option value="is">is</option>
+                                                            <option value="is not">is not</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                                 <div class="mr-1 mt-1" id="displayNameField"
                                                     style="width: 94%; display: none;" id="conditional_logic">
-                                                    <input type="text" class="form-control" id="displayNameInput"
+                                                    <input type="text" class="form-control" id="displayNameInput"  name="displayNameInput"
                                                         placeholder="enter display_name">
                                                 </div>
 
                                                 <div class="mr-1 mt-1" id="emailField"
                                                     style="width: 94%; display: none;">
-                                                    <input type="email" class="form-control" id="emailInput"
+                                                    <input type="email" class="form-control" id="emailInput" name="emailInput"
                                                         placeholder="enter email">
                                                 </div>
 
@@ -438,7 +441,7 @@
 
                                                 <div class="mr-1 mt-1" id="academicNimField"
                                                     style="width: 94%; display: none;">
-                                                    <input type="text" class="form-control" id="academicNimField"
+                                                    <input type="text" class="form-control" id="academicNimField" name="academicNimField"
                                                         placeholder="enter academic_nim">
                                                 </div>
 
@@ -583,25 +586,25 @@
 
                                                 <div class="mr-1 mt-1" id="streetField"
                                                     style="width: 94%; display: none;">
-                                                    <input type="text" class="form-control" id="streetField"
+                                                    <input type="text" class="form-control" id="streetField" name="streetField"
                                                         placeholder="enter street">
                                                 </div>
 
                                                 <div class="mr-1 mt-1" id="cityField"
                                                     style="width: 94%; display: none;">
-                                                    <input type="text" class="form-control" id="cityField"
+                                                    <input type="text" class="form-control" id="cityField" name="cityField"
                                                         placeholder="enter city">
                                                 </div>
 
                                                 <div class="mr-1 mt-1" id="stateCodeField"
                                                     style="width: 94%; display: none;">
-                                                    <input type="text" class="form-control" id="stateCodeField"
+                                                    <input type="text" class="form-control" id="stateCodeField" name="stateCodeField"
                                                         placeholder="enter state_code">
                                                 </div>
 
                                                 <div class="mr-1 mt-1" id="zipCodeField"
                                                     style="width: 94%; display: none;">
-                                                    <input type="text" class="form-control" id="zipCodeField"
+                                                    <input type="text" class="form-control" id="zipCodeField" name="zipCodeField"
                                                         placeholder="enter zip_code">
                                                 </div>
 
@@ -649,7 +652,7 @@
 
                                                 <div class="mr-1 mt-1" id="jenisKelaminField"
                                                     style="width: 94%; display: none;">
-                                                    <select name="jenis_kelamin" id="jenisKelaminField"
+                                                    <select name="jenis_kelamin" id="jenisKelaminField" name="jenisKelaminField"
                                                         class="custom-select">
                                                         <option value=""></option>
                                                         <option value="wanita">wanita</option>
@@ -677,7 +680,8 @@
 
                                                 <!-- Tambahkan div lain untuk sub-opsi spesifik lainnya sesuai kebutuhan -->
 
-                                                <button type="button" class="btn btn-primary mt-2" onclick="addConditionalOption()">Add</button>
+                                                <button type="button" class="btn btn-primary mt-2"
+                                                    onclick="addConditionalOption()">Add</button>
 
 
                                             </div>
@@ -762,35 +766,36 @@
 
 
 
-                                <script>
-                                    $('.deleteModal').click(function () {
-                                        var href = $(this).data('target');
-                                        var id = $(this).data('id');
-                                        $('#delete_id').val(id);
-                                    });
-                                </script>
+                                    <script>
+                                        $('.deleteModal').click(function () {
+                                            var href = $(this).data('target');
+                                            var id = $(this).data('id');
+                                            $('#delete_id').val(id);
+                                        });
+                                    </script>
 
-                                <!-- BEGIN: Vendor JS-->
-                                <script src="assets/js/vendors.min.js" type="text/javascript"></script>
-                                <script src="assets/js/switchery.min.js" type="text/javascript"></script>
-                                <script src="assets/js/switch.min.js" type="text/javascript"></script>
-                                <!-- BEGIN Vendor JS-->
+                                    <!-- BEGIN: Vendor JS-->
+                                    <script src="assets/js/vendors.min.js" type="text/javascript"></script>
+                                    <script src="assets/js/switchery.min.js" type="text/javascript"></script>
+                                    <script src="assets/js/switch.min.js" type="text/javascript"></script>
+                                    <!-- BEGIN Vendor JS-->
 
-                                <!-- BEGIN: Page Vendor JS-->
-                                <script src="assets/js/chartist.min.js" type="text/javascript"></script>
-                                <script src="assets/js/chartist-plugin-tooltip.min.js" type="text/javascript"></script>
-                                <!-- END: Page Vendor JS-->
+                                    <!-- BEGIN: Page Vendor JS-->
+                                    <script src="assets/js/chartist.min.js" type="text/javascript"></script>
+                                    <script src="assets/js/chartist-plugin-tooltip.min.js"
+                                        type="text/javascript"></script>
+                                    <!-- END: Page Vendor JS-->
 
-                                <!-- BEGIN: Theme JS-->
-                                <script src="assets/js/app-menu.min.js" type="text/javascript"></script>
-                                <script src="assets/js/app.min.js" type="text/javascript"></script>
-                                <script src="assets/js/customizer.min.js" type="text/javascript"></script>
-                                <script src="assets/js/jquery.sharrre.js" type="text/javascript"></script>
-                                <!-- END: Theme JS-->
+                                    <!-- BEGIN: Theme JS-->
+                                    <script src="assets/js/app-menu.min.js" type="text/javascript"></script>
+                                    <script src="assets/js/app.min.js" type="text/javascript"></script>
+                                    <script src="assets/js/customizer.min.js" type="text/javascript"></script>
+                                    <script src="assets/js/jquery.sharrre.js" type="text/javascript"></script>
+                                    <!-- END: Theme JS-->
 
-                                <!-- BEGIN: Page JS-->
-                                <script src="assets/js/dashboard-analytics.min.js" type="text/javascript"></script>
-                                <!-- END: Page JS-->
+                                    <!-- BEGIN: Page JS-->
+                                    <script src="assets/js/dashboard-analytics.min.js" type="text/javascript"></script>
+                                    <!-- END: Page JS-->
 
 </body>
 <!-- END: Body-->

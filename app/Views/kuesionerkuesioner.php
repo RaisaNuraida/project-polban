@@ -419,7 +419,7 @@
 
                                                         // Ambil mainOption dan subOption dari JSON yang didekodekan
                                                         $mainOption = isset($conditionalLogic['Option ']) ? $conditionalLogic['Option '] : 'No Main Option';
-                                                        $conditionalOperator = isset($conditionalLogic['is not ']) ? $conditionalLogic['is not '] : 'is';
+                                                        $conditionalOperator = isset($conditionalLogic['is not ']) ? $conditionalLogic['is not '] : 'No operator';
                                                         $subOption = isset($conditionalLogic['value ']) ? $conditionalLogic['value '] : 'No Sub Option'; // Menangani jika tidak ada subOption
                                                         ?>
                                                         <td>
