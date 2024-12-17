@@ -404,9 +404,9 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php if (!empty($user)) : ?>
+                                            <?php if (!empty($user)): ?>
                                                 <?php $no = 1; ?>
-                                                <?php foreach ($user as $row) : ?>
+                                                <?php foreach ($user as $row): ?>
                                                     <tr>
                                                         <td><?= $no++; ?></td>
                                                         <td><?= $row['title']; ?></td>
@@ -421,19 +421,44 @@
                                                         $mainOption = isset($conditionalLogic['Option ']) ? $conditionalLogic['Option '] : 'No Main Option';
                                                         $conditionalOperator = isset($conditionalLogic['is not ']) ? $conditionalLogic['is not '] : 'No operator';
                                                         $subOption = isset($conditionalLogic['value ']) ? $conditionalLogic['value '] : 'No Sub Option'; // Menangani jika tidak ada subOption
+                                                
+
                                                         ?>
                                                         <td>
-                                                            <form method="get" action="/conditionalkuesioner" id="conditionalkuesioner"
-                                                                onsubmit="removeEmptyInputs()">
+                                                            <form method="get" action="/conditionalkuesioner"
+                                                                id="conditionalkuesioner" onsubmit="removeEmptyInputs()">
                                                                 <button type="submit" class="btn btn-primary"
                                                                     style="font-size:12px; padding:5px 6px; height:25px; color: white;">Masuk</button>
 
                                                         </td>
                                                         <td>
-                                                            <input type="hidden" name="conditionalkuesioner" value=<?= $subOption; ?>> Show if : <?= $mainOption;?> <?= $conditionalOperator;?> <?= $subOption; ?>
+
+                                                            <input type="hidden" name="conditionalkuesioner"
+                                                                value="<?= $subOption; ?>">
+
+                                                            Show if : <?= $mainOption; ?>         <?= $conditionalOperator; ?>
+                                                            <?= $subOption; ?>
                                                         </td>
                                                         <?php
                                                         ?>
+                                                      <!--  <script>
+                                                            document.getElementById('conditionalkuesioner').onsubmit = function () {
+                                                                var inputValue = document.getElementById('subOption').value;
+                                                                inputValue = inputValue.replace(/ /g, '+'); // Ganti spasi dengan '+'
+                                                                document.getElementById('subOption').value = inputValue;
+
+                                                                var conditionalOperator = document.getElementById('conditionalOperator').value;
+                                                                var subOptionValue = inputValue;
+
+                                                                // Sesuaikan URL berdasarkan operator
+                                                                if (conditionalOperator === 'is') {
+                                                                    window.location.href = '/conditionalkuesioner?conditionalkuesioner=' + subOptionValue;
+                                                                } else if (conditionalOperator === 'is not') {
+                                                                    window.location.href = '/conditionalkuesioner?conditionalkuesioner!=' + subOptionValue;
+                                                                }
+                                                                return false; // Mencegah pengiriman form secara default
+                                                            };
+                                                        </script>-->
                                                         </form>
                                                         <td>
 
@@ -458,7 +483,7 @@
                                                         </td>
                                                     </tr>
                                                 <?php endforeach; ?>
-                                            <?php else : ?>
+                                            <?php else: ?>
                                                 <tr>
                                                     <td colspan="7" class="text-center">No data found</td>
                                                 </tr>
@@ -472,8 +497,8 @@
 
 
                         <script>
-                            $(document).ready(function() {
-                                $('.lihat-btn').on('click', function() {
+                            $(document).ready(function () {
+                                $('.lihat-btn').on('click', function () {
                                     const conditionalLogic = $(this).data('logic');
 
                                     // Mengirim AJAX request untuk memfilter data
@@ -483,11 +508,11 @@
                                         data: {
                                             logic: conditionalLogic
                                         },
-                                        success: function(response) {
+                                        success: function (response) {
                                             // Tampilkan data yang difilter di tab "dataTabel"
                                             $('#dataTabel').html(response);
                                         },
-                                        error: function() {
+                                        error: function () {
                                             alert('Gagal memuat data.');
                                         }
                                     });
@@ -520,7 +545,7 @@
                         </div>
 
                         <script>
-                            $('.deleteModal').click(function() {
+                            $('.deleteModal').click(function () {
                                 var href = $(this).data('target');
                                 var id = $(this).data('id');
                                 $('#delete_id').val(id);
@@ -966,7 +991,8 @@
                                         <button class="quest_butt btn btn-primary" onclick="add_radio();">Radio
                                             Buttons</button>
                                         <button class="quest_butt btn btn-primary" onclick="add_phone();">Phone</button>
-                                        <button class="quest_butt btn btn-primary" onclick="add_scale();">Scale</button>ah
+                                        <button class="quest_butt btn btn-primary"
+                                            onclick="add_scale();">Scale</button>ah
                                         <button class="quest_butt btn btn-primary" onclick="add_readonly();">User
                                             Field</button>
                                         <button class="quest_butt btn btn-primary" onclick="add_grid();">Grid</button>
@@ -1076,7 +1102,7 @@
                                 $("#sortable").append(grid_field);
 
                                 // Event handler for edit button
-                                grid_field.find('.edit_quest').click(function(e) {
+                                grid_field.find('.edit_quest').click(function (e) {
                                     e.preventDefault();
                                     grid_field.find('.grid_view_state').hide();
                                     grid_field.find('.grid_edit_state').show();
@@ -1085,7 +1111,7 @@
                                 });
 
                                 // Event handler for done button
-                                grid_field.find('.done_quest').click(function(e) {
+                                grid_field.find('.done_quest').click(function (e) {
                                     e.preventDefault();
                                     updateGridView(grid_field);
                                     grid_field.find('.grid_edit_state').hide();
@@ -1095,7 +1121,7 @@
                                 });
 
                                 // Event handler for delete button
-                                grid_field.find('.delete_quest').click(function(e) {
+                                grid_field.find('.delete_quest').click(function (e) {
                                     e.preventDefault();
                                     if (confirm("Apakah Anda yakin ingin menghapus grid ini?")) {
                                         var index = fields_id.indexOf(id);
@@ -1105,7 +1131,7 @@
                                 });
 
                                 // Event handler for add row button
-                                grid_field.find('.add_row').click(function(e) {
+                                grid_field.find('.add_row').click(function (e) {
                                     e.preventDefault();
                                     addRowToGrid(grid_field);
                                 });
@@ -1120,22 +1146,22 @@
 
                             function updateGridView(grid_field) {
                                 var rowTitle = grid_field.find('input[name="grid_row_title"]').val();
-                                var columnTitles = grid_field.find('input.column_titles').val().split(',').map(function(
+                                var columnTitles = grid_field.find('input.column_titles').val().split(',').map(function (
                                     opt) {
                                     return opt.trim();
                                 });
 
                                 var gridContentHtml = '<strong>' + rowTitle + '</strong><br />';
                                 gridContentHtml += '<table border="1"><tr>';
-                                columnTitles.forEach(function(title) {
+                                columnTitles.forEach(function (title) {
                                     gridContentHtml += '<th>' + title + '</th>';
                                 });
                                 gridContentHtml += '</tr>';
 
-                                grid_field.find('.grid_rows .grid_row').each(function() {
+                                grid_field.find('.grid_rows .grid_row').each(function () {
                                     var rowData = $(this).find('.row_data').val();
                                     gridContentHtml += '<tr>';
-                                    columnTitles.forEach(function() {
+                                    columnTitles.forEach(function () {
                                         gridContentHtml += '<td>' + rowData + '</td>';
                                     });
                                     gridContentHtml += '</tr>';
@@ -1178,7 +1204,7 @@
                                 $("#sortable").append(readonly_field);
 
                                 // Event handler for edit button
-                                readonly_field.find('.edit_quest').click(function(e) {
+                                readonly_field.find('.edit_quest').click(function (e) {
                                     e.preventDefault();
                                     readonly_field.find('.readonly_view_state').hide();
                                     readonly_field.find('.readonly_edit_state').show();
@@ -1187,7 +1213,7 @@
                                 });
 
                                 // Event handler for done button
-                                readonly_field.find('.done_quest').click(function(e) {
+                                readonly_field.find('.done_quest').click(function (e) {
                                     e.preventDefault();
                                     updateReadonlyView(readonly_field);
                                     readonly_field.find('.readonly_edit_state').hide();
@@ -1197,7 +1223,7 @@
                                 });
 
                                 // Event handler for delete button
-                                readonly_field.find('.delete_quest').click(function(e) {
+                                readonly_field.find('.delete_quest').click(function (e) {
                                     e.preventDefault();
                                     if (confirm("Apakah Anda yakin ingin menghapus field ini?")) {
                                         var index = fields_id.indexOf(id);
@@ -1247,7 +1273,7 @@
                                 $("#sortable").append(scale_field);
 
                                 // Event handler for edit button
-                                scale_field.find('.edit_quest').click(function(e) {
+                                scale_field.find('.edit_quest').click(function (e) {
                                     e.preventDefault();
                                     scale_field.find('.scale_view_state').hide();
                                     scale_field.find('.scale_edit_state').show();
@@ -1256,7 +1282,7 @@
                                 });
 
                                 // Event handler for done button
-                                scale_field.find('.done_quest').click(function(e) {
+                                scale_field.find('.done_quest').click(function (e) {
                                     e.preventDefault();
                                     updateScaleView(scale_field);
                                     scale_field.find('.scale_edit_state').hide();
@@ -1266,7 +1292,7 @@
                                 });
 
                                 // Event handler for delete button
-                                scale_field.find('.delete_quest').click(function(e) {
+                                scale_field.find('.delete_quest').click(function (e) {
                                     e.preventDefault();
                                     if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
                                         var index = fields_id.indexOf(id);
@@ -1317,7 +1343,7 @@
                                 $("#sortable").append(phone_field);
 
                                 // Event handler for edit button
-                                phone_field.find('.edit_quest').click(function(e) {
+                                phone_field.find('.edit_quest').click(function (e) {
                                     e.preventDefault();
                                     phone_field.find('.phone_view_state').hide();
                                     phone_field.find('.phone_edit_state').show();
@@ -1326,7 +1352,7 @@
                                 });
 
                                 // Event handler for done button
-                                phone_field.find('.done_quest').click(function(e) {
+                                phone_field.find('.done_quest').click(function (e) {
                                     e.preventDefault();
                                     updatePhoneView(phone_field);
                                     phone_field.find('.phone_edit_state').hide();
@@ -1336,7 +1362,7 @@
                                 });
 
                                 // Event handler for delete button
-                                phone_field.find('.delete_quest').click(function(e) {
+                                phone_field.find('.delete_quest').click(function (e) {
                                     e.preventDefault();
                                     if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
                                         var index = fields_id.indexOf(id);
@@ -1387,7 +1413,7 @@
                                 $("#sortable").append(radio_field);
 
                                 // Event handler for edit button
-                                radio_field.find('.edit_quest').click(function(e) {
+                                radio_field.find('.edit_quest').click(function (e) {
                                     e.preventDefault();
                                     radio_field.find('.radio_view_state').hide();
                                     radio_field.find('.radio_edit_state').show();
@@ -1396,7 +1422,7 @@
                                 });
 
                                 // Event handler for done button
-                                radio_field.find('.done_quest').click(function(e) {
+                                radio_field.find('.done_quest').click(function (e) {
                                     e.preventDefault();
                                     updateRadioView(radio_field);
                                     radio_field.find('.radio_edit_state').hide();
@@ -1406,7 +1432,7 @@
                                 });
 
                                 // Event handler for delete button
-                                radio_field.find('.delete_quest').click(function(e) {
+                                radio_field.find('.delete_quest').click(function (e) {
                                     e.preventDefault();
                                     if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
                                         var index = fields_id.indexOf(id);
@@ -1418,14 +1444,14 @@
 
                             function updateRadioView(radio_field) {
                                 var questionTitle = radio_field.find('input[name="radio_quest_title"]').val();
-                                var options = radio_field.find('input.question_options').val().split(',').map(function(
+                                var options = radio_field.find('input.question_options').val().split(',').map(function (
                                     opt) {
                                     return opt.trim();
                                 });
 
                                 radio_field.find('.radio_text').text(questionTitle);
                                 var answerHtml = '';
-                                options.forEach(function(option) {
+                                options.forEach(function (option) {
                                     answerHtml += '<label><input type="radio" name="radio_answer_' + radio_field
                                         .attr('id') + '" value="' + option + '"> ' + option + '</label><br />';
                                 });
@@ -1463,7 +1489,7 @@
 
                                 $("#sortable").append(number_field);
 
-                                number_field.find('.edit_quest').click(function(e) {
+                                number_field.find('.edit_quest').click(function (e) {
                                     e.preventDefault();
                                     number_field.find('.number_view_state').hide();
                                     number_field.find('.number_edit_state').show();
@@ -1471,7 +1497,7 @@
                                     number_field.find('.done_quest').show();
                                 });
 
-                                number_field.find('.done_quest').click(function(e) {
+                                number_field.find('.done_quest').click(function (e) {
                                     e.preventDefault();
                                     updateNumberView(number_field);
                                     number_field.find('.number_edit_state').hide();
@@ -1480,7 +1506,7 @@
                                     number_field.find('.edit_quest').show();
                                 });
 
-                                number_field.find('.delete_quest').click(function(e) {
+                                number_field.find('.delete_quest').click(function (e) {
                                     e.preventDefault();
                                     if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
                                         var index = fields_id.indexOf(id);
@@ -1531,7 +1557,7 @@
 
                                 $("#sortable").append(dropdown_field);
 
-                                dropdown_field.find('.edit_quest').click(function(e) {
+                                dropdown_field.find('.edit_quest').click(function (e) {
                                     e.preventDefault();
                                     dropdown_field.find('.dropdown_view_state').hide();
                                     dropdown_field.find('.dropdown_edit_state').show();
@@ -1539,7 +1565,7 @@
                                     dropdown_field.find('.done_quest').show();
                                 });
 
-                                dropdown_field.find('.done_quest').click(function(e) {
+                                dropdown_field.find('.done_quest').click(function (e) {
                                     e.preventDefault();
                                     updateDropdownView(dropdown_field);
                                     dropdown_field.find('.dropdown_edit_state').hide();
@@ -1548,13 +1574,13 @@
                                     dropdown_field.find('.edit_quest').show();
                                 });
 
-                                dropdown_field.find('.add_opt_dd').click(function(e) {
+                                dropdown_field.find('.add_opt_dd').click(function (e) {
                                     e.preventDefault();
                                     add_opt_dd($(this));
                                 });
 
                                 // Konfirmasi sebelum menghapus
-                                dropdown_field.find('.delete_quest').click(function(e) {
+                                dropdown_field.find('.delete_quest').click(function (e) {
                                     e.preventDefault();
                                     if (window.confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
                                         dropdown_field.remove();
@@ -1579,7 +1605,7 @@
                                 var list = anu.parents("li:first").find(".dropdown_list");
                                 list.append(row);
 
-                                row.find('.add_opt_dd, .remove_opt_dd').click(function(event) {
+                                row.find('.add_opt_dd, .remove_opt_dd').click(function (event) {
                                     event.preventDefault();
                                     if ($(this).is('.add_opt_dd')) {
                                         add_opt_dd($(this));
@@ -1598,7 +1624,7 @@
 
                                 var dropdownSelect = dropdown_field.find('select[name="dropdown_answer"]');
                                 dropdownSelect.empty();
-                                dropdown_field.find('.option_dropdown').each(function() {
+                                dropdown_field.find('.option_dropdown').each(function () {
                                     var label = $(this).find('.label_opt').val();
                                     var value = $(this).find('.val_opt').val();
                                     dropdownSelect.append('<option value="' + value + '">' + label + '</option>');
@@ -1635,7 +1661,7 @@
 
                                 $("#sortable").append(date_field);
 
-                                date_field.find('.edit_quest').click(function(e) {
+                                date_field.find('.edit_quest').click(function (e) {
                                     e.preventDefault();
                                     date_field.find('.date_view_state').hide();
                                     date_field.find('.date_edit_state').show();
@@ -1643,7 +1669,7 @@
                                     date_field.find('.done_quest').show();
                                 });
 
-                                date_field.find('.done_quest').click(function(e) {
+                                date_field.find('.done_quest').click(function (e) {
                                     e.preventDefault();
                                     updateDateView(date_field);
                                     date_field.find('.date_edit_state').hide();
@@ -1652,7 +1678,7 @@
                                     date_field.find('.edit_quest').show();
                                 });
 
-                                date_field.find('.delete_quest').click(function(e) {
+                                date_field.find('.delete_quest').click(function (e) {
                                     e.preventDefault();
                                     if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
                                         var index = fields_id.indexOf(id);
@@ -1700,7 +1726,7 @@
 
                                 $("#sortable").append(checkbox_field);
 
-                                checkbox_field.find('.edit_quest').click(function(e) {
+                                checkbox_field.find('.edit_quest').click(function (e) {
                                     e.preventDefault();
                                     checkbox_field.find('.checkbox_view_state').hide();
                                     checkbox_field.find('.checkbox_edit_state').show();
@@ -1708,7 +1734,7 @@
                                     checkbox_field.find('.done_quest').show();
                                 });
 
-                                checkbox_field.find('.done_quest').click(function(e) {
+                                checkbox_field.find('.done_quest').click(function (e) {
                                     e.preventDefault();
                                     updateCheckboxView(checkbox_field);
                                     checkbox_field.find('.checkbox_edit_state').hide();
@@ -1717,12 +1743,12 @@
                                     checkbox_field.find('.edit_quest').show();
                                 });
 
-                                checkbox_field.find('.add_checkbox_option').click(function(e) {
+                                checkbox_field.find('.add_checkbox_option').click(function (e) {
                                     e.preventDefault();
                                     addCheckboxOption($(this));
                                 });
 
-                                checkbox_field.find('.delete_quest').click(function(e) {
+                                checkbox_field.find('.delete_quest').click(function (e) {
                                     e.preventDefault();
                                     if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
                                         var index = fields_id.indexOf(id);
@@ -1744,7 +1770,7 @@
 
                                 button.siblings(".checkbox_options_list").append(option);
 
-                                option.find('.remove_checkbox_option').click(function(e) {
+                                option.find('.remove_checkbox_option').click(function (e) {
                                     e.preventDefault();
                                     $(this).parent().remove();
                                 });
@@ -1756,7 +1782,7 @@
 
                                 var checkboxContainer = checkbox_field.find('.checkbox_answers');
                                 checkboxContainer.empty();
-                                checkbox_field.find('.checkbox_option').each(function() {
+                                checkbox_field.find('.checkbox_option').each(function () {
                                     var label = $(this).find('.label_checkbox_option').val();
                                     checkboxContainer.append(
                                         '<label><input type="checkbox" name="checkbox_answer" /> ' + label +
@@ -1803,7 +1829,7 @@
                                 console.log('Appending new question field'); // Debugging
                                 $("#sortable").append(single_field);
 
-                                single_field.find('.done_quest, .edit_quest, .delete_quest').click(function() {
+                                single_field.find('.done_quest, .edit_quest, .delete_quest').click(function () {
                                     done_edit_delete_quest($(this));
                                 });
                             }
@@ -2079,7 +2105,7 @@
                         }
 
                         // SCRIPT UNTUK FORMULIR OPTION 
-                        document.getElementById('academic_faculty').addEventListener('change', function() {
+                        document.getElementById('academic_faculty').addEventListener('change', function () {
                             const selectedFaculty = this.value;
                             const programDropdown = document.getElementById('academic_program');
 
@@ -2114,13 +2140,13 @@
                         </table>
 
                         <script>
-                            $(document).ready(function() {
+                            $(document).ready(function () {
                                 function loadTableData() {
                                     $.ajax({
                                         url: "<?= site_url('/kuesionerkuesioner') ?>", // Ganti dengan URL endpoint yang sesuai
                                         method: "GET",
                                         dataType: "json",
-                                        success: function(data) {
+                                        success: function (data) {
                                             console.log("Data yang diterima:", data);
                                             $('#dataTable tbody')
                                                 .empty(); // Mengosongkan tbody sebelum memuat data baru
@@ -2131,7 +2157,7 @@
                                                 let no = 1;
 
                                                 // Looping data untuk menampilkan di tabel
-                                                $.each(data, function(index, row) {
+                                                $.each(data, function (index, row) {
                                                     $('#dataTable tbody').append(`
                                                     <tr>
                                                         <td>${no}</td>  <!-- Kolom nomor urut -->
@@ -2148,7 +2174,7 @@
                                                 });
                                             }
                                         },
-                                        error: function(xhr, status, error) {
+                                        error: function (xhr, status, error) {
                                             console.error("Error loading data:", error);
                                         }
                                     });
