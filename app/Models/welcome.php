@@ -18,13 +18,16 @@ class welcome extends Model
         return $query->getResultArray();
     }
 
-    public function getJoinedData()
+    public function getUsersData() // Mengganti nama metode agar sesuai dengan yang dipanggil di controller
     {
         $db = \Config\Database::connect();
         $builder = $db->table($this->table);
-        $builder->select('welcome_message.*, users.display_name, users.email, users.academic_program');
-        $builder->join('users', 'welcome_message.academic_graduate_year = users.academic_graduate_year', 'left');
+
+        // Join dengan tabel users
+        $builder->select('users.academic_graduate_year, users.display_name, users.email, users.academic_program');
+        $builder->join('users', 'users.id = welcome_message.id'); // Sesuaikan kondisi join jika diperlukan
+
         $query = $builder->get();
-        return $query->getResultArray();
+        return $query->getResult();
     }
 }
