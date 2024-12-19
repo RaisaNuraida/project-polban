@@ -189,7 +189,9 @@
                                                                 <select name="tahun[]" class="form-control tahun-select"
                                                                     onchange="updateProdi(this)" required>
                                                                     <option value="">Pilih Tahun</option>
-
+                                                                    <?php foreach ($years as $year): ?>
+                                                                        <option value="<?= $year['id'] ?>"><?= $year['tahun'] ?></option>
+                                                                    <?php endforeach; ?>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -271,11 +273,13 @@
                                                             <br>
 
                                                             <table class="table">
+                                                                <label>Data Koordinator Surveyor</label>
                                                                 <thead>
                                                                     <tr>
                                                                         <th>No</th>
                                                                         <th>Jurusan</th>
                                                                         <th>Nama Koordinator Surveyor</th>
+                                                                        <th>Input Nama Koordinator</th>
                                                                         <th>Aksi</th>
                                                                     </tr>
                                                                 </thead>
@@ -283,30 +287,26 @@
                                                                     <tr>
                                                                         <td>1</td>
                                                                         <td>
-                                                                            <select name="jurusan[]"
-                                                                                class="form-control prodi-select"
-                                                                                onchange="updateNama(this)" required>
+                                                                            <select name="jurusan[]" class="form-control prodi-select" onchange="updateNama(this)" required>
                                                                                 <option value="">Pilih Jurusan</option>
                                                                             </select>
                                                                         </td>
                                                                         <td>
-                                                                            <select name="nama[]"
-                                                                                class="form-control nama-select"
-                                                                                onchange="updateEmail(this)" required>
+                                                                            <select name="nama[]" class="form-control nama-select" onchange="updateEmail(this)" required>
                                                                                 <option value="">Pilih Nama</option>
                                                                             </select>
                                                                         </td>
                                                                         <td>
-                                                                            <button type="button" class="btn btn-danger"
-                                                                                onclick="hapusBaris(this)">Hapus</button>
+                                                                            <input type="text" name="koordinator_nama[]" class="form-control" placeholder="Nama Koordinator" required>
+                                                                        </td>
+                                                                        <td>
+                                                                            <button type="button" class="btn btn-danger" onclick="hapusBaris(this)">Hapus</button>
                                                                         </td>
                                                                     </tr>
                                                                 </tbody>
                                                             </table>
                                                             <button class="btn btn-primary" type="button"
                                                                 onclick="tambahBarisKoordinator()">Tambah Baris</button>
-
-
                                                         </div>
                                                     </div>
                                                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -427,19 +427,30 @@
                             function tambahBaris() {
                                 const tableBody = document.getElementById('tableBody');
                                 const newRow = tableBody.rows[0].cloneNode(true);
+
+                                // Reset semua input di baris baru
                                 newRow.querySelectorAll('input, select').forEach(input => input.value = '');
+
+                                // Tambahkan baris baru ke tabel
                                 tableBody.appendChild(newRow);
+
+                                // Perbarui nomor baris
+                                updateNomorBaris('tableBody');
                             }
 
                             function hapusBaris(button) {
-                                const row = button.closest('tr');
-                                const tableBody = document.getElementById('tableBody');
+                                const row = button.closest('tr'); // Baris yang akan dihapus
+                                const tableBody = row.parentNode; // Parent (tbody) dari baris yang dihapus
+
+                                // Periksa jumlah baris di dalam tabel ini saja
                                 if (tableBody.rows.length > 1) {
-                                    row.remove();
+                                    row.remove(); // Hapus baris
+                                    updateNomorBaris(tableBody.id); // Perbarui nomor baris setelah penghapusan
                                 } else {
-                                    alert('Minimal satu baris diperlukan.');
+                                    alert('Minimal satu baris diperlukan di tabel ini.');
                                 }
                             }
+
 
                             function tambahBarisKoordinator() {
                                 const tableBody = document.getElementById('koordinatorTableBody');
@@ -455,13 +466,13 @@
                                 updateNomorBaris('koordinatorTableBody');
                             }
 
+
                             function updateNomorBaris(tableBodyId) {
                                 const tableBody = document.getElementById(tableBodyId);
                                 tableBody.querySelectorAll('tr').forEach((row, index) => {
-                                    row.cells[0].textContent = index + 1; // Update nomor
+                                    row.cells[0].textContent = index + 1; // Perbarui nomor di kolom pertama
                                 });
                             }
-
                         </script>
                         <!-- END: Content-->
 

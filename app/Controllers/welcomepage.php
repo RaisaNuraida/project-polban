@@ -11,10 +11,11 @@ class welcomepage extends BaseController
 {
     public function index()
     {
-        $prodiModel = new Welcome();
-        $data['prodi'] = $prodiModel->getmessage(); // Mendapatkan daftar program studi
+        $welcomeModel = new Welcome();
+        $usersData = $welcomeModel->getUsersData(); // Memanggil metode dengan nama yang sesuai di model
 
-        return view('tambahhalaman', $data); // Menampilkan form dengan data program studi
+        // Passing data ke view untuk ditampilkan atau diolah lebih lanjut
+        return view('welcome_view', ['usersData' => $usersData]);
     }
 
     public function submitMessage()
@@ -99,17 +100,17 @@ class welcomepage extends BaseController
 
         // Handle the surveyor (users) data
         $surveyor_data = [];
-        $tahun = $this->request->getPost('tahun');  // Get the tahun values (an array)
-        $prodi = $this->request->getPost('prodi');  // Get the prodi values (an array)
-        $nama = $this->request->getPost('nama');    // Get the nama values (an array)
+        $tahun = $this->request->getPost('academic_graduate_year');  // Get the tahun values (an array)
+        $prodi = $this->request->getPost('academic_program');  // Get the prodi values (an array)
+        $nama = $this->request->getPost('display_name');    // Get the nama values (an array)
         $email = $this->request->getPost('email');  // Get the email values (an array)
 
         // Prepare surveyor data
         for ($i = 0; $i < count($tahun); $i++) {
             $surveyor_data[] = [
-                'tahun' => $tahun[$i],
-                'prodi' => $prodi[$i],
-                'nama' => $nama[$i],
+                'academic_graduate_year' => $tahun[$i],
+                'academic_program' => $prodi[$i],
+                'display_name' => $nama[$i],
                 'email' => $email[$i]
             ];
         }
