@@ -371,16 +371,7 @@
                                                 <input type="text" class="form-control" id="exampleInputDeskripsi"
                                                     placeholder="Bagian ini berisi pertanyaan tentang data pribadi responden.">
                                             </div>
-                                            <div class="form-check d-flex">
-                                                <label class="form-check-label" for="exampleCheck1">Show Section
-                                                    Title</label>
-                                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                            </div>
-                                            <div class="form-check d-flex mt-1">
-                                                <label class="form-check-label" for="exampleCheck1">Show Section
-                                                    Description</label>
-                                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                            </div>
+                                           
                                             <div class="form-check d-flex mt-1">
                                                 <label class="form-check-label" for="exampleCheck1">Conditional
                                                     Logic</label>

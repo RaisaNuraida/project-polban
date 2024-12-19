@@ -138,9 +138,42 @@ class c_kuesioner extends BaseController
  
         
 
-         return redirect()->to('/kuesionerkuesioner')->with('success', 'Data berhasil disimpan.');
+         return redirect()->to('/kuesionerkuesioner')->with('success', 'Data berhasil disimpan.')
+         ->with('subOption', $subOption) 
+                                         ->with('mainOption', $mainOption); 
      }
-
+ 
+     public function editkuesionerkuesioner()
+     {
+         // Ambil data dari request
+         $mainOption = $this->request->getPost('mainOption');
+         $conditionalOperator = $this->request->getPost('is') ?: $this->request->getPost('isNot');
+         $subOption = $this->request->getPost('displayNameInput') ?: $this->request->getPost('emailInput') ?: $this->request->getPost('group') ?: $this->request->getPost('academic_nim') ?: $this->request->getPost('academic_faculty') ?: $this->request->getPost('academic_program');
+     
+         // Format conditional_logic field
+         $conditionalLogicData = [
+             'Option ' => $mainOption,
+             'is not ' => $conditionalOperator,
+             'value ' => $subOption,
+         ];
+     
+         $data = [
+             'title' => $this->request->getPost('title'),
+             'deskripsi' => $this->request->getPost('deskripsi'),
+             'conditional_logic' => json_encode($conditionalLogicData), // Simpan sebagai JSON string
+         ];
+     
+         // Simpan ke database
+         $model = new m_kuesioner();
+         if (!$model->insert($data)) {
+             return redirect()->back()->withInput()->with('error', 'Data gagal disimpan.');
+         }
+     
+         // Redirect dengan data yang dikirim
+         return redirect()->to('/kuesionerkuesioner')->with('success', 'Data berhasil disimpan.')
+                                         ->with('subOption', $subOption) 
+                                         ->with('mainOption', $mainOption);  // Kirim data subOption ke view
+     }
      
 }
     

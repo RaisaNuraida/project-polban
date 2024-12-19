@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 16, 2024 at 02:28 AM
+-- Generation Time: Dec 19, 2024 at 07:40 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -20,6 +20,34 @@ SET time_zone = "+00:00";
 --
 -- Database: `project-polban`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `koordinator_surveyor`
+--
+
+CREATE TABLE `koordinator_surveyor` (
+  `id` int NOT NULL,
+  `display_name` varchar(100) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `academic_faculty` varchar(255) DEFAULT NULL,
+  `tahun` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `koordinator_surveyor`
+--
+
+INSERT INTO `koordinator_surveyor` (`id`, `display_name`, `email`, `academic_faculty`, `tahun`) VALUES
+(1, 'itingg', 'itingpacarradit@gmail.com', 'Teknik Sipil', 2024),
+(2, 'tanakaaya', 'aya@gmail.com', 'Teknik Sipil', 2024),
+(3, 'Megaa', 'megarahma@gmail.com', 'Teknik Refrigasi dan Tata Udara', 2023),
+(4, 'Nikadek', 'nikadek@gmail.com', 'Teknik Refrigasi dan Tata Udara', 2023),
+(5, 'Raisa', 'nuraida@gmail.com', 'Teknik Komputer dan Informatika', 2022),
+(6, 'Radit', 'raditya@gmail.com', 'Teknik Kimia', 2022),
+(7, 'Fathur', 'rahman@gmail.com', 'Teknik Kimia', 2022),
+(8, 'dian', 'syifa@gmail.com', 'Teknik Komputer dan Informatika', 2022);
 
 -- --------------------------------------------------------
 
@@ -89,10 +117,9 @@ CREATE TABLE `kuesioner_kuesioner` (
 --
 
 INSERT INTO `kuesioner_kuesioner` (`id`, `title`, `deskripsi`, `entries`, `active_status`, `pages`, `created_on`, `created_by`, `updated_on`, `updated_by`, `ordering_count`, `conditional_logic`) VALUES
-(40, 'TRACER STUDY POLITEKNIK NEGERI BANDUNG TAHUN 2013 untuk lulusan 2011', 'Kuesioner ini ditujukan untuk semua mahasiswa yang lulus di tahun 2011', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '{\"Option \":\"is\",\"is not \":null,\"value \":\"Teknik Sipil\"}'),
-(41, 'TRACER STUDY POLITEKNIK NEGERI BANDUNG TAHUN 2026 untuk lulusan 2024', 'Kuesioner ini ditujukan untuk semua mahasiswa yang lulus di tahun 2024', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '{\"Option \":\"academic_faculty\",\"is not \":null,\"value \":\"Teknik Sipil\"}'),
-(42, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '{\"Option \":\"academic_program\",\"is not \":null,\"value \":\"D-3 Teknik Konstruksi Sipil\"}'),
-(43, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '{\"Option \":\"academic_faculty\",\"is not \":null,\"value \":\"Teknik Sipil\"}');
+(60, 'TRACER STUDY POLITEKNIK NEGERI BANDUNG TAHUN 2026 untuk lulusan 2024', 'Kuesioner ini ditujukan untuk semua mahasiswa yang lulus di tahun 2024', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '{\"Option \":\"academic_faculty\",\"is not \":\"is\",\"value \":\"Teknik Sipil\"}'),
+(61, 'TRACER STUDY POLITEKNIK NEGERI BANDUNG TAHUN 2009 untuk lulusan 2011', 'Kuesioner ini ditujukan untuk semua mahasiswa yang lulus di tahun 2011', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '{\"Option \":\"academic_nim\",\"is not \":null,\"value \":\"\"}'),
+(62, 'TRACER STUDY POLITEKNIK NEGERI BANDUNG TAHUN 2009 untuk lulusan 2011', 'Kuesioner ini ditujukan untuk semua mahasiswa yang lulus di tahun 2010909', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '{\"Option \":\"academic_faculty\",\"is not \":null,\"value \":\"Teknik Sipil\"}');
 
 -- --------------------------------------------------------
 
@@ -141,10 +168,8 @@ CREATE TABLE `kuesioner_page` (
 --
 
 INSERT INTO `kuesioner_page` (`id`, `title`, `kuesioner_id`, `deskripsi`, `sections`, `conditional_logic`, `created_on`, `created_by`, `updated_on`, `updated_by`, `ordering_count`) VALUES
-(5, 'jhsjhe', 0, 'wehjkwq', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(11, 'jhfjdshfjhdsf', 0, 'sjdhfjdshfjhds', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(12, '', 0, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(13, 'hwjhjehrje', 0, 'kewriueri', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(15, 'TRACER STUDY POLITEKNIK NEGERI BANDUNG TAHUN 2026 untuk lulusan 2024', 0, 'Kuesioner ini ditujukan untuk semua mahasiswa yang lulus di tahun 2024', NULL, '{\"Option \":\"academic_faculty\",\"is not \":null,\"value \":\"Teknik Kimia\"}', NULL, NULL, NULL, NULL, NULL),
+(16, 'TRACER STUDY POLITEKNIK NEGERI BANDUNG TAHUN 2026 untuk lulusan 2024', 0, 'Kuesioner ini ditujukan untuk semua mahasiswa yang lulus di tahun 2024', NULL, '{\"Option \":\"academic_faculty\",\"is not \":null,\"value \":\"Teknik Mesin\"}', NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -258,7 +283,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `group`, `created_at`, `updated_at`, `display_name`, `academic_nim`, `academic_faculty`, `academic_program`, `academic_year`, `street`, `city`, `state_code`, `zip_code`, `academic_graduate_year`, `jenis_kelamin`, `no_telp`, `nik`, `npwp`) VALUES
-(34, 'tanaka23', 'tanakaayaa', 'tanaka@gmail.com', 'alumni', '2024-10-14 08:45:47', '2024-10-14 08:45:47', 'Tanaka Aya', 2147483647, 'Teknik Sipil', 'D-3 Teknik Konstruksi Sipil', '2020', 'gg bidara', 'subang', 'jawa barat', NULL, '2015', 'wanita', '82214042764', '82192', '10291092'),
+(34, 'tanaka23', 'tanakaayaa', 'tanaka@gmail.comdhh', 'alumni', '2024-10-14 08:45:47', '2024-12-19 07:26:46', 'Tanaka Aya', 2147483647, 'Teknik Sipil', 'D-3 Teknik Konstruksi Sipil', '2020', 'gg bidara', 'subang', 'jawa barat', NULL, '2015', 'wanita', '82214042764', '82192', '10291092'),
 (54, 'raisa', 'nuraida', 'rai@gmail.com', 'alumni', '2024-10-28 13:06:27', '2024-11-13 03:04:18', 'raisa', 7647536, 'Teknik Elektro', 'D-3 Teknik elektronika', '2012', 'gg bidara', 'subang', 'jawa barat', NULL, '2016', 'wanita', '', '', ''),
 (55, 'tanaka23', 'tanakaayaaaaaaa\r\n', 'tanaka@gmail.com', 'alumni', '2024-10-14 08:45:47', '2024-10-14 08:45:47', 'Tanaka ', 219273092, 'Teknik Sipil', 'D-3 Teknik Konstruksi Sipil', '2019', 'gg bidara', 'subang', 'jawa barat', NULL, '2028', 'wanita', '82214042764', '82192', '10291092'),
 (56, 'megajelek', 'megamegaa', 'mega@gmail.com', 'administrator', '2024-11-06 10:02:28', '2024-11-13 01:54:06', 'megarahma', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
@@ -295,6 +320,12 @@ INSERT INTO `welcome_message` (`id`, `message`, `tentang`, `kontak`, `academic_g
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `koordinator_surveyor`
+--
+ALTER TABLE `koordinator_surveyor`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `kuesioner_answer`
@@ -356,6 +387,12 @@ ALTER TABLE `welcome_message`
 --
 
 --
+-- AUTO_INCREMENT for table `koordinator_surveyor`
+--
+ALTER TABLE `koordinator_surveyor`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
 -- AUTO_INCREMENT for table `kuesioner_field`
 --
 ALTER TABLE `kuesioner_field`
@@ -365,7 +402,7 @@ ALTER TABLE `kuesioner_field`
 -- AUTO_INCREMENT for table `kuesioner_kuesioner`
 --
 ALTER TABLE `kuesioner_kuesioner`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `kuesioner_kuesioner_section`
@@ -377,7 +414,7 @@ ALTER TABLE `kuesioner_kuesioner_section`
 -- AUTO_INCREMENT for table `kuesioner_page`
 --
 ALTER TABLE `kuesioner_page`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `organisasi`

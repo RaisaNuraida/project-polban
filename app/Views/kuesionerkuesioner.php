@@ -433,9 +433,7 @@
                                                         </td>
                                                         <td>
 
-                                                            <input type="hidden" name="conditionalkuesioner"
-                                                                value="<?= $subOption; ?>">
-
+                                                            <input type="hidden" name="conditionalkuesioner">
                                                             Show if : <?= $mainOption; ?>         <?= $conditionalOperator; ?>
                                                             <?= $subOption; ?>
                                                         </td>

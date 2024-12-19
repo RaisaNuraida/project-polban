@@ -341,7 +341,7 @@
                             <hr>
 
                             <div class="m-2">
-                                        <form action="<?= base_url('/tambahkuesionerpage') ?>" method="post">
+                                        <form action="<?= base_url('/editkuesionerkuesioner') ?>" method="post">
                                             <div class="form-group">
                                                 <label for="title">Title</label>
                                                 <input type="text" class="form-control" id="title" name="title"

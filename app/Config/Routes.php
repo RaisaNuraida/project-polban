@@ -83,9 +83,10 @@ $routes->group('welcomepage', function ($routes) {
     $routes->post('tambahHalaman', 'welcomepage::tambahHalaman'); // Rute untuk submit Halaman Baru
 });
 $routes->post('/kuesionerpage', 'kuesioner_page::submitPengaturan');
+$routes->match(['get', 'post'], 'editkuesionerkuesioner/(:num)', 'Kuesioner::editkuesionerkuesioner/$1');
 
 $routes->post('/tambahkuesioner', 'c_kuesioner::tambahkuesioner');
-$routes->post('/tambahkuesionerpage', 'kuesioner_page::tambahkuesionerpage');
+$routes->post('/editkuesionerkuesioner', 'c_kuesioner::editkuesionerkuesioner');
 
 $routes->post('/login', 'login::login');
 $routes->post('/update', 'Home::update');
