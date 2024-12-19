@@ -10,7 +10,9 @@
     <title>Dashboard Admin - Kuesioner</title>
     <link rel="apple-touch-icon" href="assets/images/apple-icon-120.png">
     <link rel="shortcut icon" type="assets/image/x-icon" href="images/favicon.ico">
-    <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700"
+        rel="stylesheet">
 
     <!-- Tambahkan jQuery untuk menangani pop-up -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -242,23 +244,39 @@
 
 <!-- BEGIN: Body-->
 
-<body class="vertical-layout vertical-menu 2-columns fixed-navbar" data-open="click" data-menu="vertical-menu" data-color="bg-gradient-x-purple-blue" data-col="2-columns">
+<body class="vertical-layout vertical-menu 2-columns fixed-navbar" data-open="click" data-menu="vertical-menu"
+    data-color="bg-gradient-x-purple-blue" data-col="2-columns">
     <!-- BEGIN: Header-->
-    <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light">
+    <nav
+        class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light">
         <div class="navbar-wrapper">
             <div class="navbar-container content">
                 <div class="collapse navbar-collapse show" id="navbar-mobile">
                     <ul class="nav navbar-nav mr-auto float-left">
-                        <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
-                        <li class="nav-item d-none d-md-block"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu"></i></a></li>
-                        <li class="nav-item d-none d-md-block"><a class="nav-link nav-link-expand" href="#"><i class="ficon ft-maximize"></i></a></li>
+                        <li class="nav-item mobile-menu d-md-none mr-auto"><a
+                                class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i
+                                    class="ft-menu font-large-1"></i></a></li>
+                        <li class="nav-item d-none d-md-block"><a class="nav-link nav-menu-main menu-toggle hidden-xs"
+                                href="#"><i class="ft-menu"></i></a></li>
+                        <li class="nav-item d-none d-md-block"><a class="nav-link nav-link-expand" href="#"><i
+                                    class="ficon ft-maximize"></i></a></li>
                     </ul>
                     <ul class="nav navbar-nav float-right">
-                        <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"> <span class="avatar avatar-online"><img src="assets/images/avatar-s-19.png" alt="avatar"></span></a>
+                        <li class="dropdown dropdown-user nav-item"><a
+                                class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
+                                <span class="avatar avatar-online"><img src="assets/images/avatar-s-19.png"
+                                        alt="avatar"></span></a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <div class="arrow_box_right"> <a class="dropdown-item" href="#"><span class="avatar avatar-online"><img src="assets/images/avatar-s-19.png" alt="avatar"><span class="user-name text-bold-500 ml-1 text-capitalize"><?= session()->get('username') ?></span></span></a>
-                                    <div class="dropdown-divider"></div><a class="dropdown-item" href="<?= base_url('halamaneditprofile') ?>"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My Inbox</a>
-                                    <div class="dropdown-divider"></div><a class="dropdown-item" href="<?= base_url('tracer') ?>"><i class="ft-power"></i> Logout</a>
+                                <div class="arrow_box_right"> <a class="dropdown-item" href="#"><span
+                                            class="avatar avatar-online"><img src="assets/images/avatar-s-19.png"
+                                                alt="avatar"><span
+                                                class="user-name text-bold-500 ml-1 text-capitalize"><?= session()->get('username') ?></span></span></a>
+                                    <div class="dropdown-divider"></div><a class="dropdown-item"
+                                        href="<?= base_url('halamaneditprofile') ?>"><i class="ft-user"></i> Edit
+                                        Profile</a><a class="dropdown-item" href="email-application.html"><i
+                                            class="ft-mail"></i> My Inbox</a>
+                                    <div class="dropdown-divider"></div><a class="dropdown-item"
+                                        href="<?= base_url('tracer') ?>"><i class="ft-power"></i> Logout</a>
                                 </div>
                             </div>
                         </li>
@@ -271,10 +289,12 @@
 
 
     <!-- BEGIN: Main Menu-->
-    <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow " data-scroll-to-active="true" data-img="images/backgrounds/02.jpg">
+    <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow " data-scroll-to-active="true"
+        data-img="images/backgrounds/02.jpg">
         <div class="navbar-header">
             <ul class="nav navbar-nav flex-row">
-                <li class="nav-item mr-auto"><a class="navbar-brand" href="index.php"><img class="brand-logo" alt="Chameleon admin logo" src="assets/images/apple-icon-120.png" />
+                <li class="nav-item mr-auto"><a class="navbar-brand" href="index.php"><img class="brand-logo"
+                            alt="Chameleon admin logo" src="assets/images/apple-icon-120.png" />
                 <li class="nav-item d-md-none"><a class="nav-link close-navbar"><i class="ft-x"></i></a></li>
             </ul>
         </div>
@@ -334,15 +354,15 @@
                             <!-- Table Data User START-->
                             <div class="mr-2 ml-2">
                                 <div class="container mt-2 tab-content">
-                            
-                            <div class="d-flex justify-content-between">
-                                <h2>Sunting Kuesioner</h2>
-                            </div>
-                            <hr>
 
-                            <div class="m-2">
-                                        <form action="<?= base_url('/editkuesionerkuesioner') ?>" method="post">
-                                            <div class="form-group">
+                                    <div class="d-flex justify-content-between">
+                                        <h2>Sunting Kuesioner</h2>
+                                    </div>
+                                    <hr>
+
+                                    <div class="m-2">
+                                    <form id="editForm" method="post">
+                                                                                    <div class="form-group">
                                                 <label for="title">Title</label>
                                                 <input type="text" class="form-control" id="title" name="title"
                                                     placeholder="Kuesioner Sample">
@@ -385,13 +405,14 @@
                                                         <option value="nik">nik</option>
                                                         <option value="npwp">npwp</option>
                                                     </select>
-                                               
 
-                                                    <select id="conditionalOperator" class="custom-select ml-1" name="conditionalOperator">
+
+                                                    <select id="conditionalOperator" class="custom-select ml-1"
+                                                        name="conditionalOperator">
                                                         <option value="is">is</option>
                                                         <option value="is not">is not</option>
                                                     </select>
-                                                    </div>
+                                                </div>
 
                                                 <div class="mr-1 mt-1" id="displayNameField"
                                                     style="width: 94%; display: none;" id="conditional_logic">
@@ -657,7 +678,8 @@
 
                                                 <!-- Tambahkan div lain untuk sub-opsi spesifik lainnya sesuai kebutuhan -->
 
-                                                <button type="button" class="btn btn-primary mt-2" onclick="addConditionalOption()">Add</button>
+                                                <button type="button" class="btn btn-primary mt-2"
+                                                    onclick="addConditionalOption()">Add</button>
 
 
                                             </div>
@@ -739,167 +761,222 @@
                                             </div>
                                         </form>
                                     </div>
+                                    <script>
+                                        $('.updateModal').click(function () {
+                                            // Ambil data dari atribut data-* pada tombol yang diklik
+                                            var id = $(this).data('id'); // Ambil id
+                                            var username = $(this).data('username');
+                                            var email = $(this).data('email');
+                                            var group = $(this).data('group');
+                                            var password = $(this).data('password');
 
+                                            // Isi nilai input dalam form modal dengan data yang diperoleh
+                                            $('#editForm #id').val(id); // Isi input hidden id
+                                            $('#editForm #username').val(username);
+                                            $('#editForm #email').val(email);
+                                            $('#editForm #group').val(group);
+                                            $('#editForm #password').val(password); // Kosongkan password jika tidak ingin diubah
 
-                            <div class="table-responsive">
-                                <table class="table table-bordered text-center ">
-                                    <thead>
-                                        <tr> 
-                                            <td>ID Halaman</td>
-                                            <td>Nama Halaman</td>
-                                            <td>Deskripsi</td>
-                                            <td>Conditional Logic</td>
-                                            <td>Num of Section</td>
-                                            <td>Aksi</td>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    <?php if (!empty($page)) : ?>
-    <?php $no = 1; ?>
-    <?php foreach ($page as $row) : ?>
-        <tr>
-            <td><?= $row['id']; ?></td>
-            <td><?= $row['title']; ?></td>
-            <td><?= $row['deskripsi']; ?></td>
-            
-            <?php
-                // Menangani kondisi jika conditional_logic adalah JSON yang menyimpan mainOption dan subOption
-                $conditionalLogic = json_decode($row['conditional_logic'], true);
-                
-                // Ambil mainOption dan subOption dari JSON yang didekodekan
-                $mainOption = isset($conditionalLogic['Option ']) ? $conditionalLogic['Option '] : 'No Main Option';
-                $conditionalOperator = isset($conditionalLogic['is not ']) ? $conditionalLogic['is not '] : 'is';
-                $subOption = isset($conditionalLogic['value ']) ? $conditionalLogic['value '] : 'No Sub Option'; // Menangani jika tidak ada subOption
-            ?>
+                                            // Tampilkan modal
+                                            $('#updateModal').modal('show');
+                                        });
+                                        $('#editForm').submit(function (e) {
+                                            e.preventDefault(); // Mencegah form submit default
 
-            <td><?= $mainOption;?> <?= $conditionalOperator;?> <?= $subOption; ?></td> <!-- Menampilkan subOption -->
-            <td><?= $row['sections']; ?></td>
+                                            var id = $('#id').val();
+                                            var username = $('#username').val();
+                                            var email = $('#email').val();
+                                            var group = $('#group').val();
+                                            var password = $('#password').val();
 
-            <td>
-                <a class="btn btn-secondary btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Up</a>
-                <a class="btn btn-secondary btn-sm" style='font-size:10px;padding:2px 5px;color:white;'>Down</a>
-                <a class="btn btn-primary btn-sm" class="nav-link active"
-                href="<?= base_url('/kuesionersection') ?>"
-                style='font-size:10px;padding:2px 5px;color:white;'>Edit</a>                                                       
-                <button data-target='#deleteModal' id='delete' data-toggle='modal' data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal' style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
-            </td>
-        </tr>
-    <?php endforeach; ?>
-<?php else : ?>
-    <tr>
-        <td colspan="8" class="text-center">No data found</td>
-    </tr>
-<?php endif; ?>
+                                            $.ajax({
+                                                url: '<?= base_url("update") ?>',
+                                                method: 'POST',
+                                                data: {
+                                                    id: id,
+                                                    username: username,
+                                                    email: email,
+                                                    group: group,
+                                                    password: password
+                                                },
+                                                success: function (response) {
+                                                    alert(response.message);
+                                                    location.reload(); // Refresh halaman setelah berhasil disimpan
+                                                },
+                                                error: function (err) {
+                                                    console.log(err);
+                                                    alert("Gagal menyimpan data. Silakan coba lagi.");
+                                                }
+                                            });
+                                        });
+                                    </script>
 
-                                    </tbody>
-                                </table>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered text-center ">
+                                            <thead>
+                                                <tr>
+                                                    <td>ID Halaman</td>
+                                                    <td>Nama Halaman</td>
+                                                    <td>Deskripsi</td>
+                                                    <td>Conditional Logic</td>
+                                                    <td>Num of Section</td>
+                                                    <td>Aksi</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php if (!empty($page)): ?>
+                                                    <?php $no = 1; ?>
+                                                    <?php foreach ($page as $row): ?>
+                                                        <tr>
+                                                            <td><?= $row['id']; ?></td>
+                                                            <td><?= $row['title']; ?></td>
+                                                            <td><?= $row['deskripsi']; ?></td>
+
+                                                            <?php
+                                                            // Menangani kondisi jika conditional_logic adalah JSON yang menyimpan mainOption dan subOption
+                                                            $conditionalLogic = json_decode($row['conditional_logic'], true);
+
+                                                            // Ambil mainOption dan subOption dari JSON yang didekodekan
+                                                            $mainOption = isset($conditionalLogic['Option ']) ? $conditionalLogic['Option '] : 'No Main Option';
+                                                            $conditionalOperator = isset($conditionalLogic['is not ']) ? $conditionalLogic['is not '] : 'is';
+                                                            $subOption = isset($conditionalLogic['value ']) ? $conditionalLogic['value '] : 'No Sub Option'; // Menangani jika tidak ada subOption
+                                                            ?>
+
+                                                            <td><?= $mainOption; ?>         <?= $conditionalOperator; ?>
+                                                                <?= $subOption; ?></td> <!-- Menampilkan subOption -->
+                                                            <td><?= $row['sections']; ?></td>
+
+                                                            <td>
+                                                                <a class="btn btn-secondary btn-sm"
+                                                                    style='font-size:10px;padding:2px 5px;color:white;'>Up</a>
+                                                                <a class="btn btn-secondary btn-sm"
+                                                                    style='font-size:10px;padding:2px 5px;color:white;'>Down</a>
+                                                                <a class="btn btn-primary btn-sm" class="nav-link active"
+                                                                    href="<?= base_url('/kuesionersection') ?>"
+                                                                    style='font-size:10px;padding:2px 5px;color:white;'>Edit</a>
+                                                                <button data-target='#deleteModal' id='delete'
+                                                                    data-toggle='modal' data-id="<?= $row['id']; ?>"
+                                                                    class='btn btn-danger deleteModal'
+                                                                    style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endforeach; ?>
+                                                <?php else: ?>
+                                                    <tr>
+                                                        <td colspan="8" class="text-center">No data found</td>
+                                                    </tr>
+                                                <?php endif; ?>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- Sunting Kuesioner END-->
+            <!-- Sunting Kuesioner END-->
 
-     <!-- OPEN TAB -->
-     <script>
-            function openTab(evt, tabId) {
-                // Sembunyikan semua tab content
-                var tabcontent = document.getElementsByClassName("tab-content");
-                for (var i = 0; i < tabcontent.length; i++) {
-                    tabcontent[i].style.display = "none"; // Sembunyikan semua tab
+            <!-- OPEN TAB -->
+            <script>
+                function openTab(evt, tabId) {
+                    // Sembunyikan semua tab content
+                    var tabcontent = document.getElementsByClassName("tab-content");
+                    for (var i = 0; i < tabcontent.length; i++) {
+                        tabcontent[i].style.display = "none"; // Sembunyikan semua tab
+                    }
+
+                    // Tampilkan tab yang dipilih
+                    document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
+
+                    // Menandai tombol tab yang aktif
+                    var tablinks = document.getElementsByClassName("nav-link");
+                    for (var i = 0; i < tablinks.length; i++) {
+                        tablinks[i].className = tablinks[i].className.replace(" active", ""); // Hilangkan kelas active dari semua tab
+                    }
+
+                    // Tambahkan kelas active pada tombol yang ditekan
+                    evt.currentTarget.className += " active";
                 }
+            </script>
 
-                // Tampilkan tab yang dipilih
-                document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
+            <script>
+                function openTab(evt, tabId) {
+                    // Sembunyikan semua tab content
+                    var tabcontent = document.getElementsByClassName("tab-content");
+                    for (var i = 0; i < tabcontent.length; i++) {
+                        tabcontent[i].style.display = "none"; // Sembunyikan semua tab
+                    }
 
-                // Menandai tombol tab yang aktif
-                var tablinks = document.getElementsByClassName("nav-link");
-                for (var i = 0; i < tablinks.length; i++) {
-                    tablinks[i].className = tablinks[i].className.replace(" active", ""); // Hilangkan kelas active dari semua tab
+                    // Tampilkan tab yang dipilih
+                    document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
+
+                    // Menandai tombol tab yang aktif
+                    var tablinks = document.getElementsByClassName("kuesioner");
+                    for (var i = 0; i < tablinks.length; i++) {
+                        tablinks[i].className = tablinks[i].className.replace(" active", ""); // Hilangkan kelas active dari semua tab
+                    }
+
+                    // Tambahkan kelas active pada tombol yang ditekan
+                    evt.currentTarget.className += " active";
                 }
+            </script>
+            <!-- OPEN TAB END -->
 
-                // Tambahkan kelas active pada tombol yang ditekan
-                evt.currentTarget.className += " active";
-            }
-        </script>
-
-        <script>
-            function openTab(evt, tabId) {
-                // Sembunyikan semua tab content
-                var tabcontent = document.getElementsByClassName("tab-content");
-                for (var i = 0; i < tabcontent.length; i++) {
-                    tabcontent[i].style.display = "none"; // Sembunyikan semua tab
-                }
-
-                // Tampilkan tab yang dipilih
-                document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
-
-                // Menandai tombol tab yang aktif
-                var tablinks = document.getElementsByClassName("kuesioner");
-                for (var i = 0; i < tablinks.length; i++) {
-                    tablinks[i].className = tablinks[i].className.replace(" active", ""); // Hilangkan kelas active dari semua tab
-                }
-
-                // Tambahkan kelas active pada tombol yang ditekan
-                evt.currentTarget.className += " active";
-            }
-        </script>
-        <!-- OPEN TAB END -->
-
- <!-- Modal Konfirmasi Hapus START -->
- <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content text-center">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>Apakah Anda yakin ingin menghapus data <strong id="username"></strong>?</p>
-                        <form id="deleteForm" method="post" action="<?= base_url('deletetabel') ?>">
-                            <input type="hidden" id="delete_id" name="id">
-                            <button type="submit" class="btn btn-danger">Hapus</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                        </form>
+            <!-- Modal Konfirmasi Hapus START -->
+            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content text-center">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Apakah Anda yakin ingin menghapus data <strong id="username"></strong>?</p>
+                            <form id="deleteForm" method="post" action="<?= base_url('deletetabel') ?>">
+                                <input type="hidden" id="delete_id" name="id">
+                                <button type="submit" class="btn btn-danger">Hapus</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <script>
-            $('.deleteModal').click(function() {
-                var href = $(this).data('target');
-                var id = $(this).data('id');
-                $('#delete_id').val(id);
-            });
-        </script>
+            <script>
+                $('.deleteModal').click(function () {
+                    var href = $(this).data('target');
+                    var id = $(this).data('id');
+                    $('#delete_id').val(id);
+                });
+            </script>
 
-    <!-- BEGIN: Vendor JS-->
-    <script src="assets/js/vendors.min.js" type="text/javascript"></script>
-    <script src="assets/js/switchery.min.js" type="text/javascript"></script>
-    <script src="assets/js/switch.min.js" type="text/javascript"></script>
-    <!-- BEGIN Vendor JS-->
+            <!-- BEGIN: Vendor JS-->
+            <script src="assets/js/vendors.min.js" type="text/javascript"></script>
+            <script src="assets/js/switchery.min.js" type="text/javascript"></script>
+            <script src="assets/js/switch.min.js" type="text/javascript"></script>
+            <!-- BEGIN Vendor JS-->
 
-    <!-- BEGIN: Page Vendor JS-->
-    <script src="assets/js/chartist.min.js" type="text/javascript"></script>
-    <script src="assets/js/chartist-plugin-tooltip.min.js" type="text/javascript"></script>
-    <!-- END: Page Vendor JS-->
+            <!-- BEGIN: Page Vendor JS-->
+            <script src="assets/js/chartist.min.js" type="text/javascript"></script>
+            <script src="assets/js/chartist-plugin-tooltip.min.js" type="text/javascript"></script>
+            <!-- END: Page Vendor JS-->
 
-    <!-- BEGIN: Theme JS-->
-    <script src="assets/js/app-menu.min.js" type="text/javascript"></script>
-    <script src="assets/js/app.min.js" type="text/javascript"></script>
-    <script src="assets/js/customizer.min.js" type="text/javascript"></script>
-    <script src="assets/js/jquery.sharrre.js" type="text/javascript"></script>
-    <!-- END: Theme JS-->
+            <!-- BEGIN: Theme JS-->
+            <script src="assets/js/app-menu.min.js" type="text/javascript"></script>
+            <script src="assets/js/app.min.js" type="text/javascript"></script>
+            <script src="assets/js/customizer.min.js" type="text/javascript"></script>
+            <script src="assets/js/jquery.sharrre.js" type="text/javascript"></script>
+            <!-- END: Theme JS-->
 
-    <!-- BEGIN: Page JS-->
-    <script src="assets/js/dashboard-analytics.min.js" type="text/javascript"></script>
-    <!-- END: Page JS-->
+            <!-- BEGIN: Page JS-->
+            <script src="assets/js/dashboard-analytics.min.js" type="text/javascript"></script>
+            <!-- END: Page JS-->
 
 </body>
 <!-- END: Body-->

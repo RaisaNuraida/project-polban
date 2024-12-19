@@ -433,30 +433,13 @@
                                                         </td>
                                                         <td>
 
-                                                            <input type="hidden" name="conditionalkuesioner">
+                                                            <input type="hidden" name="conditionalkuesioner" value="<?= $subOption; ?>">
                                                             Show if : <?= $mainOption; ?>         <?= $conditionalOperator; ?>
                                                             <?= $subOption; ?>
                                                         </td>
                                                         <?php
                                                         ?>
-                                                      <!--  <script>
-                                                            document.getElementById('conditionalkuesioner').onsubmit = function () {
-                                                                var inputValue = document.getElementById('subOption').value;
-                                                                inputValue = inputValue.replace(/ /g, '+'); // Ganti spasi dengan '+'
-                                                                document.getElementById('subOption').value = inputValue;
-
-                                                                var conditionalOperator = document.getElementById('conditionalOperator').value;
-                                                                var subOptionValue = inputValue;
-
-                                                                // Sesuaikan URL berdasarkan operator
-                                                                if (conditionalOperator === 'is') {
-                                                                    window.location.href = '/conditionalkuesioner?conditionalkuesioner=' + subOptionValue;
-                                                                } else if (conditionalOperator === 'is not') {
-                                                                    window.location.href = '/conditionalkuesioner?conditionalkuesioner!=' + subOptionValue;
-                                                                }
-                                                                return false; // Mencegah pengiriman form secara default
-                                                            };
-                                                        </script>-->
+                                                     
                                                         </form>
                                                         <td>
 
