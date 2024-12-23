@@ -225,8 +225,10 @@
                                             <thead>
                                                 <tr>
                                                     <th>NO</th>
-                                                    <th>Tahun</th>
                                                     <th>Deskripsi</th>
+                                                    <th>Tahun</th>
+                                                    <th>Created on</th>
+                                                    <th>Updated on</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
@@ -236,17 +238,19 @@
                                                     <?php foreach ($datamessage as $row): ?>
                                                         <tr>
                                                             <td><?= $no++; ?></td>
-                                                            <td><?= $row['academic_graduate_year']; ?></td>
-                                                            <td><?= $row['deskripsi']; ?></td>
+                                                            <td class="d-flex align-items-center">Halaman ini berisi tentang welcome message, tentang, kontak, data surveyor dan koordinator surveyor untuk tracer tahun <?= $row['tahun']; ?></td>
+                                                            <td><?= $row['tahun']; ?></td>
+                                                            <td><?= $row['created_on']; ?></td>
+                                                            <td><?= $row['updated_on']; ?></td>
                                                             <td>
-                                                                <div class="d-flex">
-                                                                    <a class='btn btn-primary'
-                                                                        style='font-size:10px;padding:2px 5px;color:white;'
+                                                                <div class="d-flex align-items-center">
+                                                                    <a class='btn btn-primary mr-1'
+                                                                        style='font-size:10px;padding:3px 6px;color:white;'
                                                                         href="<?= base_url('/suntingWelcomePage') ?>">Edit</a>
 
                                                                     <button data-target='#deleteModal' id='delete'
                                                                         data-toggle='modal' data-id="<?= $row['id']; ?>"
-                                                                        data-deskripsi="<?= $row['deskripsi']; ?>"
+                                                                        data-deskripsi="<?= $row['tahun']; ?>"
                                                                         class='btn btn-danger deleteModal'
                                                                         style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
                                                                 </div>
@@ -276,7 +280,7 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
-                                                    <p>Apakah Anda yakin ingin menghapus data <strong
+                                                    <p>Apakah Anda yakin ingin menghapus data Tahun <strong
                                                             id="deskripsiText"></strong>?</p>
                                                     <form id="deleteForm" method="post"
                                                         action="<?= base_url('deletewelcome') ?>">

@@ -4,20 +4,12 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\dashboard;
+use App\Models\UserModel;
 use App\Models\welcome;
 use CodeIgniter\Model;
 
 class welcomepage extends BaseController
 {
-    public function index()
-    {
-        $welcomeModel = new Welcome();
-        $usersData = $welcomeModel->getUsersData(); // Memanggil metode dengan nama yang sesuai di model
-
-        // Passing data ke view untuk ditampilkan atau diolah lebih lanjut
-        return view('welcome_view', ['usersData' => $usersData]);
-    }
-
     public function submitMessage()
     {
         $message = $this->request->getPost('content');
@@ -87,62 +79,95 @@ class welcomepage extends BaseController
 
     public function tambahHalaman()
     {
-        // Start session
-        session();
+        $welcomeModel = new Welcome();
 
-        // Get input values from the form
-        $academic_graduate_year = $this->request->getPost('academic_graduate_year');
-        $deskripsi = $this->request->getPost('deskripsi');
-        $content = $this->request->getPost('content');
-        $tentangarea = $this->request->getPost('tentangarea');
-        $kontakarea = $this->request->getPost('kontakarea');
-        $deskSurveyor = $this->request->getPost('deskSurveyor');
+        if ($this->request->getMethod() === 'post') {
+            // Handle form submission
 
-        // Handle the surveyor (users) data
-        $surveyor_data = [];
-        $tahun = $this->request->getPost('academic_graduate_year');  // Get the tahun values (an array)
-        $prodi = $this->request->getPost('academic_program');  // Get the prodi values (an array)
-        $nama = $this->request->getPost('display_name');    // Get the nama values (an array)
-        $email = $this->request->getPost('email');  // Get the email values (an array)
+            // Get input values from the form
+            $academic_graduate_year = $this->request->getPost('tahun'); // Array of tahun
+            $content = $this->request->getPost('content');
+            $tentangarea = $this->request->getPost('tentangarea');
+            $kontakarea = $this->request->getPost('kontakarea');
 
-        // Prepare surveyor data
-        for ($i = 0; $i < count($tahun); $i++) {
-            $surveyor_data[] = [
-                'academic_graduate_year' => $tahun[$i],
-                'academic_program' => $prodi[$i],
-                'display_name' => $nama[$i],
-                'email' => $email[$i]
+            // Handle the surveyor (users) data
+            $surveyor_data = [];
+            $prodi = $this->request->getPost('prodi');  // Array of prodi
+            $nama = $this->request->getPost('nama');    // Array of nama
+            $email = $this->request->getPost('email');  // Array of email
+
+            // Handle the koordinator data
+            $koordinator_data = [];
+            $jurusan = $this->request->getPost('jurusan');  // Array of jurusan
+            $koordinator_nama = $this->request->getPost('koordinator_nama');  // Array of koordinator_nama
+
+            // Validate if arrays are of equal length
+            if (
+                count($academic_graduate_year) !== count($prodi) ||
+                count($prodi) !== count($nama) ||
+                count($nama) !== count($email)
+            ) {
+                return redirect()->back()->with('error', 'Data surveyor tidak konsisten.');
+            }
+
+            // Prepare surveyor data
+            for ($i = 0; $i < count($academic_graduate_year); $i++) {
+                $surveyor_data[] = [
+                    'academic_graduate_year' => $academic_graduate_year[$i],
+                    'academic_program' => $prodi[$i],
+                    'display_name' => $nama[$i],
+                    'email' => $email[$i]
+                ];
+            }
+
+            // Prepare koordinator data
+            for ($i = 0; $i < count($jurusan); $i++) {
+                $koordinator_data[] = [
+                    'jurusan' => $jurusan[$i],
+                    'koordinator_nama' => $koordinator_nama[$i]
+                ];
+            }
+
+            // Prepare the data to be inserted into the welcome_message table
+            $data = [
+                'academic_graduate_year' => implode(',', $academic_graduate_year), // Example of storing as CSV
+                'message' => $content,
+                'tentang' => $tentangarea,
+                'kontak' => $kontakarea,
+                'desk_surveyor' => json_encode($surveyor_data), // If you decide to store this as a JSON field
+                'desk_koordinator' => json_encode($koordinator_data) // If you decide to store this as a JSON field
             ];
-        }
 
-        // Load the model for inserting the welcome message data
-        $input = new \App\Models\Welcome();
-
-        // Prepare the data to be inserted into the welcome_message table
-        $data = [
-            'academic_graduate_year' => $academic_graduate_year,
-            'deskripsi' => $deskripsi,
-            'message' => $content,
-            'tentang' => $tentangarea,
-            'kontak' => $kontakarea,
-            'desk_surveyor' => $deskSurveyor,
-            // You can store serialized surveyor data or insert it into a separate table
-            'surveyor_data' => json_encode($surveyor_data)  // If you decide to store this as a JSON field
-        ];
-
-        // Insert into the welcome_message table
-        if ($input->insert($data)) {
-            // Optionally, if you're storing surveyor data in another table, insert it here
-
-            // Example of inserting surveyor data into a separate table:
-            // $surveyorModel = new \App\Models\SurveyorModel();
-            // foreach ($surveyor_data as $surveyor) {
-            //     $surveyorModel->insert($surveyor);
-            // }
-
-            return redirect()->to('/welcomepage')->with('success', 'Pesan berhasil disimpan.');
+            // Insert data
+            if ($welcomeModel->insert($data)) {
+                return redirect()->to('/welcomepage')->with('success', 'Data berhasil ditambahkan.');
+            } else {
+                return redirect()->back()->with('error', 'Gagal menyimpan data.');
+            }
         } else {
-            return redirect()->back()->with('error', 'Gagal menyimpan pesan.');
+            // Handle page rendering
+
+            // Ambil data dari database
+            $userData = $welcomeModel->getUsersData();
+
+            // Ekstrak data untuk dropdown
+            $academicYears = [];
+            $programs = [];
+
+            foreach ($userData as $user) {
+                if (!in_array($user->academic_graduate_year, $academicYears)) {
+                    $academicYears[] = $user->academic_graduate_year;
+                }
+                if (!in_array($user->academic_program, $programs)) {
+                    $programs[] = $user->academic_program;
+                }
+            }
+
+            // Kirim data ke view
+            return view('tambahhalaman', [
+                'academicYears' => $academicYears,
+                'programs' => $programs
+            ]);
         }
     }
 
@@ -169,19 +194,6 @@ class welcomepage extends BaseController
         $data = ['tentang' => $tentang];
         return view('/tentang', $data);
     }
-
-    public function returnMessage(): string
-    {
-        $model = new welcome();
-
-        // Mengambil data pertama dan hanya field 'tentang'
-        $messageData = $model->first();
-        $message = $messageData['message'];
-
-        $data = ['message' => $message];
-        return view('/welcomepage', $data);
-    }
-
 
     public function dataKontak(): string
     {

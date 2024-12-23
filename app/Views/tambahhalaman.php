@@ -174,104 +174,137 @@
                                                 aria-current="page"
                                                 style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Kontak</a>
                                             <a class="nav-link btn-outline-primary" onclick="openTab(event, 'surveyor')"
-                                                style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Deskripsi
-                                                Surveyor</a>
+                                                style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Surveyor</a>
                                         </nav>
                                         <hr>
                                         <div class="">
-                                            <div class="">
-                                                <form action="<?= base_url('/welcomepage/tambahHalaman') ?>"
-                                                    method="post">
-                                                    <div class="form-group">
-                                                        <div class="d-flex align-items-center mb-1" style="width: 50%">
-                                                            <div style="width: 45%;">
-                                                                <label for="tahun">Tahun:</label>
-                                                                <select name="tahun[]" class="form-control tahun-select"
-                                                                    onchange="updateProdi(this)" required>
-                                                                    <option value="">Pilih Tahun</option>
-                                                                    <?php foreach ($years as $year): ?>
-                                                                        <option value="<?= $year['id'] ?>"><?= $year['tahun'] ?></option>
+                                            <form action="<?= base_url('/welcomepage/tambahHalaman') ?>" method="post">
+                                                <div class="form-group">
+                                                    <div class="d-flex align-items-center mb-1" style="width: 50%">
+                                                        <div style="width: 45%;">
+                                                            <label for="tahun">Tahun:</label>
+                                                            <select name="tahun[]" class="form-control tahun-select"
+                                                                required>
+                                                                <option value="">Pilih Tahun</option>
+                                                                <?php if (!empty($academicYears)): ?>
+                                                                    <?php foreach ($academicYears as $year): ?>
+                                                                        <option value="<?= htmlspecialchars($year) ?>">
+                                                                            <?= htmlspecialchars($year) ?>
+                                                                        </option>
                                                                     <?php endforeach; ?>
-                                                                </select>
-                                                            </div>
+                                                                <?php else: ?>
+                                                                    <option value="">Tahun tidak tersedia</option>
+                                                                <?php endif; ?>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <br>
+
+                                                    <div class="tab-content" id="welcome" style="display:block;">
+                                                        <label for="content">Welcome Message</label>
+                                                        <textarea name="content" id="content" required></textarea>
+                                                    </div>
+
+                                                    <div class="tab-content" id="tentang" style="display:none;">
+                                                        <label for="tentangarea">Tentang</label>
+                                                        <textarea name="tentangarea" id="tentangarea"
+                                                            required></textarea>
+                                                    </div>
+
+                                                    <div class="tab-content" id="kontak" style="display:none;">
+                                                        <label for="kontakarea">Kontak</label>
+                                                        <textarea name="kontakarea" id="kontakarea" required></textarea>
+                                                    </div>
+
+                                                    <div class="tab-content" id="surveyor" style="display:none;">
+                                                        <div class="">
+                                                            <label for="datasurveyor">Data Surveyor</label>
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>No</th>
+                                                                        <th>Program Studi</th>
+                                                                        <th>Nama Surveyor</th>
+                                                                        <th>Email Surveyor</th>
+                                                                        <th>Aksi</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody id="tableBody">
+                                                                    <tr>
+                                                                        <td>1</td>
+                                                                        <td>
+                                                                            <select name="prodi[]"
+                                                                                class="form-control prodi-select"
+                                                                                required>
+                                                                                <option value="">Pilih Program Studi</option>
+                                                                                <?php if (!empty($programs)): ?>
+                                                                                    <?php foreach ($programs as $program): ?>
+                                                                                        <option
+                                                                                            value="<?= htmlspecialchars($program) ?>">
+                                                                                            <?= htmlspecialchars($program) ?>
+                                                                                        </option>
+                                                                                    <?php endforeach; ?>
+                                                                                <?php else: ?>
+                                                                                    <option value="">Program Studi tidak
+                                                                                        tersedia</option>
+                                                                                <?php endif; ?>
+
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <select name="nama[]"
+                                                                                class="form-control nama-select"
+                                                                                onchange="updateEmail(this)" required>
+                                                                                <option value="">Pilih Nama</option>
+                                                                                <?php if (!empty($display_name)): ?>
+                                                                                    <?php foreach ($display_name as $name): ?>
+                                                                                        <option
+                                                                                            value="<?= htmlspecialchars($name) ?>">
+                                                                                            <?= htmlspecialchars($name) ?>
+                                                                                        </option>
+                                                                                    <?php endforeach; ?>
+                                                                                <?php else: ?>
+                                                                                    <option value="">Nama tidak tersedia
+                                                                                    </option>
+                                                                                <?php endif; ?>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <select name="email[]"
+                                                                                class="form-control nama-select"
+                                                                                onchange="updateEmail(this)" required>
+                                                                                <option value="">Pilih Email
+                                                                                </option>
+                                                                                <?php if (!empty($emails)): ?>
+                                                                                    <?php foreach ($emails as $email): ?>
+                                                                                        <option
+                                                                                            value="<?= htmlspecialchars($email) ?>">
+                                                                                            <?= htmlspecialchars($email) ?>
+                                                                                        </option>
+                                                                                    <?php endforeach; ?>
+                                                                                <?php else: ?>
+                                                                                    <option value="">Email tidak
+                                                                                        tersedia
+                                                                                    </option>
+                                                                                <?php endif; ?>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <button type="button" class="btn btn-danger"
+                                                                                onclick="hapusBaris(this)">Hapus</button>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <button class="btn btn-primary" type="button"
+                                                                onclick="tambahBaris()">Tambah Baris</button>
                                                         </div>
 
                                                         <br>
+                                                        <br>
 
-                                                        <div class="tab-content" id="welcome" style="display:block;">
-                                                            <label for="content">Welcome Message</label>
-                                                            <textarea name="content" id="content" required></textarea>
-                                                        </div>
-
-                                                        <div class="tab-content" id="tentang" style="display:none;">
-                                                            <label for="tentangarea">Tentang</label>
-                                                            <textarea name="tentangarea" id="tentangarea"
-                                                                required></textarea>
-                                                        </div>
-
-                                                        <div class="tab-content" id="kontak" style="display:none;">
-                                                            <label for="kontakarea">Kontak</label>
-                                                            <textarea name="kontakarea" id="kontakarea"
-                                                                required></textarea>
-                                                        </div>
-
-                                                        <div class="tab-content" id="surveyor" style="display:none;">
-                                                            <div class="">
-                                                                <label for="datasurveyor">Data Surveyor</label>
-                                                                <table class="table">
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>No</th>
-                                                                            <th>Program Studi</th>
-                                                                            <th>Nama</th>
-                                                                            <th>Email</th>
-                                                                            <th>Aksi</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody id="tableBody">
-                                                                        <tr>
-                                                                            <td>1</td>
-                                                                            <td>
-                                                                                <select name="prodi[]"
-                                                                                    class="form-control prodi-select"
-                                                                                    onchange="updateNama(this)"
-                                                                                    required>
-                                                                                    <option value="">Pilih Prodi
-                                                                                    </option>
-                                                                                </select>
-                                                                            </td>
-                                                                            <td>
-                                                                                <select name="nama[]"
-                                                                                    class="form-control nama-select"
-                                                                                    onchange="updateEmail(this)"
-                                                                                    required>
-                                                                                    <option value="">Pilih Nama</option>
-                                                                                </select>
-                                                                            </td>
-                                                                            <td>
-                                                                                <select name="email[]"
-                                                                                    class="form-control nama-select"
-                                                                                    onchange="updateEmail(this)"
-                                                                                    required>
-                                                                                    <option value="">Pilih Email
-                                                                                    </option>
-                                                                                </select>
-                                                                            </td>
-                                                                            <td>
-                                                                                <button type="button"
-                                                                                    class="btn btn-danger"
-                                                                                    onclick="hapusBaris(this)">Hapus</button>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                                <button class="btn btn-primary" type="button"
-                                                                    onclick="tambahBaris()">Tambah Baris</button>
-                                                            </div>
-
-                                                            <br>
-                                                            <br>
-
+                                                        <div>
                                                             <table class="table">
                                                                 <label>Data Koordinator Surveyor</label>
                                                                 <thead>
@@ -279,7 +312,7 @@
                                                                         <th>No</th>
                                                                         <th>Jurusan</th>
                                                                         <th>Nama Koordinator Surveyor</th>
-                                                                        <th>Input Nama Koordinator</th>
+                                                                        <th>Emsil Koordinator Surveyor</th>
                                                                         <th>Aksi</th>
                                                                     </tr>
                                                                 </thead>
@@ -287,20 +320,29 @@
                                                                     <tr>
                                                                         <td>1</td>
                                                                         <td>
-                                                                            <select name="jurusan[]" class="form-control prodi-select" onchange="updateNama(this)" required>
+                                                                            <select name="jurusan[]"
+                                                                                class="form-control prodi-select"
+                                                                                onchange="updateJurusan(this)" required>
                                                                                 <option value="">Pilih Jurusan</option>
                                                                             </select>
                                                                         </td>
                                                                         <td>
-                                                                            <select name="nama[]" class="form-control nama-select" onchange="updateEmail(this)" required>
+                                                                            <select name="nama[]"
+                                                                                class="form-control nama-select"
+                                                                                onchange="updateNama(this)" required>
                                                                                 <option value="">Pilih Nama</option>
                                                                             </select>
                                                                         </td>
                                                                         <td>
-                                                                            <input type="text" name="koordinator_nama[]" class="form-control" placeholder="Nama Koordinator" required>
+                                                                            <select name="email[]"
+                                                                                class="form-control nama-select"
+                                                                                onchange="updateEmail(this)" required>
+                                                                                <option value="">Pilih Email</option>
+                                                                            </select>
                                                                         </td>
                                                                         <td>
-                                                                            <button type="button" class="btn btn-danger" onclick="hapusBaris(this)">Hapus</button>
+                                                                            <button type="button" class="btn btn-danger"
+                                                                                onclick="hapusBaris(this)">Hapus</button>
                                                                         </td>
                                                                     </tr>
                                                                 </tbody>
@@ -308,12 +350,74 @@
                                                             <button class="btn btn-primary" type="button"
                                                                 onclick="tambahBarisKoordinator()">Tambah Baris</button>
                                                         </div>
+
+                                                        <br>
+                                                        <br>
+
+                                                        <div class="form-group">
+                                                            <table class="table">
+                                                                <label for="inputdatakoordinator">Input Data
+                                                                    Koordinator</label>
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>No</th>
+                                                                        <th>Jurusan</th>
+                                                                        <th>Nama Koordinator Surveyor</th>
+                                                                        <th>Email Koordinator Surveyor</th>
+                                                                        <th>Aksi</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody id="koordinatorInputTableBody">
+                                                                    <tr>
+                                                                        <td>1</td>
+                                                                        <td>
+                                                                            <select name="jurusan[]"
+                                                                                class="form-control prodi-select"
+                                                                                required>
+                                                                                <option value="">Pilih Jurusan</option>
+                                                                                <?php if (!empty($jurusanList)): ?>
+                                                                                    <?php foreach ($jurusanList as $jurusan): ?>
+                                                                                        <option
+                                                                                            value="<?= htmlspecialchars($jurusan) ?>">
+                                                                                            <?= htmlspecialchars($jurusan) ?>
+                                                                                        </option>
+                                                                                    <?php endforeach; ?>
+                                                                                <?php else: ?>
+                                                                                    <option value="">Jurusan tidak tersedia
+                                                                                    </option>
+                                                                                <?php endif; ?>
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="text" name="koordinator_nama[]"
+                                                                                class="form-control"
+                                                                                placeholder="Nama Koordinator">
+                                                                        </td>
+                                                                        <td>
+                                                                            <input type="email"
+                                                                                name="email_koordinator[]"
+                                                                                class="form-control"
+                                                                                placeholder="Email Koordinator"
+                                                                                required>
+                                                                        </td>
+                                                                        <td>
+                                                                            <button type="button" class="btn btn-danger"
+                                                                                onclick="hapusBarisKoordinator(this)">Hapus</button>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <button class="btn btn-primary" type="button"
+                                                                onclick="tambahBarisInputKoordinator()">Tambah
+                                                                Baris</button>
+                                                        </div>
+
                                                     </div>
-                                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                                    <a href="<?= base_url('/welcomepage') ?>"
-                                                        class="btn btn-danger">Batal</a>
-                                                </form>
-                                            </div>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                                <a href="<?= base_url('/welcomepage') ?>"
+                                                    class="btn btn-danger">Batal</a>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -472,6 +576,41 @@
                                 tableBody.querySelectorAll('tr').forEach((row, index) => {
                                     row.cells[0].textContent = index + 1; // Perbarui nomor di kolom pertama
                                 });
+                            }
+
+                            function tambahBarisInputKoordinator() {
+                                const tableBody = document.getElementById('koordinatorInputTableBody');
+                                const rowCount = tableBody.rows.length + 1;
+
+                                const newRow = `
+        <tr>
+            <td>${rowCount}</td>
+            <td>
+                <select name="jurusan[]" class="form-control prodi-select">
+                    <option value="">Pilih Jurusan</option>
+                    <?php if (!empty($jurusanList)): ?>
+                            <?php foreach ($jurusanList as $jurusan): ?>
+                                    <option value="<?= htmlspecialchars($jurusan) ?>">
+                                        <?= htmlspecialchars($jurusan) ?>
+                                    </option>
+                            <?php endforeach; ?>
+                    <?php else: ?>
+                            <option value="">Jurusan tidak tersedia</option>
+                    <?php endif; ?>
+                </select>
+            </td>
+            <td>
+                <input type="text" name="koordinator_nama[]" class="form-control" placeholder="Nama Koordinator">
+            </td>
+            <td>
+                <input type="email" name="email_koordinator[]" class="form-control" placeholder="Email Koordinator">
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger" onclick="hapusBarisKoordinator(this)">Hapus</button>
+            </td>
+        </tr>
+    `;
+                                tableBody.insertAdjacentHTML('beforeend', newRow);
                             }
                         </script>
                         <!-- END: Content-->
