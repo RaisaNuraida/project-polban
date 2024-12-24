@@ -14,33 +14,43 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard as HtmlDashboard;
 
 class Home extends BaseController
 {
-
     public function index(): string
     {
         $model = new UserModel();
 
-        // Mengambil data dari model
-        $my_data = $model->getAllDataManual();
-        $administrator = $model->getAdministrator();
-        $atasan = $model->getAtasan();
-        $alumni = $model->getAlumni();
-        $perusahaan = $model->getPerusahaan();
-        // Jangan pakai $this->$model, cukup $model
-        //echo '<pre>'; print_r($my_data); exit();
+        // Tentukan jumlah data per halaman
+        $perPage = 10;
+
+        // Ambil halaman saat ini dari query string
+        $page = $this->request->getVar('page') ?? 1;
+
+        // Hitung offset untuk query (page-1) * perPage
+        $offset = ($page - 1) * $perPage;
+
+        // Hitung total data
+        $totalData = $model->countAll();
+
+        // Ambil data sesuai dengan offset dan perPage
+        $my_data = $model->findAll($perPage, $offset);
+
+        // Menghitung jumlah total halaman
+        $totalPages = ceil($totalData / $perPage);
+
+        // Tentukan batasan pagination (halaman yang ditampilkan)
+        $startPage = max(1, $page - 1);
+        $endPage = min($totalPages, $page + 1);
+
         // Siapkan data untuk dikirim ke view
         $data = [
             'my_data' => $my_data,
-            'administrator' => $administrator,
-            'atasan' => $atasan,
-            'alumni' => $alumni,
-            'perusahaan' => $perusahaan,
-            // Memasukkan data yang diambil ke dalam array
+            'totalPages' => $totalPages,
+            'currentPage' => $page,
+            'perPage' => $perPage,
+            'startPage' => $startPage,
+            'endPage' => $endPage,
         ];
 
-
-        // Render view dan kirim data
-        return view('index', $data);  // Pastikan 'index' adalah nama view yang benar
-        // echo"ddd"; exit();
+        return view('index', $data);
     }
 
     // Fungsi untuk mengimpor file Excel ke database
@@ -159,23 +169,23 @@ class Home extends BaseController
                 }
 
                 $data = [
-                    'display_name' =>  $row[0],
+                    'display_name' => $row[0],
                     'username' => $row[1],
                     'password' => $row[2],
-                    'email'    => $row[3],
-                    'group'    => $row[4],
-                    'street'    => $row[5],
-                    'city'    => $row[6],
-                    'state_code'    => $row[7],
-                    'jenis_kelamin'    => $row[8],
-                    'no_telp'    => $row[9],
-                    'academic_nim'    => $row[10],
-                    'academic_faculty'    => $row[11],
-                    'academic_program'    => $row[12],
-                    'academic_year'    => $row[13],
-                    'academic_graduate_year'    => $row[14],
-                    'nik'       => $row[15],
-                    'npwp'      =>  $row[16],
+                    'email' => $row[3],
+                    'group' => $row[4],
+                    'street' => $row[5],
+                    'city' => $row[6],
+                    'state_code' => $row[7],
+                    'jenis_kelamin' => $row[8],
+                    'no_telp' => $row[9],
+                    'academic_nim' => $row[10],
+                    'academic_faculty' => $row[11],
+                    'academic_program' => $row[12],
+                    'academic_year' => $row[13],
+                    'academic_graduate_year' => $row[14],
+                    'nik' => $row[15],
+                    'npwp' => $row[16],
                 ];
 
                 // Simpan data ke dalam database
@@ -187,7 +197,7 @@ class Home extends BaseController
             return redirect()->back()->with('error', 'Gagal mengunggah file.');
         }
     }
-
+    
     public function deleteUser()
     {
         $userModel = new UserModel();
@@ -207,14 +217,17 @@ class Home extends BaseController
             return redirect()->to('/')->with('message', 'User tidak ditemukan.');
         }
     }
+
     public function tracer()
     {
         return view('tracer');
     }
+
     public function indexperusahaan()
     {
         return view('perusahaan');
     }
+
     public function kontak()
     {
         return view('kontak');

@@ -312,7 +312,7 @@
                                                                         <th>No</th>
                                                                         <th>Jurusan</th>
                                                                         <th>Nama Koordinator Surveyor</th>
-                                                                        <th>Emsil Koordinator Surveyor</th>
+                                                                        <th>Email Koordinator Surveyor</th>
                                                                         <th>Aksi</th>
                                                                     </tr>
                                                                 </thead>

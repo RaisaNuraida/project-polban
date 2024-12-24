@@ -13,6 +13,7 @@ $routes->get('/unduh', 'Home::index');
 $routes->get('/import', 'Home::index');
 $routes->get('/halamantentang', 'Home::tentang');
 $routes->get('/cariuser', 'Home::cariuser');
+$routes->get('/cariwelcome', 'welcomepage::cariwelcome');
 $routes->get('/carianswer', 'carianswer::carianswer');
 $routes->get('/carikuesioner', 'c_kuesioner::carikuesioner');
 $routes->get('/conditionalkuesioner', 'carianswer::conditionalkuesioner');

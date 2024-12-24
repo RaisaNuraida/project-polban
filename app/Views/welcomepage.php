@@ -166,23 +166,27 @@
                                         <h2 class="">Data Halaman Welcome</h2>
 
                                         <div class="align-items-end">
-                                            <a class="btn btn-primary kuesioner" style="font-size:14px;padding:2px 5px;color:white; height:25px;" href="<?= base_url('/tambahhalaman') ?>">
+                                            <a class="btn btn-primary kuesioner"
+                                                style="font-size:14px;padding:2px 5px;color:white; height:25px;"
+                                                href="<?= base_url('/tambahhalaman') ?>">
                                                 Tambah Halaman
                                             </a>
                                         </div>
                                     </div>
                                     <!-- Header END-->
 
-
                                     <!-- Filter START -->
                                     <hr>
                                     <div>
-                                        <form method="get" action="<?= base_url(relativePath: '/cariwelcome') ?>">
+                                        <form method="get" action="<?= base_url('/cariwelcome') ?>" id="searchForm"
+                                            onsubmit="removeEmptyInputs()">
                                             <div class="d-flex align-items-center">
                                                 <input type="text" name="cari" id="cari" class="form-control"
-                                                    placeholder="Cari..." style="margin-right: 10px; width:22%;">
-                                                <button href="<?= base_url('/cariwelcome') ?>" type="submit"
-                                                    class="btn btn-primary"
+                                                    placeholder="Cari berdasarkan tahun..."
+                                                    style="margin-right: 10px; width:22%;"
+                                                    value="<?= isset($_GET['cari']) ? esc($_GET['cari']) : '' ?>">
+                                                <!-- Menampilkan nilai pencarian sebelumnya -->
+                                                <button type="submit" class="btn btn-primary"
                                                     style="font-size:12px; padding:5px 6px; height: 36px; width: 65px; color: white;">
                                                     Filter
                                                 </button>
@@ -197,7 +201,6 @@
                                         function removeEmptyInputs() {
                                             const form = document.getElementById('searchForm');
                                             const inputs = form.querySelectorAll('input, select');
-
                                             inputs.forEach(input => {
                                                 if (!input.value) {
                                                     input.removeAttribute('name');
@@ -206,6 +209,7 @@
                                         }
                                     </script>
                                     <!-- Script Filter End -->
+
 
                                     <!-- Table Data Welcome START -->
                                     <hr>
@@ -234,11 +238,13 @@
                                             </thead>
                                             <tbody>
                                                 <?php if (!empty($datamessage)): ?>
-                                                    <?php $no = 1; ?>
+                                                    <?php $no = 1 + (($currentPage - 1) * $perPage); ?>
                                                     <?php foreach ($datamessage as $row): ?>
                                                         <tr>
                                                             <td><?= $no++; ?></td>
-                                                            <td class="d-flex align-items-center">Halaman ini berisi tentang welcome message, tentang, kontak, data surveyor dan koordinator surveyor untuk tracer tahun <?= $row['tahun']; ?></td>
+                                                            <td class="d-flex align-items-center">Halaman ini berisi tentang
+                                                                welcome message, tentang, kontak, data surveyor dan koordinator
+                                                                surveyor untuk tracer tahun <?= $row['tahun']; ?></td>
                                                             <td><?= $row['tahun']; ?></td>
                                                             <td><?= $row['created_on']; ?></td>
                                                             <td><?= $row['updated_on']; ?></td>
@@ -254,17 +260,51 @@
                                                                         class='btn btn-danger deleteModal'
                                                                         style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
                                                                 </div>
-
                                                             </td>
                                                         </tr>
                                                     <?php endforeach; ?>
                                                 <?php else: ?>
                                                     <tr>
-                                                        <td colspan="5" class="text-center">No data found</td>
+                                                        <td colspan="6" class="text-center">No data found</td>
                                                     </tr>
                                                 <?php endif; ?>
                                             </tbody>
                                         </table>
+
+                                        <!-- Pagination controls -->
+                                        <nav>
+                                            <ul class="pagination justify-content-center">
+                                                <!-- Previous page -->
+                                                <?php if ($currentPage > 1): ?>
+                                                    <li class="page-item">
+                                                        <a class="page-link"
+                                                            href="<?= base_url('/welcomepage?page=' . ($currentPage - 1)) ?>"
+                                                            aria-label="Previous">
+                                                            <span aria-hidden="true">&laquo;&laquo;</span>
+                                                        </a>
+                                                    </li>
+                                                <?php endif; ?>
+
+                                                <!-- Pages -->
+                                                <?php for ($page = $startPage; $page <= $endPage; $page++): ?>
+                                                    <li class="page-item <?= ($currentPage == $page) ? 'active' : ''; ?>">
+                                                        <a class="page-link"
+                                                            href="<?= base_url('/welcomepage?page=' . $page) ?>"><?= $page ?></a>
+                                                    </li>
+                                                <?php endfor; ?>
+
+                                                <!-- Next page -->
+                                                <?php if ($currentPage < $totalPages): ?>
+                                                    <li class="page-item">
+                                                        <a class="page-link"
+                                                            href="<?= base_url('/welcomepage?page=' . ($currentPage + 1)) ?>"
+                                                            aria-label="Next">
+                                                            <span aria-hidden="true">&raquo;&raquo;</span>
+                                                        </a>
+                                                    </li>
+                                                <?php endif; ?>
+                                            </ul>
+                                        </nav>
                                     </div>
 
                                     <!-- Delete Confirmation Modal -->
@@ -296,9 +336,9 @@
 
                                     <!-- JavaScript for handling delete -->
                                     <script>
-                                        $(document).ready(function() {
+                                        $(document).ready(function () {
                                             // Open delete modal and set delete ID and description
-                                            $('.deleteModal').on('click', function() {
+                                            $('.deleteModal').on('click', function () {
                                                 var deleteId = $(this).data('id'); // Get the ID of the item to delete
                                                 var deskripsi = $(this).data('deskripsi'); // Get the deskripsi of the item
 
@@ -313,70 +353,6 @@
                                     <!-- Tabel Data Welcome END -->
                                 </div>
                             </div>
-
-                            <div class="card">
-                                <div class="card-header tab-content" id="tambahwelcome" style="display:none;">
-                                    <h2>Tambah Welcome Page</h2>
-                                    <nav class="nav mb-1">
-                                        <a class="nav-link btn-outline-primary"
-                                            onclick="openTab(event, 'welcomemessage')"
-                                            style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Welcome
-                                            Message</a>
-                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'tentang')"
-                                            style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Tentang</a>
-                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'kontak')"
-                                            aria-current="page"
-                                            style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Kontak</a>
-                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'surveyor')"
-                                            style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Deskripsi
-                                            Surveyor</a>
-                                        <a class="nav-link btn-outline-primary" onclick="openTab(event, 'perusahaan')"
-                                            style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Perusahaan</a>
-                                    </nav>
-                                    <hr>
-                                    <div class="">
-                                        <div class="" id="welcomemessage">
-                                            <form action="<?= base_url('/welcomepage/tambahHalaman') ?>" method="post">
-                                                <div class="form-group" id="addwelcome">
-                                                    <div class="d-flex align-items-center justify-content-around"
-                                                        style="width: 50%;">
-                                                        <div>
-                                                            <label for="academic_graduate_year">Tahun Lulus:</label>
-                                                            <input type="text" name="academic_graduate_year"
-                                                                class="form-control" placeholder="Tahun Lulus" required>
-                                                        </div>
-                                                        <div>
-                                                            <label for="deskripsi">Deskripsi:</label>
-                                                            <input type="text" name="deskripsi" class="form-control"
-                                                                placeholder="Deskripsi" required>
-                                                        </div>
-
-                                                    </div>
-
-                                                    <hr>
-                                                    <label for="content">Welcome Message:</label>
-                                                    <textarea name="content" id="content" required></textarea>
-                                                    <hr>
-                                                    <label for="tentangarea">Tentang:</label>
-                                                    <textarea name="tentangarea" id="tentangarea" required></textarea>
-                                                    <hr>
-                                                    <label for="kontakarea">Kontak:</label>
-                                                    <textarea name="kontakarea" id="kontakarea" required></textarea>
-                                                    <hr>
-                                                    <label for="surveyor">Deksripsi Surveyor:</label>
-                                                    <textarea name="deskSurveyor" id="deskSurveyor"></textarea>
-                                                </div>
-
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                                <a href="<?= base_url('/welcomepage') ?>"
-                                                    class="btn btn-danger">Batal</a>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
                         </div>
                     </div>
                 </div>

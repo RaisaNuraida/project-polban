@@ -6,11 +6,11 @@ use CodeIgniter\Model;
 
 class UserModel extends Model
 {
-    protected $table      = 'users';
+    protected $table = 'users';
     protected $primaryKey = 'id';
     protected $allowedFields = ['id', 'display_name', 'username', 'password', 'email', 'group', 'created_at', 'updated_at', 'academic_nim', 'academic_faculty', 'academic_program', 'academic_year', 'academic_graduate_year', 'street', 'city', 'state_code', 'zip_code', 'jenis_kelamin', 'no_telp', 'nik', 'npwp'];
 
-    
+
     // Alternatif: Fungsi untuk mengambil data menggunakan query SQL manual
     public function getAllDataManual()
     {
@@ -55,6 +55,19 @@ class UserModel extends Model
     {
         $db = \Config\Database::connect();
         $query = $db->query('SELECT DISTINCT academic_faculty, academic_program, academic_year FROM users WHERE `group` = "alumni"');
-        return $query->getResultArray();  
+        return $query->getResultArray();
     }
+    
+    public function getTotalCountByGroup($group)
+    {
+        return $this->where('group', $group)->countAllResults();
+    }
+
+    public function getPaginatedDataByGroup($group, $limit, $offset)
+    {
+        return $this->where('group', $group)
+            ->orderBy('created_at', 'DESC')
+            ->findAll($limit, $offset);
+    }
+
 }
