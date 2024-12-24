@@ -367,7 +367,17 @@
                                             <div class="form-group">
                                                 <label for="exampleInputDeskripsi">Deskripsi</label>
                                                 <input type="text" class="form-control" id="exampleInputDeskripsi" placeholder="Bagian ini berisi pertanyaan tentang data pribadi responden." required>
+                                                <input type="text" class="form-control" id="exampleInputDeskripsi"
+                                                    placeholder="Bagian ini berisi pertanyaan tentang data pribadi responden.">
                                             </div>
+                                           
+                                            <div class="form-check d-flex mt-1">
+                                                <label class="form-check-label" for="exampleCheck1">Conditional
+                                                    Logic</label>
+                                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                            </div>
+
+                                            <br>
                                             <div>
                                             <button type="button" class="btn btn-info" style="font-size:14px;padding:8px 10px;color:white;" onclick="saveQuestions()">Simpan</button>
                                                 <a class="btn btn-danger" style="font-size:14px;padding:8px 10px;color:white;" onclick="openTab(event, 'SuntingEditKuesioner')">Batal</a>

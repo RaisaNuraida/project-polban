@@ -71,9 +71,11 @@ class kuesioner_page extends BaseController
         $builder->delete(['id' => $id]); // Hapus data dengan ID tertentu
 
         if ($db->affectedRows() > 0) {
-            return redirect()->to('/page')->with('message', 'User berhasil dihapus.');
+            return redirect()->to('/kuesionerpage')->with('message', 'User berhasil dihapus.');
         } else {
-            return redirect()->to('/page')->with('message', 'User tidak ditemukan.');
+            return redirect()->to('/kuesionerpage')->with('message', 'User tidak ditemukan.');
         }
     }
+  
+
 }

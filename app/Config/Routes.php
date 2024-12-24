@@ -51,6 +51,7 @@ $routes->get('/halamankontak', 'Home::kontak');
 $routes->get('/kontak', 'welcomepage::dataKontak');
 $routes->get('/kuesionersection', 'Home::kuesionersection');
 
+$routes->get('/tambahhalaman', to: 'welcomepage::tambahwelcome');
 
 $routes->get('/dataisian', 'dataisian::dataisian');
 $routes->get('/data', 'welcomepage::data');
@@ -59,6 +60,10 @@ $routes->get('/halamaneditprofile', 'editprofile::index');
 $routes->get('/tentang', 'welcomepage::dataTentang');
 $routes->get('/perusahaan', 'Home::indexperusahaan');
 $routes->get('getQuestions', 'KuesionerController::getQuestions');
+
+
+$routes->get('/halamanperusahaan', 'Home::indexperusahaan');
+
 
 
 
@@ -82,8 +87,11 @@ $routes->group('welcomepage', function ($routes) {
     $routes->post('tambahHalaman', 'welcomepage::tambahHalaman'); // Rute untuk submit Halaman Baru
 });
 $routes->post('/kuesionerpage', 'kuesioner_page::submitPengaturan');
+$routes->match(['get', 'post'], 'editkuesionerkuesioner/(:num)', 'Kuesioner::editkuesionerkuesioner/$1');
 
 $routes->post('/tambahkuesioner', 'c_kuesioner::tambahkuesioner');
+$routes->post('/editkuesionerkuesioner', 'c_kuesioner::editkuesionerkuesioner');
+
 $routes->post('/login', 'login::login');
 $routes->post('/update', 'Home::update');
 $routes->post('/kuesionerkuesioner', 'c_kuesioner::index');

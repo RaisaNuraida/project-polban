@@ -46,197 +46,197 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <!-- END: Custom CSS-->
     <style>
-    .ui-datepicker-month,
-    .ui-datepicker-year {
-        min-width: 0em;
-    }
+        .ui-datepicker-month,
+        .ui-datepicker-year {
+            min-width: 0em;
+        }
 
 
-    .field_buttons_edit {
-        font-family: inherit;
-        font-size: 10pt;
-        float: right;
-        position: relative;
-        margin: 5px;
-    }
+        .field_buttons_edit {
+            font-family: inherit;
+            font-size: 10pt;
+            float: right;
+            position: relative;
+            margin: 5px;
+        }
 
-    .field_buttons_view {
-        font-family: inherit;
-        font-size: 10pt;
-        float: right;
-        position: relative;
-        margin-top: 0px;
-    }
+        .field_buttons_view {
+            font-family: inherit;
+            font-size: 10pt;
+            float: right;
+            position: relative;
+            margin-top: 0px;
+        }
 
-    .field_header {
-        /*border: solid 1px red;*/
-        margin: 0px;
-        background-color: #DFEFFF;
-        height: 30px;
-        cursor: move;
-    }
+        .field_header {
+            /*border: solid 1px red;*/
+            margin: 0px;
+            background-color: #DFEFFF;
+            height: 30px;
+            cursor: move;
+        }
 
-    .field_container {
-        /*border: solid 1px red;*/
-        margin: 0px;
-        background-color: white;
-        padding-left: 5px;
-        padding-top: 5px;
-        padding-bottom: 5px;
-    }
+        .field_container {
+            /*border: solid 1px red;*/
+            margin: 0px;
+            background-color: white;
+            padding-left: 5px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
 
-    .done_quest,
-    .delete_quest,
-    .edit_quest,
-    .done_quest_dd,
-    .edit_quest_dd,
-    .delete_quest_dd,
-    .done_quest_cb,
-    .edit_quest_cb,
-    .delete_quest_cb,
-    .done_quest_rb,
-    .edit_quest_rb,
-    .delete_quest_rb,
-    .done_quest_sc,
-    .edit_quest_sc,
-    .delete_quest_sc,
-    .done_quest_gr,
-    .edit_quest_gr,
-    .delete_quest_gr,
-    .done_quest_em,
-    .edit_quest_em,
-    .delete_quest_em,
-    .done_quest_no,
-    .edit_quest_no,
-    .delete_quest_no,
-    .done_quest_ph,
-    .edit_quest_ph,
-    .delete_quest_ph,
-    .done_quest_dt,
-    .edit_quest_dt,
-    .delete_quest_dt,
-    .done_quest_ad,
-    .edit_quest_ad,
-    .delete_quest_ad,
-    .done_quest_ro,
-    .edit_quest_ro,
-    .delete_quest_ro,
-    .done_quest_hd,
-    .edit_quest_hd,
-    .delete_quest_hd {
-        border-bottom-left-radius: 7px;
-        border-bottom-right-radius: 7px;
-        border-color: #533232;
-        border: 1px solid;
-        background-color: white;
-        margin-left: 5px;
-        padding: 2px;
-    }
+        .done_quest,
+        .delete_quest,
+        .edit_quest,
+        .done_quest_dd,
+        .edit_quest_dd,
+        .delete_quest_dd,
+        .done_quest_cb,
+        .edit_quest_cb,
+        .delete_quest_cb,
+        .done_quest_rb,
+        .edit_quest_rb,
+        .delete_quest_rb,
+        .done_quest_sc,
+        .edit_quest_sc,
+        .delete_quest_sc,
+        .done_quest_gr,
+        .edit_quest_gr,
+        .delete_quest_gr,
+        .done_quest_em,
+        .edit_quest_em,
+        .delete_quest_em,
+        .done_quest_no,
+        .edit_quest_no,
+        .delete_quest_no,
+        .done_quest_ph,
+        .edit_quest_ph,
+        .delete_quest_ph,
+        .done_quest_dt,
+        .edit_quest_dt,
+        .delete_quest_dt,
+        .done_quest_ad,
+        .edit_quest_ad,
+        .delete_quest_ad,
+        .done_quest_ro,
+        .edit_quest_ro,
+        .delete_quest_ro,
+        .done_quest_hd,
+        .edit_quest_hd,
+        .delete_quest_hd {
+            border-bottom-left-radius: 7px;
+            border-bottom-right-radius: 7px;
+            border-color: #533232;
+            border: 1px solid;
+            background-color: white;
+            margin-left: 5px;
+            padding: 2px;
+        }
 
-    #floating_question_selector {
-        width: 260px;
-        height: 220px;
-        /*border:1px solid scrollbar;*/
-        /*float: right;*/
-        position: fixed;
-        margin-left: 10px;
-        /*bottom: 20px;*/
-        top: 150px;
-        right: 60px;
-        z-index: 1;
-        /*background-color: powderblue;*/
-        border-radius: 10px;
-    }
+        #floating_question_selector {
+            width: 260px;
+            height: 220px;
+            /*border:1px solid scrollbar;*/
+            /*float: right;*/
+            position: fixed;
+            margin-left: 10px;
+            /*bottom: 20px;*/
+            top: 150px;
+            right: 60px;
+            z-index: 1;
+            /*background-color: powderblue;*/
+            border-radius: 10px;
+        }
 
-    #floating_label {
-        background-color: powderblue;
-        font-weight: bold;
-        padding: 10px;
-    }
+        #floating_label {
+            background-color: powderblue;
+            font-weight: bold;
+            padding: 10px;
+        }
 
-    #questions_button {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        /* Dua kolom, ukuran kolom fleksibel */
-        gap: 5px;
-        /* Ruang antara tombol */
-    }
+        #questions_button {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            /* Dua kolom, ukuran kolom fleksibel */
+            gap: 5px;
+            /* Ruang antara tombol */
+        }
 
-    #questions_button .quest_butt {
-        padding: 5px 10px;
-        /* Ukuran tombol kecil */
-        font-size: 0.75em;
-        /* Ukuran font lebih kecil */
-        border-radius: 4px;
-        /* Sudut tombol yang membulat */
-        background-color: #007bff;
-        /* Warna latar belakang tombol */
-        color: white;
-        /* Warna teks tombol */
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        /* Bayangan melayang */
-        transition: transform 0.2s, box-shadow 0.2s;
-        /* Transisi halus */
-        max-width: 120px;
-        /* Lebar maksimum tombol */
-        width: 100%;
-        /* Mengisi lebar penuh hingga max-width */
-        margin: 0;
-    }
+        #questions_button .quest_butt {
+            padding: 5px 10px;
+            /* Ukuran tombol kecil */
+            font-size: 0.75em;
+            /* Ukuran font lebih kecil */
+            border-radius: 4px;
+            /* Sudut tombol yang membulat */
+            background-color: #007bff;
+            /* Warna latar belakang tombol */
+            color: white;
+            /* Warna teks tombol */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            /* Bayangan melayang */
+            transition: transform 0.2s, box-shadow 0.2s;
+            /* Transisi halus */
+            max-width: 120px;
+            /* Lebar maksimum tombol */
+            width: 100%;
+            /* Mengisi lebar penuh hingga max-width */
+            margin: 0;
+        }
 
-    #questions_panel h2 {
-        font-size: 1.2em;
-        /* Adjust this value to make the heading smaller */
-    }
+        #questions_panel h2 {
+            font-size: 1.2em;
+            /* Adjust this value to make the heading smaller */
+        }
 
-    #sortable {
-        list-style-type: none;
-        /* Remove bullet points from list */
-        padding: 0;
-    }
+        #sortable {
+            list-style-type: none;
+            /* Remove bullet points from list */
+            padding: 0;
+        }
 
-    #sortable li {
-        font-size: 0.8em;
-        /* Adjust this value for list items */
-        margin-bottom: 10px;
-        /* Spacing between questions */
-    }
+        #sortable li {
+            font-size: 0.8em;
+            /* Adjust this value for list items */
+            margin-bottom: 10px;
+            /* Spacing between questions */
+        }
 
-    .single_edit_state,
-    .dropdown_edit_state,
-    .checkbox_edit_state,
-    .radio_edit_state,
-    .scale_edit_state,
-    .grid_edit_state,
-    .email_edit_state,
-    .number_edit_state,
-    .phone_edit_state,
-    .date_edit_state,
-    .address_edit_state,
-    .readonly_edit_state,
-    .hidden_view_state {
-        display: none;
-    }
+        .single_edit_state,
+        .dropdown_edit_state,
+        .checkbox_edit_state,
+        .radio_edit_state,
+        .scale_edit_state,
+        .grid_edit_state,
+        .email_edit_state,
+        .number_edit_state,
+        .phone_edit_state,
+        .date_edit_state,
+        .address_edit_state,
+        .readonly_edit_state,
+        .hidden_view_state {
+            display: none;
+        }
 
-    .done_quest,
-    .done_quest_dd,
-    .done_quest_cb,
-    .done_quest_rb,
-    .done_quest_sc,
-    .done_quest_gr,
-    .done_quest_em,
-    .done_quest_no,
-    .done_quest_ph,
-    .done_quest_dt,
-    .done_quest_ad,
-    .done_quest_ro,
-    .edit_quest_hd {
-        display: none;
-    }
+        .done_quest,
+        .done_quest_dd,
+        .done_quest_cb,
+        .done_quest_rb,
+        .done_quest_sc,
+        .done_quest_gr,
+        .done_quest_em,
+        .done_quest_no,
+        .done_quest_ph,
+        .done_quest_dt,
+        .done_quest_ad,
+        .done_quest_ro,
+        .edit_quest_hd {
+            display: none;
+        }
 
-    .CL_panel_field {
-        display: none;
-    }
+        .CL_panel_field {
+            display: none;
+        }
     </style>
 </head>
 
@@ -404,54 +404,70 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php if (!empty($user)) : ?>
-                                            <?php $no = 1; ?>
-                                            <?php foreach ($user as $row) : ?>
-                                            <tr>
-                                                <td><?= $no++; ?></td>
-                                                <td><?= $row['title']; ?></td>
-                                                <td><?= $row['deskripsi']; ?></td>
+                                            <?php if (!empty($user)): ?>
+                                                <?php $no = 1; ?>
+                                                <?php foreach ($user as $row): ?>
+                                                    <tr>
+                                                        <td><?= $no++; ?></td>
+                                                        <td><?= $row['title']; ?></td>
+                                                        <td><?= $row['deskripsi']; ?></td>
 
-                                                <td><?= $row['active_status']; ?></td>
-                                                <td>
-                                                    <form method="get" action="/conditionalkuesioner" id="conditionalkuesioner"
-                                                        onsubmit="removeEmptyInputs()">
-                                                        <button type="submit" class="btn btn-primary"
-                                                            style="font-size:12px; padding:5px 6px; height:25px; color: white;">Masuk</button>
+                                                        <td><?= $row['active_status']; ?></td>
+                                                        <?php
+                                                        // Menangani kondisi jika conditional_logic adalah JSON yang menyimpan mainOption dan subOption
+                                                        $conditionalLogic = json_decode($row['conditional_logic'], true);
 
-                                                </td>
-                                                <td>
-                                                <input type="hidden" name="conditionalkuesioner" value=<?= $row['conditional_logic']; ?>><?= $row['conditional_logic']; ?> </td>
-                                                <?php
-                                           ?>
-                                                </form>
-                                                <td>
+                                                        // Ambil mainOption dan subOption dari JSON yang didekodekan
+                                                        $mainOption = isset($conditionalLogic['Option ']) ? $conditionalLogic['Option '] : 'No Main Option';
+                                                        $conditionalOperator = isset($conditionalLogic['is not ']) ? $conditionalLogic['is not '] : 'No operator';
+                                                        $subOption = isset($conditionalLogic['value ']) ? $conditionalLogic['value '] : 'No Sub Option'; // Menangani jika tidak ada subOption
+                                                
 
-                                                    <a class="btn btn-primary btn-sm" class="nav-link active"
-                                                        href="<?= base_url('/kuesionerpage') ?>"
-                                                        style='font-size:10px;padding:2px 5px;color:white;'>Edit</a>
-                                                    <a class="btn btn-primary btn-sm"
-                                                        style='font-size:10px;padding:2px 5px;color:white;'>Active</a>
-                                                    <a class="btn btn-primary btn-sm"
-                                                        style='font-size:10px;padding:2px 5px;color:white;'
-                                                        onclick="openTab(event, 'TinjauKuesioner')">Tinjau</a>
-                                                    <a class="btn btn-success btn-sm"
-                                                        style='font-size:10px;padding:2px 5px;color:white;'>Clone</a>
-                                                    <a class="btn btn-info btn-sm"
-                                                        style='font-size:10px;padding:2px 5px;color:white;'>Unduh</a>
-                                                    <a class="btn btn-warning btn-sm"
-                                                        style='font-size:10px;padding:2px 5px;color:white;'>Edit
-                                                        Style</a>
-                                                    <button data-target='#deleteModal' id='delete' data-toggle='modal'
-                                                        data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal'
-                                                        style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
-                                                </td>
-                                            </tr>
-                                            <?php endforeach; ?>
-                                            <?php else : ?>
-                                            <tr>
-                                                <td colspan="6" class="text-center">No data found</td>
-                                            </tr>
+                                                        ?>
+                                                        <td>
+                                                            <form method="get" action="/conditionalkuesioner"
+                                                                id="conditionalkuesioner" onsubmit="removeEmptyInputs()">
+                                                                <button type="submit" class="btn btn-primary"
+                                                                    style="font-size:12px; padding:5px 6px; height:25px; color: white;">Masuk</button>
+
+                                                        </td>
+                                                        <td>
+
+                                                            <input type="hidden" name="conditionalkuesioner" value="<?= $subOption; ?>">
+                                                            Show if : <?= $mainOption; ?>         <?= $conditionalOperator; ?>
+                                                            <?= $subOption; ?>
+                                                        </td>
+                                                        <?php
+                                                        ?>
+                                                     
+                                                        </form>
+                                                        <td>
+
+                                                            <a class="btn btn-primary btn-sm" class="nav-link active"
+                                                                href="<?= base_url('/kuesionerpage') ?>"
+                                                                style='font-size:10px;padding:2px 5px;color:white;'>Edit</a>
+                                                            <a class="btn btn-primary btn-sm"
+                                                                style='font-size:10px;padding:2px 5px;color:white;'>Active</a>
+                                                            <a class="btn btn-primary btn-sm"
+                                                                style='font-size:10px;padding:2px 5px;color:white;'
+                                                                onclick="openTab(event, 'TinjauKuesioner')">Tinjau</a>
+                                                            <a class="btn btn-success btn-sm"
+                                                                style='font-size:10px;padding:2px 5px;color:white;'>Clone</a>
+                                                            <a class="btn btn-info btn-sm"
+                                                                style='font-size:10px;padding:2px 5px;color:white;'>Unduh</a>
+                                                            <a class="btn btn-warning btn-sm"
+                                                                style='font-size:10px;padding:2px 5px;color:white;'>Edit
+                                                                Style</a>
+                                                            <button data-target='#deleteModal' id='delete' data-toggle='modal'
+                                                                data-id="<?= $row['id']; ?>" class='btn btn-danger deleteModal'
+                                                                style='font-size:10px;padding:2px 5px;color:white;'>Hapus</button>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach; ?>
+                                            <?php else: ?>
+                                                <tr>
+                                                    <td colspan="7" class="text-center">No data found</td>
+                                                </tr>
                                             <?php endif; ?>
 
                                         </tbody>
@@ -462,27 +478,27 @@
 
 
                         <script>
-                        $(document).ready(function() {
-                            $('.lihat-btn').on('click', function() {
-                                const conditionalLogic = $(this).data('logic');
+                            $(document).ready(function () {
+                                $('.lihat-btn').on('click', function () {
+                                    const conditionalLogic = $(this).data('logic');
 
-                                // Mengirim AJAX request untuk memfilter data
-                                $.ajax({
-                                    url: '/c_kuesioner/filterData', // Ganti dengan URL yang sesuai
-                                    method: 'GET',
-                                    data: {
-                                        logic: conditionalLogic
-                                    },
-                                    success: function(response) {
-                                        // Tampilkan data yang difilter di tab "dataTabel"
-                                        $('#dataTabel').html(response);
-                                    },
-                                    error: function() {
-                                        alert('Gagal memuat data.');
-                                    }
+                                    // Mengirim AJAX request untuk memfilter data
+                                    $.ajax({
+                                        url: '/c_kuesioner/filterData', // Ganti dengan URL yang sesuai
+                                        method: 'GET',
+                                        data: {
+                                            logic: conditionalLogic
+                                        },
+                                        success: function (response) {
+                                            // Tampilkan data yang difilter di tab "dataTabel"
+                                            $('#dataTabel').html(response);
+                                        },
+                                        error: function () {
+                                            alert('Gagal memuat data.');
+                                        }
+                                    });
                                 });
                             });
-                        });
                         </script>
                         <!-- Table Kuesioner END -->
 
@@ -510,11 +526,11 @@
                         </div>
 
                         <script>
-                        $('.deleteModal').click(function() {
-                            var href = $(this).data('target');
-                            var id = $(this).data('id');
-                            $('#delete_id').val(id);
-                        });
+                            $('.deleteModal').click(function () {
+                                var href = $(this).data('target');
+                                var id = $(this).data('id');
+                                $('#delete_id').val(id);
+                            });
                         </script>
 
                         <!-- Modal Konfirmasi Hapus END-->
@@ -956,7 +972,8 @@
                                         <button class="quest_butt btn btn-primary" onclick="add_radio();">Radio
                                             Buttons</button>
                                         <button class="quest_butt btn btn-primary" onclick="add_phone();">Phone</button>
-                                        <button class="quest_butt btn btn-primary" onclick="add_scale();">Scale</button>ah
+                                        <button class="quest_butt btn btn-primary"
+                                            onclick="add_scale();">Scale</button>ah
                                         <button class="quest_butt btn btn-primary" onclick="add_readonly();">User
                                             Field</button>
                                         <button class="quest_butt btn btn-primary" onclick="add_grid();">Grid</button>
@@ -976,827 +993,827 @@
 
 
                         <script type="text/javascript">
-                        function deletequestion(anu) {
-                            var q = anu.parents("li:first");
-                            q.remove();
-                        }
-
-                        function quest_done(anu) {
-                            var view = anu.parents("li:first").find(".single_view_state");
-                            var edit = anu.parents("li:first").find(".single_edit_state");
-                            var qtext = anu.parents("li:first").find(".quest_text_field").val();
-                            anu.parents("li:first").find(".single_line_text").html(qtext);
-                            view.show();
-                            edit.hide();
-                        }
-
-                        function done_edit_delete_quest(anu) {
-                            // event.preventDefault();
-                            var id = anu.parents("li:first").attr("id");
-                            var view = anu.parents("li:first").find(".single_view_state");
-                            var done_button = anu.parents("li:first").find(".done_quest");
-                            var edit = anu.parents("li:first").find(".single_edit_state");
-                            var edit_button = anu.parents("li:first").find(".edit_quest");
-                            var qtext = anu.parents("li:first").find(".question_title").val();
-                            if (anu.is('.done_quest')) {
-                                anu.parents("li:first").find(".single_line_text").html(qtext);
-                                view.show();
-                                edit_button.show();
-                                edit.hide();
-                                done_button.hide();
-                                anu.parents("li:first").find(".field_container").css({
-                                    "background-color": "white"
-                                })
-                                anu.parents("li:first").find(".field_header").css({
-                                    "background-color": "#DFEFFF"
-                                })
-                            } else if (anu.is('.edit_quest')) {
-                                view.hide();
-                                edit.show();
-                                done_button.show();
-                                edit_button.hide();
-                                anu.parents("li:first").find(".field_container").css({
-                                    "background-color": "#DFEFFF"
-                                })
-                                anu.parents("li:first").find(".field_header").css({
-                                    "background-color": "powderblue"
-                                })
-                            } else {
-                                if (confirm('Apakah anda yakin untuk menghapus pertanyaan ini ?')) {
-                                    var index = fields_id.indexOf(id);
-                                    fields_id.splice(index, 1);
-                                    deletequestion(anu);
-                                }
+                            function deletequestion(anu) {
+                                var q = anu.parents("li:first");
+                                q.remove();
                             }
 
-                        }
+                            function quest_done(anu) {
+                                var view = anu.parents("li:first").find(".single_view_state");
+                                var edit = anu.parents("li:first").find(".single_edit_state");
+                                var qtext = anu.parents("li:first").find(".quest_text_field").val();
+                                anu.parents("li:first").find(".single_line_text").html(qtext);
+                                view.show();
+                                edit.hide();
+                            }
 
-                        function add_grid() {
-                            var id = ++fields_sum;
-                            fields_id.push(id);
-
-                            var grid_field = $('<li id="' + id + '" class="grid question_fields">' +
-                                '<div class="field_header">' +
-                                '<div class="field_buttons_edit">' +
-                                '<a href="#" class="edit_quest">edit</a>' +
-                                '<a href="#" class="done_quest" style="display: none;">done</a>' +
-                                '<a href="#" class="delete_quest">delete</a>' +
-                                '</div>' +
-                                '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
-                                'Grid Field: ' + id +
-                                '</div>' +
-                                '</div>' +
-                                '<div class="field_container">' +
-                                '<div class="grid_edit_state" style="display: none;">' +
-                                '<div class="grid_field">' +
-                                'Row Title <input type="text" name="grid_row_title" class="row_title"/><br />' +
-                                'Column Titles (separate by comma) <input type="text" class="column_titles"/><br />' +
-                                '</div>' +
-                                '<button class="add_row">Add Row</button>' +
-                                '<div class="grid_rows"></div>' +
-                                '</div>' +
-                                '<div class="grid_view_state">' +
-                                '<div class="grid_text">Grid Content</div>' +
-                                '<div class="grid_answer"></div>' // This will hold the grid data
-                                +
-                                '</div>' +
-                                '</div>' +
-                                '</li>');
-
-                            $("#sortable").append(grid_field);
-
-                            // Event handler for edit button
-                            grid_field.find('.edit_quest').click(function(e) {
-                                e.preventDefault();
-                                grid_field.find('.grid_view_state').hide();
-                                grid_field.find('.grid_edit_state').show();
-                                grid_field.find('.edit_quest').hide();
-                                grid_field.find('.done_quest').show();
-                            });
-
-                            // Event handler for done button
-                            grid_field.find('.done_quest').click(function(e) {
-                                e.preventDefault();
-                                updateGridView(grid_field);
-                                grid_field.find('.grid_edit_state').hide();
-                                grid_field.find('.grid_view_state').show();
-                                grid_field.find('.done_quest').hide();
-                                grid_field.find('.edit_quest').show();
-                            });
-
-                            // Event handler for delete button
-                            grid_field.find('.delete_quest').click(function(e) {
-                                e.preventDefault();
-                                if (confirm("Apakah Anda yakin ingin menghapus grid ini?")) {
-                                    var index = fields_id.indexOf(id);
-                                    fields_id.splice(index, 1);
-                                    grid_field.remove();
+                            function done_edit_delete_quest(anu) {
+                                // event.preventDefault();
+                                var id = anu.parents("li:first").attr("id");
+                                var view = anu.parents("li:first").find(".single_view_state");
+                                var done_button = anu.parents("li:first").find(".done_quest");
+                                var edit = anu.parents("li:first").find(".single_edit_state");
+                                var edit_button = anu.parents("li:first").find(".edit_quest");
+                                var qtext = anu.parents("li:first").find(".question_title").val();
+                                if (anu.is('.done_quest')) {
+                                    anu.parents("li:first").find(".single_line_text").html(qtext);
+                                    view.show();
+                                    edit_button.show();
+                                    edit.hide();
+                                    done_button.hide();
+                                    anu.parents("li:first").find(".field_container").css({
+                                        "background-color": "white"
+                                    })
+                                    anu.parents("li:first").find(".field_header").css({
+                                        "background-color": "#DFEFFF"
+                                    })
+                                } else if (anu.is('.edit_quest')) {
+                                    view.hide();
+                                    edit.show();
+                                    done_button.show();
+                                    edit_button.hide();
+                                    anu.parents("li:first").find(".field_container").css({
+                                        "background-color": "#DFEFFF"
+                                    })
+                                    anu.parents("li:first").find(".field_header").css({
+                                        "background-color": "powderblue"
+                                    })
+                                } else {
+                                    if (confirm('Apakah anda yakin untuk menghapus pertanyaan ini ?')) {
+                                        var index = fields_id.indexOf(id);
+                                        fields_id.splice(index, 1);
+                                        deletequestion(anu);
+                                    }
                                 }
-                            });
 
-                            // Event handler for add row button
-                            grid_field.find('.add_row').click(function(e) {
-                                e.preventDefault();
-                                addRowToGrid(grid_field);
-                            });
-                        }
+                            }
 
-                        function addRowToGrid(grid_field) {
-                            var rowHtml = $('<div class="grid_row">' +
-                                'Row Data: <input type="text" class="row_data"/><br />' +
-                                '</div>');
-                            grid_field.find('.grid_rows').append(rowHtml);
-                        }
+                            function add_grid() {
+                                var id = ++fields_sum;
+                                fields_id.push(id);
 
-                        function updateGridView(grid_field) {
-                            var rowTitle = grid_field.find('input[name="grid_row_title"]').val();
-                            var columnTitles = grid_field.find('input.column_titles').val().split(',').map(function(
-                            opt) {
-                                return opt.trim();
-                            });
+                                var grid_field = $('<li id="' + id + '" class="grid question_fields">' +
+                                    '<div class="field_header">' +
+                                    '<div class="field_buttons_edit">' +
+                                    '<a href="#" class="edit_quest">edit</a>' +
+                                    '<a href="#" class="done_quest" style="display: none;">done</a>' +
+                                    '<a href="#" class="delete_quest">delete</a>' +
+                                    '</div>' +
+                                    '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                                    'Grid Field: ' + id +
+                                    '</div>' +
+                                    '</div>' +
+                                    '<div class="field_container">' +
+                                    '<div class="grid_edit_state" style="display: none;">' +
+                                    '<div class="grid_field">' +
+                                    'Row Title <input type="text" name="grid_row_title" class="row_title"/><br />' +
+                                    'Column Titles (separate by comma) <input type="text" class="column_titles"/><br />' +
+                                    '</div>' +
+                                    '<button class="add_row">Add Row</button>' +
+                                    '<div class="grid_rows"></div>' +
+                                    '</div>' +
+                                    '<div class="grid_view_state">' +
+                                    '<div class="grid_text">Grid Content</div>' +
+                                    '<div class="grid_answer"></div>' // This will hold the grid data
+                                    +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</li>');
 
-                            var gridContentHtml = '<strong>' + rowTitle + '</strong><br />';
-                            gridContentHtml += '<table border="1"><tr>';
-                            columnTitles.forEach(function(title) {
-                                gridContentHtml += '<th>' + title + '</th>';
-                            });
-                            gridContentHtml += '</tr>';
+                                $("#sortable").append(grid_field);
 
-                            grid_field.find('.grid_rows .grid_row').each(function() {
-                                var rowData = $(this).find('.row_data').val();
-                                gridContentHtml += '<tr>';
-                                columnTitles.forEach(function() {
-                                    gridContentHtml += '<td>' + rowData + '</td>';
+                                // Event handler for edit button
+                                grid_field.find('.edit_quest').click(function (e) {
+                                    e.preventDefault();
+                                    grid_field.find('.grid_view_state').hide();
+                                    grid_field.find('.grid_edit_state').show();
+                                    grid_field.find('.edit_quest').hide();
+                                    grid_field.find('.done_quest').show();
+                                });
+
+                                // Event handler for done button
+                                grid_field.find('.done_quest').click(function (e) {
+                                    e.preventDefault();
+                                    updateGridView(grid_field);
+                                    grid_field.find('.grid_edit_state').hide();
+                                    grid_field.find('.grid_view_state').show();
+                                    grid_field.find('.done_quest').hide();
+                                    grid_field.find('.edit_quest').show();
+                                });
+
+                                // Event handler for delete button
+                                grid_field.find('.delete_quest').click(function (e) {
+                                    e.preventDefault();
+                                    if (confirm("Apakah Anda yakin ingin menghapus grid ini?")) {
+                                        var index = fields_id.indexOf(id);
+                                        fields_id.splice(index, 1);
+                                        grid_field.remove();
+                                    }
+                                });
+
+                                // Event handler for add row button
+                                grid_field.find('.add_row').click(function (e) {
+                                    e.preventDefault();
+                                    addRowToGrid(grid_field);
+                                });
+                            }
+
+                            function addRowToGrid(grid_field) {
+                                var rowHtml = $('<div class="grid_row">' +
+                                    'Row Data: <input type="text" class="row_data"/><br />' +
+                                    '</div>');
+                                grid_field.find('.grid_rows').append(rowHtml);
+                            }
+
+                            function updateGridView(grid_field) {
+                                var rowTitle = grid_field.find('input[name="grid_row_title"]').val();
+                                var columnTitles = grid_field.find('input.column_titles').val().split(',').map(function (
+                                    opt) {
+                                    return opt.trim();
+                                });
+
+                                var gridContentHtml = '<strong>' + rowTitle + '</strong><br />';
+                                gridContentHtml += '<table border="1"><tr>';
+                                columnTitles.forEach(function (title) {
+                                    gridContentHtml += '<th>' + title + '</th>';
                                 });
                                 gridContentHtml += '</tr>';
-                            });
 
-                            gridContentHtml += '</table>';
-                            grid_field.find('.grid_answer').html(gridContentHtml);
-                        }
+                                grid_field.find('.grid_rows .grid_row').each(function () {
+                                    var rowData = $(this).find('.row_data').val();
+                                    gridContentHtml += '<tr>';
+                                    columnTitles.forEach(function () {
+                                        gridContentHtml += '<td>' + rowData + '</td>';
+                                    });
+                                    gridContentHtml += '</tr>';
+                                });
+
+                                gridContentHtml += '</table>';
+                                grid_field.find('.grid_answer').html(gridContentHtml);
+                            }
 
 
-                        function add_readonly() {
-                            var id = ++fields_sum;
-                            fields_id.push(id);
+                            function add_readonly() {
+                                var id = ++fields_sum;
+                                fields_id.push(id);
 
-                            var readonly_field = $('<li id="' + id + '" class="readonly question_fields">' +
-                                '<div class="field_header">' +
-                                '<div class="field_buttons_edit">' +
-                                '<a href="#" class="edit_quest">edit</a>' +
-                                '<a href="#" class="done_quest" style="display: none;">done</a>' +
-                                '<a href="#" class="delete_quest">delete</a>' +
-                                '</div>' +
-                                '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
-                                'Readonly Field: ' + id +
-                                '</div>' +
-                                '</div>' +
-                                '<div class="field_container">' +
-                                '<div class="readonly_edit_state" style="display: none;">' +
-                                '<div class="readonly_field">' +
-                                'Field Title <input type="text" name="readonly_field_title" class="field_title"/><br />' +
-                                '</div>' +
-                                '</div>' +
-                                '<div class="readonly_view_state">' +
-                                '<div class="readonly_text">Field Text?</div>' +
-                                '<div class="readonly_answer"></div>' // This will hold the readonly input
-                                +
-                                '</div>' +
-                                '</div>' +
-                                '</li>');
+                                var readonly_field = $('<li id="' + id + '" class="readonly question_fields">' +
+                                    '<div class="field_header">' +
+                                    '<div class="field_buttons_edit">' +
+                                    '<a href="#" class="edit_quest">edit</a>' +
+                                    '<a href="#" class="done_quest" style="display: none;">done</a>' +
+                                    '<a href="#" class="delete_quest">delete</a>' +
+                                    '</div>' +
+                                    '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                                    'Readonly Field: ' + id +
+                                    '</div>' +
+                                    '</div>' +
+                                    '<div class="field_container">' +
+                                    '<div class="readonly_edit_state" style="display: none;">' +
+                                    '<div class="readonly_field">' +
+                                    'Field Title <input type="text" name="readonly_field_title" class="field_title"/><br />' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '<div class="readonly_view_state">' +
+                                    '<div class="readonly_text">Field Text?</div>' +
+                                    '<div class="readonly_answer"></div>' // This will hold the readonly input
+                                    +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</li>');
 
-                            $("#sortable").append(readonly_field);
+                                $("#sortable").append(readonly_field);
 
-                            // Event handler for edit button
-                            readonly_field.find('.edit_quest').click(function(e) {
-                                e.preventDefault();
-                                readonly_field.find('.readonly_view_state').hide();
-                                readonly_field.find('.readonly_edit_state').show();
-                                readonly_field.find('.edit_quest').hide();
-                                readonly_field.find('.done_quest').show();
-                            });
+                                // Event handler for edit button
+                                readonly_field.find('.edit_quest').click(function (e) {
+                                    e.preventDefault();
+                                    readonly_field.find('.readonly_view_state').hide();
+                                    readonly_field.find('.readonly_edit_state').show();
+                                    readonly_field.find('.edit_quest').hide();
+                                    readonly_field.find('.done_quest').show();
+                                });
 
-                            // Event handler for done button
-                            readonly_field.find('.done_quest').click(function(e) {
-                                e.preventDefault();
-                                updateReadonlyView(readonly_field);
-                                readonly_field.find('.readonly_edit_state').hide();
-                                readonly_field.find('.readonly_view_state').show();
-                                readonly_field.find('.done_quest').hide();
-                                readonly_field.find('.edit_quest').show();
-                            });
+                                // Event handler for done button
+                                readonly_field.find('.done_quest').click(function (e) {
+                                    e.preventDefault();
+                                    updateReadonlyView(readonly_field);
+                                    readonly_field.find('.readonly_edit_state').hide();
+                                    readonly_field.find('.readonly_view_state').show();
+                                    readonly_field.find('.done_quest').hide();
+                                    readonly_field.find('.edit_quest').show();
+                                });
 
-                            // Event handler for delete button
-                            readonly_field.find('.delete_quest').click(function(e) {
-                                e.preventDefault();
-                                if (confirm("Apakah Anda yakin ingin menghapus field ini?")) {
-                                    var index = fields_id.indexOf(id);
-                                    fields_id.splice(index, 1);
-                                    readonly_field.remove();
-                                }
-                            });
-                        }
+                                // Event handler for delete button
+                                readonly_field.find('.delete_quest').click(function (e) {
+                                    e.preventDefault();
+                                    if (confirm("Apakah Anda yakin ingin menghapus field ini?")) {
+                                        var index = fields_id.indexOf(id);
+                                        fields_id.splice(index, 1);
+                                        readonly_field.remove();
+                                    }
+                                });
+                            }
 
-                        function updateReadonlyView(readonly_field) {
-                            var fieldTitle = readonly_field.find('input[name="readonly_field_title"]').val();
+                            function updateReadonlyView(readonly_field) {
+                                var fieldTitle = readonly_field.find('input[name="readonly_field_title"]').val();
 
-                            readonly_field.find('.readonly_text').text(fieldTitle);
-                            readonly_field.find('.readonly_answer').text("Value: " + fieldTitle);
-                        }
+                                readonly_field.find('.readonly_text').text(fieldTitle);
+                                readonly_field.find('.readonly_answer').text("Value: " + fieldTitle);
+                            }
 
-                        function add_scale() {
-                            var id = ++fields_sum;
-                            fields_id.push(id);
+                            function add_scale() {
+                                var id = ++fields_sum;
+                                fields_id.push(id);
 
-                            var scale_field = $('<li id="' + id + '" class="scale question_fields">' +
-                                '<div class="field_header">' +
-                                '<div class="field_buttons_edit">' +
-                                '<a href="#" class="edit_quest">edit</a>' +
-                                '<a href="#" class="done_quest" style="display: none;">done</a>' +
-                                '<a href="#" class="delete_quest">delete</a>' +
-                                '</div>' +
-                                '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
-                                'Scale Field: ' + id +
-                                '</div>' +
-                                '</div>' +
-                                '<div class="field_container">' +
-                                '<div class="scale_edit_state" style="display: none;">' +
-                                '<div class="scale_field">' +
-                                'Question Title <input type="text" name="scale_quest_title" class="question_title"/><br />' +
-                                'Scale Range (min,max) <input type="text" class="scale_range"/><br />' +
-                                '</div>' +
-                                '</div>' +
-                                '<div class="scale_view_state">' +
-                                '<div class="scale_text">Question Text?</div>' +
-                                '<div class="scale_answer"></div>' // This will hold the scale input
-                                +
-                                '</div>' +
-                                '</div>' +
-                                '</li>');
+                                var scale_field = $('<li id="' + id + '" class="scale question_fields">' +
+                                    '<div class="field_header">' +
+                                    '<div class="field_buttons_edit">' +
+                                    '<a href="#" class="edit_quest">edit</a>' +
+                                    '<a href="#" class="done_quest" style="display: none;">done</a>' +
+                                    '<a href="#" class="delete_quest">delete</a>' +
+                                    '</div>' +
+                                    '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                                    'Scale Field: ' + id +
+                                    '</div>' +
+                                    '</div>' +
+                                    '<div class="field_container">' +
+                                    '<div class="scale_edit_state" style="display: none;">' +
+                                    '<div class="scale_field">' +
+                                    'Question Title <input type="text" name="scale_quest_title" class="question_title"/><br />' +
+                                    'Scale Range (min,max) <input type="text" class="scale_range"/><br />' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '<div class="scale_view_state">' +
+                                    '<div class="scale_text">Question Text?</div>' +
+                                    '<div class="scale_answer"></div>' // This will hold the scale input
+                                    +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</li>');
 
-                            $("#sortable").append(scale_field);
+                                $("#sortable").append(scale_field);
 
-                            // Event handler for edit button
-                            scale_field.find('.edit_quest').click(function(e) {
-                                e.preventDefault();
-                                scale_field.find('.scale_view_state').hide();
-                                scale_field.find('.scale_edit_state').show();
-                                scale_field.find('.edit_quest').hide();
-                                scale_field.find('.done_quest').show();
-                            });
+                                // Event handler for edit button
+                                scale_field.find('.edit_quest').click(function (e) {
+                                    e.preventDefault();
+                                    scale_field.find('.scale_view_state').hide();
+                                    scale_field.find('.scale_edit_state').show();
+                                    scale_field.find('.edit_quest').hide();
+                                    scale_field.find('.done_quest').show();
+                                });
 
-                            // Event handler for done button
-                            scale_field.find('.done_quest').click(function(e) {
-                                e.preventDefault();
-                                updateScaleView(scale_field);
-                                scale_field.find('.scale_edit_state').hide();
-                                scale_field.find('.scale_view_state').show();
-                                scale_field.find('.done_quest').hide();
-                                scale_field.find('.edit_quest').show();
-                            });
+                                // Event handler for done button
+                                scale_field.find('.done_quest').click(function (e) {
+                                    e.preventDefault();
+                                    updateScaleView(scale_field);
+                                    scale_field.find('.scale_edit_state').hide();
+                                    scale_field.find('.scale_view_state').show();
+                                    scale_field.find('.done_quest').hide();
+                                    scale_field.find('.edit_quest').show();
+                                });
 
-                            // Event handler for delete button
-                            scale_field.find('.delete_quest').click(function(e) {
-                                e.preventDefault();
-                                if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
-                                    var index = fields_id.indexOf(id);
-                                    fields_id.splice(index, 1);
-                                    scale_field.remove();
-                                }
-                            });
-                        }
+                                // Event handler for delete button
+                                scale_field.find('.delete_quest').click(function (e) {
+                                    e.preventDefault();
+                                    if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
+                                        var index = fields_id.indexOf(id);
+                                        fields_id.splice(index, 1);
+                                        scale_field.remove();
+                                    }
+                                });
+                            }
 
-                        function updateScaleView(scale_field) {
-                            var questionTitle = scale_field.find('input[name="scale_quest_title"]').val();
-                            var scaleRange = scale_field.find('input.scale_range').val();
+                            function updateScaleView(scale_field) {
+                                var questionTitle = scale_field.find('input[name="scale_quest_title"]').val();
+                                var scaleRange = scale_field.find('input.scale_range').val();
 
-                            scale_field.find('.scale_text').text(questionTitle);
-                            scale_field.find('.scale_answer').text("Scale Range: " + scaleRange);
-                        }
+                                scale_field.find('.scale_text').text(questionTitle);
+                                scale_field.find('.scale_answer').text("Scale Range: " + scaleRange);
+                            }
 
-                        function add_phone() {
-                            var id = ++fields_sum;
-                            fields_id.push(id);
+                            function add_phone() {
+                                var id = ++fields_sum;
+                                fields_id.push(id);
 
-                            var phone_field = $('<li id="' + id + '" class="phone question_fields">' +
-                                '<div class="field_header">' +
-                                '<div class="field_buttons_edit">' +
-                                '<a href="#" class="edit_quest">edit</a>' +
-                                '<a href="#" class="done_quest" style="display: none;">done</a>' +
-                                '<a href="#" class="delete_quest">delete</a>' +
-                                '</div>' +
-                                '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
-                                'Phone Field: ' + id +
-                                '</div>' +
-                                '</div>' +
-                                '<div class="field_container">' +
-                                '<div class="phone_edit_state" style="display: none;">' +
-                                '<div class="phone_field">' +
-                                'Question Title <input type="text" name="phone_quest_title" class="question_title"/><br />' +
-                                'Phone Number <input type="text" class="phone_number"/><br />' +
-                                '</div>' +
-                                '</div>' +
-                                '<div class="phone_view_state">' +
-                                '<div class="phone_text">Question Text?</div>' +
-                                '<div class="phone_answer"></div>' // This will hold the phone number input
-                                +
-                                '</div>' +
-                                '</div>' +
-                                '</li>');
+                                var phone_field = $('<li id="' + id + '" class="phone question_fields">' +
+                                    '<div class="field_header">' +
+                                    '<div class="field_buttons_edit">' +
+                                    '<a href="#" class="edit_quest">edit</a>' +
+                                    '<a href="#" class="done_quest" style="display: none;">done</a>' +
+                                    '<a href="#" class="delete_quest">delete</a>' +
+                                    '</div>' +
+                                    '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                                    'Phone Field: ' + id +
+                                    '</div>' +
+                                    '</div>' +
+                                    '<div class="field_container">' +
+                                    '<div class="phone_edit_state" style="display: none;">' +
+                                    '<div class="phone_field">' +
+                                    'Question Title <input type="text" name="phone_quest_title" class="question_title"/><br />' +
+                                    'Phone Number <input type="text" class="phone_number"/><br />' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '<div class="phone_view_state">' +
+                                    '<div class="phone_text">Question Text?</div>' +
+                                    '<div class="phone_answer"></div>' // This will hold the phone number input
+                                    +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</li>');
 
-                            $("#sortable").append(phone_field);
+                                $("#sortable").append(phone_field);
 
-                            // Event handler for edit button
-                            phone_field.find('.edit_quest').click(function(e) {
-                                e.preventDefault();
-                                phone_field.find('.phone_view_state').hide();
-                                phone_field.find('.phone_edit_state').show();
-                                phone_field.find('.edit_quest').hide();
-                                phone_field.find('.done_quest').show();
-                            });
+                                // Event handler for edit button
+                                phone_field.find('.edit_quest').click(function (e) {
+                                    e.preventDefault();
+                                    phone_field.find('.phone_view_state').hide();
+                                    phone_field.find('.phone_edit_state').show();
+                                    phone_field.find('.edit_quest').hide();
+                                    phone_field.find('.done_quest').show();
+                                });
 
-                            // Event handler for done button
-                            phone_field.find('.done_quest').click(function(e) {
-                                e.preventDefault();
-                                updatePhoneView(phone_field);
-                                phone_field.find('.phone_edit_state').hide();
-                                phone_field.find('.phone_view_state').show();
-                                phone_field.find('.done_quest').hide();
-                                phone_field.find('.edit_quest').show();
-                            });
+                                // Event handler for done button
+                                phone_field.find('.done_quest').click(function (e) {
+                                    e.preventDefault();
+                                    updatePhoneView(phone_field);
+                                    phone_field.find('.phone_edit_state').hide();
+                                    phone_field.find('.phone_view_state').show();
+                                    phone_field.find('.done_quest').hide();
+                                    phone_field.find('.edit_quest').show();
+                                });
 
-                            // Event handler for delete button
-                            phone_field.find('.delete_quest').click(function(e) {
-                                e.preventDefault();
-                                if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
-                                    var index = fields_id.indexOf(id);
-                                    fields_id.splice(index, 1);
-                                    phone_field.remove();
-                                }
-                            });
-                        }
+                                // Event handler for delete button
+                                phone_field.find('.delete_quest').click(function (e) {
+                                    e.preventDefault();
+                                    if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
+                                        var index = fields_id.indexOf(id);
+                                        fields_id.splice(index, 1);
+                                        phone_field.remove();
+                                    }
+                                });
+                            }
 
-                        function updatePhoneView(phone_field) {
-                            var questionTitle = phone_field.find('input[name="phone_quest_title"]').val();
-                            var phoneNumber = phone_field.find('input.phone_number').val();
+                            function updatePhoneView(phone_field) {
+                                var questionTitle = phone_field.find('input[name="phone_quest_title"]').val();
+                                var phoneNumber = phone_field.find('input.phone_number').val();
 
-                            phone_field.find('.phone_text').text(questionTitle);
-                            phone_field.find('.phone_answer').text(phoneNumber);
-                        }
+                                phone_field.find('.phone_text').text(questionTitle);
+                                phone_field.find('.phone_answer').text(phoneNumber);
+                            }
 
-                        function add_radio() {
-                            var id = ++fields_sum;
-                            fields_id.push(id);
+                            function add_radio() {
+                                var id = ++fields_sum;
+                                fields_id.push(id);
 
-                            var radio_field = $('<li id="' + id + '" class="radio question_fields">' +
-                                '<div class="field_header">' +
-                                '<div class="field_buttons_edit">' +
-                                '<a href="#" class="edit_quest">edit</a>' +
-                                '<a href="#" class="done_quest" style="display: none;">done</a>' +
-                                '<a href="#" class="delete_quest">delete</a>' +
-                                '</div>' +
-                                '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
-                                'Radio Field: ' + id +
-                                '</div>' +
-                                '</div>' +
-                                '<div class="field_container">' +
-                                '<div class="radio_edit_state" style="display: none;">' +
-                                '<div class="radio_field">' +
-                                'Question Title <input type="text" name="radio_quest_title" class="question_title"/><br />' +
-                                'Options (separate by comma) <input type="text" class="question_options"/><br />' +
-                                '</div>' +
-                                '</div>' +
-                                '<div class="radio_view_state">' +
-                                '<div class="radio_text">Question Text?</div>' +
-                                '<div class="radio_answer"></div>' // This will hold the radio buttons
-                                +
-                                '</div>' +
-                                '</div>' +
-                                '</li>');
+                                var radio_field = $('<li id="' + id + '" class="radio question_fields">' +
+                                    '<div class="field_header">' +
+                                    '<div class="field_buttons_edit">' +
+                                    '<a href="#" class="edit_quest">edit</a>' +
+                                    '<a href="#" class="done_quest" style="display: none;">done</a>' +
+                                    '<a href="#" class="delete_quest">delete</a>' +
+                                    '</div>' +
+                                    '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                                    'Radio Field: ' + id +
+                                    '</div>' +
+                                    '</div>' +
+                                    '<div class="field_container">' +
+                                    '<div class="radio_edit_state" style="display: none;">' +
+                                    '<div class="radio_field">' +
+                                    'Question Title <input type="text" name="radio_quest_title" class="question_title"/><br />' +
+                                    'Options (separate by comma) <input type="text" class="question_options"/><br />' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '<div class="radio_view_state">' +
+                                    '<div class="radio_text">Question Text?</div>' +
+                                    '<div class="radio_answer"></div>' // This will hold the radio buttons
+                                    +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</li>');
 
-                            $("#sortable").append(radio_field);
+                                $("#sortable").append(radio_field);
 
-                            // Event handler for edit button
-                            radio_field.find('.edit_quest').click(function(e) {
-                                e.preventDefault();
-                                radio_field.find('.radio_view_state').hide();
-                                radio_field.find('.radio_edit_state').show();
-                                radio_field.find('.edit_quest').hide();
-                                radio_field.find('.done_quest').show();
-                            });
+                                // Event handler for edit button
+                                radio_field.find('.edit_quest').click(function (e) {
+                                    e.preventDefault();
+                                    radio_field.find('.radio_view_state').hide();
+                                    radio_field.find('.radio_edit_state').show();
+                                    radio_field.find('.edit_quest').hide();
+                                    radio_field.find('.done_quest').show();
+                                });
 
-                            // Event handler for done button
-                            radio_field.find('.done_quest').click(function(e) {
-                                e.preventDefault();
-                                updateRadioView(radio_field);
-                                radio_field.find('.radio_edit_state').hide();
-                                radio_field.find('.radio_view_state').show();
-                                radio_field.find('.done_quest').hide();
-                                radio_field.find('.edit_quest').show();
-                            });
+                                // Event handler for done button
+                                radio_field.find('.done_quest').click(function (e) {
+                                    e.preventDefault();
+                                    updateRadioView(radio_field);
+                                    radio_field.find('.radio_edit_state').hide();
+                                    radio_field.find('.radio_view_state').show();
+                                    radio_field.find('.done_quest').hide();
+                                    radio_field.find('.edit_quest').show();
+                                });
 
-                            // Event handler for delete button
-                            radio_field.find('.delete_quest').click(function(e) {
-                                e.preventDefault();
-                                if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
-                                    var index = fields_id.indexOf(id);
-                                    fields_id.splice(index, 1);
-                                    radio_field.remove();
-                                }
-                            });
-                        }
+                                // Event handler for delete button
+                                radio_field.find('.delete_quest').click(function (e) {
+                                    e.preventDefault();
+                                    if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
+                                        var index = fields_id.indexOf(id);
+                                        fields_id.splice(index, 1);
+                                        radio_field.remove();
+                                    }
+                                });
+                            }
 
-                        function updateRadioView(radio_field) {
-                            var questionTitle = radio_field.find('input[name="radio_quest_title"]').val();
-                            var options = radio_field.find('input.question_options').val().split(',').map(function(
-                            opt) {
-                                return opt.trim();
-                            });
+                            function updateRadioView(radio_field) {
+                                var questionTitle = radio_field.find('input[name="radio_quest_title"]').val();
+                                var options = radio_field.find('input.question_options').val().split(',').map(function (
+                                    opt) {
+                                    return opt.trim();
+                                });
 
-                            radio_field.find('.radio_text').text(questionTitle);
-                            var answerHtml = '';
-                            options.forEach(function(option) {
-                                answerHtml += '<label><input type="radio" name="radio_answer_' + radio_field
-                                    .attr('id') + '" value="' + option + '"> ' + option + '</label><br />';
-                            });
-                            radio_field.find('.radio_answer').html(answerHtml);
-                        }
+                                radio_field.find('.radio_text').text(questionTitle);
+                                var answerHtml = '';
+                                options.forEach(function (option) {
+                                    answerHtml += '<label><input type="radio" name="radio_answer_' + radio_field
+                                        .attr('id') + '" value="' + option + '"> ' + option + '</label><br />';
+                                });
+                                radio_field.find('.radio_answer').html(answerHtml);
+                            }
 
-                        function add_number() {
-                            var id = ++fields_sum;
-                            fields_id.push(id);
+                            function add_number() {
+                                var id = ++fields_sum;
+                                fields_id.push(id);
 
-                            var number_field = $('<li id="' + id + '" class="number question_fields">' +
-                                '<div class="field_header">' +
-                                '<div class="field_buttons_edit">' +
-                                '<a href="#" class="edit_quest">edit</a>' +
-                                '<a href="#" class="done_quest" style="display: none;">done</a>' +
-                                '<a href="#" class="delete_quest">delete</a>' +
-                                '</div>' +
-                                '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
-                                'Number Field: ' + id +
-                                '</div>' +
-                                '</div>' +
-                                '<div class="field_container">' +
-                                '<div class="number_edit_state" style="display: none;">' +
-                                '<div class="number_field">' +
-                                'Question Title <input type="text" name="number_quest_title" class="question_title"/><br />' +
-                                'Info <input type="text" class="question_info"/><br />' +
-                                '</div>' +
-                                '</div>' +
-                                '<div class="number_view_state">' +
-                                '<div class="number_text">Question Text?</div>' +
-                                '<div class="number_answer"><input type="number" name="number_answer" /></div>' +
-                                '</div>' +
-                                '</div>' +
-                                '</li>');
+                                var number_field = $('<li id="' + id + '" class="number question_fields">' +
+                                    '<div class="field_header">' +
+                                    '<div class="field_buttons_edit">' +
+                                    '<a href="#" class="edit_quest">edit</a>' +
+                                    '<a href="#" class="done_quest" style="display: none;">done</a>' +
+                                    '<a href="#" class="delete_quest">delete</a>' +
+                                    '</div>' +
+                                    '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                                    'Number Field: ' + id +
+                                    '</div>' +
+                                    '</div>' +
+                                    '<div class="field_container">' +
+                                    '<div class="number_edit_state" style="display: none;">' +
+                                    '<div class="number_field">' +
+                                    'Question Title <input type="text" name="number_quest_title" class="question_title"/><br />' +
+                                    'Info <input type="text" class="question_info"/><br />' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '<div class="number_view_state">' +
+                                    '<div class="number_text">Question Text?</div>' +
+                                    '<div class="number_answer"><input type="number" name="number_answer" /></div>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</li>');
 
-                            $("#sortable").append(number_field);
+                                $("#sortable").append(number_field);
 
-                            number_field.find('.edit_quest').click(function(e) {
-                                e.preventDefault();
-                                number_field.find('.number_view_state').hide();
-                                number_field.find('.number_edit_state').show();
-                                number_field.find('.edit_quest').hide();
-                                number_field.find('.done_quest').show();
-                            });
+                                number_field.find('.edit_quest').click(function (e) {
+                                    e.preventDefault();
+                                    number_field.find('.number_view_state').hide();
+                                    number_field.find('.number_edit_state').show();
+                                    number_field.find('.edit_quest').hide();
+                                    number_field.find('.done_quest').show();
+                                });
 
-                            number_field.find('.done_quest').click(function(e) {
-                                e.preventDefault();
-                                updateNumberView(number_field);
-                                number_field.find('.number_edit_state').hide();
-                                number_field.find('.number_view_state').show();
-                                number_field.find('.done_quest').hide();
-                                number_field.find('.edit_quest').show();
-                            });
+                                number_field.find('.done_quest').click(function (e) {
+                                    e.preventDefault();
+                                    updateNumberView(number_field);
+                                    number_field.find('.number_edit_state').hide();
+                                    number_field.find('.number_view_state').show();
+                                    number_field.find('.done_quest').hide();
+                                    number_field.find('.edit_quest').show();
+                                });
 
-                            number_field.find('.delete_quest').click(function(e) {
-                                e.preventDefault();
-                                if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
-                                    var index = fields_id.indexOf(id);
-                                    fields_id.splice(index, 1);
-                                    number_field.remove();
-                                }
-                            });
-                        }
+                                number_field.find('.delete_quest').click(function (e) {
+                                    e.preventDefault();
+                                    if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
+                                        var index = fields_id.indexOf(id);
+                                        fields_id.splice(index, 1);
+                                        number_field.remove();
+                                    }
+                                });
+                            }
 
-                        function updateNumberView(number_field) {
-                            var questionTitle = number_field.find('input[name="number_quest_title"]').val();
-                            number_field.find('.number_text').text(questionTitle);
-                        }
+                            function updateNumberView(number_field) {
+                                var questionTitle = number_field.find('input[name="number_quest_title"]').val();
+                                number_field.find('.number_text').text(questionTitle);
+                            }
 
-                        function add_dropdown() {
-                            var id = ++fields_sum;
-                            fields_id.push(id);
+                            function add_dropdown() {
+                                var id = ++fields_sum;
+                                fields_id.push(id);
 
-                            var dropdown_field = $('<li id="' + id + '" class="dropdown question_fields">' +
-                                '<div class="field_header">' +
-                                '<div class="field_buttons_edit">' +
-                                '<a href="#" class="edit_quest">edit</a>' +
-                                '<a href="#" class="done_quest" style="display: none;">done</a>' +
-                                '<a href="#" class="delete_quest">delete</a>' +
-                                '</div>' +
-                                '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
-                                'Dropdown: ' + id +
-                                '</div>' +
-                                '</div>' +
-                                '<div class="field_container">' +
-                                '<div class="dropdown_edit_state" style="display: none;">' +
-                                '<div class="dropdown_field">' +
-                                'Question Title <input type="text" name="dropdown_quest_title" class="question_title"/><br />' +
-                                'Info <input type="text" class="question_info"/><br />' +
-                                '<input type="hidden" id="sum_opt_dd" value="0" />' +
-                                '<div class="dropdown_list"></div>' +
-                                '<a href="#" class="add_opt_dd">Add Option</a>' +
-                                '</div>' +
-                                '</div>' +
-                                '<div class="dropdown_view_state">' +
-                                '<div class="dropdown_text">Question Text?</div>' +
-                                '<div class="dropdown_answer">' +
-                                '<select name="dropdown_answer"></select>' +
-                                '</div>' +
-                                '</div>' +
-                                '</div>' +
-                                '</li>');
+                                var dropdown_field = $('<li id="' + id + '" class="dropdown question_fields">' +
+                                    '<div class="field_header">' +
+                                    '<div class="field_buttons_edit">' +
+                                    '<a href="#" class="edit_quest">edit</a>' +
+                                    '<a href="#" class="done_quest" style="display: none;">done</a>' +
+                                    '<a href="#" class="delete_quest">delete</a>' +
+                                    '</div>' +
+                                    '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                                    'Dropdown: ' + id +
+                                    '</div>' +
+                                    '</div>' +
+                                    '<div class="field_container">' +
+                                    '<div class="dropdown_edit_state" style="display: none;">' +
+                                    '<div class="dropdown_field">' +
+                                    'Question Title <input type="text" name="dropdown_quest_title" class="question_title"/><br />' +
+                                    'Info <input type="text" class="question_info"/><br />' +
+                                    '<input type="hidden" id="sum_opt_dd" value="0" />' +
+                                    '<div class="dropdown_list"></div>' +
+                                    '<a href="#" class="add_opt_dd">Add Option</a>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '<div class="dropdown_view_state">' +
+                                    '<div class="dropdown_text">Question Text?</div>' +
+                                    '<div class="dropdown_answer">' +
+                                    '<select name="dropdown_answer"></select>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</li>');
 
-                            $("#sortable").append(dropdown_field);
+                                $("#sortable").append(dropdown_field);
 
-                            dropdown_field.find('.edit_quest').click(function(e) {
-                                e.preventDefault();
-                                dropdown_field.find('.dropdown_view_state').hide();
-                                dropdown_field.find('.dropdown_edit_state').show();
-                                dropdown_field.find('.edit_quest').hide();
-                                dropdown_field.find('.done_quest').show();
-                            });
+                                dropdown_field.find('.edit_quest').click(function (e) {
+                                    e.preventDefault();
+                                    dropdown_field.find('.dropdown_view_state').hide();
+                                    dropdown_field.find('.dropdown_edit_state').show();
+                                    dropdown_field.find('.edit_quest').hide();
+                                    dropdown_field.find('.done_quest').show();
+                                });
 
-                            dropdown_field.find('.done_quest').click(function(e) {
-                                e.preventDefault();
-                                updateDropdownView(dropdown_field);
-                                dropdown_field.find('.dropdown_edit_state').hide();
-                                dropdown_field.find('.dropdown_view_state').show();
-                                dropdown_field.find('.done_quest').hide();
-                                dropdown_field.find('.edit_quest').show();
-                            });
+                                dropdown_field.find('.done_quest').click(function (e) {
+                                    e.preventDefault();
+                                    updateDropdownView(dropdown_field);
+                                    dropdown_field.find('.dropdown_edit_state').hide();
+                                    dropdown_field.find('.dropdown_view_state').show();
+                                    dropdown_field.find('.done_quest').hide();
+                                    dropdown_field.find('.edit_quest').show();
+                                });
 
-                            dropdown_field.find('.add_opt_dd').click(function(e) {
-                                e.preventDefault();
-                                add_opt_dd($(this));
-                            });
-
-                            // Konfirmasi sebelum menghapus
-                            dropdown_field.find('.delete_quest').click(function(e) {
-                                e.preventDefault();
-                                if (window.confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
-                                    dropdown_field.remove();
-                                }
-                            });
-                        }
-
-                        function add_opt_dd(anu) {
-                            var opt_sum = parseInt(anu.parents("li:first").find("#sum_opt_dd").val());
-                            ++opt_sum;
-                            anu.parents("li:first").find("#sum_opt_dd").val(opt_sum);
-
-                            var row = $('<div class="option_dropdown" id="opt_dd_' + opt_sum + '">' +
-                                'Option ' + opt_sum + ' <input type="text" name="label_option_' + opt_sum +
-                                '" class="label_opt" style="width: 25%; margin-left: 30px;" /> ' +
-                                'Value: <input type="text" name="value_opt_' + opt_sum +
-                                '" class="val_opt" style="width: 25%;" /> ' +
-                                '<a href="#" class="add_opt_dd">Add</a> ' +
-                                '<a href="#" class="remove_opt_dd">Remove</a>' +
-                                '</div>');
-
-                            var list = anu.parents("li:first").find(".dropdown_list");
-                            list.append(row);
-
-                            row.find('.add_opt_dd, .remove_opt_dd').click(function(event) {
-                                event.preventDefault();
-                                if ($(this).is('.add_opt_dd')) {
+                                dropdown_field.find('.add_opt_dd').click(function (e) {
+                                    e.preventDefault();
                                     add_opt_dd($(this));
-                                } else {
-                                    var opt_sum = parseInt(anu.parents("li:first").find("#sum_opt_dd").val());
-                                    --opt_sum;
-                                    anu.parents("li:first").find("#sum_opt_dd").val(opt_sum);
+                                });
+
+                                // Konfirmasi sebelum menghapus
+                                dropdown_field.find('.delete_quest').click(function (e) {
+                                    e.preventDefault();
+                                    if (window.confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
+                                        dropdown_field.remove();
+                                    }
+                                });
+                            }
+
+                            function add_opt_dd(anu) {
+                                var opt_sum = parseInt(anu.parents("li:first").find("#sum_opt_dd").val());
+                                ++opt_sum;
+                                anu.parents("li:first").find("#sum_opt_dd").val(opt_sum);
+
+                                var row = $('<div class="option_dropdown" id="opt_dd_' + opt_sum + '">' +
+                                    'Option ' + opt_sum + ' <input type="text" name="label_option_' + opt_sum +
+                                    '" class="label_opt" style="width: 25%; margin-left: 30px;" /> ' +
+                                    'Value: <input type="text" name="value_opt_' + opt_sum +
+                                    '" class="val_opt" style="width: 25%;" /> ' +
+                                    '<a href="#" class="add_opt_dd">Add</a> ' +
+                                    '<a href="#" class="remove_opt_dd">Remove</a>' +
+                                    '</div>');
+
+                                var list = anu.parents("li:first").find(".dropdown_list");
+                                list.append(row);
+
+                                row.find('.add_opt_dd, .remove_opt_dd').click(function (event) {
+                                    event.preventDefault();
+                                    if ($(this).is('.add_opt_dd')) {
+                                        add_opt_dd($(this));
+                                    } else {
+                                        var opt_sum = parseInt(anu.parents("li:first").find("#sum_opt_dd").val());
+                                        --opt_sum;
+                                        anu.parents("li:first").find("#sum_opt_dd").val(opt_sum);
+                                        $(this).parent().remove();
+                                    }
+                                });
+                            }
+
+                            function updateDropdownView(dropdown_field) {
+                                var questionTitle = dropdown_field.find('input[name="dropdown_quest_title"]').val();
+                                dropdown_field.find('.dropdown_text').text(questionTitle);
+
+                                var dropdownSelect = dropdown_field.find('select[name="dropdown_answer"]');
+                                dropdownSelect.empty();
+                                dropdown_field.find('.option_dropdown').each(function () {
+                                    var label = $(this).find('.label_opt').val();
+                                    var value = $(this).find('.val_opt').val();
+                                    dropdownSelect.append('<option value="' + value + '">' + label + '</option>');
+                                });
+                            }
+
+                            function add_date() {
+                                var id = ++fields_sum;
+                                fields_id.push(id);
+
+                                var date_field = $('<li id="' + id + '" class="date question_fields">' +
+                                    '<div class="field_header">' +
+                                    '<div class="field_buttons_edit">' +
+                                    '<a href="#" class="edit_quest">edit</a>' +
+                                    '<a href="#" class="done_quest" style="display: none;">done</a>' +
+                                    '<a href="#" class="delete_quest">delete</a>' +
+                                    '</div>' +
+                                    '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                                    'Date Field: ' + id +
+                                    '</div>' +
+                                    '</div>' +
+                                    '<div class="field_container">' +
+                                    '<div class="date_edit_state" style="display: none;">' +
+                                    '<div class="date_field">' +
+                                    'Select Date: <input type="date" name="date_answer" class="question_date"/><br />' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '<div class="date_view_state">' +
+                                    '<div class="date_text">Question Text?</div>' +
+                                    '<div class="date_answer"><input type="date" name="date_answer" /></div>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</li>');
+
+                                $("#sortable").append(date_field);
+
+                                date_field.find('.edit_quest').click(function (e) {
+                                    e.preventDefault();
+                                    date_field.find('.date_view_state').hide();
+                                    date_field.find('.date_edit_state').show();
+                                    date_field.find('.edit_quest').hide();
+                                    date_field.find('.done_quest').show();
+                                });
+
+                                date_field.find('.done_quest').click(function (e) {
+                                    e.preventDefault();
+                                    updateDateView(date_field);
+                                    date_field.find('.date_edit_state').hide();
+                                    date_field.find('.date_view_state').show();
+                                    date_field.find('.done_quest').hide();
+                                    date_field.find('.edit_quest').show();
+                                });
+
+                                date_field.find('.delete_quest').click(function (e) {
+                                    e.preventDefault();
+                                    if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
+                                        var index = fields_id.indexOf(id);
+                                        fields_id.splice(index, 1);
+                                        date_field.remove();
+                                    }
+                                });
+                            }
+
+                            function updateDateView(date_field) {
+                                var selectedDate = date_field.find('input[name="date_answer"]').val();
+                                date_field.find('.date_text').text(selectedDate); // Menampilkan tanggal yang dipilih
+                            }
+
+                            function add_checkbox() {
+                                var id = ++fields_sum;
+                                fields_id.push(id);
+                                console.log("add_checkbox() called");
+                                var checkbox_field = $('<li id="' + id + '" class="checkbox question_fields">' +
+                                    '<div class="field_header">' +
+                                    '<div class="field_buttons_edit">' +
+                                    '<a href="#" class="edit_quest">edit</a>' +
+                                    '<a href="#" class="done_quest" style="display: none;">done</a>' +
+                                    '<a href="#" class="delete_quest">delete</a>' +
+                                    '</div>' +
+                                    '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                                    'Checkbox: ' + id +
+                                    '</div>' +
+                                    '</div>' +
+                                    '<div class="field_container">' +
+                                    '<div class="checkbox_edit_state" style="display: none;">' +
+                                    '<div class="checkbox_field">' +
+                                    'Question Title <input type="text" name="checkbox_quest_title" class="question_title"/><br />' +
+                                    'Info <input type="text" class="question_info"/><br />' +
+                                    '<div class="checkbox_options_list"></div>' +
+                                    '<a href="#" class="add_checkbox_option">Add Option</a>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '<div class="checkbox_view_state">' +
+                                    '<div class="checkbox_text">Question Text?</div>' +
+                                    '<div class="checkbox_answers"></div>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</li>');
+
+                                $("#sortable").append(checkbox_field);
+
+                                checkbox_field.find('.edit_quest').click(function (e) {
+                                    e.preventDefault();
+                                    checkbox_field.find('.checkbox_view_state').hide();
+                                    checkbox_field.find('.checkbox_edit_state').show();
+                                    checkbox_field.find('.edit_quest').hide();
+                                    checkbox_field.find('.done_quest').show();
+                                });
+
+                                checkbox_field.find('.done_quest').click(function (e) {
+                                    e.preventDefault();
+                                    updateCheckboxView(checkbox_field);
+                                    checkbox_field.find('.checkbox_edit_state').hide();
+                                    checkbox_field.find('.checkbox_view_state').show();
+                                    checkbox_field.find('.done_quest').hide();
+                                    checkbox_field.find('.edit_quest').show();
+                                });
+
+                                checkbox_field.find('.add_checkbox_option').click(function (e) {
+                                    e.preventDefault();
+                                    addCheckboxOption($(this));
+                                });
+
+                                checkbox_field.find('.delete_quest').click(function (e) {
+                                    e.preventDefault();
+                                    if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
+                                        var index = fields_id.indexOf(id);
+                                        fields_id.splice(index, 1);
+                                        checkbox_field.remove();
+                                    }
+                                });
+                            }
+
+                            function addCheckboxOption(button) {
+                                var optionId = button.parents("li:first").find(".checkbox_options_list .checkbox_option")
+                                    .length + 1;
+                                var option = $('<div class="checkbox_option" id="checkbox_option_' + optionId + '">' +
+                                    'Option ' + optionId + ' <input type="text" name="label_checkbox_option_' +
+                                    optionId +
+                                    '" class="label_checkbox_option" style="width: 25%; margin-left: 10px;" />' +
+                                    '<a href="#" class="remove_checkbox_option">Remove</a>' +
+                                    '</div>');
+
+                                button.siblings(".checkbox_options_list").append(option);
+
+                                option.find('.remove_checkbox_option').click(function (e) {
+                                    e.preventDefault();
                                     $(this).parent().remove();
-                                }
-                            });
-                        }
+                                });
+                            }
 
-                        function updateDropdownView(dropdown_field) {
-                            var questionTitle = dropdown_field.find('input[name="dropdown_quest_title"]').val();
-                            dropdown_field.find('.dropdown_text').text(questionTitle);
+                            function updateCheckboxView(checkbox_field) {
+                                var questionTitle = checkbox_field.find('input[name="checkbox_quest_title"]').val();
+                                checkbox_field.find('.checkbox_text').text(questionTitle);
 
-                            var dropdownSelect = dropdown_field.find('select[name="dropdown_answer"]');
-                            dropdownSelect.empty();
-                            dropdown_field.find('.option_dropdown').each(function() {
-                                var label = $(this).find('.label_opt').val();
-                                var value = $(this).find('.val_opt').val();
-                                dropdownSelect.append('<option value="' + value + '">' + label + '</option>');
-                            });
-                        }
+                                var checkboxContainer = checkbox_field.find('.checkbox_answers');
+                                checkboxContainer.empty();
+                                checkbox_field.find('.checkbox_option').each(function () {
+                                    var label = $(this).find('.label_checkbox_option').val();
+                                    checkboxContainer.append(
+                                        '<label><input type="checkbox" name="checkbox_answer" /> ' + label +
+                                        '</label><br>');
+                                });
+                            }
 
-                        function add_date() {
-                            var id = ++fields_sum;
-                            fields_id.push(id);
+                            var fields_sum = 0; // Inisialisasi jumlah field
+                            var fields_id = []; // Array untuk menyimpan ID field
 
-                            var date_field = $('<li id="' + id + '" class="date question_fields">' +
-                                '<div class="field_header">' +
-                                '<div class="field_buttons_edit">' +
-                                '<a href="#" class="edit_quest">edit</a>' +
-                                '<a href="#" class="done_quest" style="display: none;">done</a>' +
-                                '<a href="#" class="delete_quest">delete</a>' +
-                                '</div>' +
-                                '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
-                                'Date Field: ' + id +
-                                '</div>' +
-                                '</div>' +
-                                '<div class="field_container">' +
-                                '<div class="date_edit_state" style="display: none;">' +
-                                '<div class="date_field">' +
-                                'Select Date: <input type="date" name="date_answer" class="question_date"/><br />' +
-                                '</div>' +
-                                '</div>' +
-                                '<div class="date_view_state">' +
-                                '<div class="date_text">Question Text?</div>' +
-                                '<div class="date_answer"><input type="date" name="date_answer" /></div>' +
-                                '</div>' +
-                                '</div>' +
-                                '</li>');
+                            function add_single_line() {
+                                var id = ++fields_sum;
+                                fields_id.push(id);
+                                console.log('Adding question with ID:', id); // Debugging
 
-                            $("#sortable").append(date_field);
+                                var single_field = $('<li id="' + id + '" class="single question_fields">' +
+                                    '<div class="field_header">' +
+                                    '<div class="field_buttons_edit">' +
+                                    '<a href="#" class="edit_quest">edit</a>' +
+                                    '<a href="#" class="done_quest">done</a>' +
+                                    '<a href="#" class="delete_quest">delete</a>' +
+                                    '</div>' +
+                                    '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                                    'Single Line Text: ' + id +
+                                    '</div>' +
+                                    '</div>' +
+                                    '<div class="field_container">' +
+                                    '<div class="single_edit_state">' +
+                                    '<div class="single_line">' +
+                                    'Question Title <input type="text" name="questions[' + id +
+                                    '][title]" class="question_title"/><br />' +
+                                    'Info <input type="text" name="questions[' + id +
+                                    '][info]" class="question_info"/>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '<div class="single_view_state">' +
+                                    '<div class="single_line_text">Question Text?</div>' +
+                                    '<div class="single_line_answer"><input type="text" name="questions[' + id +
+                                    '][answer]" /></div>' +
+                                    '</div>' +
+                                    '</div>' +
+                                    '</li>');
 
-                            date_field.find('.edit_quest').click(function(e) {
-                                e.preventDefault();
-                                date_field.find('.date_view_state').hide();
-                                date_field.find('.date_edit_state').show();
-                                date_field.find('.edit_quest').hide();
-                                date_field.find('.done_quest').show();
-                            });
+                                console.log('Appending new question field'); // Debugging
+                                $("#sortable").append(single_field);
 
-                            date_field.find('.done_quest').click(function(e) {
-                                e.preventDefault();
-                                updateDateView(date_field);
-                                date_field.find('.date_edit_state').hide();
-                                date_field.find('.date_view_state').show();
-                                date_field.find('.done_quest').hide();
-                                date_field.find('.edit_quest').show();
-                            });
-
-                            date_field.find('.delete_quest').click(function(e) {
-                                e.preventDefault();
-                                if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
-                                    var index = fields_id.indexOf(id);
-                                    fields_id.splice(index, 1);
-                                    date_field.remove();
-                                }
-                            });
-                        }
-
-                        function updateDateView(date_field) {
-                            var selectedDate = date_field.find('input[name="date_answer"]').val();
-                            date_field.find('.date_text').text(selectedDate); // Menampilkan tanggal yang dipilih
-                        }
-
-                        function add_checkbox() {
-                            var id = ++fields_sum;
-                            fields_id.push(id);
-                            console.log("add_checkbox() called");
-                            var checkbox_field = $('<li id="' + id + '" class="checkbox question_fields">' +
-                                '<div class="field_header">' +
-                                '<div class="field_buttons_edit">' +
-                                '<a href="#" class="edit_quest">edit</a>' +
-                                '<a href="#" class="done_quest" style="display: none;">done</a>' +
-                                '<a href="#" class="delete_quest">delete</a>' +
-                                '</div>' +
-                                '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
-                                'Checkbox: ' + id +
-                                '</div>' +
-                                '</div>' +
-                                '<div class="field_container">' +
-                                '<div class="checkbox_edit_state" style="display: none;">' +
-                                '<div class="checkbox_field">' +
-                                'Question Title <input type="text" name="checkbox_quest_title" class="question_title"/><br />' +
-                                'Info <input type="text" class="question_info"/><br />' +
-                                '<div class="checkbox_options_list"></div>' +
-                                '<a href="#" class="add_checkbox_option">Add Option</a>' +
-                                '</div>' +
-                                '</div>' +
-                                '<div class="checkbox_view_state">' +
-                                '<div class="checkbox_text">Question Text?</div>' +
-                                '<div class="checkbox_answers"></div>' +
-                                '</div>' +
-                                '</div>' +
-                                '</li>');
-
-                            $("#sortable").append(checkbox_field);
-
-                            checkbox_field.find('.edit_quest').click(function(e) {
-                                e.preventDefault();
-                                checkbox_field.find('.checkbox_view_state').hide();
-                                checkbox_field.find('.checkbox_edit_state').show();
-                                checkbox_field.find('.edit_quest').hide();
-                                checkbox_field.find('.done_quest').show();
-                            });
-
-                            checkbox_field.find('.done_quest').click(function(e) {
-                                e.preventDefault();
-                                updateCheckboxView(checkbox_field);
-                                checkbox_field.find('.checkbox_edit_state').hide();
-                                checkbox_field.find('.checkbox_view_state').show();
-                                checkbox_field.find('.done_quest').hide();
-                                checkbox_field.find('.edit_quest').show();
-                            });
-
-                            checkbox_field.find('.add_checkbox_option').click(function(e) {
-                                e.preventDefault();
-                                addCheckboxOption($(this));
-                            });
-
-                            checkbox_field.find('.delete_quest').click(function(e) {
-                                e.preventDefault();
-                                if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
-                                    var index = fields_id.indexOf(id);
-                                    fields_id.splice(index, 1);
-                                    checkbox_field.remove();
-                                }
-                            });
-                        }
-
-                        function addCheckboxOption(button) {
-                            var optionId = button.parents("li:first").find(".checkbox_options_list .checkbox_option")
-                                .length + 1;
-                            var option = $('<div class="checkbox_option" id="checkbox_option_' + optionId + '">' +
-                                'Option ' + optionId + ' <input type="text" name="label_checkbox_option_' +
-                                optionId +
-                                '" class="label_checkbox_option" style="width: 25%; margin-left: 10px;" />' +
-                                '<a href="#" class="remove_checkbox_option">Remove</a>' +
-                                '</div>');
-
-                            button.siblings(".checkbox_options_list").append(option);
-
-                            option.find('.remove_checkbox_option').click(function(e) {
-                                e.preventDefault();
-                                $(this).parent().remove();
-                            });
-                        }
-
-                        function updateCheckboxView(checkbox_field) {
-                            var questionTitle = checkbox_field.find('input[name="checkbox_quest_title"]').val();
-                            checkbox_field.find('.checkbox_text').text(questionTitle);
-
-                            var checkboxContainer = checkbox_field.find('.checkbox_answers');
-                            checkboxContainer.empty();
-                            checkbox_field.find('.checkbox_option').each(function() {
-                                var label = $(this).find('.label_checkbox_option').val();
-                                checkboxContainer.append(
-                                    '<label><input type="checkbox" name="checkbox_answer" /> ' + label +
-                                    '</label><br>');
-                            });
-                        }
-
-                        var fields_sum = 0; // Inisialisasi jumlah field
-                        var fields_id = []; // Array untuk menyimpan ID field
-
-                        function add_single_line() {
-                            var id = ++fields_sum;
-                            fields_id.push(id);
-                            console.log('Adding question with ID:', id); // Debugging
-
-                            var single_field = $('<li id="' + id + '" class="single question_fields">' +
-                                '<div class="field_header">' +
-                                '<div class="field_buttons_edit">' +
-                                '<a href="#" class="edit_quest">edit</a>' +
-                                '<a href="#" class="done_quest">done</a>' +
-                                '<a href="#" class="delete_quest">delete</a>' +
-                                '</div>' +
-                                '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
-                                'Single Line Text: ' + id +
-                                '</div>' +
-                                '</div>' +
-                                '<div class="field_container">' +
-                                '<div class="single_edit_state">' +
-                                '<div class="single_line">' +
-                                'Question Title <input type="text" name="questions[' + id +
-                                '][title]" class="question_title"/><br />' +
-                                'Info <input type="text" name="questions[' + id +
-                                '][info]" class="question_info"/>' +
-                                '</div>' +
-                                '</div>' +
-                                '<div class="single_view_state">' +
-                                '<div class="single_line_text">Question Text?</div>' +
-                                '<div class="single_line_answer"><input type="text" name="questions[' + id +
-                                '][answer]" /></div>' +
-                                '</div>' +
-                                '</div>' +
-                                '</li>');
-
-                            console.log('Appending new question field'); // Debugging
-                            $("#sortable").append(single_field);
-
-                            single_field.find('.done_quest, .edit_quest, .delete_quest').click(function() {
-                                done_edit_delete_quest($(this));
-                            });
-                        }
+                                single_field.find('.done_quest, .edit_quest, .delete_quest').click(function () {
+                                    done_edit_delete_quest($(this));
+                                });
+                            }
                         </script>
 
                     </div>
@@ -1809,51 +1826,51 @@
 
     <!-- OPEN TAB -->
     <script>
-    function openTab(evt, tabId) {
-        // Sembunyikan semua tab content
-        var tabcontent = document.getElementsByClassName("tab-content");
-        for (var i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none"; // Sembunyikan semua tab
+        function openTab(evt, tabId) {
+            // Sembunyikan semua tab content
+            var tabcontent = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none"; // Sembunyikan semua tab
+            }
+
+            // Tampilkan tab yang dipilih
+            document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
+
+            // Menandai tombol tab yang aktif
+            var tablinks = document.getElementsByClassName("nav-link");
+            for (var i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active",
+                    ""); // Hilangkan kelas active dari semua tab
+            }
+
+            // Tambahkan kelas active pada tombol yang ditekan
+            evt.currentTarget.className += " active";
         }
-
-        // Tampilkan tab yang dipilih
-        document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
-
-        // Menandai tombol tab yang aktif
-        var tablinks = document.getElementsByClassName("nav-link");
-        for (var i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active",
-            ""); // Hilangkan kelas active dari semua tab
-        }
-
-        // Tambahkan kelas active pada tombol yang ditekan
-        evt.currentTarget.className += " active";
-    }
     </script>
 
     
 
     <script>
-    function openTab(evt, tabId) {
-        // Sembunyikan semua tab content
-        var tabcontent = document.getElementsByClassName("tab-content");
-        for (var i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none"; // Sembunyikan semua tab
+        function openTab(evt, tabId) {
+            // Sembunyikan semua tab content
+            var tabcontent = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none"; // Sembunyikan semua tab
+            }
+
+            // Tampilkan tab yang dipilih
+            document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
+
+            // Menandai tombol tab yang aktif
+            var tablinks = document.getElementsByClassName("kuesioner");
+            for (var i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active",
+                    ""); // Hilangkan kelas active dari semua tab
+            }
+
+            // Tambahkan kelas active pada tombol yang ditekan
+            evt.currentTarget.className += " active";
         }
-
-        // Tampilkan tab yang dipilih
-        document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
-
-        // Menandai tombol tab yang aktif
-        var tablinks = document.getElementsByClassName("kuesioner");
-        for (var i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active",
-            ""); // Hilangkan kelas active dari semua tab
-        }
-
-        // Tambahkan kelas active pada tombol yang ditekan
-        evt.currentTarget.className += " active";
-    }
     </script>
     <!-- OPEN TAB END -->
     <!-- JS -->
@@ -2058,29 +2075,29 @@
                     </div>
 
                     <script>
-                    // SCRIPT SEARCH AUTO DELETE
-                    function removeEmptyInputs() {
-                        const form = document.getElementById('searchForm');
-                        const inputs = form.querySelectorAll('input, select');
+                        // SCRIPT SEARCH AUTO DELETE
+                        function removeEmptyInputs() {
+                            const form = document.getElementById('searchForm');
+                            const inputs = form.querySelectorAll('input, select');
 
-                        inputs.forEach(input => {
-                            if (!input.value) {
-                                input.removeAttribute('name');
+                            inputs.forEach(input => {
+                                if (!input.value) {
+                                    input.removeAttribute('name');
+                                }
+                            });
+                        }
+
+                        // SCRIPT UNTUK FORMULIR OPTION 
+                        document.getElementById('academic_faculty').addEventListener('change', function () {
+                            const selectedFaculty = this.value;
+                            const programDropdown = document.getElementById('academic_program');
+
+                            // Show or hide options based on selected faculty
+                            for (let option of programDropdown.options) {
+                                option.style.display = option.getAttribute('data-faculty') === selectedFaculty ||
+                                    option.value === '' ? 'block' : 'none';
                             }
                         });
-                    }
-
-                    // SCRIPT UNTUK FORMULIR OPTION 
-                    document.getElementById('academic_faculty').addEventListener('change', function() {
-                        const selectedFaculty = this.value;
-                        const programDropdown = document.getElementById('academic_program');
-
-                        // Show or hide options based on selected faculty
-                        for (let option of programDropdown.options) {
-                            option.style.display = option.getAttribute('data-faculty') === selectedFaculty ||
-                                option.value === '' ? 'block' : 'none';
-                        }
-                    });
                     </script>
                     <!-- Filter END -->
 
@@ -2106,25 +2123,25 @@
                         </table>
 
                         <script>
-                        $(document).ready(function() {
-                            function loadTableData() {
-                                $.ajax({
-                                    url: "<?= site_url('/kuesionerkuesioner') ?>", // Ganti dengan URL endpoint yang sesuai
-                                    method: "GET",
-                                    dataType: "json",
-                                    success: function(data) {
-                                        console.log("Data yang diterima:", data);
-                                        $('#dataTable tbody')
-                                    .empty(); // Mengosongkan tbody sebelum memuat data baru
+                            $(document).ready(function () {
+                                function loadTableData() {
+                                    $.ajax({
+                                        url: "<?= site_url('/kuesionerkuesioner') ?>", // Ganti dengan URL endpoint yang sesuai
+                                        method: "GET",
+                                        dataType: "json",
+                                        success: function (data) {
+                                            console.log("Data yang diterima:", data);
+                                            $('#dataTable tbody')
+                                                .empty(); // Mengosongkan tbody sebelum memuat data baru
 
-                                        if (data.length === 0) {
-                                            alert("Tidak ada data yang tersedia.");
-                                        } else {
-                                            let no = 1;
+                                            if (data.length === 0) {
+                                                alert("Tidak ada data yang tersedia.");
+                                            } else {
+                                                let no = 1;
 
-                                            // Looping data untuk menampilkan di tabel
-                                            $.each(data, function(index, row) {
-                                                $('#dataTable tbody').append(`
+                                                // Looping data untuk menampilkan di tabel
+                                                $.each(data, function (index, row) {
+                                                    $('#dataTable tbody').append(`
                                                     <tr>
                                                         <td>${no}</td>  <!-- Kolom nomor urut -->
                                                         <td>${row.academic_nim}</td>
@@ -2136,22 +2153,22 @@
                                                         <td>${row.updated_on}</td>
                                                     </tr>
                                                 `);
-                                                no++; // Increment nomor urut untuk baris berikutnya
-                                            });
+                                                    no++; // Increment nomor urut untuk baris berikutnya
+                                                });
+                                            }
+                                        },
+                                        error: function (xhr, status, error) {
+                                            console.error("Error loading data:", error);
                                         }
-                                    },
-                                    error: function(xhr, status, error) {
-                                        console.error("Error loading data:", error);
-                                    }
-                                });
-                            }
+                                    });
+                                }
 
-                            // Fungsi untuk memuat data saat halaman pertama kali dimuat
-                            loadTableData();
+                                // Fungsi untuk memuat data saat halaman pertama kali dimuat
+                                loadTableData();
 
-                            // Refresh data setiap 10 detik (opsional)
-                            setInterval(loadTableData, 10000);
-                        });
+                                // Refresh data setiap 10 detik (opsional)
+                                setInterval(loadTableData, 10000);
+                            });
                         </script>
 
 
@@ -2162,26 +2179,26 @@
     </div>
 
     <script>
-    function openTab(evt, tabId) {
-        // Sembunyikan semua tab content
-        var tabcontent = document.getElementsByClassName("tab-content");
-        for (var i = 0; i < tabcontent.length; i++) {
-            tabcontent[i].style.display = "none"; // Sembunyikan semua tab
+        function openTab(evt, tabId) {
+            // Sembunyikan semua tab content
+            var tabcontent = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none"; // Sembunyikan semua tab
+            }
+
+            // Tampilkan tab yang dipilih
+            document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
+
+            // Menandai tombol tab yang aktif
+            var tablinks = document.getElementsByClassName("kuesioner");
+            for (var i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active",
+                    ""); // Hilangkan kelas active dari semua tab
+            }
+
+            // Tambahkan kelas active pada tombol yang ditekan
+            evt.currentTarget.className += " active";
         }
-
-        // Tampilkan tab yang dipilih
-        document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
-
-        // Menandai tombol tab yang aktif
-        var tablinks = document.getElementsByClassName("kuesioner");
-        for (var i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active",
-            ""); // Hilangkan kelas active dari semua tab
-        }
-
-        // Tambahkan kelas active pada tombol yang ditekan
-        evt.currentTarget.className += " active";
-    }
     </script>
     </div>
     </div>
