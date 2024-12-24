@@ -43,6 +43,8 @@ class c_kuesioner extends BaseController
         return view('indexuser', $data);
     }
 
+    
+
     public function deleteUser()
     {
         $userModel = new m_kuesioner();
@@ -144,6 +146,7 @@ class c_kuesioner extends BaseController
          return redirect()->to('/kuesionerkuesioner')->with('success', 'Data berhasil disimpan.');
      }
 
+     
      
 }
     

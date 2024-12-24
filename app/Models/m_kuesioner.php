@@ -42,7 +42,11 @@ class m_kuesioner extends Model
             $values['entries'] = 0;
             
         return $count;
-    }    
+    }   
+    
+    
     
 }
+
+
 

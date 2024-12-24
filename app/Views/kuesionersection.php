@@ -349,103 +349,142 @@
             <div class="content-body">
 
                 <!-- CRUD START-->
-                <div class="row">
-                    <div class="col-lg-12 col-md-12">
-                        <div class="card tab-content">
-                            <div class="card-header">
-                                <div class="d-flex justify-content-between">
-                                    <h2>Sunting Kuesioner Section</h2>
-                                </div>
-                                <hr>
+                                                    <div class="row">
+                                                        <div class="col-lg-12 col-md-12">
+                                                            <div class="card tab-content">
+                                                                <div class="card-header">
+                                                                    <div class="d-flex justify-content-between">
+                                                                        <h2>Sunting Kuesioner Section</h2>
+                                                                    </div>
+                                                                    <hr>
 
-                                <div class="m-2">
-                                    <form>
-                                        <form>
+                                                                    <div class="m-2">
+                                        <form id="questionForm" method="post" action="<?= base_url('savequestions') ?>">
                                             <div class="form-group">
                                                 <label for="exampleInputTitle">Title</label>
-                                                <input type="email" class="form-control" id="exampleInputTitle"
-                                                    placeholder="Data Pribadi">
+                                                <input type="text" class="form-control" id="exampleInputTitle" placeholder="Data Pribadi" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleInputDeskripsi">Deskripsi</label>
-                                                <input type="password" class="form-control" id="exampleInputDeskripsi"
-                                                    placeholder="Bagian ini berisi pertanyaan tentang data pribadi responden.">
+                                                <input type="text" class="form-control" id="exampleInputDeskripsi" placeholder="Bagian ini berisi pertanyaan tentang data pribadi responden." required>
                                             </div>
-                                            <div class="form-check d-flex">
-                                                <label class="form-check-label" for="exampleCheck1">Show Section
-                                                    Title</label>
-                                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                            </div>
-                                            <div class="form-check d-flex mt-1">
-                                                <label class="form-check-label" for="exampleCheck1">Show Section
-                                                    Description</label>
-                                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                            </div>
-                                            <div class="form-check d-flex mt-1">
-                                                <label class="form-check-label" for="exampleCheck1">Conditional
-                                                    Logic</label>
-                                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                            </div>
-
-                                            <br>
                                             <div>
-                                                <a class="btn btn-info"
-                                                    style="font-size:14px;padding:8px 10px;color:white;"
-                                                    onclick="openTab(event, 'SuntingKuesionerSection')">Simpan</a>
-                                                <a class="btn btn-danger"
-                                                    style="font-size:14px;padding:8px 10px;color:white;"
-                                                    onclick="openTab(event, 'SuntingEditKuesioner')">Batal</a>
+                                            <button type="button" class="btn btn-info" style="font-size:14px;padding:8px 10px;color:white;" onclick="saveQuestions()">Simpan</button>
+                                                <a class="btn btn-danger" style="font-size:14px;padding:8px 10px;color:white;" onclick="openTab(event, 'SuntingEditKuesioner')">Batal</a>
                                             </div>
-
+                                            <input type="hidden" name="questions" id="questionsInput">
+                                            <input type="hidden" name="kuesioner_id" value="1">
+                                            <input type="hidden" name="page_id" value="1">
                                         </form>
-
+</div>
                                         <!-- ISI DISINI -->
                                         <div id="floating_question_selector">
-                                            <div id="floating_label">
-                                                Pilih Jenis Pertanyaan...
-                                            </div>
-                                            <div id="questions_button">
-                                                <button class="quest_butt btn btn-primary"
-                                                    onclick="add_single_line();">Single
-                                                    Line Text</button>
-                                                <button class="quest_butt btn btn-primary"
-                                                    onclick="add_dropdown();">Dropdown
-                                                    List</button>
-                                                <button class="quest_butt btn btn-primary"
-                                                    onclick="add_date();">Date</button>
-                                                <button class="quest_butt btn btn-primary"
-                                                    onclick="add_checkbox();">Checkbox</button>
-                                                <button class="quest_butt btn btn-primary"
-                                                    onclick="add_number();">Number</button>
-                                                <button class="quest_butt btn btn-primary" onclick="add_radio();">Radio
-                                                    Buttons</button>
-                                                <button class="quest_butt btn btn-primary"
-                                                    onclick="add_phone();">Phone</button>
-                                                <button class="quest_butt btn btn-primary"
-                                                    onclick="add_scale();">Scale</button>
-                                                <button class="quest_butt btn btn-primary"
-                                                    onclick="add_readonly();">User
-                                                    Field</button>
-                                                <button class="quest_butt btn btn-primary"
-                                                    onclick="add_grid();">Grid</button>
-                                                <!-- Tambahkan tombol lainnya di sini -->
-                                            </div>
-
+                                        <div id="floating_label">
+                                            Pilih Jenis Pertanyaan...
                                         </div>
+                                        <div id="questions_button">
+                                            <button class="quest_butt btn btn-primary" onclick="add_single_line();">Single Line Text</button>
+                                            <button class="quest_butt btn btn-primary" onclick="add_dropdown();">Dropdown List</button>
+                                            <button class="quest_butt btn btn-primary" onclick="add_date();">Date</button>
+                                            <button class="quest_butt btn btn-primary" onclick="add_checkbox();">Checkbox</button>
+                                            <button class="quest_butt btn btn-primary" onclick="add_number();">Number</button>
+                                            <button class="quest_butt btn btn-primary" onclick="add_radio();">Radio Buttons</button>
+                                            <button class="quest_butt btn btn-primary" onclick="add_phone();">Phone</button>
+                                            <button class="quest_butt btn btn-primary" onclick="add_scale();">Scale</button>
+                                            <button class="quest_butt btn btn-primary" onclick="add_readonly();">User Field</button>
+                                            <button class="quest_butt btn btn-primary" onclick="add_grid();">Grid</button>
+                                        </div>
+                                    </div>
 
-                                        <form id="questionForm" method="post"
-                                            action="<?= base_url('kuesionerkuesioner') ?>">
-                                            <div id="questions_panel" class="container mt-5">
-                                                <h2>Daftar Pertanyaan</h2>
-                                                <ul id="sortable">
-                                                    <!-- Pertanyaan akan ditambahkan di sini -->
-                                                </ul>
-                                            </div>
-                                </div>
+                                    <form id="questionForm" method="post" action="<?= base_url('savequestions') ?>">
+                                        <input type="hidden" name="questions" id="questionsInput"> <!-- Input tersembunyi untuk menyimpan data pertanyaan -->
+                                        <input type="hidden" name="kuesioner_id" value="1"> <!-- ID Kuesioner -->
+                                        <input type="hidden" name="page_id" value="1"> <!-- ID Halaman -->
+
+                                        
+                                        <div id="questions_panel" class="container mt-5">
+                                            <h2>Daftar Pertanyaan</h2>
+                                            <ul id="sortable">
+                                                <!-- Pertanyaan akan ditambahkan di sini -->
+                                            </ul>
+                                        </div>
+                                    </form>
+                                        </div>
 
 
                                 <script type="text/javascript">
-                                    function deletequestion(anu) {
+                                  function saveQuestions() {
+                                    var questions = [];
+
+                                    // Ambil semua pertanyaan yang ada dalam panel
+                                    $("#sortable li").each(function() {
+                                        var id = $(this).attr('id');
+                                        var text = $(this).find('.single_line_text').text();
+
+                                        // Simpan data pertanyaan
+                                        questions.push({
+                                            id: id,
+                                            text: text
+                                        });
+                                    });
+
+                                    // Masukkan data ke input tersembunyi
+                                    $("#questionsInput").val(JSON.stringify(questions));
+
+                                    // Mengirimkan data ke server menggunakan AJAX
+                                    $.ajax({
+                                        url: '<?= base_url("savequestions") ?>', // Sesuaikan dengan URL endpoint server Anda
+                                        method: 'POST',
+                                        data: $('#questionForm').serialize(), // Mengirimkan seluruh form termasuk data pertanyaan
+                                        success: function(response) {
+                                            alert('Pertanyaan berhasil disimpan!');
+                                            // Memperbarui daftar pertanyaan
+                                            loadQuestions();
+                                        },
+                                        error: function(error) {
+                                            alert('Terjadi kesalahan saat menyimpan pertanyaan!');
+                                        }
+                                    });
+                                }
+                                function loadQuestions() {
+                                $.ajax({
+                                    url: '<?= base_url("getQuestions") ?>', // URL untuk mengambil daftar pertanyaan
+                                    method: 'GET',
+                                    success: function(response) {
+                                        // Kosongkan daftar pertanyaan yang ada
+                                        $('#sortable').empty();
+
+                                        // Loop melalui setiap pertanyaan dan tambahkan ke daftar
+                                        response.forEach(function(question) {
+                                            var listItem = $('<li id="' + question.id + '" class="question_fields">' +
+                                                '<div class="field_header">' +
+                                                '<div class="field_buttons_edit">' +
+                                                '<a href="#" class="edit_quest">edit</a>' +
+                                                '<a href="#" class="done_quest" style="display: none;">done</a>' +
+                                                '<a href="#" class="delete_quest">delete</a>' +
+                                                '</div>' +
+                                                '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                                                question.title + // Menampilkan judul pertanyaan
+                                                '</div>' +
+                                                '</div>' +
+                                                '<div class="field_container">' +
+                                                '<div class="single_view_state">' +
+                                                '<div class="single_line_text">' + question.title + '</div>' + // Menampilkan teks pertanyaan
+                                                '</div>' +
+                                                '</div>' +
+                                                '</li>');
+
+                                            // Tambahkan item ke daftar
+                                            $('#sortable').append(listItem);
+                                        });
+                                    },
+                                    error: function(error) {
+                                        alert('Terjadi kesalahan saat memuat pertanyaan!');
+                                    }
+                                });
+                            }
+                                    
+                                        function deletequestion(anu) {
                                         var q = anu.parents("li:first");
                                         q.remove();
                                     }
@@ -535,7 +574,7 @@
                                         $("#sortable").append(grid_field);
 
                                         // Event handler for edit button
-                                        grid_field.find('.edit_quest').click(function (e) {
+                                        grid_field.find('.edit_quest').click(function(e) {
                                             e.preventDefault();
                                             grid_field.find('.grid_view_state').hide();
                                             grid_field.find('.grid_edit_state').show();
@@ -544,7 +583,7 @@
                                         });
 
                                         // Event handler for done button
-                                        grid_field.find('.done_quest').click(function (e) {
+                                        grid_field.find('.done_quest').click(function(e) {
                                             e.preventDefault();
                                             updateGridView(grid_field);
                                             grid_field.find('.grid_edit_state').hide();
@@ -554,7 +593,7 @@
                                         });
 
                                         // Event handler for delete button
-                                        grid_field.find('.delete_quest').click(function (e) {
+                                        grid_field.find('.delete_quest').click(function(e) {
                                             e.preventDefault();
                                             if (confirm("Apakah Anda yakin ingin menghapus grid ini?")) {
                                                 var index = fields_id.indexOf(id);
@@ -564,7 +603,7 @@
                                         });
 
                                         // Event handler for add row button
-                                        grid_field.find('.add_row').click(function (e) {
+                                        grid_field.find('.add_row').click(function(e) {
                                             e.preventDefault();
                                             addRowToGrid(grid_field);
                                         });
@@ -579,22 +618,22 @@
 
                                     function updateGridView(grid_field) {
                                         var rowTitle = grid_field.find('input[name="grid_row_title"]').val();
-                                        var columnTitles = grid_field.find('input.column_titles').val().split(',').map(function (
+                                        var columnTitles = grid_field.find('input.column_titles').val().split(',').map(function(
                                             opt) {
                                             return opt.trim();
                                         });
 
                                         var gridContentHtml = '<strong>' + rowTitle + '</strong><br />';
                                         gridContentHtml += '<table border="1"><tr>';
-                                        columnTitles.forEach(function (title) {
+                                        columnTitles.forEach(function(title) {
                                             gridContentHtml += '<th>' + title + '</th>';
                                         });
                                         gridContentHtml += '</tr>';
 
-                                        grid_field.find('.grid_rows .grid_row').each(function () {
+                                        grid_field.find('.grid_rows .grid_row').each(function() {
                                             var rowData = $(this).find('.row_data').val();
                                             gridContentHtml += '<tr>';
-                                            columnTitles.forEach(function () {
+                                            columnTitles.forEach(function() {
                                                 gridContentHtml += '<td>' + rowData + '</td>';
                                             });
                                             gridContentHtml += '</tr>';
@@ -604,7 +643,7 @@
                                         grid_field.find('.grid_answer').html(gridContentHtml);
                                     }
 
-
+                                    
                                     function add_readonly() {
                                         var id = ++fields_sum;
                                         fields_id.push(id);
@@ -637,7 +676,7 @@
                                         $("#sortable").append(readonly_field);
 
                                         // Event handler for edit button
-                                        readonly_field.find('.edit_quest').click(function (e) {
+                                        readonly_field.find('.edit_quest').click(function(e) {
                                             e.preventDefault();
                                             readonly_field.find('.readonly_view_state').hide();
                                             readonly_field.find('.readonly_edit_state').show();
@@ -646,7 +685,7 @@
                                         });
 
                                         // Event handler for done button
-                                        readonly_field.find('.done_quest').click(function (e) {
+                                        readonly_field.find('.done_quest').click(function(e) {
                                             e.preventDefault();
                                             updateReadonlyView(readonly_field);
                                             readonly_field.find('.readonly_edit_state').hide();
@@ -656,7 +695,7 @@
                                         });
 
                                         // Event handler for delete button
-                                        readonly_field.find('.delete_quest').click(function (e) {
+                                        readonly_field.find('.delete_quest').click(function(e) {
                                             e.preventDefault();
                                             if (confirm("Apakah Anda yakin ingin menghapus field ini?")) {
                                                 var index = fields_id.indexOf(id);
@@ -706,7 +745,7 @@
                                         $("#sortable").append(scale_field);
 
                                         // Event handler for edit button
-                                        scale_field.find('.edit_quest').click(function (e) {
+                                        scale_field.find('.edit_quest').click(function(e) {
                                             e.preventDefault();
                                             scale_field.find('.scale_view_state').hide();
                                             scale_field.find('.scale_edit_state').show();
@@ -715,7 +754,7 @@
                                         });
 
                                         // Event handler for done button
-                                        scale_field.find('.done_quest').click(function (e) {
+                                        scale_field.find('.done_quest').click(function(e) {
                                             e.preventDefault();
                                             updateScaleView(scale_field);
                                             scale_field.find('.scale_edit_state').hide();
@@ -725,7 +764,7 @@
                                         });
 
                                         // Event handler for delete button
-                                        scale_field.find('.delete_quest').click(function (e) {
+                                        scale_field.find('.delete_quest').click(function(e) {
                                             e.preventDefault();
                                             if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
                                                 var index = fields_id.indexOf(id);
@@ -776,7 +815,7 @@
                                         $("#sortable").append(phone_field);
 
                                         // Event handler for edit button
-                                        phone_field.find('.edit_quest').click(function (e) {
+                                        phone_field.find('.edit_quest').click(function(e) {
                                             e.preventDefault();
                                             phone_field.find('.phone_view_state').hide();
                                             phone_field.find('.phone_edit_state').show();
@@ -785,7 +824,7 @@
                                         });
 
                                         // Event handler for done button
-                                        phone_field.find('.done_quest').click(function (e) {
+                                        phone_field.find('.done_quest').click(function(e) {
                                             e.preventDefault();
                                             updatePhoneView(phone_field);
                                             phone_field.find('.phone_edit_state').hide();
@@ -795,7 +834,7 @@
                                         });
 
                                         // Event handler for delete button
-                                        phone_field.find('.delete_quest').click(function (e) {
+                                        phone_field.find('.delete_quest').click(function(e) {
                                             e.preventDefault();
                                             if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
                                                 var index = fields_id.indexOf(id);
@@ -846,7 +885,7 @@
                                         $("#sortable").append(radio_field);
 
                                         // Event handler for edit button
-                                        radio_field.find('.edit_quest').click(function (e) {
+                                        radio_field.find('.edit_quest').click(function(e) {
                                             e.preventDefault();
                                             radio_field.find('.radio_view_state').hide();
                                             radio_field.find('.radio_edit_state').show();
@@ -855,7 +894,7 @@
                                         });
 
                                         // Event handler for done button
-                                        radio_field.find('.done_quest').click(function (e) {
+                                        radio_field.find('.done_quest').click(function(e) {
                                             e.preventDefault();
                                             updateRadioView(radio_field);
                                             radio_field.find('.radio_edit_state').hide();
@@ -865,7 +904,7 @@
                                         });
 
                                         // Event handler for delete button
-                                        radio_field.find('.delete_quest').click(function (e) {
+                                        radio_field.find('.delete_quest').click(function(e) {
                                             e.preventDefault();
                                             if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
                                                 var index = fields_id.indexOf(id);
@@ -877,14 +916,14 @@
 
                                     function updateRadioView(radio_field) {
                                         var questionTitle = radio_field.find('input[name="radio_quest_title"]').val();
-                                        var options = radio_field.find('input.question_options').val().split(',').map(function (
+                                        var options = radio_field.find('input.question_options').val().split(',').map(function(
                                             opt) {
                                             return opt.trim();
                                         });
 
                                         radio_field.find('.radio_text').text(questionTitle);
                                         var answerHtml = '';
-                                        options.forEach(function (option) {
+                                        options.forEach(function(option) {
                                             answerHtml += '<label><input type="radio" name="radio_answer_' + radio_field
                                                 .attr('id') + '" value="' + option + '"> ' + option + '</label><br />';
                                         });
@@ -922,7 +961,7 @@
 
                                         $("#sortable").append(number_field);
 
-                                        number_field.find('.edit_quest').click(function (e) {
+                                        number_field.find('.edit_quest').click(function(e) {
                                             e.preventDefault();
                                             number_field.find('.number_view_state').hide();
                                             number_field.find('.number_edit_state').show();
@@ -930,7 +969,7 @@
                                             number_field.find('.done_quest').show();
                                         });
 
-                                        number_field.find('.done_quest').click(function (e) {
+                                        number_field.find('.done_quest').click(function(e) {
                                             e.preventDefault();
                                             updateNumberView(number_field);
                                             number_field.find('.number_edit_state').hide();
@@ -939,7 +978,7 @@
                                             number_field.find('.edit_quest').show();
                                         });
 
-                                        number_field.find('.delete_quest').click(function (e) {
+                                        number_field.find('.delete_quest').click(function(e) {
                                             e.preventDefault();
                                             if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
                                                 var index = fields_id.indexOf(id);
@@ -990,7 +1029,7 @@
 
                                         $("#sortable").append(dropdown_field);
 
-                                        dropdown_field.find('.edit_quest').click(function (e) {
+                                        dropdown_field.find('.edit_quest').click(function(e) {
                                             e.preventDefault();
                                             dropdown_field.find('.dropdown_view_state').hide();
                                             dropdown_field.find('.dropdown_edit_state').show();
@@ -998,7 +1037,7 @@
                                             dropdown_field.find('.done_quest').show();
                                         });
 
-                                        dropdown_field.find('.done_quest').click(function (e) {
+                                        dropdown_field.find('.done_quest').click(function(e) {
                                             e.preventDefault();
                                             updateDropdownView(dropdown_field);
                                             dropdown_field.find('.dropdown_edit_state').hide();
@@ -1007,13 +1046,13 @@
                                             dropdown_field.find('.edit_quest').show();
                                         });
 
-                                        dropdown_field.find('.add_opt_dd').click(function (e) {
+                                        dropdown_field.find('.add_opt_dd').click(function(e) {
                                             e.preventDefault();
                                             add_opt_dd($(this));
                                         });
 
                                         // Konfirmasi sebelum menghapus
-                                        dropdown_field.find('.delete_quest').click(function (e) {
+                                        dropdown_field.find('.delete_quest').click(function(e) {
                                             e.preventDefault();
                                             if (window.confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
                                                 dropdown_field.remove();
@@ -1038,7 +1077,7 @@
                                         var list = anu.parents("li:first").find(".dropdown_list");
                                         list.append(row);
 
-                                        row.find('.add_opt_dd, .remove_opt_dd').click(function (event) {
+                                        row.find('.add_opt_dd, .remove_opt_dd').click(function(event) {
                                             event.preventDefault();
                                             if ($(this).is('.add_opt_dd')) {
                                                 add_opt_dd($(this));
@@ -1057,7 +1096,7 @@
 
                                         var dropdownSelect = dropdown_field.find('select[name="dropdown_answer"]');
                                         dropdownSelect.empty();
-                                        dropdown_field.find('.option_dropdown').each(function () {
+                                        dropdown_field.find('.option_dropdown').each(function() {
                                             var label = $(this).find('.label_opt').val();
                                             var value = $(this).find('.val_opt').val();
                                             dropdownSelect.append('<option value="' + value + '">' + label + '</option>');
@@ -1094,7 +1133,7 @@
 
                                         $("#sortable").append(date_field);
 
-                                        date_field.find('.edit_quest').click(function (e) {
+                                        date_field.find('.edit_quest').click(function(e) {
                                             e.preventDefault();
                                             date_field.find('.date_view_state').hide();
                                             date_field.find('.date_edit_state').show();
@@ -1102,7 +1141,7 @@
                                             date_field.find('.done_quest').show();
                                         });
 
-                                        date_field.find('.done_quest').click(function (e) {
+                                        date_field.find('.done_quest').click(function(e) {
                                             e.preventDefault();
                                             updateDateView(date_field);
                                             date_field.find('.date_edit_state').hide();
@@ -1111,7 +1150,7 @@
                                             date_field.find('.edit_quest').show();
                                         });
 
-                                        date_field.find('.delete_quest').click(function (e) {
+                                        date_field.find('.delete_quest').click(function(e) {
                                             e.preventDefault();
                                             if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
                                                 var index = fields_id.indexOf(id);
@@ -1159,7 +1198,7 @@
 
                                         $("#sortable").append(checkbox_field);
 
-                                        checkbox_field.find('.edit_quest').click(function (e) {
+                                        checkbox_field.find('.edit_quest').click(function(e) {
                                             e.preventDefault();
                                             checkbox_field.find('.checkbox_view_state').hide();
                                             checkbox_field.find('.checkbox_edit_state').show();
@@ -1167,7 +1206,7 @@
                                             checkbox_field.find('.done_quest').show();
                                         });
 
-                                        checkbox_field.find('.done_quest').click(function (e) {
+                                        checkbox_field.find('.done_quest').click(function(e) {
                                             e.preventDefault();
                                             updateCheckboxView(checkbox_field);
                                             checkbox_field.find('.checkbox_edit_state').hide();
@@ -1176,12 +1215,12 @@
                                             checkbox_field.find('.edit_quest').show();
                                         });
 
-                                        checkbox_field.find('.add_checkbox_option').click(function (e) {
+                                        checkbox_field.find('.add_checkbox_option').click(function(e) {
                                             e.preventDefault();
                                             addCheckboxOption($(this));
                                         });
 
-                                        checkbox_field.find('.delete_quest').click(function (e) {
+                                        checkbox_field.find('.delete_quest').click(function(e) {
                                             e.preventDefault();
                                             if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
                                                 var index = fields_id.indexOf(id);
@@ -1203,7 +1242,7 @@
 
                                         button.siblings(".checkbox_options_list").append(option);
 
-                                        option.find('.remove_checkbox_option').click(function (e) {
+                                        option.find('.remove_checkbox_option').click(function(e) {
                                             e.preventDefault();
                                             $(this).parent().remove();
                                         });
@@ -1215,7 +1254,7 @@
 
                                         var checkboxContainer = checkbox_field.find('.checkbox_answers');
                                         checkboxContainer.empty();
-                                        checkbox_field.find('.checkbox_option').each(function () {
+                                        checkbox_field.find('.checkbox_option').each(function() {
                                             var label = $(this).find('.label_checkbox_option').val();
                                             checkboxContainer.append(
                                                 '<label><input type="checkbox" name="checkbox_answer" /> ' + label +
@@ -1262,37 +1301,38 @@
                                         console.log('Appending new question field'); // Debugging
                                         $("#sortable").append(single_field);
 
-                                        single_field.find('.done_quest, .edit_quest, .delete_quest').click(function () {
+                                        single_field.find('.done_quest, .edit_quest, .delete_quest').click(function() {
                                             done_edit_delete_quest($(this));
                                         });
                                     }
+                                    
                                 </script>
-
+                                </form>
                             </div>
                         </div>
                     </div>
                     <!-- END: Content-->
-    <!-- BEGIN: Vendor JS-->
-    <script src="assets/js/vendors.min.js" type="text/javascript"></script>
-    <script src="assets/js/switchery.min.js" type="text/javascript"></script>
-    <script src="assets/js/switch.min.js" type="text/javascript"></script>
-    <!-- BEGIN Vendor JS-->
+                    <!-- BEGIN: Vendor JS-->
+                    <script src="assets/js/vendors.min.js" type="text/javascript"></script>
+                    <script src="assets/js/switchery.min.js" type="text/javascript"></script>
+                    <script src="assets/js/switch.min.js" type="text/javascript"></script>
+                    <!-- BEGIN Vendor JS-->
 
-    <!-- BEGIN: Page Vendor JS-->
-    <script src="assets/js/chartist.min.js" type="text/javascript"></script>
-    <script src="assets/js/chartist-plugin-tooltip.min.js" type="text/javascript"></script>
-    <!-- END: Page Vendor JS-->
+                    <!-- BEGIN: Page Vendor JS-->
+                    <script src="assets/js/chartist.min.js" type="text/javascript"></script>
+                    <script src="assets/js/chartist-plugin-tooltip.min.js" type="text/javascript"></script>
+                    <!-- END: Page Vendor JS-->
 
-    <!-- BEGIN: Theme JS-->
-    <script src="assets/js/app-menu.min.js" type="text/javascript"></script>
-    <script src="assets/js/app.min.js" type="text/javascript"></script>
-    <script src="assets/js/customizer.min.js" type="text/javascript"></script>
-    <script src="assets/js/jquery.sharrre.js" type="text/javascript"></script>
-    <!-- END: Theme JS-->
+                    <!-- BEGIN: Theme JS-->
+                    <script src="assets/js/app-menu.min.js" type="text/javascript"></script>
+                    <script src="assets/js/app.min.js" type="text/javascript"></script>
+                    <script src="assets/js/customizer.min.js" type="text/javascript"></script>
+                    <script src="assets/js/jquery.sharrre.js" type="text/javascript"></script>
+                    <!-- END: Theme JS-->
 
-    <!-- BEGIN: Page JS-->
-    <script src="assets/js/dashboard-analytics.min.js" type="text/javascript"></script>
-    <!-- END: Page JS-->
+                    <!-- BEGIN: Page JS-->
+                    <script src="assets/js/dashboard-analytics.min.js" type="text/javascript"></script>
+                    <!-- END: Page JS-->
 
 </body>
 <!-- END: Body-->
