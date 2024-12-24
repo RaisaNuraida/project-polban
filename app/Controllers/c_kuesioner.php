@@ -41,6 +41,8 @@ class c_kuesioner extends BaseController
         return view('indexuser', $data);
     }
 
+    
+
     public function deleteUser()
     {
         $userModel = new m_kuesioner();
@@ -174,6 +176,7 @@ class c_kuesioner extends BaseController
                                          ->with('subOption', $subOption) 
                                          ->with('mainOption', $mainOption);  // Kirim data subOption ke view
      }
+     
      
 }
     
