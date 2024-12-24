@@ -210,9 +210,56 @@ class welcomepage extends BaseController
     public function dataWelcome(): string
     {
         $model = new welcome();
-        $datamessage = $model->getmessage();
 
-        $data = ['datamessage' => $datamessage];
+        // Tentukan jumlah data per halaman
+        $perPage = 10;
+
+        // Ambil halaman saat ini dari query string
+        $page = $this->request->getVar('page') ?? 1;
+
+        // Hitung offset untuk query (page-1) * perPage
+        $offset = ($page - 1) * $perPage;
+
+        // Hitung total data
+        $totalData = $model->countAllMessages();
+
+        // Ambil data sesuai dengan offset dan perPage
+        $datamessage = $model->getMessagesPaginated($perPage, $offset);
+
+        // Menghitung jumlah total halaman
+        $totalPages = ceil($totalData / $perPage);
+
+        // Tentukan batasan pagination (halaman yang ditampilkan)
+        $startPage = max(1, $page - 1);
+        $endPage = min($totalPages, $page + 1);
+
+        // Siapkan data untuk dikirim ke view
+        $data = [
+            'datamessage' => $datamessage,
+            'totalPages' => $totalPages,
+            'currentPage' => $page,
+            'perPage' => $perPage,
+            'startPage' => $startPage,
+            'endPage' => $endPage,
+        ];
+
         return view('/welcomepage', $data);
+    }
+
+
+    public function cariwelcome()
+    {
+        $welcome = new welcome();
+        $cari = $this->request->getGet('cari'); // Sesuaikan dengan nama input di form
+
+        if ($cari) {
+            // Melakukan pencarian berdasarkan kolom 'tahun'
+            $data['datamessage'] = $welcome->like('tahun', $cari)->findAll();
+        } else {
+            // Tampilkan semua data jika tidak ada pencarian
+            $data['datamessage'] = $welcome->findAll();
+        }
+
+        return view('welcomepage', $data);
     }
 }
