@@ -353,7 +353,7 @@
                     <div class="col-lg-12 col-md-12">
 
                         <!-- Table Kuesioner START-->
-                        <div class="card tab-content">
+                        <div class="card tab-content" id="awal" style="display:block">
                             <div class="card-header ml-2 mr-2">
                                 <div class="d-flex justify-content-between">
                                     <h2>Kuesioner</h2>
@@ -394,6 +394,7 @@
                                         <thead>
                                             <tr>
                                                 <td>NO</td>
+                                                <td>id</td>
                                                 <td>Judul</td>
                                                 <td>Deskripsi</td>
 
@@ -409,6 +410,7 @@
                                                 <?php foreach ($user as $row): ?>
                                                     <tr>
                                                         <td><?= $no++; ?></td>
+                                                        <td><?= $row['id']; ?></td>
                                                         <td><?= $row['title']; ?></td>
                                                         <td><?= $row['deskripsi']; ?></td>
 
@@ -433,19 +435,26 @@
                                                         </td>
                                                         <td>
 
-                                                            <input type="hidden" name="conditionalkuesioner" value="<?= $subOption; ?>">
+                                                            <input type="hidden" name="conditionalkuesioner"
+                                                                value="<?= $subOption; ?>">
                                                             Show if : <?= $mainOption; ?>         <?= $conditionalOperator; ?>
                                                             <?= $subOption; ?>
                                                         </td>
                                                         <?php
                                                         ?>
-                                                     
+
                                                         </form>
                                                         <td>
 
-                                                            <a class="btn btn-primary btn-sm" class="nav-link active"
-                                                                href="<?= base_url('/kuesionerpage') ?>"
-                                                                style='font-size:10px;padding:2px 5px;color:white;'>Edit</a>
+                                                        <button id="update"
+                                                                    data-toggle="modal" data-id="<?= $row['id']; ?>"
+                                                                    data-title="<?= $row['title']; ?>"
+                                                                    data-deskripsi="<?= $row['deskripsi']; ?>"
+                                                                    data-conditionallogic="<?= $row['conditional_logic']; ?>"
+                                                                    class="btn btn-warning updateModal"
+                                                                    style="font-size:10px;padding:2px 5px;color:white;" onclick="openTab(event, 'sunting')">
+                                                                    edit
+                                                                </button>
                                                             <a class="btn btn-primary btn-sm"
                                                                 style='font-size:10px;padding:2px 5px;color:white;'>Active</a>
                                                             <a class="btn btn-primary btn-sm"
@@ -476,1351 +485,1794 @@
                             </div>
                         </div>
 
-
-                        <script>
-                            $(document).ready(function () {
-                                $('.lihat-btn').on('click', function () {
-                                    const conditionalLogic = $(this).data('logic');
-
-                                    // Mengirim AJAX request untuk memfilter data
-                                    $.ajax({
-                                        url: '/c_kuesioner/filterData', // Ganti dengan URL yang sesuai
-                                        method: 'GET',
-                                        data: {
-                                            logic: conditionalLogic
-                                        },
-                                        success: function (response) {
-                                            // Tampilkan data yang difilter di tab "dataTabel"
-                                            $('#dataTabel').html(response);
-                                        },
-                                        error: function () {
-                                            alert('Gagal memuat data.');
-                                        }
-                                    });
-                                });
-                            });
-                        </script>
-                        <!-- Table Kuesioner END -->
-
-                        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
-                            aria-labelledby="deleteModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content text-center">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Apakah Anda yakin ingin menghapus data <strong id="username"></strong>?</p>
-                                        <form id="deleteForm" method="post" action="<?= base_url('deletekuesioner') ?>">
-                                            <input type="hidden" id="delete_id" name="id">
-                                            <button type="submit" class="btn btn-danger">Hapus</button>
-                                            <button type="button" class="btn btn-secondary"
-                                                data-dismiss="modal">Batal</button>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <script>
-                            $('.deleteModal').click(function () {
-                                var href = $(this).data('target');
-                                var id = $(this).data('id');
-                                $('#delete_id').val(id);
-                            });
-                        </script>
-
-                        <!-- Modal Konfirmasi Hapus END-->
-
-                        <!-- Sunting Kuesioner START-->
-
-
-                        <!-- Tinjau Kuesioner START -->
-                        <div class="card tab-content" id="TinjauKuesioner" style="display:none;">
-                            <div class="card-header">
+                        <div class="card tab-content" id="sunting" style="display:none">
+                            <div class="card-header ml-2 mr-2">
                                 <div class="d-flex justify-content-between">
-                                    <h2>Detil Kuesioner</h2>
+                                    <h2>Sunting Kuesioner Page</h2>
                                 </div>
                                 <hr>
 
                                 <div class="m-2">
-                                    <form>
-                                        <div>
-                                            <select class="page_options" name="index_page">
-                                                <option value="0" selected="">ID : 43 - Halaman 1</option>
-                                                <option value="1">ID : 44 - Halaman 2</option>
-                                                <option value="2">ID : 45 - Halaman 3</option>
-                                                <option value="3">ID : 46 - Halaman 4</option>
-                                                <option value="4">ID : 47 - Halaman 5</option>
-                                                <option value="5">ID : 65 - Halaman 2</option>
-                                                <option value="6">ID : 66 - Halaman 3</option>
-                                                <option value="7">ID : 71 - Halaman 4</option>
-                                                <option value="8">ID : 72 - Halaman 5</option>
-                                                <option value="9">ID : 68 - Halaman Kuesioner Program Studi Teknik Kimia
-                                                </option>
-                                                <option value="10">ID : 69 - Halaman Kuesioner Program Studi SBM
-                                                </option>
-                                                <option value="11">ID : 70 - Pilihan Hadiah</option>
-                                                <option value="12">ID : 67 - Prodi SBM</option>
-                                            </select>
-                                            <input type="submit" value="Go">
-
-                                            <p class="mt-1">
-                                                Halaman ini berisi pertanyaan tentang data diri dan pekerjaan Anda.
-                                                Mohon untuk mengisi semua data yang diminta. Terima kasih.
-                                            </p>
+                                <form id="editForm" method="post"><div class="form-group">
+                                            <label for="title">Title</label>
+                                            <input type="text" class="form-control" id="title" name="title"
+                                                placeholder="Kuesioner Sample" required>
                                         </div>
-                                    </form>
-                                    <hr>
-                                    <div>
-                                        <p class="h4"><b>Data Pribadi</b></p>
-                                        <p>Bagian ini berisi pertanyaan tentang data pribadi responden.</p>
-                                        <div class="section_content" id="sc_29">
-                                            <div class="section_body" id="sb_29">
-                                                <di class="question_content" id="29_25">
-                                                    <div class="alert alert-primary" role="alert">
-                                                        <label class="field_title">
-                                                            <b>
-                                                                <span class="question">
-                                                                    1. Nama </span>
-                                                            </b>
-                                                        </label>
-                                                    </div>
+                                        <div class="form-group">
+                                            <label for="exampleInputDeskripsi">Deskripsi</label>
+                                            <input type="text" class="form-control" id="deskripsi" name="deskripsi"
+                                                placeholder="Kuesioner Sample" required>
+                                        </div>
+                                        <div class="form-check d-flex">
+                                            <label class="form-check-label" for="conditional_logic">Conditional
+                                                Logic</label>
+                                            <input type="checkbox" class="form-check-input" id="conditional_logic"
+                                                name="conditional_logic" onclick="toggleOptions()" required>
+                                        </div>
 
-                                                    <div class="input ml-1 mb-3">
-                                                        <div class="question_readonly_attribs">
-                                                            DEDE CHANDRA NUGRAHA <input type="hidden"
-                                                                class="question_readonly answer"
-                                                                value="DEDE CHANDRA NUGRAHA" id="43_29_25">
-                                                        </div>
-                                                    </div>
-                                            </div>
+                                        <br>
 
-                                            <div class="question_content" id="29_3">
-                                                <div class="alert alert-primary" role="alert">
-                                                    <label class="field_title">
-                                                        <b>
-                                                            <span class="question">
-                                                                2. Jenis Kelamin </span>
-                                                        </b>
-                                                        <span style="color: red;">*</span>
-                                                    </label>
-                                                </div>
-
-                                                <div class="input ml-1 mb-3">
-                                                    <div class="question_radios" id="43_29_3">
-                                                        <input type="radio" class="question_radio checks"
-                                                            id="question_radio_3_0" name="question_radio_29_3"
-                                                            value="Pria"> Pria <br>
-                                                        <input type="radio" class="question_radio checks"
-                                                            id="question_radio_3_1" name="question_radio_29_3"
-                                                            value="Wanita"> Wanita <br>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="question_content" id="29_26">
-                                                <div class="alert alert-primary" role="alert">
-                                                    <label class="field_title">
-                                                        <b>
-                                                            <span class="question">
-                                                                3. Angkatan </span>
-                                                        </b>
-                                                        <span style="color: red;">*</span>
-                                                    </label>
-                                                </div>
-
-                                                <div class="input ml-1 mb-3">
-                                                    <div class="question_readonly_attribs">
-                                                        2016 <input type="hidden" class="question_readonly answer"
-                                                            value="2016" id="43_29_26">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="question_content" id="29_27">
-                                                <div div class="alert alert-primary" role="alert">
-                                                    <label class="field_title">
-                                                        <b>
-                                                            <span class="question">
-                                                                4. Program Studi </span>
-                                                        </b>
-                                                        <span style="color: red;">*</span>
-                                                    </label>
-                                                </div>
-
-                                                <div class="input ml-1 mb-3">
-                                                    <div class="question_readonly_attribs">
-                                                        DIV - Teknik Informatika <input type="hidden"
-                                                            class="question_readonly answer"
-                                                            value="DIV - Teknik Informatika" id="43_29_27">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="question_content" id="29_29">
-                                                <div class="alert alert-primary" role="alert">
-                                                    <label class="field_title">
-                                                        <b>
-                                                            <span class="question">
-                                                                5. IPK </span>
-                                                        </b>
-                                                        <span style="color: red;">*</span>
-                                                    </label>
-                                                    </di>
-                                                </div>
-
-                                                <div class="input ml-1 mb-3">
-                                                    <div class="question_readonly_attribs">
-                                                        3,57 <input type="hidden" class="question_readonly answer"
-                                                            value="3,57" id="43_29_29">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="question_content" id="29_19">
-                                                <div class="alert alert-primary" role="alert">
-                                                    <label class="field_title">
-                                                        <b>
-                                                            <span class="question">
-                                                                6. Bulan dan Tahun Lulus </span>
-                                                        </b>
-                                                        <span style="color: red;">*</span>
-                                                    </label>
-                                                </div>
-
-                                                <div class="input ml-1 mb-3">
-                                                    <div class="question_date_attribs">
-                                                        <input type="hidden" class="answer_required" value="false">
-                                                        <input type="hidden" class="date_start_year"
-                                                            name="date_start_year" value="2006">
-                                                        <input type="hidden" class="date_end_year" name="date_end_year"
-                                                            value="2006">
-                                                        <input type="hidden" class="date_option" name="date_option"
-                                                            value="two">
-                                                        <input type="text" class="question_date answer" id="43_29_19">
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="question_content" id="29_21">
-                                                <div class="alert alert-primary" role="alert">
-                                                    <label class="field_title">
-                                                        <b>
-                                                            <span class="question">
-                                                                7. Alamat </span>
-                                                        </b>
-                                                        <span style="color: red;">*</span>
-                                                    </label>
-
-                                                </div>
-                                                <div class="input ml-1 mb-3">
-                                                    <input type="text" class="question_single answer" id="43_29_21">
-                                                </div>
-                                            </div>
-
-                                            <div class="question_content" id="29_22">
-                                                <div class="alert alert-primary" role="alert">
-                                                    <label class="field_title">
-                                                        <b>
-                                                            <span class="question">
-                                                                8. Kota </span>
-                                                        </b>
-                                                        <span style="color: red;">*</span>
-                                                    </label>
-                                                </div>
-
-
-                                                <div class="input ml-1 mb-3">
-                                                    <input type="text" class="question_single answer" id="43_29_22">
-                                                </div>
-                                            </div>
-
-                                            <div class="question_content" id="29_24">
-                                                <div class="alert alert-primary" role="alert">
-                                                    <label class="field_title">
-                                                        <b>
-                                                            <span class="question">
-                                                                9. Kode Pos </span>
-                                                        </b>
-                                                    </label>
-                                                </div>
-
-                                                <div class="input ml-1 mb-3">
-                                                    <input type="text" class="question_single answer" id="43_29_24">
-                                                </div>
-                                            </div>
-
-                                            <div class="question_content" id="29_23">
-                                                <div class="alert alert-primary" role="alert">
-                                                    <label class="field_title">
-                                                        <b>
-                                                            <span class="question">
-                                                                10. Provinsi </span>
-                                                        </b>
-                                                        <span style="color: red;">*</span>
-                                                    </label>
-                                                </div>
-
-                                                <div class="input ml-1 mb-3">
-                                                    <select class="question_dropdown selects" id="43_29_23">
-                                                        <option value="">----</option>
-                                                        <option value="-Non Indonesian-">-Non Indonesian-</option>
-                                                        <option value="Aceh">Aceh</option>
-                                                        <option value="Bali">Bali</option>
-                                                        <option value="Banten">Banten</option>
-                                                        <option value="Bengkulu">Bengkulu</option>
-                                                        <option value="Gorontalo">Gorontalo</option>
-                                                        <option value="Jakarta">DKI Jakarta</option>
-                                                        <option value="Jambi">Jambi</option>
-                                                        <option value="Jawa Barat">Jawa Barat</option>
-                                                        <option value="Jawa Tengah">Jawa Tengah</option>
-                                                        <option value="Jawa Timur">Jawa Timur</option>
-                                                        <option value="Kalimantan Barat">Kalimantan Barat</option>
-                                                        <option value="Kalimantan Selatan">Kalimantan Selatan</option>
-                                                        <option value="Kalimantan Tengah">Kalimantan Tengah</option>
-                                                        <option value="Kalimantan Timur">Kalimantan Timur</option>
-                                                        <option value="Kalimantan Utara">Kalimantan Utara</option>
-                                                        <option value="Kep. Bangka Belitung">Kep. Bangka Belitung
+                                        <div class="form-row m-0" id="conditionalOptions"
+                                            style="width: 22%; display: none;" id="conditional_logic">
+                                            <div class="d-flex">
+                                                <div class="mr-1 d-flex" id="optionContainer" class="">
+                                                    <select class="custom-select" id="mainOption" name="mainOption"
+                                                        onchange="toggleSubOptions()">
+                                                        <option selected> </option>
+                                                        <option value="display_name">display_name</option>
+                                                        <option value="email">email</option>
+                                                        <option value="group">group</option>
+                                                        <option value="academic_nim">academic_nim</option>
+                                                        <option value="academic_faculty">academic_faculty</option>
+                                                        <option value="academic_program">academic_program</option>
+                                                        <option value="academic_year">academic_year</option>
+                                                        <option value="street">street</option>
+                                                        <option value="city">city</option>
+                                                        <option value="state_code">state_code</option>
+                                                        <option value="zip_code">zip_code</option>
+                                                        <option value="academic_graduate_year">
+                                                            academic_graduate_year
                                                         </option>
-                                                        <option value="Kep. Riau">Kep. Riau</option>
-                                                        <option value="Lampung">Lampung</option>
-                                                        <option value="Maluku">Maluku</option>
-                                                        <option value="Maluku Utara">Maluku Utara</option>
-                                                        <option value="NTB">Nusa Tenggara Barat</option>
-                                                        <option value="NTT">Nusa Tenggara Timur</option>
-                                                        <option value="Papua">Papua</option>
-                                                        <option value="Papua Barat">Papua Barat</option>
-                                                        <option value="Riau">Riau</option>
-                                                        <option value="Sulawesi Barat">Sulawesi Barat</option>
-                                                        <option value="Sulawesi Selatan">Sulawesi Selatan</option>
-                                                        <option value="Sulawesi Tengah">Sulawesi Tengah</option>
-                                                        <option value="Sulawesi Tenggara">Sulawesi Tenggara</option>
-                                                        <option value="Sulawesi Utara">Sulawesi Utara</option>
-                                                        <option value="Sumatera Barat">Sumatera Barat</option>
-                                                        <option value="Sumatera Selatan">Sumatera Selatan</option>
-                                                        <option value="Sumatera Utara">Sumatera Utara</option>
-                                                        <option value="Yogyakarta">Yogyakarta</option>
-
+                                                        <option value="jenis_kelamin">jenis_kelamin</option>
+                                                        <option value="no_telp">no_telp</option>
+                                                        <option value="nik">nik</option>
+                                                        <option value="npwp">npwp</option>
+                                                    </select>
+                                                </div>
+                                                <div>
+                                                    <select id="conditionalOperator" class="custom-select ml-1"
+                                                        name="conditionalOperator">
+                                                        <option value="is">is</option>
+                                                        <option value="is not">is not</option>
                                                     </select>
                                                 </div>
                                             </div>
-
-                                            <div class="question_content" id="29_31">
-                                                <div class="alert alert-primary" role="alert">
-                                                    <label class="field_title">
-                                                        <b>
-                                                            <span class="question">
-                                                                11. Telepon / HP (misal : 022-2034944/08153337777)
-                                                            </span>
-                                                        </b>
-
-                                                        <span style="color: red;">*</span>
-                                                    </label>
-                                                </div>
-
-                                                <div class="input ml-1 mb-3">
-                                                    <input type="text" class="question_single answer" id="43_29_31">
-                                                </div>
+                                            <div class="mr-1 mt-1" id="displayNameField"
+                                                style="width: 94%; display: none;" id="conditional_logic">
+                                                <input type="text" class="form-control" id="displayNameInput"
+                                                    name="displayNameInput" placeholder="enter display_name">
                                             </div>
 
-                                            <hr>
+                                            <div class="mr-1 mt-1" id="emailField" style="width: 94%; display: none;">
+                                                <input type="email" class="form-control" id="emailInput"
+                                                    name="emailInput" placeholder="enter email">
+                                            </div>
+
+                                            <div class="mr-1 mt-1" id="groupField" style="width: 94%; display: none;">
+                                                <select name="group" id="groupField" name="groupField"
+                                                    class="custom-select">
+                                                    <option value=""></option>
+                                                    <option value="administrator">administrator</option>
+                                                    <option value="alumni">alumni</option>
+                                                    <option value="perusahaan">perusahaan</option>
+                                                    <option value="atasan">atasan</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mr-1 mt-1" id="academicNimField"
+                                                style="width: 94%; display: none;">
+                                                <input type="text" class="form-control" id="academicNimField"
+                                                    name="academicNimField" placeholder="enter academic_nim">
+                                            </div>
+
+                                            <div class="mr-1 mt-1" id="academicFacultyField"
+                                                style="width: 94%; display: none;" id="conditional_logic">
+                                                <select name="academic_faculty" id="academicFacultyField"
+                                                    class="custom-select">
+                                                    <option value=""></option>
+                                                    <option value="Teknik Sipil">Teknik Sipil</option>
+                                                    <option value="Teknik Mesin">Teknik Mesin</option>
+                                                    <option value="Teknik Refrigasi dan Tata Udara">Teknik Refrigasi
+                                                        dan Tata Udara</option>
+                                                    <option value="Teknik Konversi Energi">Teknik Konversi Energi
+                                                    </option>
+                                                    <option value="Teknik Elektro">Teknik Elektro</option>
+                                                    <option value="Teknik Kimia">Teknik Kimia</option>
+                                                    <option value="Teknik Komputer dan Informatika">Teknik Komputer
+                                                        dan Informatika</option>
+                                                    <option value="Akuntansi">Akuntansi</option>
+                                                    <option value="Administrasi Niaga">Administrasi Niaga</option>
+                                                    <option value="Bahasa Inggris">Bahasa Inggris</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mr-1 mt-1" id="academicProgramField"
+                                                style="width: 94%; display: none;">
+                                                <select name="academic_program" id="academicProgramField"
+                                                    class="custom-select">
+                                                    <option value=""> </option>
+                                                    <!-- Teknik Sipil -->
+                                                    <option value="D-3 Teknik Konstruksi Sipil">D-3 Teknik
+                                                        Konstruksi Sipil</option>
+                                                    <option value="D-3 Teknik Konstruksi Gedung">D-3 Teknik
+                                                        Konstruksi Gedung</option>
+                                                    <option value="D-4 Teknik Perancangan Jalan dan Jembatan">D-4
+                                                        Teknik Perancangan Jalan dan Jembatan</option>
+                                                    <option value="D-4 Teknik Perawatan dan Perbaikan Gedung">D-4
+                                                        Teknik Perawatan dan Perbaikan Gedung</option>
+                                                    <option value="S-2 Rekayasa Infrastruktur">S-2 Rekayasa
+                                                        Infrastruktur</option>
+
+                                                    <!-- Teknik Mesin -->
+                                                    <option value="D-3 Teknik Mesin">D-3 Teknik Mesin</option>
+                                                    <option value="D-3 Teknik Aeronautika">D-3 Teknik Aeronautika
+                                                    </option>
+                                                    <option value="D-4 Teknik Perancangan dan Konstruksi Mesin">D-4
+                                                        Teknik Perancangan dan Konstruksi Mesin</option>
+                                                    <option value="D-4 Proses Manufaktur">D-4 Proses Manufaktur
+                                                    </option>
+
+                                                    <!-- Teknik Refrigasi dan Tata Udara -->
+                                                    <option value="D-3 Teknik Pendingin dan Tata Udara">D-3 Teknik
+                                                        Pendingin dan Tata Udara</option>
+                                                    <option value="D-4 Teknik Pendingin dan Tata Udara">D-4 Teknik
+                                                        Pendingin dan Tata Udara</option>
+
+                                                    <!-- Teknik Konversi Energi -->
+                                                    <option value="D-3 Teknik Konversi Energi">D-3 Teknik Konversi
+                                                        Energi</option>
+                                                    <option value="D-4 Teknik Pembangkit Tenaga Listrik">D-4 Teknik
+                                                        Pembangkit Tenaga Listrik</option>
+                                                    <option value="D-4 Teknik Konservasi Energi">D-4 Teknik
+                                                        Konservasi Energi</option>
+
+                                                    <!-- Teknik Elektro -->
+                                                    <option value="D-3 Teknik Elektronika">D-3 Teknik Elektronika
+                                                    </option>
+                                                    <option value="D-3 Teknik Listrik">D-3 Teknik Listrik</option>
+                                                    <option value="D-3 Teknik Telekomunikasi">D-3 Teknik
+                                                        Telekomunikasi</option>
+                                                    <option value="D-4 Teknik Elektronika">D-4 Teknik Elektronika
+                                                    </option>
+                                                    <option value="D-4 Teknik Telekomunikasi">D-4 Teknik
+                                                        Telekomunikasi</option>
+                                                    <option value="D-4 Teknik Otomasi Industri">D-4 Teknik Otomasi
+                                                        Industri</option>
+
+                                                    <!-- Teknik Kimia -->
+                                                    <option value="D-3 Teknik Kimia">D-3 Teknik Kimia</option>
+                                                    <option value="D-3 Analis Kimia">D-3 Analis Kimia</option>
+                                                    <option value="D-4 Teknik Kimia Produksi Bersih">D-4 Teknik
+                                                        Kimia Produksi Bersih</option>
+
+                                                    <!-- Teknik Komputer dan Informatika -->
+                                                    <option value="D-3 Teknik Informatika">D-3 Teknik Informatika
+                                                    </option>
+                                                    <option value="D-4 Teknik Informatika">D-4 Teknik Informatika
+                                                    </option>
+
+                                                    <!-- Akuntansi -->
+                                                    <option value="D-3 Akuntansi">D-3 Akuntansi</option>
+                                                    <option value="D-3 Keuangan dan Perbankan">D-3 Keuangan dan
+                                                        Perbankan</option>
+                                                    <option value="D-4 Akutansi Manajemen Pemerintahan">D-4 Akutansi
+                                                        Manajemen Pemerintahan</option>
+                                                    <option value="D-4 Akutansi">D-4 Akutansi</option>
+                                                    <option value="D-4 Keuangan Syariah">D-4 Keuangan Syariah
+                                                    </option>
+                                                    <option value="S-2 Keuangan dan Perbankan Syariah">D-4 Keuangan
+                                                        dan Perbankan Syariah</option>
+
+                                                    <!-- Administrasi Niaga -->
+                                                    <option value="D-3 Administrasi Bisnis">D-3 Administrasi Bisnis
+                                                    </option>
+                                                    <option value="D-3 Manajemen Pemasaran">D-3 Manajemen Pemasaran
+                                                    </option>
+                                                    <option value="D-3 Usaha Perjalanan Wisata">D-3 Usaha Perjalanan
+                                                        Wisata</option>
+                                                    <option value="D-4 Manajemen Aset">D-4 Manajemen Aset</option>
+                                                    <option value="D-4 Manajemen Bisnis">D-4 Manajemen Bisnis
+                                                    </option>
+                                                    <option value="D-4 Manajemen Pemasaran">D-4 Manajemen Pemasaran
+                                                    </option>
+                                                    <option value="D-4 Destinasi Pariwisata">D-4 Destinasi
+                                                        Pariwisata</option>
+
+                                                    <!-- Bahasa Inggris -->
+                                                    <option value="D-3 Bahasa Inggris">D-3 Bahasa Inggris</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="mr-1 mt-1" id="academicYearField"
+                                                style="width: 94%; display: none;">
+                                                <select name="academic_year" id="academicYearField"
+                                                    class="custom-select">
+                                                    <option value=""></option>
+                                                    <option value="2015">2015</option>
+                                                    <option value="2016">2016</option>
+                                                    <option value="2017">2017</option>
+                                                    <option value="2018">2018</option>
+                                                    <option value="2019">2019</option>
+                                                    <option value="2020">2020</option>
+                                                    <option value="2021">2021</option>
+                                                    <option value="2022">2022</option>
+                                                    <option value="2023">2023</option>
+                                                    <option value="2024">2024</option>
+                                                    <option value="2025">2025</option>
+                                                    <option value="2026">2026</option>
+                                                    <!-- Tambahkan tahun sesuai kebutuhan -->
+                                                </select>
+                                            </div>
+
+                                            <div class="mr-1 mt-1" id="streetField" style="width: 94%; display: none;">
+                                                <input type="text" class="form-control" id="streetField"
+                                                    name="streetField" placeholder="enter street">
+                                            </div>
+
+                                            <div class="mr-1 mt-1" id="cityField" style="width: 94%; display: none;">
+                                                <input type="text" class="form-control" id="cityField" name="cityField"
+                                                    placeholder="enter city">
+                                            </div>
+
+                                            <div class="mr-1 mt-1" id="stateCodeField"
+                                                style="width: 94%; display: none;">
+                                                <input type="text" class="form-control" id="stateCodeField"
+                                                    name="stateCodeField" placeholder="enter state_code">
+                                            </div>
+
+                                            <div class="mr-1 mt-1" id="zipCodeField" style="width: 94%; display: none;">
+                                                <input type="text" class="form-control" id="zipCodeField"
+                                                    name="zipCodeField" placeholder="enter zip_code">
+                                            </div>
+
+                                            <div class="mr-1 mt-1" id="academicGraduateYearField"
+                                                style="width: 94%; display: none;">
+                                                <select name="academic_graduate_year" id="academicGraduateYearField"
+                                                    class="custom-select">
+                                                    <option value=""></option>
+                                                    <option value="2015">2015</option>
+                                                    <option value="2016">2016</option>
+                                                    <option value="2017">2017</option>
+                                                    <option value="2018">2018</option>
+                                                    <option value="2019">2019</option>
+                                                    <option value="2020">2020</option>
+                                                    <option value="2021">2021</option>
+                                                    <option value="2022">2022</option>
+                                                    <option value="2023">2023</option>
+                                                    <option value="2024">2024</option>
+                                                    <option value="2025">2025</option>
+                                                    <option value="2026">2026</option>
+                                                    <!-- Tambahkan tahun sesuai kebutuhan -->
+                                                </select>
+                                            </div>
+
+                                            <div class="mr-1 mt-1" id="jenisKelaminField"
+                                                style="width: 94%; display: none;">
+                                                <select name="jenis_kelamin" id="jenisKelaminField"
+                                                    name="jenisKelaminField" class="custom-select">
+                                                    <option value=""></option>
+                                                    <option value="wanita">wanita</option>
+                                                    <option value="pria">pria</option>
+                                                    <!-- Tambahkan tahun sesuai kebutuhan -->
+                                                </select>
+                                            </div>
+
+                                            <div class="mr-1 mt-1" id="noTelpField" style="width: 94%; display: none;">
+                                                <input type="text" class="form-control" id="noTelpField"
+                                                    name="noTelpField" placeholder="enter no_telp">
+                                            </div>
+
+                                            <div class="mr-1 mt-1" id="nikField" style="width: 94%; display: none;">
+                                                <input type="text" class="form-control" id="nikField" name="nikField"
+                                                    placeholder="enter nik">
+                                            </div>
+
+                                            <div class="mr-1 mt-1" id="npwpField" style="width: 94%; display: none;">
+                                                <input type="text" class="form-control" id="npwpField" name="npwpField"
+                                                    placeholder="enter npwp">
+                                            </div>
+
+
+                                            <!-- Tambahkan div lain untuk sub-opsi spesifik lainnya sesuai kebutuhan -->
+
+                                            <button type="button" class="btn btn-primary mt-2"
+                                                onclick="addConditionalOption()">Add</button>
+
 
                                         </div>
-                                    </div>
+
+
+
+                                        <script>
+                                            function toggleOptions() {
+                                                var checkbox = document.getElementById("conditional_logic");
+                                                var options = document.getElementById("conditionalOptions");
+                                                options.style.display = checkbox.checked ? "block" : "none";
+                                            }
+
+                                            function toggleSubOptions() {
+                                                var mainOption = document.getElementById("mainOption").value;
+
+                                                // Sembunyikan semua sub-opsi terlebih dahulu
+                                                document.getElementById("displayNameField").style.display = "none";
+                                                document.getElementById("emailField").style.display = "none";
+                                                document.getElementById("groupField").style.display = "none";
+                                                document.getElementById("academicNimField").style.display = "none";
+                                                document.getElementById("academicFacultyField").style.display = "none";
+                                                document.getElementById("academicProgramField").style.display = "none";
+                                                document.getElementById("academicYearField").style.display = "none";
+                                                document.getElementById("streetField").style.display = "none";
+                                                document.getElementById("cityField").style.display = "none";
+                                                document.getElementById("stateCodeField").style.display = "none";
+                                                document.getElementById("zipCodeField").style.display = "none";
+                                                document.getElementById("academicGraduateYearField").style.display = "none";
+                                                document.getElementById("jenisKelaminField").style.display = "none";
+                                                document.getElementById("noTelpField").style.display = "none";
+                                                document.getElementById("nikField").style.display = "none";
+                                                document.getElementById("npwpField").style.display = "none";
+                                                // Tambahkan ID div lain yang ingin disembunyikan di sini
+
+                                                // Tampilkan sub-opsi sesuai nilai yang dipilih di mainOption
+                                                if (mainOption === "display_name") {
+                                                    document.getElementById("displayNameField").style.display = "block";
+                                                } else if (mainOption === "email") {
+                                                    document.getElementById("emailField").style.display = "block";
+                                                } else if (mainOption === "group") {
+                                                    document.getElementById("groupField").style.display = "block";
+                                                } else if (mainOption === "academic_nim") {
+                                                    document.getElementById("academicNimField").style.display = "block";
+                                                } else if (mainOption === "academic_faculty") {
+                                                    document.getElementById("academicFacultyField").style.display = "block";
+                                                } else if (mainOption === "academic_program") {
+                                                    document.getElementById("academicProgramField").style.display = "block";
+                                                } else if (mainOption === "academic_year") {
+                                                    document.getElementById("academicYearField").style.display = "block";
+                                                } else if (mainOption === "street") {
+                                                    document.getElementById("streetField").style.display = "block";
+                                                } else if (mainOption === "city") {
+                                                    document.getElementById("cityField").style.display = "block";
+                                                } else if (mainOption === "state_code") {
+                                                    document.getElementById("stateCodeField").style.display = "block";
+                                                } else if (mainOption === "zip_code") {
+                                                    document.getElementById("zipCodeField").style.display = "block";
+                                                } else if (mainOption === "academic_graduate_year") {
+                                                    document.getElementById("academicGraduateYearField").style.display = "block";
+                                                } else if (mainOption === "jenis_kelamin") {
+                                                    document.getElementById("jenisKelaminField").style.display = "block";
+                                                } else if (mainOption === "no_telp") {
+                                                    document.getElementById("noTelpField").style.display = "block";
+                                                } else if (mainOption === "nik") {
+                                                    document.getElementById("nikField").style.display = "block";
+                                                } else if (mainOption === "npwp") {
+                                                    document.getElementById("npwpField").style.display = "block";
+                                                }
+                                                // Tambahkan kondisi lainnya sesuai kebutuhan
+                                            }
+                                        </script>
+
+                                        <div class="mt-1">
+                                            <button type="submit" class="btn btn-primary mr-2">Simpan</button>
+                                            <a class="btn btn-danger"
+                                                style="font-size:14px;padding:8px 10px;color:white;"
+                                                href="<?= base_url('/kuesionerkuesioner') ?>">Batal</a>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- Tinjau Kuesioner END -->
+            </div>
+        </div>
+    </div>
+    <script>
+            $('.updateModal').click(function () {
+                // Ambil data dari atribut data-* pada tombol yang diklik
+                var id = $(this).data('id'); // Ambil id
+                var title = $(this).data('title');
+                var deskripsi = $(this).data('deskripsi');
+                var conditional_logic = $(this).data('conditional_logic');
+               
 
-                <!-- Sunting Kuesioner Page START-->
-                <div class="card tab-content" id="SuntingEditKuesioner" style="display:none;">
-                    <div class="card-header">
-                        <div class="d-flex justify-content-between">
-                            <h2>Sunting Kuesioner Page</h2>
-                        </div>
-                        <hr>
+                // Isi nilai input dalam form modal dengan data yang diperoleh
+                $('#editForm #id').val(id); // Isi input hidden id
+                $('#editForm #title').val(title);
+                $('#editForm #deskripsi').val(deskripsi);
+                $('#editForm #conditional_logic').val(conditional_logic);
+              
+                
+            });
+            $('#editForm').submit(function (e) {
+                e.preventDefault(); // Mencegah form submit default
 
-                        <div class="m-2">
-                            <form>
-                                <div class="form-group">
-                                    <label for="exampleInputTitle">Title</label>
-                                    <input type="email" class="form-control" id="exampleInputTitle"
-                                        placeholder="Halaman 1">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputDeskripsi">Deskripsi</label>
-                                    <input type="password" class="form-control" id="exampleInputDeskripsi"
-                                        placeholder="Halaman ini berisi pertanyaan tentang data diri dan pekerjaan Anda. Mohon untuk mengisi semua data yang diminta. Terima kasih.">
-                                </div>
-                                <div class="form-check d-flex">
-                                    <label class="form-check-label" for="exampleCheck1">Conditional Logic</label>
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                </div>
+                var id = $('#id').val();
+                var title = $('#title').val();
+                var deskripsi = $('#deskripsi').val();
+                var conditional_logic = $('#conditional_logic').val();
+                
 
-                                <br>
-                                <div>
-                                    <a class="btn btn-info" style="font-size:14px;padding:8px 10px;color:white;"
-                                        href="<?= base_url('/kuesioner') ?>">Simpan</a>
-                                    <a class="btn btn-danger" style="font-size:14px;padding:8px 10px;color:white;"
-                                        onclick="openTab(event, 'SuntingKuesioner')">Batal</a>
-                                </div>
-                            </form>
-                        </div>
+                $.ajax({
+                    url: '<?= base_url("updatekuesioner") ?>',
+                    method: 'POST',
+                    data: {
+                        id: id,
+                        title: title,
+                        deskripsi: deskripsi,
+                        conditional_logic: conditional_logic,
+                        
+                    },
+                    success: function (response) {
+                        alert(response.message);
+                        location.reload(); // Refresh halaman setelah berhasil disimpan
+                    },
+                    error: function (err) {
+                        console.log(err);
+                        alert("Gagal menyimpan data. Silakan coba lagi.");
+                    }
+                });
+            });
+        </script>
+    <script>
+        function openTab(evt, tabId) {
+            // Sembunyikan semua tab content
+            var tabcontent = document.getElementsByClassName("tab-content");
+            for (var i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none"; // Sembunyikan semua tab
+            }
 
-                        <div class="table-responsive">
-                            <table class="table table-bordered text-center ">
-                                <thead>
-                                    <tr>
-                                        <td>ID Section</td>
-                                        <td>Nama Section</td>
-                                        <td>Deskripsi</td>
-                                        <td>Conditional Logic</td>
-                                        <td>Num of Section</td>
-                                        <td>Aksi</td>
-                                    </tr>
-                                    <tr>
-                                        <td>29</td>
-                                        <td>Data Pribadi</td>
-                                        <td>Bagian ini berisi pertanyaan tentang data pribadi responden.</td>
-                                        <td>none</td>
-                                        <td>11</td>
-                                        <td class="">
-                                            <a class="btn btn-secondary btn-sm"
-                                                style='font-size:10px;padding:2px 5px;color:white;'>Up</a>
-                                            <a class="btn btn-secondary btn-sm"
-                                                style='font-size:10px;padding:2px 5px;color:white;'>Down</a>
-                                            <a class="btn btn-info btn-sm"
-                                                style='font-size:10px;padding:2px 5px;color:white;'
-                                                onclick="openTab(event, 'SuntingKuesionerSection')">Edit</a>
-                                            <a class="btn btn-danger btn-sm"
-                                                style='font-size:10px;padding:2px 5px;color:white;'>Hapus</a>
-                                        </td>
-                                    </tr>
-                                </thead>
-                            </table>
-                        </div>
-                    </div>
+            // Tampilkan tab yang dipilih
+            document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
+
+            // Menandai tombol tab yang aktif
+            var tablinks = document.getElementsByClassName("nav-link");
+            for (var i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", ""); // Hilangkan kelas active dari semua tab
+            }
+
+            // Tambahkan kelas active pada tombol yang ditekan
+            evt.currentTarget.className += " active";
+        }
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.lihat-btn').on('click', function () {
+                const conditionalLogic = $(this).data('logic');
+
+                // Mengirim AJAX request untuk memfilter data
+                $.ajax({
+                    url: '/c_kuesioner/filterData', // Ganti dengan URL yang sesuai
+                    method: 'GET',
+                    data: {
+                        logic: conditionalLogic
+                    },
+                    success: function (response) {
+                        // Tampilkan data yang difilter di tab "dataTabel"
+                        $('#dataTabel').html(response);
+                    },
+                    error: function () {
+                        alert('Gagal memuat data.');
+                    }
+                });
+            });
+        });
+    </script>
+    <!-- Table Kuesioner END -->
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content text-center">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Hapus</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <!-- Sunting Kuesioner END-->
+                <div class="modal-body">
+                    <p>Apakah Anda yakin ingin menghapus data <strong id="username"></strong>?</p>
+                    <form id="deleteForm" method="post" action="<?= base_url('deletekuesioner') ?>">
+                        <input type="hidden" id="delete_id" name="id">
+                        <button type="submit" class="btn btn-danger">Hapus</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                <!-- Sunting Kuesioner Section START -->
-                <div class="card tab-content" id="SuntingKuesionerSection" style="display: none;">
-                    <div class="card-header">
-                        <div class="d-flex justify-content-between">
-                            <h2>Sunting Kuesioner Section</h2>
-                        </div>
-                        <hr>
+    <script>
+        $('.deleteModal').click(function () {
+            var href = $(this).data('target');
+            var id = $(this).data('id');
+            $('#delete_id').val(id);
+        });
+    </script>
 
-                        <div class="m-2">
-                            <form>
-                                <form>
-                                    <div class="form-group">
-                                        <label for="exampleInputTitle">Title</label>
-                                        <input type="email" class="form-control" id="exampleInputTitle"
-                                            placeholder="Data Pribadi">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputDeskripsi">Deskripsi</label>
-                                        <input type="password" class="form-control" id="exampleInputDeskripsi"
-                                            placeholder="Bagian ini berisi pertanyaan tentang data pribadi responden.">
-                                    </div>
-                                    <div class="form-check d-flex">
-                                        <label class="form-check-label" for="exampleCheck1">Show Section Title</label>
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    </div>
-                                    <div class="form-check d-flex mt-1">
-                                        <label class="form-check-label" for="exampleCheck1">Show Section
-                                            Description</label>
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    </div>
-                                    <div class="form-check d-flex mt-1">
-                                        <label class="form-check-label" for="exampleCheck1">Conditional Logic</label>
-                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    </div>
+    <!-- Modal Konfirmasi Hapus END-->
 
-                                    <br>
-                                    <div>
-                                        <a class="btn btn-info" style="font-size:14px;padding:8px 10px;color:white;"
-                                            onclick="openTab(event, 'SuntingKuesionerSection')">Simpan</a>
-                                        <a class="btn btn-danger" style="font-size:14px;padding:8px 10px;color:white;"
-                                            onclick="openTab(event, 'SuntingEditKuesioner')">Batal</a>
-                                    </div>
+    <!-- Sunting Kuesioner START-->
 
-                                </form>
 
-                                <!-- ISI DISINI -->
-                                <div id="floating_question_selector">
-                                    <div id="floating_label">
-                                        Pilih Jenis Pertanyaan...
-                                    </div>
-                                    <div id="questions_button">
-                                        <button class="quest_butt btn btn-primary" onclick="add_single_line();">Single
-                                            Line Text</button>
-                                        <button class="quest_butt btn btn-primary" onclick="add_dropdown();">Dropdown
-                                            List</button>
-                                        <button class="quest_butt btn btn-primary" onclick="add_date();">Date</button>
-                                        <button class="quest_butt btn btn-primary"
-                                            onclick="add_checkbox();">Checkbox</button>
-                                        <button class="quest_butt btn btn-primary"
-                                            onclick="add_number();">Number</button>
-                                        <button class="quest_butt btn btn-primary" onclick="add_radio();">Radio
-                                            Buttons</button>
-                                        <button class="quest_butt btn btn-primary" onclick="add_phone();">Phone</button>
-                                        <button class="quest_butt btn btn-primary"
-                                            onclick="add_scale();">Scale</button>ah
-                                        <button class="quest_butt btn btn-primary" onclick="add_readonly();">User
-                                            Field</button>
-                                        <button class="quest_butt btn btn-primary" onclick="add_grid();">Grid</button>
-                                        <!-- Tambahkan tombol lainnya di sini -->
-                                    </div>
+    <!-- Tinjau Kuesioner START -->
+    <div class="card tab-content" id="TinjauKuesioner" style="display:none;">
+        <div class="card-header">
+            <div class="d-flex justify-content-between">
+                <h2>Detil Kuesioner</h2>
+            </div>
+            <hr>
 
+            <div class="m-2">
+                <form>
+                    <div>
+                        <select class="page_options" name="index_page">
+                            <option value="0" selected="">ID : 43 - Halaman 1</option>
+                            <option value="1">ID : 44 - Halaman 2</option>
+                            <option value="2">ID : 45 - Halaman 3</option>
+                            <option value="3">ID : 46 - Halaman 4</option>
+                            <option value="4">ID : 47 - Halaman 5</option>
+                            <option value="5">ID : 65 - Halaman 2</option>
+                            <option value="6">ID : 66 - Halaman 3</option>
+                            <option value="7">ID : 71 - Halaman 4</option>
+                            <option value="8">ID : 72 - Halaman 5</option>
+                            <option value="9">ID : 68 - Halaman Kuesioner Program Studi Teknik Kimia
+                            </option>
+                            <option value="10">ID : 69 - Halaman Kuesioner Program Studi SBM
+                            </option>
+                            <option value="11">ID : 70 - Pilihan Hadiah</option>
+                            <option value="12">ID : 67 - Prodi SBM</option>
+                        </select>
+                        <input type="submit" value="Go">
+
+                        <p class="mt-1">
+                            Halaman ini berisi pertanyaan tentang data diri dan pekerjaan Anda.
+                            Mohon untuk mengisi semua data yang diminta. Terima kasih.
+                        </p>
+                    </div>
+                </form>
+                <hr>
+                <div>
+                    <p class="h4"><b>Data Pribadi</b></p>
+                    <p>Bagian ini berisi pertanyaan tentang data pribadi responden.</p>
+                    <div class="section_content" id="sc_29">
+                        <div class="section_body" id="sb_29">
+                            <di class="question_content" id="29_25">
+                                <div class="alert alert-primary" role="alert">
+                                    <label class="field_title">
+                                        <b>
+                                            <span class="question">
+                                                1. Nama </span>
+                                        </b>
+                                    </label>
                                 </div>
 
-                                <form id="questionForm" method="post" action="<?= base_url('kuesionerkuesioner') ?>">
-                                    <div id="questions_panel" class="container mt-5">
-                                        <h2>Daftar Pertanyaan</h2>
-                                        <ul id="sortable">
-                                            <!-- Pertanyaan akan ditambahkan di sini -->
-                                        </ul>
+                                <div class="input ml-1 mb-3">
+                                    <div class="question_readonly_attribs">
+                                        DEDE CHANDRA NUGRAHA <input type="hidden" class="question_readonly answer"
+                                            value="DEDE CHANDRA NUGRAHA" id="43_29_25">
                                     </div>
+                                </div>
                         </div>
 
-
-                        <script type="text/javascript">
-                            function deletequestion(anu) {
-                                var q = anu.parents("li:first");
-                                q.remove();
-                            }
-
-                            function quest_done(anu) {
-                                var view = anu.parents("li:first").find(".single_view_state");
-                                var edit = anu.parents("li:first").find(".single_edit_state");
-                                var qtext = anu.parents("li:first").find(".quest_text_field").val();
-                                anu.parents("li:first").find(".single_line_text").html(qtext);
-                                view.show();
-                                edit.hide();
-                            }
-
-                            function done_edit_delete_quest(anu) {
-                                // event.preventDefault();
-                                var id = anu.parents("li:first").attr("id");
-                                var view = anu.parents("li:first").find(".single_view_state");
-                                var done_button = anu.parents("li:first").find(".done_quest");
-                                var edit = anu.parents("li:first").find(".single_edit_state");
-                                var edit_button = anu.parents("li:first").find(".edit_quest");
-                                var qtext = anu.parents("li:first").find(".question_title").val();
-                                if (anu.is('.done_quest')) {
-                                    anu.parents("li:first").find(".single_line_text").html(qtext);
-                                    view.show();
-                                    edit_button.show();
-                                    edit.hide();
-                                    done_button.hide();
-                                    anu.parents("li:first").find(".field_container").css({
-                                        "background-color": "white"
-                                    })
-                                    anu.parents("li:first").find(".field_header").css({
-                                        "background-color": "#DFEFFF"
-                                    })
-                                } else if (anu.is('.edit_quest')) {
-                                    view.hide();
-                                    edit.show();
-                                    done_button.show();
-                                    edit_button.hide();
-                                    anu.parents("li:first").find(".field_container").css({
-                                        "background-color": "#DFEFFF"
-                                    })
-                                    anu.parents("li:first").find(".field_header").css({
-                                        "background-color": "powderblue"
-                                    })
-                                } else {
-                                    if (confirm('Apakah anda yakin untuk menghapus pertanyaan ini ?')) {
-                                        var index = fields_id.indexOf(id);
-                                        fields_id.splice(index, 1);
-                                        deletequestion(anu);
-                                    }
-                                }
-
-                            }
-
-                            function add_grid() {
-                                var id = ++fields_sum;
-                                fields_id.push(id);
-
-                                var grid_field = $('<li id="' + id + '" class="grid question_fields">' +
-                                    '<div class="field_header">' +
-                                    '<div class="field_buttons_edit">' +
-                                    '<a href="#" class="edit_quest">edit</a>' +
-                                    '<a href="#" class="done_quest" style="display: none;">done</a>' +
-                                    '<a href="#" class="delete_quest">delete</a>' +
-                                    '</div>' +
-                                    '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
-                                    'Grid Field: ' + id +
-                                    '</div>' +
-                                    '</div>' +
-                                    '<div class="field_container">' +
-                                    '<div class="grid_edit_state" style="display: none;">' +
-                                    '<div class="grid_field">' +
-                                    'Row Title <input type="text" name="grid_row_title" class="row_title"/><br />' +
-                                    'Column Titles (separate by comma) <input type="text" class="column_titles"/><br />' +
-                                    '</div>' +
-                                    '<button class="add_row">Add Row</button>' +
-                                    '<div class="grid_rows"></div>' +
-                                    '</div>' +
-                                    '<div class="grid_view_state">' +
-                                    '<div class="grid_text">Grid Content</div>' +
-                                    '<div class="grid_answer"></div>' // This will hold the grid data
-                                    +
-                                    '</div>' +
-                                    '</div>' +
-                                    '</li>');
-
-                                $("#sortable").append(grid_field);
-
-                                // Event handler for edit button
-                                grid_field.find('.edit_quest').click(function (e) {
-                                    e.preventDefault();
-                                    grid_field.find('.grid_view_state').hide();
-                                    grid_field.find('.grid_edit_state').show();
-                                    grid_field.find('.edit_quest').hide();
-                                    grid_field.find('.done_quest').show();
-                                });
-
-                                // Event handler for done button
-                                grid_field.find('.done_quest').click(function (e) {
-                                    e.preventDefault();
-                                    updateGridView(grid_field);
-                                    grid_field.find('.grid_edit_state').hide();
-                                    grid_field.find('.grid_view_state').show();
-                                    grid_field.find('.done_quest').hide();
-                                    grid_field.find('.edit_quest').show();
-                                });
-
-                                // Event handler for delete button
-                                grid_field.find('.delete_quest').click(function (e) {
-                                    e.preventDefault();
-                                    if (confirm("Apakah Anda yakin ingin menghapus grid ini?")) {
-                                        var index = fields_id.indexOf(id);
-                                        fields_id.splice(index, 1);
-                                        grid_field.remove();
-                                    }
-                                });
-
-                                // Event handler for add row button
-                                grid_field.find('.add_row').click(function (e) {
-                                    e.preventDefault();
-                                    addRowToGrid(grid_field);
-                                });
-                            }
-
-                            function addRowToGrid(grid_field) {
-                                var rowHtml = $('<div class="grid_row">' +
-                                    'Row Data: <input type="text" class="row_data"/><br />' +
-                                    '</div>');
-                                grid_field.find('.grid_rows').append(rowHtml);
-                            }
-
-                            function updateGridView(grid_field) {
-                                var rowTitle = grid_field.find('input[name="grid_row_title"]').val();
-                                var columnTitles = grid_field.find('input.column_titles').val().split(',').map(function (
-                                    opt) {
-                                    return opt.trim();
-                                });
-
-                                var gridContentHtml = '<strong>' + rowTitle + '</strong><br />';
-                                gridContentHtml += '<table border="1"><tr>';
-                                columnTitles.forEach(function (title) {
-                                    gridContentHtml += '<th>' + title + '</th>';
-                                });
-                                gridContentHtml += '</tr>';
-
-                                grid_field.find('.grid_rows .grid_row').each(function () {
-                                    var rowData = $(this).find('.row_data').val();
-                                    gridContentHtml += '<tr>';
-                                    columnTitles.forEach(function () {
-                                        gridContentHtml += '<td>' + rowData + '</td>';
-                                    });
-                                    gridContentHtml += '</tr>';
-                                });
-
-                                gridContentHtml += '</table>';
-                                grid_field.find('.grid_answer').html(gridContentHtml);
-                            }
-
-
-                            function add_readonly() {
-                                var id = ++fields_sum;
-                                fields_id.push(id);
-
-                                var readonly_field = $('<li id="' + id + '" class="readonly question_fields">' +
-                                    '<div class="field_header">' +
-                                    '<div class="field_buttons_edit">' +
-                                    '<a href="#" class="edit_quest">edit</a>' +
-                                    '<a href="#" class="done_quest" style="display: none;">done</a>' +
-                                    '<a href="#" class="delete_quest">delete</a>' +
-                                    '</div>' +
-                                    '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
-                                    'Readonly Field: ' + id +
-                                    '</div>' +
-                                    '</div>' +
-                                    '<div class="field_container">' +
-                                    '<div class="readonly_edit_state" style="display: none;">' +
-                                    '<div class="readonly_field">' +
-                                    'Field Title <input type="text" name="readonly_field_title" class="field_title"/><br />' +
-                                    '</div>' +
-                                    '</div>' +
-                                    '<div class="readonly_view_state">' +
-                                    '<div class="readonly_text">Field Text?</div>' +
-                                    '<div class="readonly_answer"></div>' // This will hold the readonly input
-                                    +
-                                    '</div>' +
-                                    '</div>' +
-                                    '</li>');
-
-                                $("#sortable").append(readonly_field);
-
-                                // Event handler for edit button
-                                readonly_field.find('.edit_quest').click(function (e) {
-                                    e.preventDefault();
-                                    readonly_field.find('.readonly_view_state').hide();
-                                    readonly_field.find('.readonly_edit_state').show();
-                                    readonly_field.find('.edit_quest').hide();
-                                    readonly_field.find('.done_quest').show();
-                                });
-
-                                // Event handler for done button
-                                readonly_field.find('.done_quest').click(function (e) {
-                                    e.preventDefault();
-                                    updateReadonlyView(readonly_field);
-                                    readonly_field.find('.readonly_edit_state').hide();
-                                    readonly_field.find('.readonly_view_state').show();
-                                    readonly_field.find('.done_quest').hide();
-                                    readonly_field.find('.edit_quest').show();
-                                });
-
-                                // Event handler for delete button
-                                readonly_field.find('.delete_quest').click(function (e) {
-                                    e.preventDefault();
-                                    if (confirm("Apakah Anda yakin ingin menghapus field ini?")) {
-                                        var index = fields_id.indexOf(id);
-                                        fields_id.splice(index, 1);
-                                        readonly_field.remove();
-                                    }
-                                });
-                            }
-
-                            function updateReadonlyView(readonly_field) {
-                                var fieldTitle = readonly_field.find('input[name="readonly_field_title"]').val();
-
-                                readonly_field.find('.readonly_text').text(fieldTitle);
-                                readonly_field.find('.readonly_answer').text("Value: " + fieldTitle);
-                            }
-
-                            function add_scale() {
-                                var id = ++fields_sum;
-                                fields_id.push(id);
-
-                                var scale_field = $('<li id="' + id + '" class="scale question_fields">' +
-                                    '<div class="field_header">' +
-                                    '<div class="field_buttons_edit">' +
-                                    '<a href="#" class="edit_quest">edit</a>' +
-                                    '<a href="#" class="done_quest" style="display: none;">done</a>' +
-                                    '<a href="#" class="delete_quest">delete</a>' +
-                                    '</div>' +
-                                    '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
-                                    'Scale Field: ' + id +
-                                    '</div>' +
-                                    '</div>' +
-                                    '<div class="field_container">' +
-                                    '<div class="scale_edit_state" style="display: none;">' +
-                                    '<div class="scale_field">' +
-                                    'Question Title <input type="text" name="scale_quest_title" class="question_title"/><br />' +
-                                    'Scale Range (min,max) <input type="text" class="scale_range"/><br />' +
-                                    '</div>' +
-                                    '</div>' +
-                                    '<div class="scale_view_state">' +
-                                    '<div class="scale_text">Question Text?</div>' +
-                                    '<div class="scale_answer"></div>' // This will hold the scale input
-                                    +
-                                    '</div>' +
-                                    '</div>' +
-                                    '</li>');
-
-                                $("#sortable").append(scale_field);
-
-                                // Event handler for edit button
-                                scale_field.find('.edit_quest').click(function (e) {
-                                    e.preventDefault();
-                                    scale_field.find('.scale_view_state').hide();
-                                    scale_field.find('.scale_edit_state').show();
-                                    scale_field.find('.edit_quest').hide();
-                                    scale_field.find('.done_quest').show();
-                                });
-
-                                // Event handler for done button
-                                scale_field.find('.done_quest').click(function (e) {
-                                    e.preventDefault();
-                                    updateScaleView(scale_field);
-                                    scale_field.find('.scale_edit_state').hide();
-                                    scale_field.find('.scale_view_state').show();
-                                    scale_field.find('.done_quest').hide();
-                                    scale_field.find('.edit_quest').show();
-                                });
-
-                                // Event handler for delete button
-                                scale_field.find('.delete_quest').click(function (e) {
-                                    e.preventDefault();
-                                    if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
-                                        var index = fields_id.indexOf(id);
-                                        fields_id.splice(index, 1);
-                                        scale_field.remove();
-                                    }
-                                });
-                            }
-
-                            function updateScaleView(scale_field) {
-                                var questionTitle = scale_field.find('input[name="scale_quest_title"]').val();
-                                var scaleRange = scale_field.find('input.scale_range').val();
-
-                                scale_field.find('.scale_text').text(questionTitle);
-                                scale_field.find('.scale_answer').text("Scale Range: " + scaleRange);
-                            }
-
-                            function add_phone() {
-                                var id = ++fields_sum;
-                                fields_id.push(id);
-
-                                var phone_field = $('<li id="' + id + '" class="phone question_fields">' +
-                                    '<div class="field_header">' +
-                                    '<div class="field_buttons_edit">' +
-                                    '<a href="#" class="edit_quest">edit</a>' +
-                                    '<a href="#" class="done_quest" style="display: none;">done</a>' +
-                                    '<a href="#" class="delete_quest">delete</a>' +
-                                    '</div>' +
-                                    '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
-                                    'Phone Field: ' + id +
-                                    '</div>' +
-                                    '</div>' +
-                                    '<div class="field_container">' +
-                                    '<div class="phone_edit_state" style="display: none;">' +
-                                    '<div class="phone_field">' +
-                                    'Question Title <input type="text" name="phone_quest_title" class="question_title"/><br />' +
-                                    'Phone Number <input type="text" class="phone_number"/><br />' +
-                                    '</div>' +
-                                    '</div>' +
-                                    '<div class="phone_view_state">' +
-                                    '<div class="phone_text">Question Text?</div>' +
-                                    '<div class="phone_answer"></div>' // This will hold the phone number input
-                                    +
-                                    '</div>' +
-                                    '</div>' +
-                                    '</li>');
-
-                                $("#sortable").append(phone_field);
-
-                                // Event handler for edit button
-                                phone_field.find('.edit_quest').click(function (e) {
-                                    e.preventDefault();
-                                    phone_field.find('.phone_view_state').hide();
-                                    phone_field.find('.phone_edit_state').show();
-                                    phone_field.find('.edit_quest').hide();
-                                    phone_field.find('.done_quest').show();
-                                });
-
-                                // Event handler for done button
-                                phone_field.find('.done_quest').click(function (e) {
-                                    e.preventDefault();
-                                    updatePhoneView(phone_field);
-                                    phone_field.find('.phone_edit_state').hide();
-                                    phone_field.find('.phone_view_state').show();
-                                    phone_field.find('.done_quest').hide();
-                                    phone_field.find('.edit_quest').show();
-                                });
-
-                                // Event handler for delete button
-                                phone_field.find('.delete_quest').click(function (e) {
-                                    e.preventDefault();
-                                    if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
-                                        var index = fields_id.indexOf(id);
-                                        fields_id.splice(index, 1);
-                                        phone_field.remove();
-                                    }
-                                });
-                            }
-
-                            function updatePhoneView(phone_field) {
-                                var questionTitle = phone_field.find('input[name="phone_quest_title"]').val();
-                                var phoneNumber = phone_field.find('input.phone_number').val();
-
-                                phone_field.find('.phone_text').text(questionTitle);
-                                phone_field.find('.phone_answer').text(phoneNumber);
-                            }
-
-                            function add_radio() {
-                                var id = ++fields_sum;
-                                fields_id.push(id);
-
-                                var radio_field = $('<li id="' + id + '" class="radio question_fields">' +
-                                    '<div class="field_header">' +
-                                    '<div class="field_buttons_edit">' +
-                                    '<a href="#" class="edit_quest">edit</a>' +
-                                    '<a href="#" class="done_quest" style="display: none;">done</a>' +
-                                    '<a href="#" class="delete_quest">delete</a>' +
-                                    '</div>' +
-                                    '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
-                                    'Radio Field: ' + id +
-                                    '</div>' +
-                                    '</div>' +
-                                    '<div class="field_container">' +
-                                    '<div class="radio_edit_state" style="display: none;">' +
-                                    '<div class="radio_field">' +
-                                    'Question Title <input type="text" name="radio_quest_title" class="question_title"/><br />' +
-                                    'Options (separate by comma) <input type="text" class="question_options"/><br />' +
-                                    '</div>' +
-                                    '</div>' +
-                                    '<div class="radio_view_state">' +
-                                    '<div class="radio_text">Question Text?</div>' +
-                                    '<div class="radio_answer"></div>' // This will hold the radio buttons
-                                    +
-                                    '</div>' +
-                                    '</div>' +
-                                    '</li>');
-
-                                $("#sortable").append(radio_field);
-
-                                // Event handler for edit button
-                                radio_field.find('.edit_quest').click(function (e) {
-                                    e.preventDefault();
-                                    radio_field.find('.radio_view_state').hide();
-                                    radio_field.find('.radio_edit_state').show();
-                                    radio_field.find('.edit_quest').hide();
-                                    radio_field.find('.done_quest').show();
-                                });
-
-                                // Event handler for done button
-                                radio_field.find('.done_quest').click(function (e) {
-                                    e.preventDefault();
-                                    updateRadioView(radio_field);
-                                    radio_field.find('.radio_edit_state').hide();
-                                    radio_field.find('.radio_view_state').show();
-                                    radio_field.find('.done_quest').hide();
-                                    radio_field.find('.edit_quest').show();
-                                });
-
-                                // Event handler for delete button
-                                radio_field.find('.delete_quest').click(function (e) {
-                                    e.preventDefault();
-                                    if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
-                                        var index = fields_id.indexOf(id);
-                                        fields_id.splice(index, 1);
-                                        radio_field.remove();
-                                    }
-                                });
-                            }
-
-                            function updateRadioView(radio_field) {
-                                var questionTitle = radio_field.find('input[name="radio_quest_title"]').val();
-                                var options = radio_field.find('input.question_options').val().split(',').map(function (
-                                    opt) {
-                                    return opt.trim();
-                                });
-
-                                radio_field.find('.radio_text').text(questionTitle);
-                                var answerHtml = '';
-                                options.forEach(function (option) {
-                                    answerHtml += '<label><input type="radio" name="radio_answer_' + radio_field
-                                        .attr('id') + '" value="' + option + '"> ' + option + '</label><br />';
-                                });
-                                radio_field.find('.radio_answer').html(answerHtml);
-                            }
-
-                            function add_number() {
-                                var id = ++fields_sum;
-                                fields_id.push(id);
-
-                                var number_field = $('<li id="' + id + '" class="number question_fields">' +
-                                    '<div class="field_header">' +
-                                    '<div class="field_buttons_edit">' +
-                                    '<a href="#" class="edit_quest">edit</a>' +
-                                    '<a href="#" class="done_quest" style="display: none;">done</a>' +
-                                    '<a href="#" class="delete_quest">delete</a>' +
-                                    '</div>' +
-                                    '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
-                                    'Number Field: ' + id +
-                                    '</div>' +
-                                    '</div>' +
-                                    '<div class="field_container">' +
-                                    '<div class="number_edit_state" style="display: none;">' +
-                                    '<div class="number_field">' +
-                                    'Question Title <input type="text" name="number_quest_title" class="question_title"/><br />' +
-                                    'Info <input type="text" class="question_info"/><br />' +
-                                    '</div>' +
-                                    '</div>' +
-                                    '<div class="number_view_state">' +
-                                    '<div class="number_text">Question Text?</div>' +
-                                    '<div class="number_answer"><input type="number" name="number_answer" /></div>' +
-                                    '</div>' +
-                                    '</div>' +
-                                    '</li>');
-
-                                $("#sortable").append(number_field);
-
-                                number_field.find('.edit_quest').click(function (e) {
-                                    e.preventDefault();
-                                    number_field.find('.number_view_state').hide();
-                                    number_field.find('.number_edit_state').show();
-                                    number_field.find('.edit_quest').hide();
-                                    number_field.find('.done_quest').show();
-                                });
-
-                                number_field.find('.done_quest').click(function (e) {
-                                    e.preventDefault();
-                                    updateNumberView(number_field);
-                                    number_field.find('.number_edit_state').hide();
-                                    number_field.find('.number_view_state').show();
-                                    number_field.find('.done_quest').hide();
-                                    number_field.find('.edit_quest').show();
-                                });
-
-                                number_field.find('.delete_quest').click(function (e) {
-                                    e.preventDefault();
-                                    if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
-                                        var index = fields_id.indexOf(id);
-                                        fields_id.splice(index, 1);
-                                        number_field.remove();
-                                    }
-                                });
-                            }
-
-                            function updateNumberView(number_field) {
-                                var questionTitle = number_field.find('input[name="number_quest_title"]').val();
-                                number_field.find('.number_text').text(questionTitle);
-                            }
-
-                            function add_dropdown() {
-                                var id = ++fields_sum;
-                                fields_id.push(id);
-
-                                var dropdown_field = $('<li id="' + id + '" class="dropdown question_fields">' +
-                                    '<div class="field_header">' +
-                                    '<div class="field_buttons_edit">' +
-                                    '<a href="#" class="edit_quest">edit</a>' +
-                                    '<a href="#" class="done_quest" style="display: none;">done</a>' +
-                                    '<a href="#" class="delete_quest">delete</a>' +
-                                    '</div>' +
-                                    '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
-                                    'Dropdown: ' + id +
-                                    '</div>' +
-                                    '</div>' +
-                                    '<div class="field_container">' +
-                                    '<div class="dropdown_edit_state" style="display: none;">' +
-                                    '<div class="dropdown_field">' +
-                                    'Question Title <input type="text" name="dropdown_quest_title" class="question_title"/><br />' +
-                                    'Info <input type="text" class="question_info"/><br />' +
-                                    '<input type="hidden" id="sum_opt_dd" value="0" />' +
-                                    '<div class="dropdown_list"></div>' +
-                                    '<a href="#" class="add_opt_dd">Add Option</a>' +
-                                    '</div>' +
-                                    '</div>' +
-                                    '<div class="dropdown_view_state">' +
-                                    '<div class="dropdown_text">Question Text?</div>' +
-                                    '<div class="dropdown_answer">' +
-                                    '<select name="dropdown_answer"></select>' +
-                                    '</div>' +
-                                    '</div>' +
-                                    '</div>' +
-                                    '</li>');
-
-                                $("#sortable").append(dropdown_field);
-
-                                dropdown_field.find('.edit_quest').click(function (e) {
-                                    e.preventDefault();
-                                    dropdown_field.find('.dropdown_view_state').hide();
-                                    dropdown_field.find('.dropdown_edit_state').show();
-                                    dropdown_field.find('.edit_quest').hide();
-                                    dropdown_field.find('.done_quest').show();
-                                });
-
-                                dropdown_field.find('.done_quest').click(function (e) {
-                                    e.preventDefault();
-                                    updateDropdownView(dropdown_field);
-                                    dropdown_field.find('.dropdown_edit_state').hide();
-                                    dropdown_field.find('.dropdown_view_state').show();
-                                    dropdown_field.find('.done_quest').hide();
-                                    dropdown_field.find('.edit_quest').show();
-                                });
-
-                                dropdown_field.find('.add_opt_dd').click(function (e) {
-                                    e.preventDefault();
-                                    add_opt_dd($(this));
-                                });
-
-                                // Konfirmasi sebelum menghapus
-                                dropdown_field.find('.delete_quest').click(function (e) {
-                                    e.preventDefault();
-                                    if (window.confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
-                                        dropdown_field.remove();
-                                    }
-                                });
-                            }
-
-                            function add_opt_dd(anu) {
-                                var opt_sum = parseInt(anu.parents("li:first").find("#sum_opt_dd").val());
-                                ++opt_sum;
-                                anu.parents("li:first").find("#sum_opt_dd").val(opt_sum);
-
-                                var row = $('<div class="option_dropdown" id="opt_dd_' + opt_sum + '">' +
-                                    'Option ' + opt_sum + ' <input type="text" name="label_option_' + opt_sum +
-                                    '" class="label_opt" style="width: 25%; margin-left: 30px;" /> ' +
-                                    'Value: <input type="text" name="value_opt_' + opt_sum +
-                                    '" class="val_opt" style="width: 25%;" /> ' +
-                                    '<a href="#" class="add_opt_dd">Add</a> ' +
-                                    '<a href="#" class="remove_opt_dd">Remove</a>' +
-                                    '</div>');
-
-                                var list = anu.parents("li:first").find(".dropdown_list");
-                                list.append(row);
-
-                                row.find('.add_opt_dd, .remove_opt_dd').click(function (event) {
-                                    event.preventDefault();
-                                    if ($(this).is('.add_opt_dd')) {
-                                        add_opt_dd($(this));
-                                    } else {
-                                        var opt_sum = parseInt(anu.parents("li:first").find("#sum_opt_dd").val());
-                                        --opt_sum;
-                                        anu.parents("li:first").find("#sum_opt_dd").val(opt_sum);
-                                        $(this).parent().remove();
-                                    }
-                                });
-                            }
-
-                            function updateDropdownView(dropdown_field) {
-                                var questionTitle = dropdown_field.find('input[name="dropdown_quest_title"]').val();
-                                dropdown_field.find('.dropdown_text').text(questionTitle);
-
-                                var dropdownSelect = dropdown_field.find('select[name="dropdown_answer"]');
-                                dropdownSelect.empty();
-                                dropdown_field.find('.option_dropdown').each(function () {
-                                    var label = $(this).find('.label_opt').val();
-                                    var value = $(this).find('.val_opt').val();
-                                    dropdownSelect.append('<option value="' + value + '">' + label + '</option>');
-                                });
-                            }
-
-                            function add_date() {
-                                var id = ++fields_sum;
-                                fields_id.push(id);
-
-                                var date_field = $('<li id="' + id + '" class="date question_fields">' +
-                                    '<div class="field_header">' +
-                                    '<div class="field_buttons_edit">' +
-                                    '<a href="#" class="edit_quest">edit</a>' +
-                                    '<a href="#" class="done_quest" style="display: none;">done</a>' +
-                                    '<a href="#" class="delete_quest">delete</a>' +
-                                    '</div>' +
-                                    '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
-                                    'Date Field: ' + id +
-                                    '</div>' +
-                                    '</div>' +
-                                    '<div class="field_container">' +
-                                    '<div class="date_edit_state" style="display: none;">' +
-                                    '<div class="date_field">' +
-                                    'Select Date: <input type="date" name="date_answer" class="question_date"/><br />' +
-                                    '</div>' +
-                                    '</div>' +
-                                    '<div class="date_view_state">' +
-                                    '<div class="date_text">Question Text?</div>' +
-                                    '<div class="date_answer"><input type="date" name="date_answer" /></div>' +
-                                    '</div>' +
-                                    '</div>' +
-                                    '</li>');
-
-                                $("#sortable").append(date_field);
-
-                                date_field.find('.edit_quest').click(function (e) {
-                                    e.preventDefault();
-                                    date_field.find('.date_view_state').hide();
-                                    date_field.find('.date_edit_state').show();
-                                    date_field.find('.edit_quest').hide();
-                                    date_field.find('.done_quest').show();
-                                });
-
-                                date_field.find('.done_quest').click(function (e) {
-                                    e.preventDefault();
-                                    updateDateView(date_field);
-                                    date_field.find('.date_edit_state').hide();
-                                    date_field.find('.date_view_state').show();
-                                    date_field.find('.done_quest').hide();
-                                    date_field.find('.edit_quest').show();
-                                });
-
-                                date_field.find('.delete_quest').click(function (e) {
-                                    e.preventDefault();
-                                    if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
-                                        var index = fields_id.indexOf(id);
-                                        fields_id.splice(index, 1);
-                                        date_field.remove();
-                                    }
-                                });
-                            }
-
-                            function updateDateView(date_field) {
-                                var selectedDate = date_field.find('input[name="date_answer"]').val();
-                                date_field.find('.date_text').text(selectedDate); // Menampilkan tanggal yang dipilih
-                            }
-
-                            function add_checkbox() {
-                                var id = ++fields_sum;
-                                fields_id.push(id);
-                                console.log("add_checkbox() called");
-                                var checkbox_field = $('<li id="' + id + '" class="checkbox question_fields">' +
-                                    '<div class="field_header">' +
-                                    '<div class="field_buttons_edit">' +
-                                    '<a href="#" class="edit_quest">edit</a>' +
-                                    '<a href="#" class="done_quest" style="display: none;">done</a>' +
-                                    '<a href="#" class="delete_quest">delete</a>' +
-                                    '</div>' +
-                                    '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
-                                    'Checkbox: ' + id +
-                                    '</div>' +
-                                    '</div>' +
-                                    '<div class="field_container">' +
-                                    '<div class="checkbox_edit_state" style="display: none;">' +
-                                    '<div class="checkbox_field">' +
-                                    'Question Title <input type="text" name="checkbox_quest_title" class="question_title"/><br />' +
-                                    'Info <input type="text" class="question_info"/><br />' +
-                                    '<div class="checkbox_options_list"></div>' +
-                                    '<a href="#" class="add_checkbox_option">Add Option</a>' +
-                                    '</div>' +
-                                    '</div>' +
-                                    '<div class="checkbox_view_state">' +
-                                    '<div class="checkbox_text">Question Text?</div>' +
-                                    '<div class="checkbox_answers"></div>' +
-                                    '</div>' +
-                                    '</div>' +
-                                    '</li>');
-
-                                $("#sortable").append(checkbox_field);
-
-                                checkbox_field.find('.edit_quest').click(function (e) {
-                                    e.preventDefault();
-                                    checkbox_field.find('.checkbox_view_state').hide();
-                                    checkbox_field.find('.checkbox_edit_state').show();
-                                    checkbox_field.find('.edit_quest').hide();
-                                    checkbox_field.find('.done_quest').show();
-                                });
-
-                                checkbox_field.find('.done_quest').click(function (e) {
-                                    e.preventDefault();
-                                    updateCheckboxView(checkbox_field);
-                                    checkbox_field.find('.checkbox_edit_state').hide();
-                                    checkbox_field.find('.checkbox_view_state').show();
-                                    checkbox_field.find('.done_quest').hide();
-                                    checkbox_field.find('.edit_quest').show();
-                                });
-
-                                checkbox_field.find('.add_checkbox_option').click(function (e) {
-                                    e.preventDefault();
-                                    addCheckboxOption($(this));
-                                });
-
-                                checkbox_field.find('.delete_quest').click(function (e) {
-                                    e.preventDefault();
-                                    if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
-                                        var index = fields_id.indexOf(id);
-                                        fields_id.splice(index, 1);
-                                        checkbox_field.remove();
-                                    }
-                                });
-                            }
-
-                            function addCheckboxOption(button) {
-                                var optionId = button.parents("li:first").find(".checkbox_options_list .checkbox_option")
-                                    .length + 1;
-                                var option = $('<div class="checkbox_option" id="checkbox_option_' + optionId + '">' +
-                                    'Option ' + optionId + ' <input type="text" name="label_checkbox_option_' +
-                                    optionId +
-                                    '" class="label_checkbox_option" style="width: 25%; margin-left: 10px;" />' +
-                                    '<a href="#" class="remove_checkbox_option">Remove</a>' +
-                                    '</div>');
-
-                                button.siblings(".checkbox_options_list").append(option);
-
-                                option.find('.remove_checkbox_option').click(function (e) {
-                                    e.preventDefault();
-                                    $(this).parent().remove();
-                                });
-                            }
-
-                            function updateCheckboxView(checkbox_field) {
-                                var questionTitle = checkbox_field.find('input[name="checkbox_quest_title"]').val();
-                                checkbox_field.find('.checkbox_text').text(questionTitle);
-
-                                var checkboxContainer = checkbox_field.find('.checkbox_answers');
-                                checkboxContainer.empty();
-                                checkbox_field.find('.checkbox_option').each(function () {
-                                    var label = $(this).find('.label_checkbox_option').val();
-                                    checkboxContainer.append(
-                                        '<label><input type="checkbox" name="checkbox_answer" /> ' + label +
-                                        '</label><br>');
-                                });
-                            }
-
-                            var fields_sum = 0; // Inisialisasi jumlah field
-                            var fields_id = []; // Array untuk menyimpan ID field
-
-                            function add_single_line() {
-                                var id = ++fields_sum;
-                                fields_id.push(id);
-                                console.log('Adding question with ID:', id); // Debugging
-
-                                var single_field = $('<li id="' + id + '" class="single question_fields">' +
-                                    '<div class="field_header">' +
-                                    '<div class="field_buttons_edit">' +
-                                    '<a href="#" class="edit_quest">edit</a>' +
-                                    '<a href="#" class="done_quest">done</a>' +
-                                    '<a href="#" class="delete_quest">delete</a>' +
-                                    '</div>' +
-                                    '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
-                                    'Single Line Text: ' + id +
-                                    '</div>' +
-                                    '</div>' +
-                                    '<div class="field_container">' +
-                                    '<div class="single_edit_state">' +
-                                    '<div class="single_line">' +
-                                    'Question Title <input type="text" name="questions[' + id +
-                                    '][title]" class="question_title"/><br />' +
-                                    'Info <input type="text" name="questions[' + id +
-                                    '][info]" class="question_info"/>' +
-                                    '</div>' +
-                                    '</div>' +
-                                    '<div class="single_view_state">' +
-                                    '<div class="single_line_text">Question Text?</div>' +
-                                    '<div class="single_line_answer"><input type="text" name="questions[' + id +
-                                    '][answer]" /></div>' +
-                                    '</div>' +
-                                    '</div>' +
-                                    '</li>');
-
-                                console.log('Appending new question field'); // Debugging
-                                $("#sortable").append(single_field);
-
-                                single_field.find('.done_quest, .edit_quest, .delete_quest').click(function () {
-                                    done_edit_delete_quest($(this));
-                                });
-                            }
-                        </script>
+                        <div class="question_content" id="29_3">
+                            <div class="alert alert-primary" role="alert">
+                                <label class="field_title">
+                                    <b>
+                                        <span class="question">
+                                            2. Jenis Kelamin </span>
+                                    </b>
+                                    <span style="color: red;">*</span>
+                                </label>
+                            </div>
+
+                            <div class="input ml-1 mb-3">
+                                <div class="question_radios" id="43_29_3">
+                                    <input type="radio" class="question_radio checks" id="question_radio_3_0"
+                                        name="question_radio_29_3" value="Pria"> Pria <br>
+                                    <input type="radio" class="question_radio checks" id="question_radio_3_1"
+                                        name="question_radio_29_3" value="Wanita"> Wanita <br>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question_content" id="29_26">
+                            <div class="alert alert-primary" role="alert">
+                                <label class="field_title">
+                                    <b>
+                                        <span class="question">
+                                            3. Angkatan </span>
+                                    </b>
+                                    <span style="color: red;">*</span>
+                                </label>
+                            </div>
+
+                            <div class="input ml-1 mb-3">
+                                <div class="question_readonly_attribs">
+                                    2016 <input type="hidden" class="question_readonly answer" value="2016"
+                                        id="43_29_26">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question_content" id="29_27">
+                            <div div class="alert alert-primary" role="alert">
+                                <label class="field_title">
+                                    <b>
+                                        <span class="question">
+                                            4. Program Studi </span>
+                                    </b>
+                                    <span style="color: red;">*</span>
+                                </label>
+                            </div>
+
+                            <div class="input ml-1 mb-3">
+                                <div class="question_readonly_attribs">
+                                    DIV - Teknik Informatika <input type="hidden" class="question_readonly answer"
+                                        value="DIV - Teknik Informatika" id="43_29_27">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question_content" id="29_29">
+                            <div class="alert alert-primary" role="alert">
+                                <label class="field_title">
+                                    <b>
+                                        <span class="question">
+                                            5. IPK </span>
+                                    </b>
+                                    <span style="color: red;">*</span>
+                                </label>
+                                </di>
+                            </div>
+
+                            <div class="input ml-1 mb-3">
+                                <div class="question_readonly_attribs">
+                                    3,57 <input type="hidden" class="question_readonly answer" value="3,57"
+                                        id="43_29_29">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question_content" id="29_19">
+                            <div class="alert alert-primary" role="alert">
+                                <label class="field_title">
+                                    <b>
+                                        <span class="question">
+                                            6. Bulan dan Tahun Lulus </span>
+                                    </b>
+                                    <span style="color: red;">*</span>
+                                </label>
+                            </div>
+
+                            <div class="input ml-1 mb-3">
+                                <div class="question_date_attribs">
+                                    <input type="hidden" class="answer_required" value="false">
+                                    <input type="hidden" class="date_start_year" name="date_start_year" value="2006">
+                                    <input type="hidden" class="date_end_year" name="date_end_year" value="2006">
+                                    <input type="hidden" class="date_option" name="date_option" value="two">
+                                    <input type="text" class="question_date answer" id="43_29_19">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="question_content" id="29_21">
+                            <div class="alert alert-primary" role="alert">
+                                <label class="field_title">
+                                    <b>
+                                        <span class="question">
+                                            7. Alamat </span>
+                                    </b>
+                                    <span style="color: red;">*</span>
+                                </label>
+
+                            </div>
+                            <div class="input ml-1 mb-3">
+                                <input type="text" class="question_single answer" id="43_29_21">
+                            </div>
+                        </div>
+
+                        <div class="question_content" id="29_22">
+                            <div class="alert alert-primary" role="alert">
+                                <label class="field_title">
+                                    <b>
+                                        <span class="question">
+                                            8. Kota </span>
+                                    </b>
+                                    <span style="color: red;">*</span>
+                                </label>
+                            </div>
+
+
+                            <div class="input ml-1 mb-3">
+                                <input type="text" class="question_single answer" id="43_29_22">
+                            </div>
+                        </div>
+
+                        <div class="question_content" id="29_24">
+                            <div class="alert alert-primary" role="alert">
+                                <label class="field_title">
+                                    <b>
+                                        <span class="question">
+                                            9. Kode Pos </span>
+                                    </b>
+                                </label>
+                            </div>
+
+                            <div class="input ml-1 mb-3">
+                                <input type="text" class="question_single answer" id="43_29_24">
+                            </div>
+                        </div>
+
+                        <div class="question_content" id="29_23">
+                            <div class="alert alert-primary" role="alert">
+                                <label class="field_title">
+                                    <b>
+                                        <span class="question">
+                                            10. Provinsi </span>
+                                    </b>
+                                    <span style="color: red;">*</span>
+                                </label>
+                            </div>
+
+                            <div class="input ml-1 mb-3">
+                                <select class="question_dropdown selects" id="43_29_23">
+                                    <option value="">----</option>
+                                    <option value="-Non Indonesian-">-Non Indonesian-</option>
+                                    <option value="Aceh">Aceh</option>
+                                    <option value="Bali">Bali</option>
+                                    <option value="Banten">Banten</option>
+                                    <option value="Bengkulu">Bengkulu</option>
+                                    <option value="Gorontalo">Gorontalo</option>
+                                    <option value="Jakarta">DKI Jakarta</option>
+                                    <option value="Jambi">Jambi</option>
+                                    <option value="Jawa Barat">Jawa Barat</option>
+                                    <option value="Jawa Tengah">Jawa Tengah</option>
+                                    <option value="Jawa Timur">Jawa Timur</option>
+                                    <option value="Kalimantan Barat">Kalimantan Barat</option>
+                                    <option value="Kalimantan Selatan">Kalimantan Selatan</option>
+                                    <option value="Kalimantan Tengah">Kalimantan Tengah</option>
+                                    <option value="Kalimantan Timur">Kalimantan Timur</option>
+                                    <option value="Kalimantan Utara">Kalimantan Utara</option>
+                                    <option value="Kep. Bangka Belitung">Kep. Bangka Belitung
+                                    </option>
+                                    <option value="Kep. Riau">Kep. Riau</option>
+                                    <option value="Lampung">Lampung</option>
+                                    <option value="Maluku">Maluku</option>
+                                    <option value="Maluku Utara">Maluku Utara</option>
+                                    <option value="NTB">Nusa Tenggara Barat</option>
+                                    <option value="NTT">Nusa Tenggara Timur</option>
+                                    <option value="Papua">Papua</option>
+                                    <option value="Papua Barat">Papua Barat</option>
+                                    <option value="Riau">Riau</option>
+                                    <option value="Sulawesi Barat">Sulawesi Barat</option>
+                                    <option value="Sulawesi Selatan">Sulawesi Selatan</option>
+                                    <option value="Sulawesi Tengah">Sulawesi Tengah</option>
+                                    <option value="Sulawesi Tenggara">Sulawesi Tenggara</option>
+                                    <option value="Sulawesi Utara">Sulawesi Utara</option>
+                                    <option value="Sumatera Barat">Sumatera Barat</option>
+                                    <option value="Sumatera Selatan">Sumatera Selatan</option>
+                                    <option value="Sumatera Utara">Sumatera Utara</option>
+                                    <option value="Yogyakarta">Yogyakarta</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="question_content" id="29_31">
+                            <div class="alert alert-primary" role="alert">
+                                <label class="field_title">
+                                    <b>
+                                        <span class="question">
+                                            11. Telepon / HP (misal : 022-2034944/08153337777)
+                                        </span>
+                                    </b>
+
+                                    <span style="color: red;">*</span>
+                                </label>
+                            </div>
+
+                            <div class="input ml-1 mb-3">
+                                <input type="text" class="question_single answer" id="43_29_31">
+                            </div>
+                        </div>
+
+                        <hr>
 
                     </div>
                 </div>
             </div>
-            <!-- Sunting Kuesioner Section END -->
         </div>
+    </div>
+    </div>
+    </div>
+    <!-- Tinjau Kuesioner END -->
+
+    <!-- Sunting Kuesioner Page START-->
+    <div class="card tab-content" id="SuntingEditKuesioner" style="display:none;">
+        <div class="card-header">
+            <div class="d-flex justify-content-between">
+                <h2>Sunting Kuesioner Page</h2>
+            </div>
+            <hr>
+
+            <div class="m-2">
+                <form>
+                    <div class="form-group">
+                        <label for="exampleInputTitle">Title</label>
+                        <input type="email" class="form-control" id="exampleInputTitle" placeholder="Halaman 1">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputDeskripsi">Deskripsi</label>
+                        <input type="password" class="form-control" id="exampleInputDeskripsi"
+                            placeholder="Halaman ini berisi pertanyaan tentang data diri dan pekerjaan Anda. Mohon untuk mengisi semua data yang diminta. Terima kasih.">
+                    </div>
+                    <div class="form-check d-flex">
+                        <label class="form-check-label" for="exampleCheck1">Conditional Logic</label>
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    </div>
+
+                    <br>
+                    <div>
+                        <a class="btn btn-info" style="font-size:14px;padding:8px 10px;color:white;"
+                            href="<?= base_url('/kuesioner') ?>">Simpan</a>
+                        <a class="btn btn-danger" style="font-size:14px;padding:8px 10px;color:white;"
+                            onclick="openTab(event, 'SuntingKuesioner')">Batal</a>
+                    </div>
+                </form>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table table-bordered text-center ">
+                    <thead>
+                        <tr>
+                            <td>ID Section</td>
+                            <td>Nama Section</td>
+                            <td>Deskripsi</td>
+                            <td>Conditional Logic</td>
+                            <td>Num of Section</td>
+                            <td>Aksi</td>
+                        </tr>
+                        <tr>
+                            <td>29</td>
+                            <td>Data Pribadi</td>
+                            <td>Bagian ini berisi pertanyaan tentang data pribadi responden.</td>
+                            <td>none</td>
+                            <td>11</td>
+                            <td class="">
+                                <a class="btn btn-secondary btn-sm"
+                                    style='font-size:10px;padding:2px 5px;color:white;'>Up</a>
+                                <a class="btn btn-secondary btn-sm"
+                                    style='font-size:10px;padding:2px 5px;color:white;'>Down</a>
+                                <a class="btn btn-info btn-sm" style='font-size:10px;padding:2px 5px;color:white;'
+                                    onclick="openTab(event, 'SuntingKuesionerSection')">Edit</a>
+                                <a class="btn btn-danger btn-sm"
+                                    style='font-size:10px;padding:2px 5px;color:white;'>Hapus</a>
+                            </td>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- Sunting Kuesioner END-->
+
+    <!-- Sunting Kuesioner Section START -->
+    <div class="card tab-content" id="SuntingKuesionerSection" style="display: none;">
+        <div class="card-header">
+            <div class="d-flex justify-content-between">
+                <h2>Sunting Kuesioner Section</h2>
+            </div>
+            <hr>
+
+            <div class="m-2">
+                <form>
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleInputTitle">Title</label>
+                            <input type="email" class="form-control" id="exampleInputTitle" placeholder="Data Pribadi">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputDeskripsi">Deskripsi</label>
+                            <input type="password" class="form-control" id="exampleInputDeskripsi"
+                                placeholder="Bagian ini berisi pertanyaan tentang data pribadi responden.">
+                        </div>
+                        <div class="form-check d-flex">
+                            <label class="form-check-label" for="exampleCheck1">Show Section Title</label>
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        </div>
+                        <div class="form-check d-flex mt-1">
+                            <label class="form-check-label" for="exampleCheck1">Show Section
+                                Description</label>
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        </div>
+                        <div class="form-check d-flex mt-1">
+                            <label class="form-check-label" for="exampleCheck1">Conditional Logic</label>
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        </div>
+
+                        <br>
+                        <div>
+                            <a class="btn btn-info" style="font-size:14px;padding:8px 10px;color:white;"
+                                onclick="openTab(event, 'SuntingKuesionerSection')">Simpan</a>
+                            <a class="btn btn-danger" style="font-size:14px;padding:8px 10px;color:white;"
+                                onclick="openTab(event, 'SuntingEditKuesioner')">Batal</a>
+                        </div>
+
+                    </form>
+
+                    <!-- ISI DISINI -->
+                    <div id="floating_question_selector">
+                        <div id="floating_label">
+                            Pilih Jenis Pertanyaan...
+                        </div>
+                        <div id="questions_button">
+                            <button class="quest_butt btn btn-primary" onclick="add_single_line();">Single
+                                Line Text</button>
+                            <button class="quest_butt btn btn-primary" onclick="add_dropdown();">Dropdown
+                                List</button>
+                            <button class="quest_butt btn btn-primary" onclick="add_date();">Date</button>
+                            <button class="quest_butt btn btn-primary" onclick="add_checkbox();">Checkbox</button>
+                            <button class="quest_butt btn btn-primary" onclick="add_number();">Number</button>
+                            <button class="quest_butt btn btn-primary" onclick="add_radio();">Radio
+                                Buttons</button>
+                            <button class="quest_butt btn btn-primary" onclick="add_phone();">Phone</button>
+                            <button class="quest_butt btn btn-primary" onclick="add_scale();">Scale</button>ah
+                            <button class="quest_butt btn btn-primary" onclick="add_readonly();">User
+                                Field</button>
+                            <button class="quest_butt btn btn-primary" onclick="add_grid();">Grid</button>
+                            <!-- Tambahkan tombol lainnya di sini -->
+                        </div>
+
+                    </div>
+
+                    <form id="questionForm" method="post" action="<?= base_url('kuesionerkuesioner') ?>">
+                        <div id="questions_panel" class="container mt-5">
+                            <h2>Daftar Pertanyaan</h2>
+                            <ul id="sortable">
+                                <!-- Pertanyaan akan ditambahkan di sini -->
+                            </ul>
+                        </div>
+            </div>
+
+
+            <script type="text/javascript">
+                function deletequestion(anu) {
+                    var q = anu.parents("li:first");
+                    q.remove();
+                }
+
+                function quest_done(anu) {
+                    var view = anu.parents("li:first").find(".single_view_state");
+                    var edit = anu.parents("li:first").find(".single_edit_state");
+                    var qtext = anu.parents("li:first").find(".quest_text_field").val();
+                    anu.parents("li:first").find(".single_line_text").html(qtext);
+                    view.show();
+                    edit.hide();
+                }
+
+                function done_edit_delete_quest(anu) {
+                    // event.preventDefault();
+                    var id = anu.parents("li:first").attr("id");
+                    var view = anu.parents("li:first").find(".single_view_state");
+                    var done_button = anu.parents("li:first").find(".done_quest");
+                    var edit = anu.parents("li:first").find(".single_edit_state");
+                    var edit_button = anu.parents("li:first").find(".edit_quest");
+                    var qtext = anu.parents("li:first").find(".question_title").val();
+                    if (anu.is('.done_quest')) {
+                        anu.parents("li:first").find(".single_line_text").html(qtext);
+                        view.show();
+                        edit_button.show();
+                        edit.hide();
+                        done_button.hide();
+                        anu.parents("li:first").find(".field_container").css({
+                            "background-color": "white"
+                        })
+                        anu.parents("li:first").find(".field_header").css({
+                            "background-color": "#DFEFFF"
+                        })
+                    } else if (anu.is('.edit_quest')) {
+                        view.hide();
+                        edit.show();
+                        done_button.show();
+                        edit_button.hide();
+                        anu.parents("li:first").find(".field_container").css({
+                            "background-color": "#DFEFFF"
+                        })
+                        anu.parents("li:first").find(".field_header").css({
+                            "background-color": "powderblue"
+                        })
+                    } else {
+                        if (confirm('Apakah anda yakin untuk menghapus pertanyaan ini ?')) {
+                            var index = fields_id.indexOf(id);
+                            fields_id.splice(index, 1);
+                            deletequestion(anu);
+                        }
+                    }
+
+                }
+
+                function add_grid() {
+                    var id = ++fields_sum;
+                    fields_id.push(id);
+
+                    var grid_field = $('<li id="' + id + '" class="grid question_fields">' +
+                        '<div class="field_header">' +
+                        '<div class="field_buttons_edit">' +
+                        '<a href="#" class="edit_quest">edit</a>' +
+                        '<a href="#" class="done_quest" style="display: none;">done</a>' +
+                        '<a href="#" class="delete_quest">delete</a>' +
+                        '</div>' +
+                        '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                        'Grid Field: ' + id +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="field_container">' +
+                        '<div class="grid_edit_state" style="display: none;">' +
+                        '<div class="grid_field">' +
+                        'Row Title <input type="text" name="grid_row_title" class="row_title"/><br />' +
+                        'Column Titles (separate by comma) <input type="text" class="column_titles"/><br />' +
+                        '</div>' +
+                        '<button class="add_row">Add Row</button>' +
+                        '<div class="grid_rows"></div>' +
+                        '</div>' +
+                        '<div class="grid_view_state">' +
+                        '<div class="grid_text">Grid Content</div>' +
+                        '<div class="grid_answer"></div>' // This will hold the grid data
+                        +
+                        '</div>' +
+                        '</div>' +
+                        '</li>');
+
+                    $("#sortable").append(grid_field);
+
+                    // Event handler for edit button
+                    grid_field.find('.edit_quest').click(function (e) {
+                        e.preventDefault();
+                        grid_field.find('.grid_view_state').hide();
+                        grid_field.find('.grid_edit_state').show();
+                        grid_field.find('.edit_quest').hide();
+                        grid_field.find('.done_quest').show();
+                    });
+
+                    // Event handler for done button
+                    grid_field.find('.done_quest').click(function (e) {
+                        e.preventDefault();
+                        updateGridView(grid_field);
+                        grid_field.find('.grid_edit_state').hide();
+                        grid_field.find('.grid_view_state').show();
+                        grid_field.find('.done_quest').hide();
+                        grid_field.find('.edit_quest').show();
+                    });
+
+                    // Event handler for delete button
+                    grid_field.find('.delete_quest').click(function (e) {
+                        e.preventDefault();
+                        if (confirm("Apakah Anda yakin ingin menghapus grid ini?")) {
+                            var index = fields_id.indexOf(id);
+                            fields_id.splice(index, 1);
+                            grid_field.remove();
+                        }
+                    });
+
+                    // Event handler for add row button
+                    grid_field.find('.add_row').click(function (e) {
+                        e.preventDefault();
+                        addRowToGrid(grid_field);
+                    });
+                }
+
+                function addRowToGrid(grid_field) {
+                    var rowHtml = $('<div class="grid_row">' +
+                        'Row Data: <input type="text" class="row_data"/><br />' +
+                        '</div>');
+                    grid_field.find('.grid_rows').append(rowHtml);
+                }
+
+                function updateGridView(grid_field) {
+                    var rowTitle = grid_field.find('input[name="grid_row_title"]').val();
+                    var columnTitles = grid_field.find('input.column_titles').val().split(',').map(function (
+                        opt) {
+                        return opt.trim();
+                    });
+
+                    var gridContentHtml = '<strong>' + rowTitle + '</strong><br />';
+                    gridContentHtml += '<table border="1"><tr>';
+                    columnTitles.forEach(function (title) {
+                        gridContentHtml += '<th>' + title + '</th>';
+                    });
+                    gridContentHtml += '</tr>';
+
+                    grid_field.find('.grid_rows .grid_row').each(function () {
+                        var rowData = $(this).find('.row_data').val();
+                        gridContentHtml += '<tr>';
+                        columnTitles.forEach(function () {
+                            gridContentHtml += '<td>' + rowData + '</td>';
+                        });
+                        gridContentHtml += '</tr>';
+                    });
+
+                    gridContentHtml += '</table>';
+                    grid_field.find('.grid_answer').html(gridContentHtml);
+                }
+
+
+                function add_readonly() {
+                    var id = ++fields_sum;
+                    fields_id.push(id);
+
+                    var readonly_field = $('<li id="' + id + '" class="readonly question_fields">' +
+                        '<div class="field_header">' +
+                        '<div class="field_buttons_edit">' +
+                        '<a href="#" class="edit_quest">edit</a>' +
+                        '<a href="#" class="done_quest" style="display: none;">done</a>' +
+                        '<a href="#" class="delete_quest">delete</a>' +
+                        '</div>' +
+                        '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                        'Readonly Field: ' + id +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="field_container">' +
+                        '<div class="readonly_edit_state" style="display: none;">' +
+                        '<div class="readonly_field">' +
+                        'Field Title <input type="text" name="readonly_field_title" class="field_title"/><br />' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="readonly_view_state">' +
+                        '<div class="readonly_text">Field Text?</div>' +
+                        '<div class="readonly_answer"></div>' // This will hold the readonly input
+                        +
+                        '</div>' +
+                        '</div>' +
+                        '</li>');
+
+                    $("#sortable").append(readonly_field);
+
+                    // Event handler for edit button
+                    readonly_field.find('.edit_quest').click(function (e) {
+                        e.preventDefault();
+                        readonly_field.find('.readonly_view_state').hide();
+                        readonly_field.find('.readonly_edit_state').show();
+                        readonly_field.find('.edit_quest').hide();
+                        readonly_field.find('.done_quest').show();
+                    });
+
+                    // Event handler for done button
+                    readonly_field.find('.done_quest').click(function (e) {
+                        e.preventDefault();
+                        updateReadonlyView(readonly_field);
+                        readonly_field.find('.readonly_edit_state').hide();
+                        readonly_field.find('.readonly_view_state').show();
+                        readonly_field.find('.done_quest').hide();
+                        readonly_field.find('.edit_quest').show();
+                    });
+
+                    // Event handler for delete button
+                    readonly_field.find('.delete_quest').click(function (e) {
+                        e.preventDefault();
+                        if (confirm("Apakah Anda yakin ingin menghapus field ini?")) {
+                            var index = fields_id.indexOf(id);
+                            fields_id.splice(index, 1);
+                            readonly_field.remove();
+                        }
+                    });
+                }
+
+                function updateReadonlyView(readonly_field) {
+                    var fieldTitle = readonly_field.find('input[name="readonly_field_title"]').val();
+
+                    readonly_field.find('.readonly_text').text(fieldTitle);
+                    readonly_field.find('.readonly_answer').text("Value: " + fieldTitle);
+                }
+
+                function add_scale() {
+                    var id = ++fields_sum;
+                    fields_id.push(id);
+
+                    var scale_field = $('<li id="' + id + '" class="scale question_fields">' +
+                        '<div class="field_header">' +
+                        '<div class="field_buttons_edit">' +
+                        '<a href="#" class="edit_quest">edit</a>' +
+                        '<a href="#" class="done_quest" style="display: none;">done</a>' +
+                        '<a href="#" class="delete_quest">delete</a>' +
+                        '</div>' +
+                        '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                        'Scale Field: ' + id +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="field_container">' +
+                        '<div class="scale_edit_state" style="display: none;">' +
+                        '<div class="scale_field">' +
+                        'Question Title <input type="text" name="scale_quest_title" class="question_title"/><br />' +
+                        'Scale Range (min,max) <input type="text" class="scale_range"/><br />' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="scale_view_state">' +
+                        '<div class="scale_text">Question Text?</div>' +
+                        '<div class="scale_answer"></div>' // This will hold the scale input
+                        +
+                        '</div>' +
+                        '</div>' +
+                        '</li>');
+
+                    $("#sortable").append(scale_field);
+
+                    // Event handler for edit button
+                    scale_field.find('.edit_quest').click(function (e) {
+                        e.preventDefault();
+                        scale_field.find('.scale_view_state').hide();
+                        scale_field.find('.scale_edit_state').show();
+                        scale_field.find('.edit_quest').hide();
+                        scale_field.find('.done_quest').show();
+                    });
+
+                    // Event handler for done button
+                    scale_field.find('.done_quest').click(function (e) {
+                        e.preventDefault();
+                        updateScaleView(scale_field);
+                        scale_field.find('.scale_edit_state').hide();
+                        scale_field.find('.scale_view_state').show();
+                        scale_field.find('.done_quest').hide();
+                        scale_field.find('.edit_quest').show();
+                    });
+
+                    // Event handler for delete button
+                    scale_field.find('.delete_quest').click(function (e) {
+                        e.preventDefault();
+                        if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
+                            var index = fields_id.indexOf(id);
+                            fields_id.splice(index, 1);
+                            scale_field.remove();
+                        }
+                    });
+                }
+
+                function updateScaleView(scale_field) {
+                    var questionTitle = scale_field.find('input[name="scale_quest_title"]').val();
+                    var scaleRange = scale_field.find('input.scale_range').val();
+
+                    scale_field.find('.scale_text').text(questionTitle);
+                    scale_field.find('.scale_answer').text("Scale Range: " + scaleRange);
+                }
+
+                function add_phone() {
+                    var id = ++fields_sum;
+                    fields_id.push(id);
+
+                    var phone_field = $('<li id="' + id + '" class="phone question_fields">' +
+                        '<div class="field_header">' +
+                        '<div class="field_buttons_edit">' +
+                        '<a href="#" class="edit_quest">edit</a>' +
+                        '<a href="#" class="done_quest" style="display: none;">done</a>' +
+                        '<a href="#" class="delete_quest">delete</a>' +
+                        '</div>' +
+                        '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                        'Phone Field: ' + id +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="field_container">' +
+                        '<div class="phone_edit_state" style="display: none;">' +
+                        '<div class="phone_field">' +
+                        'Question Title <input type="text" name="phone_quest_title" class="question_title"/><br />' +
+                        'Phone Number <input type="text" class="phone_number"/><br />' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="phone_view_state">' +
+                        '<div class="phone_text">Question Text?</div>' +
+                        '<div class="phone_answer"></div>' // This will hold the phone number input
+                        +
+                        '</div>' +
+                        '</div>' +
+                        '</li>');
+
+                    $("#sortable").append(phone_field);
+
+                    // Event handler for edit button
+                    phone_field.find('.edit_quest').click(function (e) {
+                        e.preventDefault();
+                        phone_field.find('.phone_view_state').hide();
+                        phone_field.find('.phone_edit_state').show();
+                        phone_field.find('.edit_quest').hide();
+                        phone_field.find('.done_quest').show();
+                    });
+
+                    // Event handler for done button
+                    phone_field.find('.done_quest').click(function (e) {
+                        e.preventDefault();
+                        updatePhoneView(phone_field);
+                        phone_field.find('.phone_edit_state').hide();
+                        phone_field.find('.phone_view_state').show();
+                        phone_field.find('.done_quest').hide();
+                        phone_field.find('.edit_quest').show();
+                    });
+
+                    // Event handler for delete button
+                    phone_field.find('.delete_quest').click(function (e) {
+                        e.preventDefault();
+                        if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
+                            var index = fields_id.indexOf(id);
+                            fields_id.splice(index, 1);
+                            phone_field.remove();
+                        }
+                    });
+                }
+
+                function updatePhoneView(phone_field) {
+                    var questionTitle = phone_field.find('input[name="phone_quest_title"]').val();
+                    var phoneNumber = phone_field.find('input.phone_number').val();
+
+                    phone_field.find('.phone_text').text(questionTitle);
+                    phone_field.find('.phone_answer').text(phoneNumber);
+                }
+
+                function add_radio() {
+                    var id = ++fields_sum;
+                    fields_id.push(id);
+
+                    var radio_field = $('<li id="' + id + '" class="radio question_fields">' +
+                        '<div class="field_header">' +
+                        '<div class="field_buttons_edit">' +
+                        '<a href="#" class="edit_quest">edit</a>' +
+                        '<a href="#" class="done_quest" style="display: none;">done</a>' +
+                        '<a href="#" class="delete_quest">delete</a>' +
+                        '</div>' +
+                        '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                        'Radio Field: ' + id +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="field_container">' +
+                        '<div class="radio_edit_state" style="display: none;">' +
+                        '<div class="radio_field">' +
+                        'Question Title <input type="text" name="radio_quest_title" class="question_title"/><br />' +
+                        'Options (separate by comma) <input type="text" class="question_options"/><br />' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="radio_view_state">' +
+                        '<div class="radio_text">Question Text?</div>' +
+                        '<div class="radio_answer"></div>' // This will hold the radio buttons
+                        +
+                        '</div>' +
+                        '</div>' +
+                        '</li>');
+
+                    $("#sortable").append(radio_field);
+
+                    // Event handler for edit button
+                    radio_field.find('.edit_quest').click(function (e) {
+                        e.preventDefault();
+                        radio_field.find('.radio_view_state').hide();
+                        radio_field.find('.radio_edit_state').show();
+                        radio_field.find('.edit_quest').hide();
+                        radio_field.find('.done_quest').show();
+                    });
+
+                    // Event handler for done button
+                    radio_field.find('.done_quest').click(function (e) {
+                        e.preventDefault();
+                        updateRadioView(radio_field);
+                        radio_field.find('.radio_edit_state').hide();
+                        radio_field.find('.radio_view_state').show();
+                        radio_field.find('.done_quest').hide();
+                        radio_field.find('.edit_quest').show();
+                    });
+
+                    // Event handler for delete button
+                    radio_field.find('.delete_quest').click(function (e) {
+                        e.preventDefault();
+                        if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
+                            var index = fields_id.indexOf(id);
+                            fields_id.splice(index, 1);
+                            radio_field.remove();
+                        }
+                    });
+                }
+
+                function updateRadioView(radio_field) {
+                    var questionTitle = radio_field.find('input[name="radio_quest_title"]').val();
+                    var options = radio_field.find('input.question_options').val().split(',').map(function (
+                        opt) {
+                        return opt.trim();
+                    });
+
+                    radio_field.find('.radio_text').text(questionTitle);
+                    var answerHtml = '';
+                    options.forEach(function (option) {
+                        answerHtml += '<label><input type="radio" name="radio_answer_' + radio_field
+                            .attr('id') + '" value="' + option + '"> ' + option + '</label><br />';
+                    });
+                    radio_field.find('.radio_answer').html(answerHtml);
+                }
+
+                function add_number() {
+                    var id = ++fields_sum;
+                    fields_id.push(id);
+
+                    var number_field = $('<li id="' + id + '" class="number question_fields">' +
+                        '<div class="field_header">' +
+                        '<div class="field_buttons_edit">' +
+                        '<a href="#" class="edit_quest">edit</a>' +
+                        '<a href="#" class="done_quest" style="display: none;">done</a>' +
+                        '<a href="#" class="delete_quest">delete</a>' +
+                        '</div>' +
+                        '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                        'Number Field: ' + id +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="field_container">' +
+                        '<div class="number_edit_state" style="display: none;">' +
+                        '<div class="number_field">' +
+                        'Question Title <input type="text" name="number_quest_title" class="question_title"/><br />' +
+                        'Info <input type="text" class="question_info"/><br />' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="number_view_state">' +
+                        '<div class="number_text">Question Text?</div>' +
+                        '<div class="number_answer"><input type="number" name="number_answer" /></div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</li>');
+
+                    $("#sortable").append(number_field);
+
+                    number_field.find('.edit_quest').click(function (e) {
+                        e.preventDefault();
+                        number_field.find('.number_view_state').hide();
+                        number_field.find('.number_edit_state').show();
+                        number_field.find('.edit_quest').hide();
+                        number_field.find('.done_quest').show();
+                    });
+
+                    number_field.find('.done_quest').click(function (e) {
+                        e.preventDefault();
+                        updateNumberView(number_field);
+                        number_field.find('.number_edit_state').hide();
+                        number_field.find('.number_view_state').show();
+                        number_field.find('.done_quest').hide();
+                        number_field.find('.edit_quest').show();
+                    });
+
+                    number_field.find('.delete_quest').click(function (e) {
+                        e.preventDefault();
+                        if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
+                            var index = fields_id.indexOf(id);
+                            fields_id.splice(index, 1);
+                            number_field.remove();
+                        }
+                    });
+                }
+
+                function updateNumberView(number_field) {
+                    var questionTitle = number_field.find('input[name="number_quest_title"]').val();
+                    number_field.find('.number_text').text(questionTitle);
+                }
+
+                function add_dropdown() {
+                    var id = ++fields_sum;
+                    fields_id.push(id);
+
+                    var dropdown_field = $('<li id="' + id + '" class="dropdown question_fields">' +
+                        '<div class="field_header">' +
+                        '<div class="field_buttons_edit">' +
+                        '<a href="#" class="edit_quest">edit</a>' +
+                        '<a href="#" class="done_quest" style="display: none;">done</a>' +
+                        '<a href="#" class="delete_quest">delete</a>' +
+                        '</div>' +
+                        '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                        'Dropdown: ' + id +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="field_container">' +
+                        '<div class="dropdown_edit_state" style="display: none;">' +
+                        '<div class="dropdown_field">' +
+                        'Question Title <input type="text" name="dropdown_quest_title" class="question_title"/><br />' +
+                        'Info <input type="text" class="question_info"/><br />' +
+                        '<input type="hidden" id="sum_opt_dd" value="0" />' +
+                        '<div class="dropdown_list"></div>' +
+                        '<a href="#" class="add_opt_dd">Add Option</a>' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="dropdown_view_state">' +
+                        '<div class="dropdown_text">Question Text?</div>' +
+                        '<div class="dropdown_answer">' +
+                        '<select name="dropdown_answer"></select>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</li>');
+
+                    $("#sortable").append(dropdown_field);
+
+                    dropdown_field.find('.edit_quest').click(function (e) {
+                        e.preventDefault();
+                        dropdown_field.find('.dropdown_view_state').hide();
+                        dropdown_field.find('.dropdown_edit_state').show();
+                        dropdown_field.find('.edit_quest').hide();
+                        dropdown_field.find('.done_quest').show();
+                    });
+
+                    dropdown_field.find('.done_quest').click(function (e) {
+                        e.preventDefault();
+                        updateDropdownView(dropdown_field);
+                        dropdown_field.find('.dropdown_edit_state').hide();
+                        dropdown_field.find('.dropdown_view_state').show();
+                        dropdown_field.find('.done_quest').hide();
+                        dropdown_field.find('.edit_quest').show();
+                    });
+
+                    dropdown_field.find('.add_opt_dd').click(function (e) {
+                        e.preventDefault();
+                        add_opt_dd($(this));
+                    });
+
+                    // Konfirmasi sebelum menghapus
+                    dropdown_field.find('.delete_quest').click(function (e) {
+                        e.preventDefault();
+                        if (window.confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
+                            dropdown_field.remove();
+                        }
+                    });
+                }
+
+                function add_opt_dd(anu) {
+                    var opt_sum = parseInt(anu.parents("li:first").find("#sum_opt_dd").val());
+                    ++opt_sum;
+                    anu.parents("li:first").find("#sum_opt_dd").val(opt_sum);
+
+                    var row = $('<div class="option_dropdown" id="opt_dd_' + opt_sum + '">' +
+                        'Option ' + opt_sum + ' <input type="text" name="label_option_' + opt_sum +
+                        '" class="label_opt" style="width: 25%; margin-left: 30px;" /> ' +
+                        'Value: <input type="text" name="value_opt_' + opt_sum +
+                        '" class="val_opt" style="width: 25%;" /> ' +
+                        '<a href="#" class="add_opt_dd">Add</a> ' +
+                        '<a href="#" class="remove_opt_dd">Remove</a>' +
+                        '</div>');
+
+                    var list = anu.parents("li:first").find(".dropdown_list");
+                    list.append(row);
+
+                    row.find('.add_opt_dd, .remove_opt_dd').click(function (event) {
+                        event.preventDefault();
+                        if ($(this).is('.add_opt_dd')) {
+                            add_opt_dd($(this));
+                        } else {
+                            var opt_sum = parseInt(anu.parents("li:first").find("#sum_opt_dd").val());
+                            --opt_sum;
+                            anu.parents("li:first").find("#sum_opt_dd").val(opt_sum);
+                            $(this).parent().remove();
+                        }
+                    });
+                }
+
+                function updateDropdownView(dropdown_field) {
+                    var questionTitle = dropdown_field.find('input[name="dropdown_quest_title"]').val();
+                    dropdown_field.find('.dropdown_text').text(questionTitle);
+
+                    var dropdownSelect = dropdown_field.find('select[name="dropdown_answer"]');
+                    dropdownSelect.empty();
+                    dropdown_field.find('.option_dropdown').each(function () {
+                        var label = $(this).find('.label_opt').val();
+                        var value = $(this).find('.val_opt').val();
+                        dropdownSelect.append('<option value="' + value + '">' + label + '</option>');
+                    });
+                }
+
+                function add_date() {
+                    var id = ++fields_sum;
+                    fields_id.push(id);
+
+                    var date_field = $('<li id="' + id + '" class="date question_fields">' +
+                        '<div class="field_header">' +
+                        '<div class="field_buttons_edit">' +
+                        '<a href="#" class="edit_quest">edit</a>' +
+                        '<a href="#" class="done_quest" style="display: none;">done</a>' +
+                        '<a href="#" class="delete_quest">delete</a>' +
+                        '</div>' +
+                        '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                        'Date Field: ' + id +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="field_container">' +
+                        '<div class="date_edit_state" style="display: none;">' +
+                        '<div class="date_field">' +
+                        'Select Date: <input type="date" name="date_answer" class="question_date"/><br />' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="date_view_state">' +
+                        '<div class="date_text">Question Text?</div>' +
+                        '<div class="date_answer"><input type="date" name="date_answer" /></div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</li>');
+
+                    $("#sortable").append(date_field);
+
+                    date_field.find('.edit_quest').click(function (e) {
+                        e.preventDefault();
+                        date_field.find('.date_view_state').hide();
+                        date_field.find('.date_edit_state').show();
+                        date_field.find('.edit_quest').hide();
+                        date_field.find('.done_quest').show();
+                    });
+
+                    date_field.find('.done_quest').click(function (e) {
+                        e.preventDefault();
+                        updateDateView(date_field);
+                        date_field.find('.date_edit_state').hide();
+                        date_field.find('.date_view_state').show();
+                        date_field.find('.done_quest').hide();
+                        date_field.find('.edit_quest').show();
+                    });
+
+                    date_field.find('.delete_quest').click(function (e) {
+                        e.preventDefault();
+                        if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
+                            var index = fields_id.indexOf(id);
+                            fields_id.splice(index, 1);
+                            date_field.remove();
+                        }
+                    });
+                }
+
+                function updateDateView(date_field) {
+                    var selectedDate = date_field.find('input[name="date_answer"]').val();
+                    date_field.find('.date_text').text(selectedDate); // Menampilkan tanggal yang dipilih
+                }
+
+                function add_checkbox() {
+                    var id = ++fields_sum;
+                    fields_id.push(id);
+                    console.log("add_checkbox() called");
+                    var checkbox_field = $('<li id="' + id + '" class="checkbox question_fields">' +
+                        '<div class="field_header">' +
+                        '<div class="field_buttons_edit">' +
+                        '<a href="#" class="edit_quest">edit</a>' +
+                        '<a href="#" class="done_quest" style="display: none;">done</a>' +
+                        '<a href="#" class="delete_quest">delete</a>' +
+                        '</div>' +
+                        '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                        'Checkbox: ' + id +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="field_container">' +
+                        '<div class="checkbox_edit_state" style="display: none;">' +
+                        '<div class="checkbox_field">' +
+                        'Question Title <input type="text" name="checkbox_quest_title" class="question_title"/><br />' +
+                        'Info <input type="text" class="question_info"/><br />' +
+                        '<div class="checkbox_options_list"></div>' +
+                        '<a href="#" class="add_checkbox_option">Add Option</a>' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="checkbox_view_state">' +
+                        '<div class="checkbox_text">Question Text?</div>' +
+                        '<div class="checkbox_answers"></div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</li>');
+
+                    $("#sortable").append(checkbox_field);
+
+                    checkbox_field.find('.edit_quest').click(function (e) {
+                        e.preventDefault();
+                        checkbox_field.find('.checkbox_view_state').hide();
+                        checkbox_field.find('.checkbox_edit_state').show();
+                        checkbox_field.find('.edit_quest').hide();
+                        checkbox_field.find('.done_quest').show();
+                    });
+
+                    checkbox_field.find('.done_quest').click(function (e) {
+                        e.preventDefault();
+                        updateCheckboxView(checkbox_field);
+                        checkbox_field.find('.checkbox_edit_state').hide();
+                        checkbox_field.find('.checkbox_view_state').show();
+                        checkbox_field.find('.done_quest').hide();
+                        checkbox_field.find('.edit_quest').show();
+                    });
+
+                    checkbox_field.find('.add_checkbox_option').click(function (e) {
+                        e.preventDefault();
+                        addCheckboxOption($(this));
+                    });
+
+                    checkbox_field.find('.delete_quest').click(function (e) {
+                        e.preventDefault();
+                        if (confirm("Apakah Anda yakin ingin menghapus pertanyaan ini?")) {
+                            var index = fields_id.indexOf(id);
+                            fields_id.splice(index, 1);
+                            checkbox_field.remove();
+                        }
+                    });
+                }
+
+                function addCheckboxOption(button) {
+                    var optionId = button.parents("li:first").find(".checkbox_options_list .checkbox_option")
+                        .length + 1;
+                    var option = $('<div class="checkbox_option" id="checkbox_option_' + optionId + '">' +
+                        'Option ' + optionId + ' <input type="text" name="label_checkbox_option_' +
+                        optionId +
+                        '" class="label_checkbox_option" style="width: 25%; margin-left: 10px;" />' +
+                        '<a href="#" class="remove_checkbox_option">Remove</a>' +
+                        '</div>');
+
+                    button.siblings(".checkbox_options_list").append(option);
+
+                    option.find('.remove_checkbox_option').click(function (e) {
+                        e.preventDefault();
+                        $(this).parent().remove();
+                    });
+                }
+
+                function updateCheckboxView(checkbox_field) {
+                    var questionTitle = checkbox_field.find('input[name="checkbox_quest_title"]').val();
+                    checkbox_field.find('.checkbox_text').text(questionTitle);
+
+                    var checkboxContainer = checkbox_field.find('.checkbox_answers');
+                    checkboxContainer.empty();
+                    checkbox_field.find('.checkbox_option').each(function () {
+                        var label = $(this).find('.label_checkbox_option').val();
+                        checkboxContainer.append(
+                            '<label><input type="checkbox" name="checkbox_answer" /> ' + label +
+                            '</label><br>');
+                    });
+                }
+
+                var fields_sum = 0; // Inisialisasi jumlah field
+                var fields_id = []; // Array untuk menyimpan ID field
+
+                function add_single_line() {
+                    var id = ++fields_sum;
+                    fields_id.push(id);
+                    console.log('Adding question with ID:', id); // Debugging
+
+                    var single_field = $('<li id="' + id + '" class="single question_fields">' +
+                        '<div class="field_header">' +
+                        '<div class="field_buttons_edit">' +
+                        '<a href="#" class="edit_quest">edit</a>' +
+                        '<a href="#" class="done_quest">done</a>' +
+                        '<a href="#" class="delete_quest">delete</a>' +
+                        '</div>' +
+                        '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                        'Single Line Text: ' + id +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="field_container">' +
+                        '<div class="single_edit_state">' +
+                        '<div class="single_line">' +
+                        'Question Title <input type="text" name="questions[' + id +
+                        '][title]" class="question_title"/><br />' +
+                        'Info <input type="text" name="questions[' + id +
+                        '][info]" class="question_info"/>' +
+                        '</div>' +
+                        '</div>' +
+                        '<div class="single_view_state">' +
+                        '<div class="single_line_text">Question Text?</div>' +
+                        '<div class="single_line_answer"><input type="text" name="questions[' + id +
+                        '][answer]" /></div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</li>');
+
+                    console.log('Appending new question field'); // Debugging
+                    $("#sortable").append(single_field);
+
+                    single_field.find('.done_quest, .edit_quest, .delete_quest').click(function () {
+                        done_edit_delete_quest($(this));
+                    });
+                }
+            </script>
+
+        </div>
+    </div>
+    </div>
+    <!-- Sunting Kuesioner Section END -->
+    </div>
     </div>
     <!-- JS -->
 
@@ -1848,7 +2300,7 @@
         }
     </script>
 
-    
+
 
     <script>
         function openTab(evt, tabId) {

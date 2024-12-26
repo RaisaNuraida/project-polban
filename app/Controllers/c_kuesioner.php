@@ -176,7 +176,35 @@ class c_kuesioner extends BaseController
                                          ->with('subOption', $subOption) 
                                          ->with('mainOption', $mainOption);  // Kirim data subOption ke view
      }
-     
+     public function update()
+     {
+         $id = $this->request->getPost('id');
+         $title = $this->request->getPost('title');
+         $deskripsi = $this->request->getPost('deskripsi');
+         $conditionallogic = $this->request->getPost('conditional_logic');
+ 
+         // Periksa apakah password diisi
+        
+             // Hash password baru
+             $data = [
+                 'title' => $title,
+                 'deskripsi' => $deskripsi,
+                 'conditional_logic' => $conditionallogic,
+             ];
+ 
+         // Update data ke database
+         $db = \Config\Database::connect();
+         $builder = $db->table('m_kuesioner');
+         $builder->where('id', $id);
+         $update = $builder->update($data);
+ 
+         // Cek hasil update
+         if ($update) {
+             return $this->response->setJSON(['message' => 'User berhasil diupdate.']);
+         } else {
+             return $this->response->setJSON(['message' => 'Terjadi kesalahan saat memperbarui data.'], 500);
+         }
+     }
      
 }
     

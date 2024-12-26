@@ -76,6 +76,38 @@ class kuesioner_page extends BaseController
             return redirect()->to('/kuesionerpage')->with('message', 'User tidak ditemukan.');
         }
     }
-  
+    public function tambahkuesionerpage()
+    {
+        // Ambil data dari request
+         // Ambil data dari request tanpa validasi
+         $mainOption = $this->request->getPost('mainOption');
+         $conditionalOperator = $this->request->getPost('conditionalOperator');
+         $subOption = $this->request->getPost('displayNameInput') ?: $this->request->getPost('emailInput') ?: $this->request->getPost('group') ?: $this->request->getPost('academic_nim') ?: $this->request->getPost('academic_faculty') ?: $this->request->getPost('academic_program') ?: $this->request->getPost('academic_year')?: $this->request->getPost('street')?: $this->request->getPost('city')?: $this->request->getPost('state_code')?: $this->request->getPost('zip_code')?: $this->request->getPost('academic_graduate_year')?: $this->request->getPost('jenis_kelamin')?: $this->request->getPost('no_telp')?: $this->request->getPost('nik')?: $this->request->getPost('npwp');
+         // Format conditional_logic field
+         $conditionalLogicData = [
+             'Option ' => $mainOption,
+             'is not ' => $conditionalOperator,
+             'value ' => $subOption,
+         ];
+ 
+         $data = [
+             'title' => $this->request->getPost('title'),
+             'deskripsi' => $this->request->getPost('deskripsi'),
+             'conditional_logic' => json_encode($conditionalLogicData), // Simpan sebagai JSON string
+         ];
+ 
+         // Simpan ke database
+         $model = new kuesionerpage();
+         if (!$model->insert($data)) {
+             return redirect()->back()->withInput()->with('error', 'Data gagal disimpan.');
+         }
+ 
+        
+
+         return redirect()->to('/kuesionerpage')->with('success', 'Data berhasil disimpan.')
+         ->with('subOption', $subOption) 
+                                         ->with('mainOption', $mainOption); 
+     }
+     
 
 }

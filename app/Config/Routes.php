@@ -91,10 +91,14 @@ $routes->post('/kuesionerpage', 'kuesioner_page::submitPengaturan');
 $routes->match(['get', 'post'], 'editkuesionerkuesioner/(:num)', 'Kuesioner::editkuesionerkuesioner/$1');
 
 $routes->post('/tambahkuesioner', 'c_kuesioner::tambahkuesioner');
+$routes->post('/tambahkuesionerpage', 'kuesioner_page::tambahkuesionerpage');
+
 $routes->post('/editkuesionerkuesioner', 'c_kuesioner::editkuesionerkuesioner');
 
 $routes->post('/login', 'login::login');
 $routes->post('/update', 'Home::update');
+$routes->post('/updatekuesioner', 'c_kuesioner::update');
+
 $routes->post('/kuesionerkuesioner', 'c_kuesioner::index');
 $routes->post('/organisasi', 'c_organisasi::submitMessage');
 $routes->post('/pengaturan', 'pengaturan::submitPengaturan');
