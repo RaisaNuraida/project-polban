@@ -61,4 +61,47 @@ class KuesionerController extends BaseController
 
     return $this->response->setJSON($questions); // Kembalikan data dalam format JSON
 }
+    public function updateQuestion()
+    {
+        $kuesionerModel = new KuesionerSectionModel();
+
+        // Ambil data dari request
+        $id = $this->request->getPost('id');
+        $text = $this->request->getPost('text');
+
+        // Validasi ID dan teks
+        if (empty($id) || empty($text)) {
+            return $this->response->setJSON(['status' => 'error', 'message' => 'ID atau teks tidak boleh kosong']);
+        }
+
+        // Update data di database
+        $data = [
+            'title' => $text,
+            'updated_on' => date('Y-m-d H:i:s')
+        ];
+
+        $kuesionerModel->update($id, $data);
+
+        return $this->response->setJSON(['status' => 'success', 'message' => 'Pertanyaan berhasil diperbarui']);
+    }
+
+    public function deleteQuestion()
+    {
+        $kuesionerModel = new KuesionerSectionModel();
+
+        // Ambil ID dari request
+        $id = $this->request->getPost('id');
+
+        // Validasi ID
+        if (empty($id)) {
+            return $this->response->setJSON(['status' => 'error', 'message' => 'ID tidak boleh kosong']);
+        }
+
+        // Hapus data dari database
+        if ($kuesionerModel->delete($id)) {
+            return $this->response->setJSON(['status' => 'success', 'message' => 'Pertanyaan berhasil dihapus']);
+        } else {
+            return $this->response->setJSON(['status' => 'error', 'message' => 'Gagal menghapus pertanyaan']);
+        }
+    }
 }

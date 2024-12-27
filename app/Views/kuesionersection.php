@@ -358,64 +358,53 @@
                                 </div>
                                 <hr>
 
-                                <div class="m-2">
-                                    <form id="questionForm" method="post" action="<?= base_url('savequestions') ?>">
-                                        <div class="form-group">
-                                            <label for="exampleInputTitle">Title</label>
-                                            <input type="text" class="form-control" id="exampleInputTitle"
-                                                placeholder="Data Pribadi" required>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="exampleInputDeskripsi">Deskripsi</label>
-                                            <input type="text" class="form-control" id="exampleInputDeskripsi"
-                                                placeholder="Bagian ini berisi pertanyaan tentang data pribadi responden."
-                                                required>
-                                        </div>
+                                                                    <div class="m-2">
+                                        <form id="questionForm" method="post" action="<?= base_url('savequestions') ?>">
+                                            <div class="form-group">
+                                                <label for="exampleInputTitle">Title</label>
+                                                <input type="text" class="form-control" id="exampleInputTitle" placeholder="Data Pribadi" required>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleInputDeskripsi">Deskripsi</label>
+                                                <input type="text" class="form-control" id="exampleInputDeskripsi" placeholder="Bagian ini berisi pertanyaan tentang data pribadi responden." required>
+                                                <input type="text" class="form-control" id="exampleInputDeskripsi"
+                                                    placeholder="Bagian ini berisi pertanyaan tentang data pribadi responden.">
+                                            </div>
+                                           
+                                            <div class="form-check d-flex mt-1">
+                                                <label class="form-check-label" for="exampleCheck1">Conditional
+                                                    Logic</label>
+                                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                            </div>
 
-                                        <div class="form-check d-flex mt-1">
-                                            <label class="form-check-label" for="exampleCheck1">Conditional
-                                                Logic</label>
-                                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                            <br>
+                                            <div>
+                                            <button type="button" class="btn btn-info" style="font-size:14px;padding:8px 10px;color:white;" onclick="saveQuestions()">Simpan</button>
+                                                <a class="btn btn-danger" style="font-size:14px;padding:8px 10px;color:white;" onclick="openTab(event, 'SuntingEditKuesioner')">Batal</a>
+                                            </div>
+                                            <input type="hidden" name="questions" id="questionsInput">
+                                            <input type="hidden" name="kuesioner_id" value="1">
+                                            <input type="hidden" name="page_id" value="1">
+                                        </form>
+</div>
+                                        <!-- ISI DISINI -->
+                                        <div id="floating_question_selector">
+                                        <div id="floating_label">
+                                            Pilih Jenis Pertanyaan...
                                         </div>
-
-                                        <br>
-                                        <div>
-                                            <button type="button" class="btn btn-info"
-                                                style="font-size:14px;padding:8px 10px;color:white;"
-                                                onclick="saveQuestions()">Simpan</button>
-                                            <a class="btn btn-danger"
-                                                style="font-size:14px;padding:8px 10px;color:white;"
-                                                onclick="openTab(event, 'SuntingEditKuesioner')">Batal</a>
+                                        <div id="questions_button">
+                                            <button class="quest_butt btn btn-primary" onclick="add_single_line();">Single Line Text</button>
+                                            <button class="quest_butt btn btn-primary" onclick="add_dropdown();">Dropdown List</button>
+                                            <button class="quest_butt btn btn-primary" onclick="add_date();">Date</button>
+                                            <button class="quest_butt btn btn-primary" onclick="add_checkbox();">Checkbox</button>
+                                            <button class="quest_butt btn btn-primary" onclick="add_number();">Number</button>
+                                            <button class="quest_butt btn btn-primary" onclick="add_radio();">Radio Buttons</button>
+                                            <button class="quest_butt btn btn-primary" onclick="add_phone();">Phone</button>
+                                            <button class="quest_butt btn btn-primary" onclick="add_scale();">Scale</button>
+                                            <button class="quest_butt btn btn-primary" onclick="add_readonly();">User Field</button>
+                                            <button class="quest_butt btn btn-primary" onclick="add_grid();">Grid</button>
                                         </div>
-                                        <input type="hidden" name="questions" id="questionsInput">
-                                        <input type="hidden" name="kuesioner_id" value="1">
-                                        <input type="hidden" name="page_id" value="1">
-                                    </form>
-                                </div>
-                                <!-- ISI DISINI -->
-                                <div id="floating_question_selector">
-                                    <div id="floating_label">
-                                        Pilih Jenis Pertanyaan...
                                     </div>
-                                    <div id="questions_button">
-                                        <button class="quest_butt btn btn-primary" onclick="add_single_line();">Single
-                                            Line Text</button>
-                                        <button class="quest_butt btn btn-primary" onclick="add_dropdown();">Dropdown
-                                            List</button>
-                                        <button class="quest_butt btn btn-primary" onclick="add_date();">Date</button>
-                                        <button class="quest_butt btn btn-primary"
-                                            onclick="add_checkbox();">Checkbox</button>
-                                        <button class="quest_butt btn btn-primary"
-                                            onclick="add_number();">Number</button>
-                                        <button class="quest_butt btn btn-primary" onclick="add_radio();">Radio
-                                            Buttons</button>
-                                        <button class="quest_butt btn btn-primary" onclick="add_phone();">Phone</button>
-                                        <button class="quest_butt btn btn-primary" onclick="add_scale();">Scale</button>
-                                        <button class="quest_butt btn btn-primary" onclick="add_readonly();">User
-                                            Field</button>
-                                        <button class="quest_butt btn btn-primary" onclick="add_grid();">Grid</button>
-                                    </div>
-                                </div>
 
                                 <form id="questionForm" method="post" action="<?= base_url('savequestions') ?>">
                                     <input type="hidden" name="questions" id="questionsInput">
@@ -435,6 +424,76 @@
 
 
                             <script type="text/javascript">
+                                    
+                                     $(document).ready(function() {
+                                        // Panggil fungsi untuk memuat pertanyaan dari database saat halaman dimuat
+                                        loadQuestions();
+                                    });
+                                    $(document).on('click', '.edit_quest', function(e) {
+                                    e.preventDefault();
+                                    var li = $(this).closest('li');
+                                    li.find('.single_view_state').hide();
+                                    li.find('.single_edit_state').show();
+                                    li.find('.done_quest').show();
+                                    $(this).hide();
+                                });
+
+                                $(document).on('click', '.done_quest', function(e) {
+                                    e.preventDefault();
+                                    var li = $(this).closest('li');
+                                    var updatedText = li.find('.question_title').val();
+                                    li.find('.single_line_text').html(updatedText);
+                                    li.find('.single_view_state').show();
+                                    li.find('.single_edit_state').hide();
+                                    li.find('.edit_quest').show();
+                                    $(this).hide();
+
+                                    // Kirim data yang diperbarui ke server
+                                    var id = li.attr('id');
+                                    $.ajax({
+                                        url: '<?= base_url("updateQuestion") ?>',
+                                        method: 'POST',
+                                        data: {
+                                            id: id,
+                                            text: updatedText
+                                        },
+                                        success: function(response) {
+                                            if (response.status === 'success') {
+                                                alert('Pertanyaan berhasil diperbarui!');
+                                            } else {
+                                                alert('Gagal memperbarui pertanyaan: ' + response.message);
+                                            }
+                                        },
+                                        error: function(xhr, status, error) {
+                                            alert('Terjadi kesalahan saat memperbarui pertanyaan: ' + error);
+                                        }
+                                    });
+                                });
+
+                                $(document).on('click', '.delete_quest', function(e) {
+                                    e.preventDefault();
+                                    var li = $(this).closest('li');
+                                    var id = li.attr('id');
+
+                                    if (confirm('Apakah anda yakin untuk menghapus pertanyaan ini?')) {
+                                        $.ajax({
+                                            url: '<?= base_url("deleteQuestion") ?>',
+                                            method: 'POST',
+                                            data: { id: id },
+                                            success: function(response) {
+                                                if (response.status === 'success') {
+                                                    li.remove(); // Hapus elemen dari DOM
+                                                    alert('Pertanyaan berhasil dihapus!');
+                                                } else {
+                                                    alert('Gagal menghapus pertanyaan: ' + response.message);
+                                                }
+                                            },
+                                            error: function(xhr, status, error) {
+                                                alert('Terjadi kesalahan saat menghapus pertanyaan: ' + error);
+                                            }
+                                        });
+                                    }
+                                });
                                 function saveQuestions() {
                                     var questions = [];
 
@@ -469,101 +528,101 @@
                                     });
                                 }
                                 function loadQuestions() {
-                                    $.ajax({
-                                        url: '<?= base_url("getQuestions") ?>', // URL untuk mengambil daftar pertanyaan
-                                        method: 'GET',
-                                        success: function (response) {
-                                            // Kosongkan daftar pertanyaan yang ada
-                                            $('#sortable').empty();
+                                $.ajax({
+                                    url: '<?= base_url("getQuestions") ?>', // URL untuk mengambil daftar pertanyaan
+                                    method: 'GET',
+                                    success: function(response) {
+                                        // Kosongkan daftar pertanyaan yang ada
+                                        $('#sortable').empty();
 
-                                            // Loop melalui setiap pertanyaan dan tambahkan ke daftar
-                                            response.forEach(function (question) {
-                                                var listItem = $('<li id="' + question.id + '" class="question_fields">' +
-                                                    '<div class="field_header">' +
-                                                    '<div class="field_buttons_edit">' +
-                                                    '<a href="#" class="edit_quest">edit</a>' +
-                                                    '<a href="#" class="done_quest" style="display: none;">done</a>' +
-                                                    '<a href="#" class="delete_quest">delete</a>' +
-                                                    '</div>' +
-                                                    '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
-                                                    question.title + // Menampilkan judul pertanyaan
-                                                    '</div>' +
-                                                    '</div>' +
-                                                    '<div class="field_container">' +
-                                                    '<div class="single_view_state">' +
-                                                    '<div class="single_line_text">' + question.title + '</div>' + // Menampilkan teks pertanyaan
-                                                    '</div>' +
-                                                    '</div>' +
-                                                    '</li>');
+                                        // Loop melalui setiap pertanyaan dan tambahkan ke daftar
+                                        response.forEach(function(question) {
+                                            var listItem = $('<li id="' + question.id + '" class="question_fields">' +
+                                                '<div class="field_header">' +
+                                                '<div class="field_buttons_edit">' +
+                                                '<a href="#" class="edit_quest">edit</a>' +
+                                                '<a href="#" class="done_quest" style="display: none;">done</a>' +
+                                                '<a href="#" class="delete_quest">delete</a>' +
+                                                '</div>' +
+                                                '<div class="quest_admin_label" style="font-size: 11pt; font-weight: bold; padding: 5px;">' +
+                                                question.title + // Menampilkan judul pertanyaan
+                                                '</div>' +
+                                                '</div>' +
+                                                '<div class="field_container">' +
+                                                '<div class="single_view_state">' +
+                                                '<div class="single_line_text">' + question.title + '</div>' + // Menampilkan teks pertanyaan
+                                                '</div>' +
+                                                '</div>' +
+                                                '</li>');
 
-                                                // Tambahkan item ke daftar
-                                                $('#sortable').append(listItem);
-                                            });
-                                        },
-                                        error: function (error) {
-                                            alert('Terjadi kesalahan saat memuat pertanyaan!');
-                                        }
-                                    });
-                                }
-
-                                function deletequestion(anu) {
-                                    var q = anu.parents("li:first");
-                                    q.remove();
-                                }
-
-                                function quest_done(anu) {
-                                    var view = anu.parents("li:first").find(".single_view_state");
-                                    var edit = anu.parents("li:first").find(".single_edit_state");
-                                    var qtext = anu.parents("li:first").find(".quest_text_field").val();
-                                    anu.parents("li:first").find(".single_line_text").html(qtext);
-                                    view.show();
-                                    edit.hide();
-                                }
-
-                                function done_edit_delete_quest(anu) {
-                                    // event.preventDefault();
-                                    var id = anu.parents("li:first").attr("id");
-                                    var view = anu.parents("li:first").find(".single_view_state");
-                                    var done_button = anu.parents("li:first").find(".done_quest");
-                                    var edit = anu.parents("li:first").find(".single_edit_state");
-                                    var edit_button = anu.parents("li:first").find(".edit_quest");
-                                    var qtext = anu.parents("li:first").find(".question_title").val();
-                                    if (anu.is('.done_quest')) {
-                                        anu.parents("li:first").find(".single_line_text").html(qtext);
-                                        view.show();
-                                        edit_button.show();
-                                        edit.hide();
-                                        done_button.hide();
-                                        anu.parents("li:first").find(".field_container").css({
-                                            "background-color": "white"
-                                        })
-                                        anu.parents("li:first").find(".field_header").css({
-                                            "background-color": "#DFEFFF"
-                                        })
-                                    } else if (anu.is('.edit_quest')) {
-                                        view.hide();
-                                        edit.show();
-                                        done_button.show();
-                                        edit_button.hide();
-                                        anu.parents("li:first").find(".field_container").css({
-                                            "background-color": "#DFEFFF"
-                                        })
-                                        anu.parents("li:first").find(".field_header").css({
-                                            "background-color": "powderblue"
-                                        })
-                                    } else {
-                                        if (confirm('Apakah anda yakin untuk menghapus pertanyaan ini ?')) {
-                                            var index = fields_id.indexOf(id);
-                                            fields_id.splice(index, 1);
-                                            deletequestion(anu);
-                                        }
+                                            // Tambahkan item ke daftar
+                                            $('#sortable').append(listItem);
+                                        });
+                                    },
+                                    error: function(error) {
+                                        alert('Terjadi kesalahan saat memuat pertanyaan!');
+                                    }
+                                });
+                            }
+                                    
+                                        function deletequestion(anu) {
+                                        var q = anu.parents("li:first");
+                                        q.remove();
                                     }
 
-                                }
+                                    function quest_done(anu) {
+                                        var view = anu.parents("li:first").find(".single_view_state");
+                                        var edit = anu.parents("li:first").find(".single_edit_state");
+                                        var qtext = anu.parents("li:first").find(".quest_text_field").val();
+                                        anu.parents("li:first").find(".single_line_text").html(qtext);
+                                        view.show();
+                                        edit.hide();
+                                    }
 
-                                function add_grid() {
-                                    var id = ++fields_sum;
-                                    fields_id.push(id);
+                                    function done_edit_delete_quest(anu) {
+                                        // event.preventDefault();
+                                        var id = anu.parents("li:first").attr("id");
+                                        var view = anu.parents("li:first").find(".single_view_state");
+                                        var done_button = anu.parents("li:first").find(".done_quest");
+                                        var edit = anu.parents("li:first").find(".single_edit_state");
+                                        var edit_button = anu.parents("li:first").find(".edit_quest");
+                                        var qtext = anu.parents("li:first").find(".question_title").val();
+                                        if (anu.is('.done_quest')) {
+                                            anu.parents("li:first").find(".single_line_text").html(qtext);
+                                            view.show();
+                                            edit_button.show();
+                                            edit.hide();
+                                            done_button.hide();
+                                            anu.parents("li:first").find(".field_container").css({
+                                                "background-color": "white"
+                                            })
+                                            anu.parents("li:first").find(".field_header").css({
+                                                "background-color": "#DFEFFF"
+                                            })
+                                        } else if (anu.is('.edit_quest')) {
+                                            view.hide();
+                                            edit.show();
+                                            done_button.show();
+                                            edit_button.hide();
+                                            anu.parents("li:first").find(".field_container").css({
+                                                "background-color": "#DFEFFF"
+                                            })
+                                            anu.parents("li:first").find(".field_header").css({
+                                                "background-color": "powderblue"
+                                            })
+                                        } else {
+                                            if (confirm('Apakah anda yakin untuk menghapus pertanyaan ini ?')) {
+                                                var index = fields_id.indexOf(id);
+                                                fields_id.splice(index, 1);
+                                                deletequestion(anu);
+                                            }
+                                        }
+
+                                    }
+
+                                    function add_grid() {
+                                        var id = ++fields_sum;
+                                        fields_id.push(id);
 
                                     var grid_field = $('<li id="' + id + '" class="grid question_fields">' +
                                         '<div class="field_header">' +
@@ -1287,10 +1346,10 @@
                                 var fields_sum = 0; // Inisialisasi jumlah field
                                 var fields_id = []; // Array untuk menyimpan ID field
 
-                                function add_single_line() {
-                                    var id = ++fields_sum;
-                                    fields_id.push(id);
-                                    console.log('Adding question with ID:', id); // Debugging
+                                    function add_single_line() {
+                                        var id = ++fields_sum;
+                                        fields_id.push(id);
+                                        console.log('Adding question with ID:', id); // Debugging
 
                                     var single_field = $('<li id="' + id + '" class="single question_fields">' +
                                         '<div class="field_header">' +
