@@ -157,7 +157,7 @@
                     <div class="col-lg-12 col-md-12">
 
 
-                        <!-- Import Data Start -->
+                        <!-- Tambah Welcome Page Start -->
                         <div class="card">
                             <div class="container">
                                 <div class="card">
@@ -187,12 +187,7 @@
                                                             <select name="tahun[]" id="tahun"
                                                                 class="form-control tahun-select" required>
                                                                 <option value="">Pilih Tahun</option>
-                                                                <?php foreach ($data as $row): ?>
-                                                                    <option
-                                                                        value="<?= htmlspecialchars($row['tahun_lulus']) ?>">
-                                                                        <?= htmlspecialchars($row['tahun_lulus']) ?>
-                                                                    </option>
-                                                                <?php endforeach; ?>
+                                                                <!-- Memanggil data tahun dari tabel users, pakenya di join ya -->
                                                             </select>
                                                         </div>
                                                     </div>
@@ -241,12 +236,8 @@
                                                                                 required>
                                                                                 <option value="">Pilih Program Studi
                                                                                 </option>
-                                                                                <?php foreach ($data as $row): ?>
-                                                                                    <option
-                                                                                        value="<?= htmlspecialchars($row['program_studi']) ?>">
-                                                                                        <?= htmlspecialchars($row['program_studi']) ?>
-                                                                                    </option>
-                                                                                <?php endforeach; ?>
+                                                                                <!-- Memanggil data prodi dari tabel users, pakenya di join ya -->
+
                                                                             </select>
                                                                         </td>
                                                                         <td>
@@ -254,12 +245,8 @@
                                                                                 class="form-control nama-select"
                                                                                 onchange="updateEmail(this)" required>
                                                                                 <option value="">Pilih Nama</option>
-                                                                                <?php foreach ($data as $row): ?>
-                                                                                    <option
-                                                                                        value="<?= htmlspecialchars($row['user_name']) ?>">
-                                                                                        <?= htmlspecialchars($row['user_name']) ?>
-                                                                                    </option>
-                                                                                <?php endforeach; ?>
+                                                                                <!-- Memanggil data nama dari tabel users, pakenya di join ya -->
+
                                                                             </select>
                                                                         </td>
                                                                         <td>
@@ -267,12 +254,8 @@
                                                                                 class="form-control email-select"
                                                                                 onchange="updateEmail(this)" required>
                                                                                 <option value="">Pilih Email</option>
-                                                                                <?php foreach ($data as $row): ?>
-                                                                                    <option
-                                                                                        value="<?= htmlspecialchars($row['user_email']) ?>">
-                                                                                        <?= htmlspecialchars($row['user_email']) ?>
-                                                                                    </option>
-                                                                                <?php endforeach; ?>
+                                                                                <!-- Memanggil data email dari tabel users, pakenya di join ya -->
+
                                                                             </select>
                                                                         </td>
                                                                         <td>
@@ -309,12 +292,8 @@
                                                                                 class="form-control prodi-select"
                                                                                 onchange="updateJurusan(this)" required>
                                                                                 <option value="">Pilih Jurusan</option>
-                                                                                <?php foreach ($data as $row): ?>
-                                                                                    <option
-                                                                                        value="<?= htmlspecialchars($row['fakultas']) ?>">
-                                                                                        <?= htmlspecialchars($row['fakultas']) ?>
-                                                                                    </option>
-                                                                                <?php endforeach; ?>
+                                                                                <!-- Memanggil data Jurusan dari tabel koordinator_surveyor, pakenya di join ya -->
+
                                                                             </select>
                                                                         </td>
                                                                         <td>
@@ -323,12 +302,8 @@
                                                                                 onchange="updateNama(this)" required>
                                                                                 <option value="">Pilih Nama Koordinator
                                                                                 </option>
-                                                                                <?php foreach ($data as $row): ?>
-                                                                                    <option
-                                                                                        value="<?= htmlspecialchars($row['koordinator_name']) ?>">
-                                                                                        <?= htmlspecialchars($row['koordinator_name']) ?>
-                                                                                    </option>
-                                                                                <?php endforeach; ?>
+                                                                                <!-- Memanggil data nama dari tabel koordinator_surveyor, pakenya di join ya -->
+
                                                                             </select>
                                                                         </td>
                                                                         <td>
@@ -337,12 +312,8 @@
                                                                                 onchange="updateEmail(this)" required>
                                                                                 <option value="">Pilih Email Koordinator
                                                                                 </option>
-                                                                                <?php foreach ($data as $row): ?>
-                                                                                    <option
-                                                                                        value="<?= htmlspecialchars($row['koordinator_email']) ?>">
-                                                                                        <?= htmlspecialchars($row['koordinator_email']) ?>
-                                                                                    </option>
-                                                                                <?php endforeach; ?>
+                                                                                <!-- Memanggil data email dari tabel koordinator_surveyor, pakenya di join ya -->
+
                                                                             </select>
                                                                         </td>
                                                                         <td>
@@ -369,8 +340,7 @@
                             </div>
 
                         </div>
-                        </d>
-
+                        
                         <script src="//cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
                         <script>
                             // Inisialisasi editor dengan konfigurasi khusus
@@ -533,13 +503,13 @@
                 <select name="jurusan[]" class="form-control prodi-select">
                     <option value="">Pilih Jurusan</option>
                     <?php if (!empty($jurusanList)): ?>
-                                                                            <?php foreach ($jurusanList as $jurusan): ?>
-                                                                                                                                    <option value="<?= htmlspecialchars($jurusan) ?>">
-                                                                                                                                        <?= htmlspecialchars($jurusan) ?>
-                                                                                                                                    </option>
-                                                                            <?php endforeach; ?>
+                                                                                                        <?php foreach ($jurusanList as $jurusan): ?>
+                                                                                                                                                                                            <option value="<?= htmlspecialchars($jurusan) ?>">
+                                                                                                                                                                                                <?= htmlspecialchars($jurusan) ?>
+                                                                                                                                                                                            </option>
+                                                                                                        <?php endforeach; ?>
                     <?php else: ?>
-                                                                            <option value="">Jurusan tidak tersedia</option>
+                                                                                                        <option value="">Jurusan tidak tersedia</option>
                     <?php endif; ?>
                 </select>
             </td>

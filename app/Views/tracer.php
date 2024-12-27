@@ -104,10 +104,10 @@
                   <a class="nav-link" id="nav-tracer" href="<?= base_url('kontak') ?>">Kontak</a>
                 </li>
                 <li class="nav-item mx-2">
-                  <a class="nav-link" id="nav-tracer" href="https://penelusuranalumni.polban.ac.id/kuesioner/kuesioner/hasil">Respon TS</a>
+                  <a class="nav-link" id="nav-tracer" href="">Respon TS</a>
                 </li>
                 <li class="nav-item mx-2">
-                  <a class="nav-link" id="nav-tracer" href="https://penelusuranalumni.polban.ac.id/kuesioner/kuesioner/laporan">Laporan TS</a>
+                  <a class="nav-link" id="nav-tracer" href="">Laporan TS</a>
                 </li>
               </ul>
             </div>

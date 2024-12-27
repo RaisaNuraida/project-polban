@@ -10,7 +10,9 @@
     <title>Dashboard Admin - Welcome Page</title>
     <link rel="apple-touch-icon" href="assets/images/apple-icon-120.png">
     <link rel="shortcut icon" type="assets/image/x-icon" href="images/favicon.ico">
-    <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700"
+        rel="stylesheet">
 
     <!-- Tambahkan jQuery untuk menangani pop-up -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -48,24 +50,40 @@
 
 <!-- BEGIN: Body-->
 
-<body class="vertical-layout vertical-menu 2-columns fixed-navbar" data-open="click" data-menu="vertical-menu" data-color="bg-gradient-x-purple-blue" data-col="2-columns">
+<body class="vertical-layout vertical-menu 2-columns fixed-navbar" data-open="click" data-menu="vertical-menu"
+    data-color="bg-gradient-x-purple-blue" data-col="2-columns">
 
     <!-- BEGIN: Header-->
-    <nav class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light">
+    <nav
+        class="header-navbar navbar-expand-md navbar navbar-with-menu navbar-without-dd-arrow fixed-top navbar-semi-light">
         <div class="navbar-wrapper">
             <div class="navbar-container content">
                 <div class="collapse navbar-collapse show" id="navbar-mobile">
                     <ul class="nav navbar-nav mr-auto float-left">
-                        <li class="nav-item mobile-menu d-md-none mr-auto"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu font-large-1"></i></a></li>
-                        <li class="nav-item d-none d-md-block"><a class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i class="ft-menu"></i></a></li>
-                        <li class="nav-item d-none d-md-block"><a class="nav-link nav-link-expand" href="#"><i class="ficon ft-maximize"></i></a></li>
+                        <li class="nav-item mobile-menu d-md-none mr-auto"><a
+                                class="nav-link nav-menu-main menu-toggle hidden-xs" href="#"><i
+                                    class="ft-menu font-large-1"></i></a></li>
+                        <li class="nav-item d-none d-md-block"><a class="nav-link nav-menu-main menu-toggle hidden-xs"
+                                href="#"><i class="ft-menu"></i></a></li>
+                        <li class="nav-item d-none d-md-block"><a class="nav-link nav-link-expand" href="#"><i
+                                    class="ficon ft-maximize"></i></a></li>
                     </ul>
                     <ul class="nav navbar-nav float-right">
-                        <li class="dropdown dropdown-user nav-item"><a class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown"> <span class="avatar avatar-online"><img src="assets/images/avatar-s-19.png" alt="avatar"></span></a>
+                        <li class="dropdown dropdown-user nav-item"><a
+                                class="dropdown-toggle nav-link dropdown-user-link" href="#" data-toggle="dropdown">
+                                <span class="avatar avatar-online"><img src="assets/images/avatar-s-19.png"
+                                        alt="avatar"></span></a>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <div class="arrow_box_right"> <a class="dropdown-item" href="#"><span class="avatar avatar-online"><img src="assets/images/avatar-s-19.png" alt="avatar"><span class="user-name text-bold-500 ml-1 text-capitalize"><?= session()->get('username') ?></span></span></a>
-                                    <div class="dropdown-divider"></div><a class="dropdown-item" href="<?= base_url('halamaneditprofile') ?>"><i class="ft-user"></i> Edit Profile</a><a class="dropdown-item" href="email-application.html"><i class="ft-mail"></i> My Inbox</a>
-                                    <div class="dropdown-divider"></div><a class="dropdown-item" href="<?= base_url('tracer') ?>"><i class="ft-power"></i> Logout</a>
+                                <div class="arrow_box_right"> <a class="dropdown-item" href="#"><span
+                                            class="avatar avatar-online"><img src="assets/images/avatar-s-19.png"
+                                                alt="avatar"><span
+                                                class="user-name text-bold-500 ml-1 text-capitalize"><?= session()->get('username') ?></span></span></a>
+                                    <div class="dropdown-divider"></div><a class="dropdown-item"
+                                        href="<?= base_url('halamaneditprofile') ?>"><i class="ft-user"></i> Edit
+                                        Profile</a><a class="dropdown-item" href="email-application.html"><i
+                                            class="ft-mail"></i> My Inbox</a>
+                                    <div class="dropdown-divider"></div><a class="dropdown-item"
+                                        href="<?= base_url('tracer') ?>"><i class="ft-power"></i> Logout</a>
                                 </div>
                             </div>
                         </li>
@@ -78,10 +96,12 @@
 
 
     <!-- BEGIN: Main Menu-->
-    <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow " data-scroll-to-active="true" data-img="images/backgrounds/02.jpg">
+    <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow " data-scroll-to-active="true"
+        data-img="images/backgrounds/02.jpg">
         <div class="navbar-header">
             <ul class="nav navbar-nav flex-row">
-                <li class="nav-item mr-auto"><a class="navbar-brand" href="index.php"><img class="brand-logo" alt="polban" src="assets/images/apple-icon-120.png" />
+                <li class="nav-item mr-auto"><a class="navbar-brand" href="index.php"><img class="brand-logo"
+                            alt="polban" src="assets/images/apple-icon-120.png" />
                 <li class="nav-item d-md-none"><a class="nav-link close-navbar"><i class="ft-x"></i></a></li>
             </ul>
         </div>
@@ -137,129 +157,377 @@
                     <div class="col-lg-12 col-md-12">
 
 
-                        <!-- Sunting Data Start -->
+                        <!-- Tambah Welcome Page Start -->
                         <div class="card">
-                            <div class="mr-2 ml-2">
-                                <div class="card-header">
-                                    <h2>Sunting Welcome</h2>
-                                    <hr>
-                                    <div>
+                            <div class="container">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h2>Tambah Welcome Page</h2>
                                         <nav class="nav mb-1">
-                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'welcomemessage')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Welcome Message</a>
-                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'tentang')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Tentang</a>
-                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'kontak')" aria-current="page" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Kontak</a>
-                                            <!-- <a class="nav-link btn-outline-primary" onclick="openTab(event, 'alumni')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Alumni</a>
-                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'perusahaan')" style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Perusahaan</a> -->
+                                            <a class="nav-link btn-outline-primary active"
+                                                onclick="openTab(event, 'welcome')"
+                                                style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Welcome
+                                                Message</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'tentang')"
+                                                style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Tentang</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'kontak')"
+                                                aria-current="page"
+                                                style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Kontak</a>
+                                            <a class="nav-link btn-outline-primary" onclick="openTab(event, 'surveyor')"
+                                                style="border: 1px solid #ccc; padding: 5px; margin-right: 10px; border-radius: 3px;">Surveyor</a>
                                         </nav>
-                                    </div>
-
-                                    <div class="">
-                                        <div class="tab-content" id="welcomemessage">
-                                            <?php if (session()->getFlashdata('success')): ?>
-                                                <div class="alert alert-success">
-                                                    <?= session()->getFlashdata('success'); ?>
-                                                </div>
-                                            <?php endif; ?>
-
-                                            <?php if (session()->getFlashdata('error')): ?>
-                                                <div class="alert alert-danger">
-                                                    <?= session()->getFlashdata('error'); ?>
-                                                </div>
-                                            <?php endif; ?>
-                                            <form action="<?= base_url('/welcomepage/submitMessage') ?>" method="post">
-                                                <label for="content">Welcome Message:</label>
+                                        <hr>
+                                        <div class="">
+                                            <form action="<?= base_url('/welcomepage/editHalaman') ?>" method="post">
                                                 <div class="form-group">
-                                                    <textarea name="content" id="content">
-                                                    <?= isset($datamessage[0]['message']) ? $datamessage[0]['message'] : ''; ?>
-                                                    </textarea>
-                                                </div>
-                                                <br>
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                                <a href="<?= base_url('/welcomepage') ?>" class="btn btn-danger">Batal</a>
-                                            </form>
+                                                    <!-- Dropdown untuk tahun -->
+                                                    <div class="d-flex align-items-center mb-1" style="width: 50%">
+                                                        <div style="width: 45%;">
+                                                            <label for="tahun">Tahun:</label>
+                                                            <select name="tahun[]" id="tahun"
+                                                                class="form-control tahun-select" required>
+                                                                <option value="">Pilih Tahun</option>
+                                                                <!-- Memanggil data tahun dari tabel users, pakenya di join ya -->
+                                                            </select>
+                                                        </div>
+                                                    </div>
 
+                                                    <br>
+
+                                                    <!-- Content (Welcome Message) -->
+                                                    <div class="tab-content" id="welcome" style="display:block;">
+                                                        <label for="content">Welcome Message</label>
+                                                        <textarea name="content" id="content" required></textarea>
+                                                    </div>
+
+                                                    <!-- Tentang -->
+                                                    <div class="tab-content" id="tentang" style="display:none;">
+                                                        <label for="tentangarea">Tentang</label>
+                                                        <textarea name="tentangarea" id="tentangarea"
+                                                            required></textarea>
+                                                    </div>
+
+                                                    <!-- Kontak -->
+                                                    <div class="tab-content" id="kontak" style="display:none;">
+                                                        <label for="kontakarea">Kontak</label>
+                                                        <textarea name="kontakarea" id="kontakarea" required></textarea>
+                                                    </div>
+
+                                                    <!-- Data Surveyor -->
+                                                    <div class="tab-content" id="surveyor" style="display:none;">
+                                                        <div class="">
+                                                            <label for="datasurveyor">Data Surveyor</label>
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>No</th>
+                                                                        <th>Program Studi</th>
+                                                                        <th>Nama Surveyor</th>
+                                                                        <th>Email Surveyor</th>
+                                                                        <th>Aksi</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody id="tableBody">
+                                                                    <tr>
+                                                                        <td>1</td>
+                                                                        <td>
+                                                                            <select name="prodi[]"
+                                                                                class="form-control prodi-select"
+                                                                                required>
+                                                                                <option value="">Pilih Program Studi
+                                                                                </option>
+                                                                                <!-- Memanggil data prodi dari tabel users, pakenya di join ya -->
+
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <select name="nama[]"
+                                                                                class="form-control nama-select"
+                                                                                onchange="updateEmail(this)" required>
+                                                                                <option value="">Pilih Nama</option>
+                                                                                <!-- Memanggil data nama dari tabel users, pakenya di join ya -->
+
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <select name="email[]"
+                                                                                class="form-control email-select"
+                                                                                onchange="updateEmail(this)" required>
+                                                                                <option value="">Pilih Email</option>
+                                                                                <!-- Memanggil data email dari tabel users, pakenya di join ya -->
+
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <button type="button" class="btn btn-danger"
+                                                                                onclick="hapusBaris(this)">Hapus</button>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <button class="btn btn-primary" type="button"
+                                                                onclick="tambahBaris()">Tambah Baris</button>
+                                                        </div>
+
+                                                        <br><br>
+
+                                                        <!-- Data Koordinator Surveyor -->
+                                                        <div>
+                                                            <table class="table">
+                                                                <label>Data Koordinator Surveyor</label>
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>No</th>
+                                                                        <th>Jurusan</th>
+                                                                        <th>Nama Koordinator Surveyor</th>
+                                                                        <th>Email Koordinator Surveyor</th>
+                                                                        <th>Aksi</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody id="koordinatorTableBody">
+                                                                    <tr>
+                                                                        <td>1</td>
+                                                                        <td>
+                                                                            <select name="jurusan[]"
+                                                                                class="form-control prodi-select"
+                                                                                onchange="updateJurusan(this)" required>
+                                                                                <option value="">Pilih Jurusan</option>
+                                                                                <!-- Memanggil data Jurusan dari tabel koordinator_surveyor, pakenya di join ya -->
+
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <select name="koordinator_nama[]"
+                                                                                class="form-control nama-select"
+                                                                                onchange="updateNama(this)" required>
+                                                                                <option value="">Pilih Nama Koordinator
+                                                                                </option>
+                                                                                <!-- Memanggil data nama dari tabel koordinator_surveyor, pakenya di join ya -->
+
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <select name="koordinator_email[]"
+                                                                                class="form-control email-select"
+                                                                                onchange="updateEmail(this)" required>
+                                                                                <option value="">Pilih Email Koordinator
+                                                                                </option>
+                                                                                <!-- Memanggil data email dari tabel koordinator_surveyor, pakenya di join ya -->
+
+                                                                            </select>
+                                                                        </td>
+                                                                        <td>
+                                                                            <button type="button" class="btn btn-danger"
+                                                                                onclick="hapusBarisKoordinator(this)">Hapus</button>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            <button class="btn btn-primary" type="button"
+                                                                onclick="tambahBarisKoordinator()">Tambah Baris</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            <hr>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            <a href="<?= base_url('/welcomepage') ?>" class="btn btn-danger">Batal</a>
                                         </div>
 
-                                        <div class="tab-content" id="tentang" style="display:none;">
-                                            <?php if (session()->getFlashdata('success')): ?>
-                                                <div class="alert alert-success">
-                                                    <?= session()->getFlashdata('success'); ?>
-                                                </div>
-                                            <?php endif; ?>
 
-                                            <?php if (session()->getFlashdata('error')): ?>
-                                                <div class="alert alert-danger">
-                                                    <?= session()->getFlashdata('error'); ?>
-                                                </div>
-                                            <?php endif; ?>
-                                            <form action="<?= base_url('/welcomepage/submitTentang') ?>" method="post">
-                                                <label for="tentangarea">Tentang:</label>
-                                                <div class="form-group">
-                                                    <textarea name="tentangarea" id="tentangarea"><?= session()->get('tentang') ?? 'ADSDAWDADSAWD' ?></textarea>
-                                                </div>
-                                                <br>
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                                <a href="<?= base_url('/welcomepage') ?>" class="btn btn-danger">Batal</a>
-                                            </form>
-
-                                        </div>
-
-                                        <div class="tab-content" id="kontak" style="display:none;">
-                                            <?php if (session()->getFlashdata('success')): ?>
-                                                <div class="alert alert-success">
-                                                    <?= session()->getFlashdata('success'); ?>
-                                                </div>
-                                            <?php endif; ?>
-
-                                            <?php if (session()->getFlashdata('error')): ?>
-                                                <div class="alert alert-danger">
-                                                    <?= session()->getFlashdata('error'); ?>
-                                                </div>
-                                            <?php endif; ?>
-                                            <form action="<?= base_url('/welcomepage/submitKontak') ?>" method="post">
-                                                <label for="kontakarea">Kontak:</label>
-                                                <div class="form-group">
-                                                    <textarea name="kontakarea" id="kontakarea"><?= session()->get('kontak') ?? 'aaaayaaaaaaa' ?></textarea>
-                                                </div>
-                                                <br>
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                                <a href="<?= base_url('/welcomepage') ?>" class="btn btn-danger">Batal</a>
-                                            </form>
-                                        </div>
                                     </div>
                                 </div>
-
-                                <!-- Import CKEditor Script -->
-                                <script src="//cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
-                                <script>
-                                    CKEDITOR.replace('content');
-                                    CKEDITOR.replace('tentangarea');
-                                    CKEDITOR.replace('kontakarea');
-                                </script>
-                                <script>
-                                    function openTab(evt, tabId) {
-                                        // Sembunyikan semua tab content
-                                        var tabcontent = document.getElementsByClassName("tab-content");
-                                        for (var i = 0; i < tabcontent.length; i++) {
-                                            tabcontent[i].style.display = "none"; // Sembunyikan semua tab
-                                        }
-
-                                        // Tampilkan tab yang dipilih
-                                        document.getElementById(tabId).style.display = "block"; // Tampilkan tab yang diinginkan
-
-                                        // Menandai tombol tab yang aktif
-                                        var tablinks = document.getElementsByClassName("nav-link");
-                                        for (var i = 0; i < tablinks.length; i++) {
-                                            tablinks[i].className = tablinks[i].className.replace(" active", ""); // Hilangkan kelas active dari semua tab
-                                        }
-
-                                        // Tambahkan kelas active pada tombol yang ditekan
-                                        evt.currentTarget.className += " active";
-                                    }
-                                </script>
                             </div>
+
                         </div>
                     </div>
+
+                    <script src="//cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
+                    <script>
+                        // Inisialisasi editor dengan konfigurasi khusus
+                        CKEDITOR.replace('content', {
+                            removePlugins: 'a11ychecker,notificationupdate'
+                        });
+                        CKEDITOR.replace('tentangarea', {
+                            removePlugins: 'a11ychecker,notificationupdate'
+                        });
+                        CKEDITOR.replace('kontakarea', {
+                            removePlugins: 'a11ychecker,notificationupdate'
+                        });
+                        CKEDITOR.replace('deskSurveyor', {
+                            removePlugins: 'a11ychecker,notificationupdate'
+                        });
+                    </script>
+
+                    <script>
+                        function openTab(evt, tabId) {
+                            // Sembunyikan semua tab
+                            var tabcontent = document.getElementsByClassName("tab-content");
+                            for (var i = 0; i < tabcontent.length; i++) {
+                                tabcontent[i].style.display = "none";
+                            }
+
+                            // Tampilkan tab yang dipilih
+                            document.getElementById(tabId).style.display = "block";
+
+                            // Hapus kelas aktif dari semua tombol
+                            var tablinks = document.getElementsByClassName("nav-link");
+                            for (var i = 0; i < tablinks.length; i++) {
+                                tablinks[i].classList.remove("active");
+                            }
+
+                            // Tambahkan kelas aktif pada tombol yang diklik
+                            evt.currentTarget.classList.add("active");
+                        }
+
+                        function updateProdi(selectElement) {
+                            const yearId = selectElement.value; // ID Tahun yang dipilih
+                            const row = selectElement.closest('tr'); // Cari baris terkait
+                            const prodiSelect = row.querySelector('.prodi-select'); // Dropdown Program Studi
+                            const namaSelect = row.querySelector('.nama-select'); // Dropdown Nama
+                            const emailInput = row.querySelector('.email-input'); // Input Email
+
+                            // Kosongkan dropdown Prodi, Nama, dan Email
+                            prodiSelect.innerHTML = '<option value="">Pilih Prodi</option>';
+                            namaSelect.innerHTML = '<option value="">Pilih Nama</option>';
+                            emailInput.value = '';
+
+                            // Ambil data Prodi dan Nama dari server
+                            if (yearId) {
+                                fetch(`<?= base_url('/data/getProdiByYear') ?>/${yearId}`)
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        // Isi dropdown Prodi
+                                        data.prodi.forEach(item => {
+                                            const option = document.createElement('option');
+                                            option.value = item.id; // ID Prodi
+                                            option.textContent = item.nama_prodi; // Nama Prodi
+                                            prodiSelect.appendChild(option);
+                                        });
+
+                                        // Simpan data Nama dan Email untuk referensi
+                                        prodiSelect.dataset.users = JSON.stringify(data.users);
+                                    })
+                                    .catch(error => console.error('Error:', error));
+                            }
+                        }
+
+                        function updateNama(selectElement) {
+                            const prodiId = selectElement.value; // ID Prodi yang dipilih
+                            const row = selectElement.closest('tr'); // Cari baris terkait
+                            const namaSelect = row.querySelector('.nama-select'); // Dropdown Nama
+                            const emailInput = row.querySelector('.email-input'); // Input Email
+                            const users = JSON.parse(selectElement.dataset.users || '[]'); // Data Nama & Email
+
+                            // Kosongkan dropdown Nama dan Email
+                            namaSelect.innerHTML = '<option value="">Pilih Nama</option>';
+                            emailInput.value = '';
+
+                            // Filter Nama berdasarkan Prodi
+                            const filteredUsers = users.filter(user => user.prodi_id == prodiId);
+
+                            // Isi dropdown Nama
+                            filteredUsers.forEach(user => {
+                                const option = document.createElement('option');
+                                option.value = user.nama; // Nama
+                                option.textContent = user.nama; // Nama
+                                option.dataset.email = user.email; // Simpan email untuk referensi
+                                namaSelect.appendChild(option);
+                            });
+                        }
+
+                        function updateEmail(selectElement) {
+                            const selectedOption = selectElement.options[selectElement.selectedIndex];
+                            const row = selectElement.closest('tr');
+                            const emailInput = row.querySelector('.email-input');
+
+                            // Isi input Email
+                            emailInput.value = selectedOption.dataset.email || '';
+                        }
+
+                        function tambahBaris() {
+                            const tableBody = document.getElementById('tableBody');
+                            const newRow = tableBody.rows[0].cloneNode(true);
+
+                            // Reset semua input di baris baru
+                            newRow.querySelectorAll('input, select').forEach(input => input.value = '');
+
+                            // Tambahkan baris baru ke tabel
+                            tableBody.appendChild(newRow);
+
+                            // Perbarui nomor baris
+                            updateNomorBaris('tableBody');
+                        }
+
+                        function hapusBaris(button) {
+                            const row = button.closest('tr'); // Baris yang akan dihapus
+                            const tableBody = row.parentNode; // Parent (tbody) dari baris yang dihapus
+
+                            // Periksa jumlah baris di dalam tabel ini saja
+                            if (tableBody.rows.length > 1) {
+                                row.remove(); // Hapus baris
+                                updateNomorBaris(tableBody.id); // Perbarui nomor baris setelah penghapusan
+                            } else {
+                                alert('Minimal satu baris diperlukan di tabel ini.');
+                            }
+                        }
+
+                        function tambahBarisKoordinator() {
+                            const tableBody = document.getElementById('koordinatorTableBody');
+                            const newRow = tableBody.rows[0].cloneNode(true);
+
+                            // Reset semua input di baris baru
+                            newRow.querySelectorAll('input, select').forEach(input => input.value = '');
+
+                            // Tambahkan baris baru ke tabel
+                            tableBody.appendChild(newRow);
+
+                            // Perbarui nomor baris
+                            updateNomorBaris('koordinatorTableBody');
+                        }
+
+                        function updateNomorBaris(tableBodyId) {
+                            const tableBody = document.getElementById(tableBodyId);
+                            tableBody.querySelectorAll('tr').forEach((row, index) => {
+                                row.cells[0].textContent = index + 1; // Perbarui nomor di kolom pertama
+                            });
+                        }
+
+                        function tambahBarisInputKoordinator() {
+                            const tableBody = document.getElementById('koordinatorInputTableBody');
+                            const rowCount = tableBody.rows.length + 1;
+
+                            const newRow = `
+        <tr>
+            <td>${rowCount}</td>
+            <td>
+                <select name="jurusan[]" class="form-control prodi-select">
+                    <option value="">Pilih Jurusan</option>
+                    <?php if (!empty($jurusanList)): ?>
+                                                                                                            <?php foreach ($jurusanList as $jurusan): ?>
+                                                                                                                                                                                                    <option value="<?= htmlspecialchars($jurusan) ?>">
+                                                                                                                                                                                                        <?= htmlspecialchars($jurusan) ?>
+                                                                                                                                                                                                    </option>
+                                                                                                            <?php endforeach; ?>
+                    <?php else: ?>
+                                                                                                            <option value="">Jurusan tidak tersedia</option>
+                    <?php endif; ?>
+                </select>
+            </td>
+            <td>
+                <input type="text" name="koordinator_nama[]" class="form-control" placeholder="Nama Koordinator">
+            </td>
+            <td>
+                <input type="email" name="email_koordinator[]" class="form-control" placeholder="Email Koordinator">
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger" onclick="hapusBarisKoordinator(this)">Hapus</button>
+            </td>
+        </tr>
+    `;
+                            tableBody.insertAdjacentHTML('beforeend', newRow);
+                        }
+                    </script>
                     <!-- END: Content-->
 
                     <!-- BEGIN: Vendor JS-->
