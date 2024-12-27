@@ -80,7 +80,8 @@ $routes->group('welcomepage', function ($routes) {
     $routes->post('submitMessage', 'welcomepage::submitMessage'); // Rute untuk submit Welcome Message
     $routes->post('submitTentang', 'welcomepage::submitTentang'); // Rute untuk submit Tentang
     $routes->post('submitKontak', 'welcomepage::submitKontak'); // Rute untuk submit Kontak
-    $routes->post('tambahHalaman', 'welcomepage::tambahHalaman'); // Rute untuk submit Halaman Baru
+    $routes->post('tambahHalaman', 'wel
+    comepage::tambahHalaman'); // Rute untuk submit Halaman Baru
 });
 $routes->post('/kuesionerpage', 'kuesioner_page::submitPengaturan');
 $routes->match(['get', 'post'], 'editkuesionerkuesioner/(:num)', 'Kuesioner::editkuesionerkuesioner/$1');
