@@ -85,16 +85,21 @@ $routes->group('welcomepage', function ($routes) {
     $routes->post('submitMessage', 'welcomepage::submitMessage'); // Rute untuk submit Welcome Message
     $routes->post('submitTentang', 'welcomepage::submitTentang'); // Rute untuk submit Tentang
     $routes->post('submitKontak', 'welcomepage::submitKontak'); // Rute untuk submit Kontak
-    $routes->post('tambahHalaman', 'welcomepage::tambahHalaman'); // Rute untuk submit Halaman Baru
+    $routes->post('tambahHalaman', 'wel
+    comepage::tambahHalaman'); // Rute untuk submit Halaman Baru
 });
 $routes->post('/kuesionerpage', 'kuesioner_page::submitPengaturan');
 $routes->match(['get', 'post'], 'editkuesionerkuesioner/(:num)', 'Kuesioner::editkuesionerkuesioner/$1');
 
 $routes->post('/tambahkuesioner', 'c_kuesioner::tambahkuesioner');
+$routes->post('/tambahkuesionerpage', 'kuesioner_page::tambahkuesionerpage');
+
 $routes->post('/editkuesionerkuesioner', 'c_kuesioner::editkuesionerkuesioner');
 
 $routes->post('/login', 'login::login');
 $routes->post('/update', 'Home::update');
+$routes->post('/updatekuesioner', 'c_kuesioner::updatekuesioner');
+
 $routes->post('/kuesionerkuesioner', 'c_kuesioner::index');
 $routes->post('/organisasi', 'c_organisasi::submitMessage');
 $routes->post('/pengaturan', 'pengaturan::submitPengaturan');
