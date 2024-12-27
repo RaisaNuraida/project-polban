@@ -13,6 +13,7 @@ $routes->get('/unduh', 'Home::index');
 $routes->get('/import', 'Home::index');
 $routes->get('/halamantentang', 'Home::tentang');
 $routes->get('/cariuser', 'Home::cariuser');
+$routes->get('/cariwelcome', 'welcomepage::cariwelcome');
 $routes->get('/carianswer', 'carianswer::carianswer');
 $routes->get('/carikuesioner', 'c_kuesioner::carikuesioner');
 $routes->get('/conditionalkuesioner', 'carianswer::conditionalkuesioner');
@@ -58,6 +59,10 @@ $routes->get('/data', 'welcomepage::data');
 $routes->get('/pengaturan', 'Home::setting');
 $routes->get('/halamaneditprofile', 'editprofile::index');
 $routes->get('/tentang', 'welcomepage::dataTentang');
+$routes->get('/perusahaan', 'Home::indexperusahaan');
+$routes->get('getQuestions', 'KuesionerController::getQuestions');
+
+
 $routes->get('/halamanperusahaan', 'Home::indexperusahaan');
 
 
@@ -87,12 +92,16 @@ $routes->post('/kuesionerpage', 'kuesioner_page::submitPengaturan');
 $routes->match(['get', 'post'], 'editkuesionerkuesioner/(:num)', 'Kuesioner::editkuesionerkuesioner/$1');
 
 $routes->post('/tambahkuesioner', 'c_kuesioner::tambahkuesioner');
+$routes->post('/tambahkuesionerpage', 'kuesioner_page::tambahkuesionerpage');
+
 $routes->post('/editkuesionerkuesioner', 'c_kuesioner::editkuesionerkuesioner');
 
 $routes->post('/login', 'login::login');
 $routes->post('/update', 'Home::update');
+$routes->post('/updatekuesioner', 'c_kuesioner::updatekuesioner');
+
 $routes->post('/kuesionerkuesioner', 'c_kuesioner::index');
 $routes->post('/organisasi', 'c_organisasi::submitMessage');
 $routes->post('/pengaturan', 'pengaturan::submitPengaturan');
-$routes->post('/simpan-kuesioner', 'c_kuesioner::simpan');
+$routes->post('savequestions', 'KuesionerController::savequestions');
 

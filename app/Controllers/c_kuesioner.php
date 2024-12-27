@@ -41,6 +41,8 @@ class c_kuesioner extends BaseController
         return view('indexuser', $data);
     }
 
+    
+
     public function deleteUser()
     {
         $userModel = new m_kuesioner();
@@ -142,13 +144,12 @@ class c_kuesioner extends BaseController
          ->with('subOption', $subOption) 
                                          ->with('mainOption', $mainOption); 
      }
- 
-     public function editkuesionerkuesioner()
+     public function updatekuesioner($id)
      {
          // Ambil data dari request
          $mainOption = $this->request->getPost('mainOption');
-         $conditionalOperator = $this->request->getPost('is') ?: $this->request->getPost('isNot');
-         $subOption = $this->request->getPost('displayNameInput') ?: $this->request->getPost('emailInput') ?: $this->request->getPost('group') ?: $this->request->getPost('academic_nim') ?: $this->request->getPost('academic_faculty') ?: $this->request->getPost('academic_program');
+         $conditionalOperator = $this->request->getPost('conditionalOperator');
+         $subOption = $this->request->getPost('displayNameInput') ?: $this->request->getPost('emailInput') ?: $this->request->getPost('group') ?: $this->request->getPost('academic_nim') ?: $this->request->getPost('academic_faculty') ?: $this->request->getPost('academic_program') ?: $this->request->getPost('academic_year')?: $this->request->getPost('street')?: $this->request->getPost('city')?: $this->request->getPost('state_code')?: $this->request->getPost('zip_code')?: $this->request->getPost('academic_graduate_year')?: $this->request->getPost('jenis_kelamin')?: $this->request->getPost('no_telp')?: $this->request->getPost('nik')?: $this->request->getPost('npwp');
      
          // Format conditional_logic field
          $conditionalLogicData = [
@@ -163,18 +164,26 @@ class c_kuesioner extends BaseController
              'conditional_logic' => json_encode($conditionalLogicData), // Simpan sebagai JSON string
          ];
      
-         // Simpan ke database
+         // Ambil model
          $model = new m_kuesioner();
-         if (!$model->insert($data)) {
-             return redirect()->back()->withInput()->with('error', 'Data gagal disimpan.');
+     
+         // Cari data berdasarkan ID dan cek apakah ada
+         $existingData = $model->find($id);
+         if (!$existingData) {
+             return redirect()->back()->with('error', 'Data tidak ditemukan.');
          }
      
-         // Redirect dengan data yang dikirim
-         return redirect()->to('/kuesionerkuesioner')->with('success', 'Data berhasil disimpan.')
-                                         ->with('subOption', $subOption) 
-                                         ->with('mainOption', $mainOption);  // Kirim data subOption ke view
+         // Update data ke database
+         if (!$model->update($id, $data)) {
+             return redirect()->back()->withInput()->with('error', 'Data gagal diperbarui.');
+         }
+     
+         return redirect()->to('/kuesionerkuesioner')->with('success', 'Data berhasil diperbarui.')
+             ->with('subOption', $subOption) 
+             ->with('mainOption', $mainOption);
      }
      
+
 }
     
     

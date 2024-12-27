@@ -41,4 +41,22 @@ class welcome extends Model
         }
     }
 
+    // Menghitung total data
+    public function countAllMessages()
+    {
+        $db = \Config\Database::connect();
+        return $db->table('welcome_message')->countAllResults();
+    }
+
+    // Mengambil data dengan pagination
+    public function getMessagesPaginated($limit, $offset)
+    {
+        $db = \Config\Database::connect();
+        return $db->table('welcome_message')
+            ->limit($limit, $offset)
+            ->orderBy('created_on', 'DESC')
+            ->get()
+            ->getResultArray();
+    }
+
 }
