@@ -17,41 +17,52 @@ class Home extends BaseController
     public function index(): string
     {
         $model = new UserModel();
+        $my_data = $model->getAllDataManual();
+        $administrator = $model->getAdministrator();
+        $atasan = $model->getAtasan();
+        $alumni = $model->getAlumni();
+        $perusahaan = $model->getPerusahaan();
 
-        // Tentukan jumlah data per halaman
-        $perPage = 10;
+        // Ambil parameter jumlah baris per halaman dan halaman saat ini
+        $perPage = (int) ($this->request->getVar('perPage') ?? 10);
+        $page = (int) ($this->request->getVar('page') ?? 1);
 
-        // Ambil halaman saat ini dari query string
-        $page = $this->request->getVar('page') ?? 1;
+        // Validasi jumlah baris per halaman
+        $validPerPageOptions = [10, 15, 20, 25, 30];
+        if (!in_array($perPage, $validPerPageOptions)) {
+            $perPage = 10; // Default jika tidak valid
+        }
 
-        // Hitung offset untuk query (page-1) * perPage
+        // Hitung offset untuk query
         $offset = ($page - 1) * $perPage;
 
-        // Hitung total data
-        $totalData = $model->countAll();
+        // Cari data berdasarkan filter (jika ada)
+        $cariUser = $this->request->getVar('cariuser');
+        if ($cariUser) {
+            $model->like('display_name', $cariUser);
+        }
 
-        // Ambil data sesuai dengan offset dan perPage
+        // Ambil data dengan pagination
+        $totalData = $model->countAllResults(false); // False agar query tidak dieksekusi ulang
         $my_data = $model->findAll($perPage, $offset);
 
-        // Menghitung jumlah total halaman
+        // Hitung total halaman
         $totalPages = ceil($totalData / $perPage);
 
-        // Tentukan batasan pagination (halaman yang ditampilkan)
-        $startPage = max(1, $page - 1);
-        $endPage = min($totalPages, $page + 1);
-
-        // Siapkan data untuk dikirim ke view
-        $data = [
+        // Kirim data ke view
+        return view('index', [
             'my_data' => $my_data,
+            'administrator' => $administrator,
+            'atasan' => $atasan,
+            'alumni' => $alumni,
+            'perusahaan' => $perusahaan,
             'totalPages' => $totalPages,
             'currentPage' => $page,
             'perPage' => $perPage,
-            'startPage' => $startPage,
-            'endPage' => $endPage,
-        ];
-
-        return view('index', $data);
+            'cariUser' => $cariUser,
+        ]);
     }
+
 
     // Fungsi untuk mengimpor file Excel ke database
     public function import()
@@ -197,7 +208,7 @@ class Home extends BaseController
             return redirect()->back()->with('error', 'Gagal mengunggah file.');
         }
     }
-    
+
     public function deleteUser()
     {
         $userModel = new UserModel();
@@ -280,24 +291,58 @@ class Home extends BaseController
     }
 
     public function cariuser()
-    {
-        $users = new UserModel();
-        $cari = $this->request->getGet('cariuser'); // Mengambil input pencarian
+{
+    $users = new UserModel();
 
-        // Melakukan pencarian berdasarkan display_name
-        if ($cari) {
-            $data['my_data'] = $users
-                ->like('display_name', $cari)
-                ->orlike('username', $cari)
-                ->orlike('email', $cari)
-                ->orlike('group', $cari)->findAll(); // Menggunakan like untuk pencarian
-        } else {
-            $data['my_data'] = []; // Jika tidak ada input, set hasil kosong
-        }
+    // Ambil nilai pencarian dan perPage dari request
+    $cari = $this->request->getGet('cariuser');
+    $perPage = (int) ($this->request->getGet('perPage') ?? 10); // Default 10 rows per page
 
-        return view('index', $data);
+    // Validasi jumlah rows per page
+    $validPerPageOptions = [10, 15, 20, 25, 30];
+    if (!in_array($perPage, $validPerPageOptions)) {
+        $perPage = 10;
     }
 
+    // Ambil halaman saat ini
+    $currentPage = (int) ($this->request->getGet('page') ?? 1);
+
+    // Query dengan pencarian (jika ada)
+    if ($cari) {
+        $builder = $users
+            ->like('display_name', $cari)
+            ->orLike('username', $cari)
+            ->orLike('password', $cari)
+            ->orLike('email', $cari)
+            ->orLike('group', $cari);
+    } else {
+        $builder = $users;
+    }
+
+    // Hitung total data
+    $totalData = $builder->countAllResults(false);
+
+    // Ambil data sesuai pagination
+    $my_data = $builder
+        ->limit($perPage, ($currentPage - 1) * $perPage)
+        ->find();
+
+    // Hitung total halaman
+    $totalPages = ceil($totalData / $perPage);
+
+    // Siapkan data untuk view
+    $data = [
+        'my_data' => $my_data,
+        'currentPage' => $currentPage,
+        'perPage' => $perPage,
+        'totalPages' => $totalPages,
+        'startPage' => max(1, $currentPage - 1),
+        'endPage' => min($totalPages, $currentPage + 1),
+        'cari' => $cari,
+    ];
+
+    return view('index', $data);
+}
 
     public function kuesioner_answer(): string
     {

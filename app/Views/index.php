@@ -235,6 +235,32 @@
                                     </script>
                                     <!-- Script Filter End -->
 
+                                    <!-- Pagination -->
+                                    <hr>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <form method="get" action="" class="form-inline">
+                                            <label for="perPage" class="mr-2">Rows per page:</label>
+                                            <select name="perPage" id="perPage" class="form-control"
+                                                onchange="updatePerPage(this.value)">
+                                                <option value="10" <?= ($perPage == 10) ? 'selected' : ''; ?>>10</option>
+                                                <option value="15" <?= ($perPage == 15) ? 'selected' : ''; ?>>15</option>
+                                                <option value="20" <?= ($perPage == 20) ? 'selected' : ''; ?>>20</option>
+                                                <option value="25" <?= ($perPage == 25) ? 'selected' : ''; ?>>25</option>
+                                                <option value="30" <?= ($perPage == 30) ? 'selected' : ''; ?>>30</option>
+                                            </select>
+                                        </form>
+
+                                        <script>
+                                            function updatePerPage(perPage) {
+                                                const urlParams = new URLSearchParams(window.location.search);
+                                                urlParams.set('perPage', perPage); // Set parameter perPage
+                                                urlParams.set('page', 1); // Reset page to 1
+                                                window.location.search = urlParams.toString(); // Update query string
+                                            }
+                                        </script>
+                                    </div>
+                                    <!-- Pagination -->
+
                                     <!-- Table Data Users START -->
                                     <div class="table-wrapper">
                                         <hr>
@@ -297,33 +323,38 @@
                                                 <ul class="pagination justify-content-center">
                                                     <?php if ($currentPage > 1): ?>
                                                         <li class="page-item">
-                                                            <a class="page-link" href="?page=1" aria-label="First">
+                                                            <a class="page-link" href="?page=1&perPage=<?= $perPage ?>"
+                                                                aria-label="First">
                                                                 <span aria-hidden="true">&laquo;&laquo;</span>
                                                             </a>
                                                         </li>
                                                         <li class="page-item">
-                                                            <a class="page-link" href="?page=<?= $currentPage - 1 ?>"
+                                                            <a class="page-link"
+                                                                href="?page=<?= $currentPage - 1 ?>&perPage=<?= $perPage ?>"
                                                                 aria-label="Previous">
                                                                 <span aria-hidden="true">&laquo;</span>
                                                             </a>
                                                         </li>
                                                     <?php endif; ?>
 
-                                                    <?php for ($i = $startPage; $i <= $endPage; $i++): ?>
+                                                    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
                                                         <li class="page-item <?= ($i == $currentPage) ? 'active' : ''; ?>">
-                                                            <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                                                            <a class="page-link"
+                                                                href="?page=<?= $i ?>&perPage=<?= $perPage ?>"><?= $i ?></a>
                                                         </li>
                                                     <?php endfor; ?>
 
                                                     <?php if ($currentPage < $totalPages): ?>
                                                         <li class="page-item">
-                                                            <a class="page-link" href="?page=<?= $currentPage + 1 ?>"
+                                                            <a class="page-link"
+                                                                href="?page=<?= $currentPage + 1 ?>&perPage=<?= $perPage ?>"
                                                                 aria-label="Next">
                                                                 <span aria-hidden="true">&raquo;</span>
                                                             </a>
                                                         </li>
                                                         <li class="page-item">
-                                                            <a class="page-link" href="?page=<?= $totalPages ?>"
+                                                            <a class="page-link"
+                                                                href="?page=<?= $totalPages ?>&perPage=<?= $perPage ?>"
                                                                 aria-label="Last">
                                                                 <span aria-hidden="true">&raquo;&raquo;</span>
                                                             </a>
@@ -331,6 +362,7 @@
                                                     <?php endif; ?>
                                                 </ul>
                                             </nav>
+
                                         </div>
                                     </div>
                                     <!-- Table Data Users END -->

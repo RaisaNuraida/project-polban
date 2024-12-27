@@ -210,6 +210,23 @@
                                     </script>
                                     <!-- Script Filter End -->
 
+                                    <hr>
+
+                                    <!-- Pagination -->
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <form method="get" action="" class="form-inline">
+                                            <label for="perPage" class="mr-2">Rows per page:</label>
+                                            <select name="perPage" id="perPage" class="form-control"
+                                                onchange="this.form.submit()">
+                                                <option value="10" <?= (isset($perPage) && $perPage == 10) ? 'selected' : ''; ?>>10</option>
+                                                <option value="15" <?= (isset($perPage) && $perPage == 15) ? 'selected' : ''; ?>>15</option>
+                                                <option value="20" <?= (isset($perPage) && $perPage == 20) ? 'selected' : ''; ?>>20</option>
+                                                <option value="25" <?= (isset($perPage) && $perPage == 25) ? 'selected' : ''; ?>>25</option>
+                                                <option value="30" <?= (isset($perPage) && $perPage == 30) ? 'selected' : ''; ?>>30</option>
+                                            </select>
+                                        </form>
+                                    </div>
+                                    <!-- Pagination END -->
 
                                     <!-- Table Data Welcome START -->
                                     <hr>
@@ -224,6 +241,7 @@
                                             <?= session()->getFlashdata('error'); ?>
                                         </div>
                                     <?php endif; ?>
+
                                     <div class="table-responsive">
                                         <table class="table table-bordered text-center table-striped table-hover">
                                             <thead>
@@ -272,39 +290,40 @@
                                         </table>
 
                                         <!-- Pagination controls -->
+                                        <?php $cari = isset($cari) ? $cari : ''; ?>
+
+                                        <!-- Pagination controls -->
                                         <nav>
                                             <ul class="pagination justify-content-center">
-                                                <!-- Previous page -->
                                                 <?php if ($currentPage > 1): ?>
                                                     <li class="page-item">
                                                         <a class="page-link"
-                                                            href="<?= base_url('/welcomepage?page=' . ($currentPage - 1)) ?>"
-                                                            aria-label="Previous">
-                                                            <span aria-hidden="true">&laquo;&laquo;</span>
+                                                            href="<?= base_url('welcomepage?page=' . ($currentPage - 1) . '&perPage=' . $perPage . '&cari=' . $cari) ?>">
+                                                            &laquo;
                                                         </a>
                                                     </li>
                                                 <?php endif; ?>
 
-                                                <!-- Pages -->
                                                 <?php for ($page = $startPage; $page <= $endPage; $page++): ?>
                                                     <li class="page-item <?= ($currentPage == $page) ? 'active' : ''; ?>">
                                                         <a class="page-link"
-                                                            href="<?= base_url('/welcomepage?page=' . $page) ?>"><?= $page ?></a>
+                                                            href="<?= base_url('welcomepage?page=' . $page . '&perPage=' . $perPage . '&cari=' . $cari) ?>">
+                                                            <?= $page ?>
+                                                        </a>
                                                     </li>
                                                 <?php endfor; ?>
 
-                                                <!-- Next page -->
                                                 <?php if ($currentPage < $totalPages): ?>
                                                     <li class="page-item">
                                                         <a class="page-link"
-                                                            href="<?= base_url('/welcomepage?page=' . ($currentPage + 1)) ?>"
-                                                            aria-label="Next">
-                                                            <span aria-hidden="true">&raquo;&raquo;</span>
+                                                            href="<?= base_url('welcomepage?page=' . ($currentPage + 1) . '&perPage=' . $perPage . '&cari=' . $cari) ?>">
+                                                            &raquo;
                                                         </a>
                                                     </li>
                                                 <?php endif; ?>
                                             </ul>
                                         </nav>
+
                                     </div>
 
                                     <!-- Delete Confirmation Modal -->
@@ -356,23 +375,6 @@
                         </div>
                     </div>
                 </div>
-
-                <script src="//cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
-                <script>
-                    // Inisialisasi editor dengan konfigurasi khusus
-                    CKEDITOR.replace('content', {
-                        removePlugins: 'a11ychecker,notificationupdate'
-                    });
-                    CKEDITOR.replace('tentangarea', {
-                        removePlugins: 'a11ychecker,notificationupdate'
-                    });
-                    CKEDITOR.replace('kontakarea', {
-                        removePlugins: 'a11ychecker,notificationupdate'
-                    });
-                    CKEDITOR.replace('deskSurveyor', {
-                        removePlugins: 'a11ychecker,notificationupdate'
-                    });
-                </script>
 
                 <script>
                     function openTab(evt, tabId) {
