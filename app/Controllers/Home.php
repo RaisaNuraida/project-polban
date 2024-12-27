@@ -291,24 +291,58 @@ class Home extends BaseController
     }
 
     public function cariuser()
-    {
-        $users = new UserModel();
-        $cari = $this->request->getGet('cariuser'); // Mengambil input pencarian
+{
+    $users = new UserModel();
 
-        // Melakukan pencarian berdasarkan display_name
-        if ($cari) {
-            $data['my_data'] = $users
-                ->like('display_name', $cari)
-                ->orlike('username', $cari)
-                ->orlike('email', $cari)
-                ->orlike('group', $cari)->findAll(); // Menggunakan like untuk pencarian
-        } else {
-            $data['my_data'] = []; // Jika tidak ada input, set hasil kosong
-        }
+    // Ambil nilai pencarian dan perPage dari request
+    $cari = $this->request->getGet('cariuser');
+    $perPage = (int) ($this->request->getGet('perPage') ?? 10); // Default 10 rows per page
 
-        return view('index', $data);
+    // Validasi jumlah rows per page
+    $validPerPageOptions = [10, 15, 20, 25, 30];
+    if (!in_array($perPage, $validPerPageOptions)) {
+        $perPage = 10;
     }
 
+    // Ambil halaman saat ini
+    $currentPage = (int) ($this->request->getGet('page') ?? 1);
+
+    // Query dengan pencarian (jika ada)
+    if ($cari) {
+        $builder = $users
+            ->like('display_name', $cari)
+            ->orLike('username', $cari)
+            ->orLike('password', $cari)
+            ->orLike('email', $cari)
+            ->orLike('group', $cari);
+    } else {
+        $builder = $users;
+    }
+
+    // Hitung total data
+    $totalData = $builder->countAllResults(false);
+
+    // Ambil data sesuai pagination
+    $my_data = $builder
+        ->limit($perPage, ($currentPage - 1) * $perPage)
+        ->find();
+
+    // Hitung total halaman
+    $totalPages = ceil($totalData / $perPage);
+
+    // Siapkan data untuk view
+    $data = [
+        'my_data' => $my_data,
+        'currentPage' => $currentPage,
+        'perPage' => $perPage,
+        'totalPages' => $totalPages,
+        'startPage' => max(1, $currentPage - 1),
+        'endPage' => min($totalPages, $currentPage + 1),
+        'cari' => $cari,
+    ];
+
+    return view('index', $data);
+}
 
     public function kuesioner_answer(): string
     {
