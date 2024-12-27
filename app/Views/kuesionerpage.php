@@ -361,8 +361,8 @@
                                     <hr>
 
                                     <div class="m-2">
-                                    <form id="editForm" method="post">
-                                                                                    <div class="form-group">
+                                        <form action="<?= base_url('tambahkuesioner') ?>" method="post">
+                                            <div class="form-group">
                                                 <label for="title">Title</label>
                                                 <input type="text" class="form-control" id="title" name="title"
                                                     placeholder="Kuesioner Sample">
@@ -843,7 +843,8 @@
                                                             ?>
 
                                                             <td><?= $mainOption; ?>         <?= $conditionalOperator; ?>
-                                                                <?= $subOption; ?></td> <!-- Menampilkan subOption -->
+                                                                <?= $subOption; ?>
+                                                            </td> <!-- Menampilkan subOption -->
                                                             <td><?= $row['sections']; ?></td>
 
                                                             <td>

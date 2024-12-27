@@ -79,96 +79,44 @@ class welcomepage extends BaseController
 
     public function tambahHalaman()
     {
-        $welcomeModel = new Welcome();
+        // Mengambil data yang diperlukan
+        $model = new welcome(); // Pastikan mengganti dengan model yang sesuai
+        $db = \Config\Database::connect();
+        $builder = $db->table('welcome_message');
+        $builder->select('
+        welcome_message.*,
+        users.academic_graduate_year AS tahun_lulus,
+        users.academic_program AS program_studi,
+        users.display_name AS user_name, 
+        users.email AS user_email, 
+        koordinator_surveyor.tahun AS tahun_koordinator,
+        koordinator_surveyor.academic_faculty AS fakultas,
+        koordinator_surveyor.display_name AS koordinator_name, 
+        koordinator_surveyor.email AS koordinator_email
+    ');
+        $builder->join('users', 'users.id = welcome_message.users_id', 'left');
+        $builder->join('koordinator_surveyor', 'koordinator_surveyor.id = welcome_message.koordinator_id', 'left');
+        $query = $builder->get();
 
-        if ($this->request->getMethod() === 'post') {
-            // Handle form submission
+        $data = $query->getResultArray();  // Mengambil data hasil query
 
-            // Get input values from the form
-            $academic_graduate_year = $this->request->getPost('tahun'); // Array of tahun
-            $content = $this->request->getPost('content');
-            $tentangarea = $this->request->getPost('tentangarea');
-            $kontakarea = $this->request->getPost('kontakarea');
+        // Debugging: periksa hasil query
+        var_dump($data);  // Lihat apakah data berhasil diambil
 
-            // Handle the surveyor (users) data
-            $surveyor_data = [];
-            $prodi = $this->request->getPost('prodi');  // Array of prodi
-            $nama = $this->request->getPost('nama');    // Array of nama
-            $email = $this->request->getPost('email');  // Array of email
+        // Mengambil input values dari form
+        $tahun = $this->request->getPost('tahun');
+        $content = $this->request->getPost('content');
+        $tentangarea = $this->request->getPost('tentangarea');
+        $kontakarea = $this->request->getPost('kontakarea');
 
-            // Handle the koordinator data
-            $koordinator_data = [];
-            $jurusan = $this->request->getPost('jurusan');  // Array of jurusan
-            $koordinator_nama = $this->request->getPost('koordinator_nama');  // Array of koordinator_nama
-
-            // Validate if arrays are of equal length
-            if (
-                count($academic_graduate_year) !== count($prodi) ||
-                count($prodi) !== count($nama) ||
-                count($nama) !== count($email)
-            ) {
-                return redirect()->back()->with('error', 'Data surveyor tidak konsisten.');
-            }
-
-            // Prepare surveyor data
-            for ($i = 0; $i < count($academic_graduate_year); $i++) {
-                $surveyor_data[] = [
-                    'academic_graduate_year' => $academic_graduate_year[$i],
-                    'academic_program' => $prodi[$i],
-                    'display_name' => $nama[$i],
-                    'email' => $email[$i]
-                ];
-            }
-
-            // Prepare koordinator data
-            for ($i = 0; $i < count($jurusan); $i++) {
-                $koordinator_data[] = [
-                    'jurusan' => $jurusan[$i],
-                    'koordinator_nama' => $koordinator_nama[$i]
-                ];
-            }
-
-            // Prepare the data to be inserted into the welcome_message table
-            $data = [
-                'academic_graduate_year' => implode(',', $academic_graduate_year), // Example of storing as CSV
-                'message' => $content,
-                'tentang' => $tentangarea,
-                'kontak' => $kontakarea,
-                'desk_surveyor' => json_encode($surveyor_data), // If you decide to store this as a JSON field
-                'desk_koordinator' => json_encode($koordinator_data) // If you decide to store this as a JSON field
-            ];
-
-            // Insert data
-            if ($welcomeModel->insert($data)) {
-                return redirect()->to('/welcomepage')->with('success', 'Data berhasil ditambahkan.');
-            } else {
-                return redirect()->back()->with('error', 'Gagal menyimpan data.');
-            }
-        } else {
-            // Handle page rendering
-
-            // Ambil data dari database
-            $userData = $welcomeModel->getUsersData();
-
-            // Ekstrak data untuk dropdown
-            $academicYears = [];
-            $programs = [];
-
-            foreach ($userData as $user) {
-                if (!in_array($user->academic_graduate_year, $academicYears)) {
-                    $academicYears[] = $user->academic_graduate_year;
-                }
-                if (!in_array($user->academic_program, $programs)) {
-                    $programs[] = $user->academic_program;
-                }
-            }
-
-            // Kirim data ke view
-            return view('tambahhalaman', [
-                'academicYears' => $academicYears,
-                'programs' => $programs
-            ]);
-        }
+        // Data yang akan dikirim ke view
+        return view('tambahhalaman', [
+            'data' => $data, // Mengirimkan data ke view
+            'tahun' => $tahun,
+            'content' => $content,
+            'tentangarea' => $tentangarea,
+            'kontakarea' => $kontakarea
+        ]);
     }
 
     public function data(): string
@@ -211,13 +159,19 @@ class welcomepage extends BaseController
     {
         $model = new welcome();
 
-        // Tentukan jumlah data per halaman
-        $perPage = 10;
+        // Ambil jumlah baris per halaman dari query string, default 10
+        $perPage = (int) ($this->request->getVar('perPage') ?? 10);
+
+        // Validasi jumlah baris per halaman
+        $validPerPageOptions = [10, 15, 20, 25, 30];
+        if (!in_array($perPage, $validPerPageOptions)) {
+            $perPage = 10; // Gunakan default jika tidak valid
+        }
 
         // Ambil halaman saat ini dari query string
-        $page = $this->request->getVar('page') ?? 1;
+        $page = (int) ($this->request->getVar('page') ?? 1);
 
-        // Hitung offset untuk query (page-1) * perPage
+        // Hitung offset untuk query
         $offset = ($page - 1) * $perPage;
 
         // Hitung total data
@@ -229,7 +183,7 @@ class welcomepage extends BaseController
         // Menghitung jumlah total halaman
         $totalPages = ceil($totalData / $perPage);
 
-        // Tentukan batasan pagination (halaman yang ditampilkan)
+        // Tentukan batasan pagination
         $startPage = max(1, $page - 1);
         $endPage = min($totalPages, $page + 1);
 
@@ -246,20 +200,53 @@ class welcomepage extends BaseController
         return view('/welcomepage', $data);
     }
 
-
     public function cariwelcome()
     {
-        $welcome = new welcome();
-        $cari = $this->request->getGet('cari'); // Sesuaikan dengan nama input di form
+        $welcome = new Welcome();
 
-        if ($cari) {
-            // Melakukan pencarian berdasarkan kolom 'tahun'
-            $data['datamessage'] = $welcome->like('tahun', $cari)->findAll();
-        } else {
-            // Tampilkan semua data jika tidak ada pencarian
-            $data['datamessage'] = $welcome->findAll();
+        // Ambil nilai pencarian dan perPage dari request
+        $cari = $this->request->getGet('cari');
+        $perPage = (int) ($this->request->getGet('perPage') ?? 10); // Default 10 rows per page
+
+        // Validasi jumlah rows per page
+        $validPerPageOptions = [10, 15, 20, 25, 30];
+        if (!in_array($perPage, $validPerPageOptions)) {
+            $perPage = 10;
         }
+
+        // Ambil halaman saat ini
+        $currentPage = (int) ($this->request->getGet('page') ?? 1);
+
+        // Query dengan pencarian (jika ada)
+        if ($cari) {
+            $builder = $welcome->like('tahun', $cari);
+        } else {
+            $builder = $welcome;
+        }
+
+        // Hitung total data
+        $totalData = $builder->countAllResults(false);
+
+        // Ambil data sesuai pagination
+        $datamessage = $builder
+            ->limit($perPage, ($currentPage - 1) * $perPage)
+            ->find();
+
+        // Hitung total halaman
+        $totalPages = ceil($totalData / $perPage);
+
+        // Siapkan data untuk view
+        $data = [
+            'datamessage' => $datamessage,
+            'currentPage' => $currentPage,
+            'perPage' => $perPage,
+            'totalPages' => $totalPages,
+            'startPage' => max(1, $currentPage - 1),
+            'endPage' => min($totalPages, $currentPage + 1),
+            'cari' => $cari,
+        ];
 
         return view('welcomepage', $data);
     }
+
 }

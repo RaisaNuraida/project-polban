@@ -180,43 +180,45 @@
                                         <div class="">
                                             <form action="<?= base_url('/welcomepage/tambahHalaman') ?>" method="post">
                                                 <div class="form-group">
+                                                    <!-- Dropdown untuk tahun -->
                                                     <div class="d-flex align-items-center mb-1" style="width: 50%">
                                                         <div style="width: 45%;">
                                                             <label for="tahun">Tahun:</label>
-                                                            <select name="tahun[]" class="form-control tahun-select"
-                                                                required>
+                                                            <select name="tahun[]" id="tahun"
+                                                                class="form-control tahun-select" required>
                                                                 <option value="">Pilih Tahun</option>
-                                                                <?php if (!empty($academicYears)): ?>
-                                                                    <?php foreach ($academicYears as $year): ?>
-                                                                        <option value="<?= htmlspecialchars($year) ?>">
-                                                                            <?= htmlspecialchars($year) ?>
-                                                                        </option>
-                                                                    <?php endforeach; ?>
-                                                                <?php else: ?>
-                                                                    <option value="">Tahun tidak tersedia</option>
-                                                                <?php endif; ?>
+                                                                <?php foreach ($data as $row): ?>
+                                                                    <option
+                                                                        value="<?= htmlspecialchars($row['tahun_lulus']) ?>">
+                                                                        <?= htmlspecialchars($row['tahun_lulus']) ?>
+                                                                    </option>
+                                                                <?php endforeach; ?>
                                                             </select>
                                                         </div>
                                                     </div>
 
                                                     <br>
 
+                                                    <!-- Content (Welcome Message) -->
                                                     <div class="tab-content" id="welcome" style="display:block;">
                                                         <label for="content">Welcome Message</label>
                                                         <textarea name="content" id="content" required></textarea>
                                                     </div>
 
+                                                    <!-- Tentang -->
                                                     <div class="tab-content" id="tentang" style="display:none;">
                                                         <label for="tentangarea">Tentang</label>
                                                         <textarea name="tentangarea" id="tentangarea"
                                                             required></textarea>
                                                     </div>
 
+                                                    <!-- Kontak -->
                                                     <div class="tab-content" id="kontak" style="display:none;">
                                                         <label for="kontakarea">Kontak</label>
                                                         <textarea name="kontakarea" id="kontakarea" required></textarea>
                                                     </div>
 
+                                                    <!-- Data Surveyor -->
                                                     <div class="tab-content" id="surveyor" style="display:none;">
                                                         <div class="">
                                                             <label for="datasurveyor">Data Surveyor</label>
@@ -237,19 +239,14 @@
                                                                             <select name="prodi[]"
                                                                                 class="form-control prodi-select"
                                                                                 required>
-                                                                                <option value="">Pilih Program Studi</option>
-                                                                                <?php if (!empty($programs)): ?>
-                                                                                    <?php foreach ($programs as $program): ?>
-                                                                                        <option
-                                                                                            value="<?= htmlspecialchars($program) ?>">
-                                                                                            <?= htmlspecialchars($program) ?>
-                                                                                        </option>
-                                                                                    <?php endforeach; ?>
-                                                                                <?php else: ?>
-                                                                                    <option value="">Program Studi tidak
-                                                                                        tersedia</option>
-                                                                                <?php endif; ?>
-
+                                                                                <option value="">Pilih Program Studi
+                                                                                </option>
+                                                                                <?php foreach ($data as $row): ?>
+                                                                                    <option
+                                                                                        value="<?= htmlspecialchars($row['program_studi']) ?>">
+                                                                                        <?= htmlspecialchars($row['program_studi']) ?>
+                                                                                    </option>
+                                                                                <?php endforeach; ?>
                                                                             </select>
                                                                         </td>
                                                                         <td>
@@ -257,37 +254,25 @@
                                                                                 class="form-control nama-select"
                                                                                 onchange="updateEmail(this)" required>
                                                                                 <option value="">Pilih Nama</option>
-                                                                                <?php if (!empty($display_name)): ?>
-                                                                                    <?php foreach ($display_name as $name): ?>
-                                                                                        <option
-                                                                                            value="<?= htmlspecialchars($name) ?>">
-                                                                                            <?= htmlspecialchars($name) ?>
-                                                                                        </option>
-                                                                                    <?php endforeach; ?>
-                                                                                <?php else: ?>
-                                                                                    <option value="">Nama tidak tersedia
+                                                                                <?php foreach ($data as $row): ?>
+                                                                                    <option
+                                                                                        value="<?= htmlspecialchars($row['user_name']) ?>">
+                                                                                        <?= htmlspecialchars($row['user_name']) ?>
                                                                                     </option>
-                                                                                <?php endif; ?>
+                                                                                <?php endforeach; ?>
                                                                             </select>
                                                                         </td>
                                                                         <td>
                                                                             <select name="email[]"
-                                                                                class="form-control nama-select"
+                                                                                class="form-control email-select"
                                                                                 onchange="updateEmail(this)" required>
-                                                                                <option value="">Pilih Email
-                                                                                </option>
-                                                                                <?php if (!empty($emails)): ?>
-                                                                                    <?php foreach ($emails as $email): ?>
-                                                                                        <option
-                                                                                            value="<?= htmlspecialchars($email) ?>">
-                                                                                            <?= htmlspecialchars($email) ?>
-                                                                                        </option>
-                                                                                    <?php endforeach; ?>
-                                                                                <?php else: ?>
-                                                                                    <option value="">Email tidak
-                                                                                        tersedia
+                                                                                <option value="">Pilih Email</option>
+                                                                                <?php foreach ($data as $row): ?>
+                                                                                    <option
+                                                                                        value="<?= htmlspecialchars($row['user_email']) ?>">
+                                                                                        <?= htmlspecialchars($row['user_email']) ?>
                                                                                     </option>
-                                                                                <?php endif; ?>
+                                                                                <?php endforeach; ?>
                                                                             </select>
                                                                         </td>
                                                                         <td>
@@ -301,9 +286,9 @@
                                                                 onclick="tambahBaris()">Tambah Baris</button>
                                                         </div>
 
-                                                        <br>
-                                                        <br>
+                                                        <br><br>
 
+                                                        <!-- Data Koordinator Surveyor -->
                                                         <div>
                                                             <table class="table">
                                                                 <label>Data Koordinator Surveyor</label>
@@ -324,81 +309,41 @@
                                                                                 class="form-control prodi-select"
                                                                                 onchange="updateJurusan(this)" required>
                                                                                 <option value="">Pilih Jurusan</option>
+                                                                                <?php foreach ($data as $row): ?>
+                                                                                    <option
+                                                                                        value="<?= htmlspecialchars($row['fakultas']) ?>">
+                                                                                        <?= htmlspecialchars($row['fakultas']) ?>
+                                                                                    </option>
+                                                                                <?php endforeach; ?>
                                                                             </select>
                                                                         </td>
                                                                         <td>
-                                                                            <select name="nama[]"
+                                                                            <select name="koordinator_nama[]"
                                                                                 class="form-control nama-select"
                                                                                 onchange="updateNama(this)" required>
-                                                                                <option value="">Pilih Nama</option>
-                                                                            </select>
-                                                                        </td>
-                                                                        <td>
-                                                                            <select name="email[]"
-                                                                                class="form-control nama-select"
-                                                                                onchange="updateEmail(this)" required>
-                                                                                <option value="">Pilih Email</option>
-                                                                            </select>
-                                                                        </td>
-                                                                        <td>
-                                                                            <button type="button" class="btn btn-danger"
-                                                                                onclick="hapusBaris(this)">Hapus</button>
-                                                                        </td>
-                                                                    </tr>
-                                                                </tbody>
-                                                            </table>
-                                                            <button class="btn btn-primary" type="button"
-                                                                onclick="tambahBarisKoordinator()">Tambah Baris</button>
-                                                        </div>
-
-                                                        <br>
-                                                        <br>
-
-                                                        <div class="form-group">
-                                                            <table class="table">
-                                                                <label for="inputdatakoordinator">Input Data
-                                                                    Koordinator</label>
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>No</th>
-                                                                        <th>Jurusan</th>
-                                                                        <th>Nama Koordinator Surveyor</th>
-                                                                        <th>Email Koordinator Surveyor</th>
-                                                                        <th>Aksi</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody id="koordinatorInputTableBody">
-                                                                    <tr>
-                                                                        <td>1</td>
-                                                                        <td>
-                                                                            <select name="jurusan[]"
-                                                                                class="form-control prodi-select"
-                                                                                required>
-                                                                                <option value="">Pilih Jurusan</option>
-                                                                                <?php if (!empty($jurusanList)): ?>
-                                                                                    <?php foreach ($jurusanList as $jurusan): ?>
-                                                                                        <option
-                                                                                            value="<?= htmlspecialchars($jurusan) ?>">
-                                                                                            <?= htmlspecialchars($jurusan) ?>
-                                                                                        </option>
-                                                                                    <?php endforeach; ?>
-                                                                                <?php else: ?>
-                                                                                    <option value="">Jurusan tidak tersedia
+                                                                                <option value="">Pilih Nama Koordinator
+                                                                                </option>
+                                                                                <?php foreach ($data as $row): ?>
+                                                                                    <option
+                                                                                        value="<?= htmlspecialchars($row['koordinator_name']) ?>">
+                                                                                        <?= htmlspecialchars($row['koordinator_name']) ?>
                                                                                     </option>
-                                                                                <?php endif; ?>
+                                                                                <?php endforeach; ?>
                                                                             </select>
                                                                         </td>
                                                                         <td>
-                                                                            <input type="text" name="koordinator_nama[]"
-                                                                                class="form-control"
-                                                                                placeholder="Nama Koordinator">
-                                                                        </td>
-                                                                        <td>
-                                                                            <input type="email"
-                                                                                name="email_koordinator[]"
-                                                                                class="form-control"
-                                                                                placeholder="Email Koordinator"
-                                                                                required>
+                                                                            <select name="koordinator_email[]"
+                                                                                class="form-control email-select"
+                                                                                onchange="updateEmail(this)" required>
+                                                                                <option value="">Pilih Email Koordinator
+                                                                                </option>
+                                                                                <?php foreach ($data as $row): ?>
+                                                                                    <option
+                                                                                        value="<?= htmlspecialchars($row['koordinator_email']) ?>">
+                                                                                        <?= htmlspecialchars($row['koordinator_email']) ?>
+                                                                                    </option>
+                                                                                <?php endforeach; ?>
+                                                                            </select>
                                                                         </td>
                                                                         <td>
                                                                             <button type="button" class="btn btn-danger"
@@ -408,22 +353,23 @@
                                                                 </tbody>
                                                             </table>
                                                             <button class="btn btn-primary" type="button"
-                                                                onclick="tambahBarisInputKoordinator()">Tambah
-                                                                Baris</button>
+                                                                onclick="tambahBarisKoordinator()">Tambah Baris</button>
                                                         </div>
-
                                                     </div>
                                                 </div>
-                                                <button type="submit" class="btn btn-primary">Submit</button>
-                                                <a href="<?= base_url('/welcomepage') ?>"
-                                                    class="btn btn-danger">Batal</a>
                                             </form>
+                                            <hr>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                            <a href="<?= base_url('/welcomepage') ?>" class="btn btn-danger">Batal</a>
                                         </div>
+
+
                                     </div>
                                 </div>
-
                             </div>
+
                         </div>
+                        </d>
 
                         <script src="//cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
                         <script>
@@ -555,7 +501,6 @@
                                 }
                             }
 
-
                             function tambahBarisKoordinator() {
                                 const tableBody = document.getElementById('koordinatorTableBody');
                                 const newRow = tableBody.rows[0].cloneNode(true);
@@ -569,7 +514,6 @@
                                 // Perbarui nomor baris
                                 updateNomorBaris('koordinatorTableBody');
                             }
-
 
                             function updateNomorBaris(tableBodyId) {
                                 const tableBody = document.getElementById(tableBodyId);
@@ -589,13 +533,13 @@
                 <select name="jurusan[]" class="form-control prodi-select">
                     <option value="">Pilih Jurusan</option>
                     <?php if (!empty($jurusanList)): ?>
-                            <?php foreach ($jurusanList as $jurusan): ?>
-                                    <option value="<?= htmlspecialchars($jurusan) ?>">
-                                        <?= htmlspecialchars($jurusan) ?>
-                                    </option>
-                            <?php endforeach; ?>
+                                                                            <?php foreach ($jurusanList as $jurusan): ?>
+                                                                                                                                    <option value="<?= htmlspecialchars($jurusan) ?>">
+                                                                                                                                        <?= htmlspecialchars($jurusan) ?>
+                                                                                                                                    </option>
+                                                                            <?php endforeach; ?>
                     <?php else: ?>
-                            <option value="">Jurusan tidak tersedia</option>
+                                                                            <option value="">Jurusan tidak tersedia</option>
                     <?php endif; ?>
                 </select>
             </td>

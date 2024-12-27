@@ -4,6 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 use app\Models\UserModel;
+use app\Models\koordinator_surveyor;
 
 class welcome extends Model
 {
@@ -19,26 +20,61 @@ class welcome extends Model
         return $query->getResultArray();
     }
 
-    public function getJoinedData()
+    public function getAllData()
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('welcome_message');
+        $builder->select('
+        welcome_message.*,
+        users.academic_graduate_year AS tahun_lulus,
+        users.academic_program AS program_studi,
+        users.display_name AS user_name, 
+        users.email AS user_email, 
+        koordinator_surveyor.tahun AS tahun_koordinator,
+        koordinator_surveyor.academic_faculty AS fakultas,
+        koordinator_surveyor.display_name AS koordinator_name, 
+        koordinator_surveyor.email AS koordinator_email
+    ');
+        $builder->join('users', 'users.id = welcome_message.users_id', 'left');
+        $builder->join('koordinator_surveyor', 'koordinator_surveyor.id = welcome_message.koordinator_id', 'left');
+        $query = $builder->get();
+        return $query->getResultArray();  // Pastikan data dikembalikan dalam bentuk array
+    }
+
+    public function getPrograms()
     {
         $db = \Config\Database::connect();
         $builder = $db->table('users');
-        $builder->select('users.academic_graduate_year, users.academic_program, users.academic_program, welcome_message.message');
-        $builder->join('welcome_message', 'users.id = welcome_message.user_id'); // Adjust the join condition as needed
+        $builder->select('academic_program');
         $query = $builder->get();
-        return $query->getResult();
+        return $query->getResultArray();
     }
 
-    public function insertSurveyorData($surveyor_data)
+    public function getDisplayNames()
     {
         $db = \Config\Database::connect();
-        $builder = $db->table('koordinator_surveyor'); // Replace with your surveyor table name
-        $builder->select('koordinator_surveyor.display_name, koordinator_surveyor.email, koordinator_surveyor.academic_faculty, koordinator_surveyor.tahun');
-        $builder->join('welcome_message', 'koordinator_surveyor.id = welcome_message.koordinator_surveyor_id'); // Adjust the join condition as needed
+        $builder = $db->table('users');
+        $builder->select('display_name');
+        $query = $builder->get();
+        return $query->getResultArray();
+    }
 
-        foreach ($surveyor_data as $data) {
-            $builder->insert($data);
-        }
+    public function getEmails()
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('users');
+        $builder->select('email');
+        $query = $builder->get();
+        return $query->getResultArray();
+    }
+
+    public function getGraduationYears()
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('users');
+        $builder->select('academic_graduate_year');
+        $query = $builder->get();
+        return $query->getResultArray();
     }
 
     // Menghitung total data
@@ -49,14 +85,12 @@ class welcome extends Model
     }
 
     // Mengambil data dengan pagination
-    public function getMessagesPaginated($limit, $offset)
+    public function getMessagesPaginated($perPage, $offset)
     {
-        $db = \Config\Database::connect();
-        return $db->table('welcome_message')
-            ->limit($limit, $offset)
-            ->orderBy('created_on', 'DESC')
+        return $this->db->table('welcome_message')
+            ->limit($perPage, $offset)
+            ->orderBy('tahun', 'DESC')
             ->get()
             ->getResultArray();
     }
-
 }

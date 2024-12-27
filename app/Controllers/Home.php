@@ -17,41 +17,52 @@ class Home extends BaseController
     public function index(): string
     {
         $model = new UserModel();
+        $my_data = $model->getAllDataManual();
+        $administrator = $model->getAdministrator();
+        $atasan = $model->getAtasan();
+        $alumni = $model->getAlumni();
+        $perusahaan = $model->getPerusahaan();
 
-        // Tentukan jumlah data per halaman
-        $perPage = 10;
+        // Ambil parameter jumlah baris per halaman dan halaman saat ini
+        $perPage = (int) ($this->request->getVar('perPage') ?? 10);
+        $page = (int) ($this->request->getVar('page') ?? 1);
 
-        // Ambil halaman saat ini dari query string
-        $page = $this->request->getVar('page') ?? 1;
+        // Validasi jumlah baris per halaman
+        $validPerPageOptions = [10, 15, 20, 25, 30];
+        if (!in_array($perPage, $validPerPageOptions)) {
+            $perPage = 10; // Default jika tidak valid
+        }
 
-        // Hitung offset untuk query (page-1) * perPage
+        // Hitung offset untuk query
         $offset = ($page - 1) * $perPage;
 
-        // Hitung total data
-        $totalData = $model->countAll();
+        // Cari data berdasarkan filter (jika ada)
+        $cariUser = $this->request->getVar('cariuser');
+        if ($cariUser) {
+            $model->like('display_name', $cariUser);
+        }
 
-        // Ambil data sesuai dengan offset dan perPage
+        // Ambil data dengan pagination
+        $totalData = $model->countAllResults(false); // False agar query tidak dieksekusi ulang
         $my_data = $model->findAll($perPage, $offset);
 
-        // Menghitung jumlah total halaman
+        // Hitung total halaman
         $totalPages = ceil($totalData / $perPage);
 
-        // Tentukan batasan pagination (halaman yang ditampilkan)
-        $startPage = max(1, $page - 1);
-        $endPage = min($totalPages, $page + 1);
-
-        // Siapkan data untuk dikirim ke view
-        $data = [
+        // Kirim data ke view
+        return view('index', [
             'my_data' => $my_data,
+            'administrator' => $administrator,
+            'atasan' => $atasan,
+            'alumni' => $alumni,
+            'perusahaan' => $perusahaan,
             'totalPages' => $totalPages,
             'currentPage' => $page,
             'perPage' => $perPage,
-            'startPage' => $startPage,
-            'endPage' => $endPage,
-        ];
-
-        return view('index', $data);
+            'cariUser' => $cariUser,
+        ]);
     }
+
 
     // Fungsi untuk mengimpor file Excel ke database
     public function import()
@@ -197,7 +208,7 @@ class Home extends BaseController
             return redirect()->back()->with('error', 'Gagal mengunggah file.');
         }
     }
-    
+
     public function deleteUser()
     {
         $userModel = new UserModel();
