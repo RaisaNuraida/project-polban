@@ -489,6 +489,11 @@
                                 <div class="d-flex justify-content-between">
                                     <h2>Sunting Kuesioner Page</h2>
                                 </div>
+                                <a class="btn btn-primary kuesioner"
+                                            style="font-size:14px;padding:2px 5px;color:white; height:25px;"
+                                            href="<?= base_url('/kuesionerpage') ?>">
+                                            Tambah Halaman
+                                        </a>
                                 <hr>
 
                                 <div class="m-2">
