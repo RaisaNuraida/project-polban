@@ -825,7 +825,8 @@
                                                             ?>
 
                                                             <td><?= $mainOption; ?>         <?= $conditionalOperator; ?>
-                                                                <?= $subOption; ?></td> <!-- Menampilkan subOption -->
+                                                                <?= $subOption; ?>
+                                                            </td> <!-- Menampilkan subOption -->
                                                             <td><?= $row['sections']; ?></td>
 
                                                             <td>
