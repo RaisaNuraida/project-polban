@@ -61,4 +61,18 @@ class pengaturan extends BaseController
         return view('pengaturan', $data);  
         // echo"ddd"; exit();
     } 
+
+    public function namasitus(): string
+    {
+        $model = new PengaturanModel();
+
+        $nama = $model->getPengaturan();
+        
+        $data = [
+            'nama' => $nama,
+        ];
+
+        return view('tracer', $data);  
+        // echo"ddd"; exit();
+    } 
 }
